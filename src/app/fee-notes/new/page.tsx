@@ -27,6 +27,10 @@ export default function NewFeeNotePage() {
       setError("Enter a valid amount, e.g. 2500 or 2,500.00");
       return;
     }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(issueDate)) {
+      setError("Pick an issue date.");
+      return;
+    }
     if (!existingMatterId && (!firmName.trim() || !matterTitle.trim())) {
       setError("Pick an existing matter, or give the firm and matter title.");
       return;
@@ -165,7 +169,7 @@ export default function NewFeeNotePage() {
           />
         </Field>
 
-        {error && <p className="text-sm text-[--color-danger]">{error}</p>}
+        {error && <p className="text-sm text-danger">{error}</p>}
 
         <div className="flex gap-2 pt-1">
           <Button onClick={() => submit(false)}>Issue fee note</Button>

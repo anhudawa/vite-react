@@ -26,6 +26,21 @@ import {
   TERMINAL_STATES,
 } from "./types";
 
+/**
+ * A cadence is valid when each rung is strictly after the previous one —
+ * out-of-order timings would silently skip rungs in the ladder walk.
+ */
+export function validateTimings(t: EscalationTimings): string | null {
+  const { reminder1Days: r1, reminder2Days: r2, formalLetterDays: fl } = t;
+  if (![r1, r2, fl].every((d) => Number.isFinite(d) && d > 0)) {
+    return "Each step must be a positive number of days.";
+  }
+  if (!(r1 < r2 && r2 < fl)) {
+    return "Steps must be in order: reminder 1 before reminder 2 before the formal letter.";
+  }
+  return null;
+}
+
 export function effectiveTimings(
   fn: FeeNote,
   globalTimings: EscalationTimings = DEFAULT_TIMINGS,

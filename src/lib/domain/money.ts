@@ -18,10 +18,13 @@ export function formatCentsCompact(cents: number): string {
 
 /**
  * Parse a user-entered amount ("1,250.00", "€1250", "1250") to cents.
- * Returns null on anything ambiguous rather than guessing.
+ * Returns null on anything ambiguous rather than guessing — in particular
+ * comma-decimal input like "1,50" (European €1.50) is rejected rather than
+ * silently read as 150.
  */
 export function parseAmountToCents(input: string): number | null {
-  const cleaned = input.replace(/[€\s,]/g, "");
-  if (!/^\d+(\.\d{1,2})?$/.test(cleaned)) return null;
-  return Math.round(parseFloat(cleaned) * 100);
+  const trimmed = input.replace(/[€\s]/g, "");
+  // Commas are accepted only as thousands separators in groups of three.
+  if (!/^(\d{1,3}(,\d{3})*|\d+)(\.\d{1,2})?$/.test(trimmed)) return null;
+  return Math.round(parseFloat(trimmed.replace(/,/g, "")) * 100);
 }

@@ -12,17 +12,8 @@ import {
   yearsWithActivity,
 } from "@/lib/domain/reports";
 import { outstandingViews, paidCentsByFeeNote } from "@/lib/views";
+import { downloadCSV } from "@/lib/download";
 import { Button, Card, EmptyState, SectionTitle } from "@/components/ui";
-
-function download(filename: string, csv: string) {
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
 
 export default function ReportsPage() {
   const db = useDb();
@@ -53,7 +44,7 @@ export default function ReportsPage() {
       (v.outstandingCents / 100).toFixed(2),
       v.fn.state,
     ]);
-    download(
+    downloadCSV(
       `aged-debt-${new Date().toISOString().slice(0, 10)}.csv`,
       toCSV(
         ["Fee note", "Firm", "Matter", "Issue date", "Days outstanding", "Outstanding (EUR)", "State"],
@@ -70,7 +61,7 @@ export default function ReportsPage() {
         const fn = db.feeNotes.find((f) => f.id === p.feeNoteId);
         return [p.date, fn?.number ?? "", (p.amountCents / 100).toFixed(2), p.method, p.note];
       });
-    download(
+    downloadCSV(
       `receipts-${year}.csv`,
       toCSV(["Date", "Fee note", "Amount (EUR)", "Method", "Note"], rows),
     );
@@ -133,7 +124,7 @@ export default function ReportsPage() {
               <span className="w-8 text-xs text-gray-500">{m.month}</span>
               <div className="h-4 flex-1 overflow-hidden rounded bg-gray-100">
                 <div
-                  className="h-full rounded bg-[--color-brand]"
+                  className="h-full rounded bg-brand"
                   style={{ width: `${(m.cents / maxMonth) * 100}%` }}
                 />
               </div>

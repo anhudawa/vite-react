@@ -74,10 +74,10 @@ export function Button({
   className?: string;
 }) {
   const styles = {
-    primary: "bg-[--color-brand] text-white hover:opacity-90",
-    secondary: "border border-black/15 bg-white text-[--color-ink] hover:bg-gray-50",
-    danger: "bg-[--color-danger] text-white hover:opacity-90",
-    ghost: "text-[--color-brand] hover:bg-[--color-brand-light]",
+    primary: "bg-brand text-white hover:opacity-90",
+    secondary: "border border-black/15 bg-white text-ink hover:bg-gray-50",
+    danger: "bg-danger text-white hover:opacity-90",
+    ghost: "text-brand hover:bg-brand-light",
   } as const;
   return (
     <button
@@ -107,7 +107,7 @@ export function Field({
 }
 
 export const inputCls =
-  "w-full rounded-lg border border-black/15 bg-white px-3 py-2 text-sm focus:border-[--color-brand] focus:outline-none";
+  "w-full rounded-lg border border-black/15 bg-white px-3 py-2 text-sm focus:border-brand focus:outline-none";
 
 export function EmptyState({
   title,

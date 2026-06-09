@@ -19,7 +19,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="mx-auto flex min-h-screen max-w-5xl flex-col">
-      <header className="no-print sticky top-0 z-20 border-b border-black/10 bg-[--color-brand] px-4 py-3 text-white">
+      <header className="no-print sticky top-0 z-20 border-b border-black/10 bg-brand px-4 py-3 text-white">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-lg font-semibold tracking-tight">
             FeeNote
@@ -55,7 +55,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             href={item.href}
             className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[11px] ${
               isActive(item.href)
-                ? "font-semibold text-[--color-brand]"
+                ? "font-semibold text-brand"
                 : "text-gray-500"
             }`}
           >

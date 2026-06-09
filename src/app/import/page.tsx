@@ -54,7 +54,12 @@ export default function ImportPage() {
           rows={8}
           placeholder="Or paste CSV here…"
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+            // Invalidate the preview — importing must always reflect the
+            // current text, never an earlier parse.
+            setResult(null);
+          }}
         />
         <div className="flex gap-2">
           <Button onClick={() => setResult(parseFeeNoteImport(text))}>

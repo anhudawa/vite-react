@@ -67,7 +67,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-1">
       {/* Headline: one thumb, ten seconds, full picture */}
-      <Card className="bg-[--color-brand] text-white">
+      <Card className="bg-brand text-white">
         <p className="text-xs uppercase tracking-wider text-white/70">
           Total outstanding
         </p>
@@ -87,7 +87,7 @@ export default function Dashboard() {
           <div className="space-y-2">
             {queue.map((v) => (
               <Link key={v.fn.id} href={`/fee-notes/${v.fn.id}`} className="block">
-                <Card className="flex items-center justify-between gap-3 border-l-4 border-l-[--color-accent]">
+                <Card className="flex items-center justify-between gap-3 border-l-4 border-l-accent">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">
                       {v.fn.number} · {v.firm?.name ?? "—"}
@@ -116,7 +116,7 @@ export default function Dashboard() {
           <div className="space-y-2">
             {missed.map((m) => (
               <Link key={m.view.fn.id} href={`/fee-notes/${m.view.fn.id}`} className="block">
-                <Card className="flex items-center justify-between gap-3 border-l-4 border-l-[--color-danger] py-3">
+                <Card className="flex items-center justify-between gap-3 border-l-4 border-l-danger py-3">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">
                       {m.view.fn.number} · {m.view.firm?.name ?? "—"}
@@ -125,7 +125,7 @@ export default function Dashboard() {
                       Payment plan behind since {m.dueDate}
                     </p>
                   </div>
-                  <span className="shrink-0 text-sm font-semibold tabular-nums text-[--color-danger]">
+                  <span className="shrink-0 text-sm font-semibold tabular-nums text-danger">
                     {formatCentsCompact(m.shortfallCents)} short
                   </span>
                 </Card>
@@ -154,10 +154,10 @@ export default function Dashboard() {
                 <div
                   className={`h-full rounded ${
                     band.key === "91-180" || band.key === "180+"
-                      ? "bg-[--color-danger]"
+                      ? "bg-danger"
                       : band.key === "61-90"
-                        ? "bg-[--color-accent]"
-                        : "bg-[--color-brand]"
+                        ? "bg-accent"
+                        : "bg-brand"
                   }`}
                   style={{ width: `${(band.cents / maxBand) * 100}%` }}
                 />

@@ -62,7 +62,7 @@ export default function FeeNotesPage() {
             onClick={() => setFilter(key)}
             className={`whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium ${
               filter === key
-                ? "bg-[--color-brand] text-white"
+                ? "bg-brand text-white"
                 : "bg-white text-gray-600 ring-1 ring-black/10"
             }`}
           >
@@ -73,7 +73,7 @@ export default function FeeNotesPage() {
 
       {views.length === 0 ? (
         <EmptyState title="No fee notes here">
-          <Link href="/import" className="text-[--color-brand] underline">
+          <Link href="/import" className="text-brand underline">
             Import your existing book
           </Link>{" "}
           or create one.

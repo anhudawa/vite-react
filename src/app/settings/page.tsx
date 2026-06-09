@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { getStore, useDb } from "@/lib/store/store";
 import { Template } from "@/lib/domain/types";
+import { validateTimings } from "@/lib/domain/escalation";
+import { downloadJSON } from "@/lib/download";
 import { Button, Card, Field, inputCls, SectionTitle } from "@/components/ui";
 
 export default function SettingsPage() {
@@ -10,8 +12,11 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-1 pb-8">
       <h1 className="text-lg font-semibold">Settings</h1>
-      <ProfileSection />
-      <TimingsSection />
+      {/* Keyed by profile id: the form state initialises during hydration
+          from the empty server snapshot; the id change on the client
+          snapshot forces a remount with the real values. */}
+      <ProfileSection key={`p-${db.profile.id}`} />
+      <TimingsSection key={`t-${db.profile.id}`} />
       <SectionTitle>Letter templates</SectionTitle>
       <p className="mb-2 text-xs text-gray-500">
         Templates are versioned: every chase records the version actually sent,
@@ -84,6 +89,7 @@ function TimingsSection() {
   const [r1, setR1] = useState(String(t.reminder1Days));
   const [r2, setR2] = useState(String(t.reminder2Days));
   const [fl, setFl] = useState(String(t.formalLetterDays));
+  const [error, setError] = useState("");
 
   return (
     <>
@@ -105,15 +111,18 @@ function TimingsSection() {
             <input className={inputCls} inputMode="numeric" value={fl} onChange={(e) => setFl(e.target.value)} />
           </Field>
         </div>
+        {error && <p className="text-sm text-danger">{error}</p>}
         <Button
           onClick={() => {
-            const vals = [r1, r2, fl].map((x) => parseInt(x, 10));
-            if (vals.some((x) => !Number.isFinite(x) || x <= 0)) return;
-            getStore().updateGlobalTimings({
-              reminder1Days: vals[0],
-              reminder2Days: vals[1],
-              formalLetterDays: vals[2],
-            });
+            const [a, b, c] = [r1, r2, fl].map((x) => parseInt(x, 10));
+            const timings = { reminder1Days: a, reminder2Days: b, formalLetterDays: c };
+            const problem = validateTimings(timings);
+            if (problem) {
+              setError(problem);
+              return;
+            }
+            setError("");
+            getStore().updateGlobalTimings(timings);
           }}
         >
           Save cadence
@@ -173,16 +182,28 @@ function TemplateEditor({ template }: { template: Template }) {
 }
 
 function DangerZone() {
+  const db = useDb();
   const [confirming, setConfirming] = useState(false);
+
+  const exportAll = () => {
+    // GDPR data-portability export (handover §6.4): the complete account
+    // dataset, including the append-only audit log, as a single JSON file.
+    downloadJSON(`feenote-export-${new Date().toISOString().slice(0, 10)}.json`, db);
+  };
+
   return (
     <>
       <SectionTitle>Data</SectionTitle>
       <Card>
         <p className="text-xs text-gray-500">
           Demo mode stores everything in this browser. Production uses Supabase
-          (EU region) with row-level security, export and deletion flows.
+          (EU region) with row-level security; export and deletion work the
+          same way there.
         </p>
         <div className="mt-2 flex gap-2">
+          <Button variant="secondary" onClick={exportAll}>
+            Export all data (JSON)
+          </Button>
           {confirming ? (
             <>
               <Button

@@ -90,6 +90,10 @@ export function buildChronology(
 
   for (const a of audit) {
     if (a.feeNoteId !== feeNote.id) continue;
+    // Sent steps are already represented by their richer STEP entries above
+    // (template version + approval timestamp) — skip the audit twin so the
+    // chronology doesn't show every send twice.
+    if (a.action.startsWith("STEP_SENT_")) continue;
     entries.push({ at: a.at, kind: "AUDIT", summary: a.action, detail: a.detail });
   }
 

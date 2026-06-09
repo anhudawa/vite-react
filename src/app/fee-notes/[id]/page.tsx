@@ -8,6 +8,7 @@ import { feeNoteView, FeeNoteView } from "@/lib/views";
 import { formatCents, parseAmountToCents } from "@/lib/domain/money";
 import { formatDate, formatDateTime, addDays } from "@/lib/domain/dates";
 import { renderForFeeNote } from "@/lib/domain/templates";
+import { validateTimings } from "@/lib/domain/escalation";
 import { buildChronology, canCreateBarReferral, stepLabel } from "@/lib/domain/pack";
 import { Db } from "@/lib/store/db";
 import { Button, Card, Field, inputCls, SectionTitle, StateBadge } from "@/components/ui";
@@ -75,7 +76,7 @@ function Header({ v }: { v: FeeNoteView }) {
           </div>
           <Link
             href={`/fee-notes/${v.fn.id}/document`}
-            className="mt-1 block text-xs text-[--color-brand] underline"
+            className="mt-1 block text-xs text-brand underline"
           >
             View fee note document
           </Link>
@@ -89,11 +90,23 @@ function Header({ v }: { v: FeeNoteView }) {
 function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
   const router = useRouter();
   const [showPreview, setShowPreview] = useState(false);
+  const [actionError, setActionError] = useState("");
   const store = getStore();
+
+  /** Store transitions throw TransitionError on a blocked move (e.g. the
+   * Bar referral cap); surface it instead of crashing the handler. */
+  const tryAction = (action: () => void) => {
+    try {
+      setActionError("");
+      action();
+    } catch (e) {
+      setActionError(e instanceof Error ? e.message : String(e));
+    }
+  };
 
   if (v.fn.state === "DRAFT") {
     return (
-      <Card className="border-l-4 border-l-[--color-brand]">
+      <Card className="border-l-4 border-l-brand">
         <p className="text-sm">This fee note is a draft — the clock hasn’t started.</p>
         <div className="mt-2">
           <Button onClick={() => store.issueFeeNote(v.fn.id)}>Issue now</Button>
@@ -151,7 +164,7 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
   if (v.proposed.kind === "RECOVERY_DECISION") {
     const barAvailable = canCreateBarReferral(db.feeNotes);
     return (
-      <Card className="border-l-4 border-l-[--color-danger]">
+      <Card className="border-l-4 border-l-danger">
         <p className="text-sm font-medium">
           The ladder is exhausted. How do you want to escalate?
         </p>
@@ -162,25 +175,30 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
         <div className="mt-3 flex flex-wrap gap-2">
           <Button
             disabled={!barAvailable}
-            onClick={() => {
-              store.approveAndSendStep(v.fn.id, "BAR_REFERRAL_PACK");
-              router.push(`/fee-notes/${v.fn.id}/pack/bar`);
-            }}
+            onClick={() =>
+              tryAction(() => {
+                store.approveAndSendStep(v.fn.id, "BAR_REFERRAL_PACK");
+                router.push(`/fee-notes/${v.fn.id}/pack/bar`);
+              })
+            }
           >
             Refer to Bar fee recovery
           </Button>
           <Button
             variant="danger"
-            onClick={() => {
-              store.approveAndSendStep(v.fn.id, "LSRA_COMPLAINT_PACK");
-              router.push(`/fee-notes/${v.fn.id}/pack/lsra`);
-            }}
+            onClick={() =>
+              tryAction(() => {
+                store.approveAndSendStep(v.fn.id, "LSRA_COMPLAINT_PACK");
+                router.push(`/fee-notes/${v.fn.id}/pack/lsra`);
+              })
+            }
           >
             Prepare LSRA complaint
           </Button>
         </div>
+        {actionError && <p className="mt-2 text-xs text-danger">{actionError}</p>}
         {!barAvailable && (
-          <p className="mt-2 text-xs text-[--color-danger]">
+          <p className="mt-2 text-xs text-danger">
             You already have 3 active Bar referrals — the service caps at 3 per
             member. Settle or withdraw one first.
           </p>
@@ -207,7 +225,7 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
   }
 
   return (
-    <Card className={`border-l-4 ${due ? "border-l-[--color-accent]" : "border-l-gray-200"}`}>
+    <Card className={`border-l-4 ${due ? "border-l-accent" : "border-l-gray-200"}`}>
       <p className="text-sm font-medium">
         {stepLabel(step)} {due ? "is due" : `scheduled for ${formatDate(dueDate)}`}
       </p>
@@ -217,10 +235,12 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
         <Button
-          onClick={() => {
-            store.approveAndSendStep(v.fn.id, step);
-            setShowPreview(false);
-          }}
+          onClick={() =>
+            tryAction(() => {
+              store.approveAndSendStep(v.fn.id, step);
+              setShowPreview(false);
+            })
+          }
         >
           Approve &amp; send {due ? "now" : "early"}
         </Button>
@@ -231,6 +251,7 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
           Skip this step
         </Button>
       </div>
+      {actionError && <p className="mt-2 text-xs text-danger">{actionError}</p>}
       {showPreview && rendered && (
         <div className="mt-3 rounded-lg bg-gray-50 p-3 text-sm">
           <p className="font-medium">{rendered.subject}</p>
@@ -254,6 +275,7 @@ function LadderControls({ v }: { v: FeeNoteView }) {
   const [r1, setR1] = useState(String(t?.reminder1Days ?? 30));
   const [r2, setR2] = useState(String(t?.reminder2Days ?? 60));
   const [fl, setFl] = useState(String(t?.formalLetterDays ?? 90));
+  const [cadenceError, setCadenceError] = useState("");
   const terminal = v.fn.state === "SETTLED" || v.fn.state === "WRITTEN_OFF";
   if (terminal || v.fn.state === "DRAFT") return null;
 
@@ -305,16 +327,22 @@ function LadderControls({ v }: { v: FeeNoteView }) {
                 <input className={inputCls} inputMode="numeric" value={fl} onChange={(e) => setFl(e.target.value)} />
               </Field>
             </div>
+            {cadenceError && <p className="text-sm text-danger">{cadenceError}</p>}
             <div className="flex gap-2">
               <Button
                 onClick={() => {
-                  const vals = [r1, r2, fl].map((x) => parseInt(x, 10));
-                  if (vals.some((x) => !Number.isFinite(x) || x <= 0)) return;
-                  store.setTimingsOverride(v.fn.id, {
-                    reminder1Days: vals[0],
-                    reminder2Days: vals[1],
-                    formalLetterDays: vals[2],
-                  });
+                  const [a, b, c] = [r1, r2, fl].map((x) => parseInt(x, 10));
+                  const timings = {
+                    reminder1Days: a,
+                    reminder2Days: b,
+                    formalLetterDays: c,
+                  };
+                  const problem = validateTimings(timings);
+                  if (problem) {
+                    setCadenceError(problem);
+                    return;
+                  }
+                  store.setTimingsOverride(v.fn.id, timings);
                   setShowCadence(false);
                 }}
               >
@@ -467,7 +495,7 @@ function CorrespondenceSection({ v }: { v: FeeNoteView }) {
                 className={`rounded-lg p-3 text-sm ${
                   c.direction === "INBOUND"
                     ? "bg-rose-50"
-                    : "bg-[--color-brand-light]"
+                    : "bg-brand-light"
                 }`}
               >
                 <p className="text-[11px] text-gray-500">

@@ -169,7 +169,7 @@ export default function IngestPage() {
           <Field label="Work description">
             <textarea className={inputCls} rows={2} value={draft.workDescription} onChange={set("workDescription")} />
           </Field>
-          {error && <p className="text-sm text-[--color-danger]">{error}</p>}
+          {error && <p className="text-sm text-danger">{error}</p>}
           <div className="flex gap-2">
             <Button onClick={() => confirm(false)}>Confirm — already issued</Button>
             <Button variant="secondary" onClick={() => confirm(true)}>

@@ -357,7 +357,16 @@ class Store {
         !action.requiresApproval
       );
     });
-    for (const fn of due) this.sendStep(fn.id, "REMINDER_1", false);
+    for (const fn of due) {
+      try {
+        this.sendStep(fn.id, "REMINDER_1", false);
+      } catch (e) {
+        // One bad record must not abort the sweep (or app startup, which
+        // runs this from the constructor). mutate() discards its clone on
+        // throw, so the store is still consistent.
+        console.error(`Auto-send failed for fee note ${fn.id}:`, e);
+      }
+    }
   }
 
   /** One-tap approval gate: approve and send in a single action. */

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  validateTimings,
   dispute,
   issue,
   markStepSent,
@@ -168,5 +169,25 @@ describe("transitions", () => {
   it("pause and skip are recorded on the note", () => {
     expect(setPaused(note(), true).paused).toBe(true);
     expect(skipStep(note(), "REMINDER_2").skippedSteps).toEqual(["REMINDER_2"]);
+  });
+});
+
+describe("validateTimings", () => {
+  it("accepts a strictly ascending cadence", () => {
+    expect(
+      validateTimings({ reminder1Days: 30, reminder2Days: 60, formalLetterDays: 90 }),
+    ).toBeNull();
+  });
+
+  it("rejects out-of-order or non-positive cadences", () => {
+    expect(
+      validateTimings({ reminder1Days: 60, reminder2Days: 30, formalLetterDays: 90 }),
+    ).toMatch(/order/);
+    expect(
+      validateTimings({ reminder1Days: 0, reminder2Days: 60, formalLetterDays: 90 }),
+    ).toMatch(/positive/);
+    expect(
+      validateTimings({ reminder1Days: 30, reminder2Days: 30, formalLetterDays: 90 }),
+    ).toMatch(/order/);
   });
 });

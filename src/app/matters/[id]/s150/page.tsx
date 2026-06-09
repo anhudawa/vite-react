@@ -34,7 +34,7 @@ export default function Section150Page() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="no-print mb-4 flex items-center justify-between">
-        <Link href="/matters" className="text-sm text-[--color-brand] underline">
+        <Link href="/matters" className="text-sm text-brand underline">
           ← Back to matters
         </Link>
         <Button onClick={() => window.print()}>Print / save as PDF</Button>

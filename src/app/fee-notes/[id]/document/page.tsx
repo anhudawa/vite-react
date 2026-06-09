@@ -24,7 +24,7 @@ export default function FeeNoteDocumentPage() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="no-print mb-4 flex items-center justify-between">
-        <Link href={`/fee-notes/${fn.id}`} className="text-sm text-[--color-brand] underline">
+        <Link href={`/fee-notes/${fn.id}`} className="text-sm text-brand underline">
           ← Back to {fn.number}
         </Link>
         <Button onClick={() => window.print()}>Print / save as PDF</Button>
