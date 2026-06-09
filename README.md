@@ -1,21 +1,92 @@
-# React + TypeScript + Vite
+# FeeNote
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Fee management and recovery for Irish barristers. **Get paid without being the
+one doing the chasing.**
 
-While this project uses React, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
+A barrister's unpaid fee notes are a relationship problem, not an invoicing
+problem: the solicitor who owes the money is also the source of future work.
+FeeNote depersonalises the chase — the system escalates on schedule, the
+barrister stays clean.
 
-## Deploy Your Own
+Built against the June 2026 handover spec. This codebase covers **Milestone 1
+(Ledger)** and the core of **Milestone 2 (Engine)**.
 
-Deploy your own Vite project with Vercel.
+## What's implemented
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/vite-react&template=vite-react)
+- **Aged debt dashboard** — total outstanding, ageing bands (0–30 → 180+),
+  by-firm rollups, and an approval queue. Mobile-first: one thumb, ten
+  seconds, full picture.
+- **Escalation ladder engine** (`src/lib/domain/escalation.ts`) — the
+  per-fee-note state machine: `DRAFT → ISSUED → REMINDER_1 (day 30) →
+  REMINDER_2 (day 60) → FORMAL_LETTER (day 90) → RECOVERY_DECISION →
+  BAR_REFERRAL_PACK | LSRA_COMPLAINT_PACK → SETTLED | WRITTEN_OFF`, with
+  `DISPUTED` as a first-class pausing state. First reminders go out
+  automatically on schedule; **everything beyond a first reminder requires
+  explicit one-tap user approval** — the product proposes, the barrister
+  disposes. Cadence is adjustable globally and per fee note; any note can be
+  paused or have steps skipped.
+- **Fee note ledger** — create (with optional Section 150 record at matter
+  creation), list, filter, detail view with ladder controls, payments
+  (partials + payment plans), dispute thread, and full chronology.
+- **CSV import** — onboarding for existing aged debt (empty dashboards kill
+  activation). Header aliasing, Irish `dd/mm/yyyy` dates, per-row error
+  reporting, preview before commit.
+- **Recovery packs** — Bar of Ireland referral pack (3-active cap enforced)
+  and LSRA complaint pack, generated from the append-only audit log — the
+  chronology is the product, never reconstructed. Printable (browser
+  print-to-PDF in demo mode).
+- **Templates** — versioned, merge-field letter templates; every sent step
+  records the template version actually used.
+- **Firm payment stats** — days-to-pay computed and stored per firm from day
+  one (the Phase 2 benchmark data accretes even before the feature ships),
+  surfaced only in defamation-safe bands.
+- **Audit log** — append-only record of every state change, send and user
+  action; the LSRA evidence base.
 
-_Live Example: https://vite-react-example.vercel.app_
+## Running it
 
-### Deploying From Your Terminal
-
-You can deploy your new Vite project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
-
-```shell
-$ vercel
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm test           # domain-engine unit tests (vitest)
+npm run build      # production build
 ```
+
+The app starts empty (by design — onboarding pushes CSV import first). Use
+**"Load the demo practice book"** on the dashboard to seed a realistic junior
+counsel book: ~€36k outstanding across six firms, notes at every rung of the
+ladder, a quantum dispute, a part-paid note and settled history feeding the
+payment stats.
+
+## Architecture
+
+- **Next.js 15 (App Router) + Tailwind 4**, mobile-first responsive web.
+- **Domain layer** (`src/lib/domain/`) — pure, storage-agnostic TypeScript:
+  state machine, ageing, stats, CSV, template merge, pack assembly. Money is
+  integer cents; all of it unit-tested.
+- **Demo data layer** (`src/lib/store/`) — localStorage-backed store with
+  audit-logged mutations, so the product works end-to-end with no backend.
+- **Production schema** (`supabase/migrations/0001_init.sql`) — the full
+  Supabase schema from the handover §6.2: every table keyed to `user_id` with
+  RLS as the tenancy boundary, and an `audit_log` with **no update/delete
+  grants**. The local store mirrors this shape 1:1 so swapping in a Supabase
+  adapter is mechanical. Deploy to an EU region only.
+
+### Not yet built (per handover sequencing)
+
+- Supabase Auth + adapter wiring (schema is ready; demo mode unblocks
+  evaluation meanwhile)
+- Email-forward ingestion with Claude parsing, outbound email (Postmark /
+  Resend) and per-fee-note reply-to capture — Milestone 3
+- Server-side PDF generation, Stripe billing, reports/exports — Milestones 3–4
+- Section 150 **content** — the engine renders owner-supplied templates; the
+  shipped wording is a clearly-marked placeholder pending review by the owner
+  (handover §9.1)
+
+## Product principles (tie-breakers)
+
+1. The barrister never looks like the bad guy.
+2. Five minutes a week.
+3. The chronology is the product.
+4. Empty dashboards kill activation.
+5. Data accretes from day one.
