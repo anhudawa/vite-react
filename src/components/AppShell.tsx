@@ -4,11 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV = [
-  { href: "/", label: "Dashboard", icon: "▦" },
-  { href: "/fee-notes", label: "Fee notes", icon: "▤" },
-  { href: "/firms", label: "Firms", icon: "▣" },
-  { href: "/import", label: "Import", icon: "⇪" },
-  { href: "/settings", label: "Settings", icon: "⚙" },
+  { href: "/", label: "Dashboard", icon: "▦", mobile: true },
+  { href: "/fee-notes", label: "Fee notes", icon: "▤", mobile: true },
+  { href: "/matters", label: "Matters", icon: "§", mobile: true },
+  { href: "/firms", label: "Firms", icon: "▣", mobile: false },
+  { href: "/reports", label: "Reports", icon: "∑", mobile: true },
+  { href: "/settings", label: "Settings", icon: "⚙", mobile: true },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -48,7 +49,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* Mobile bottom nav — this product is used one-thumbed outside a courtroom */}
       <nav className="no-print fixed inset-x-0 bottom-0 z-20 flex border-t border-black/10 bg-white sm:hidden">
-        {NAV.map((item) => (
+        {NAV.filter((item) => item.mobile).map((item) => (
           <Link
             key={item.href}
             href={item.href}

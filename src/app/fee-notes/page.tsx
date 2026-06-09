@@ -35,9 +35,17 @@ export default function FeeNotesPage() {
     <div>
       <div className="mb-4 flex items-center justify-between gap-2">
         <h1 className="text-lg font-semibold">Fee notes</h1>
-        <Link href="/fee-notes/new" className="contents">
-          <Button>New fee note</Button>
-        </Link>
+        <div className="flex gap-2">
+          <Link href="/ingest" className="contents">
+            <Button variant="secondary">From email</Button>
+          </Link>
+          <Link href="/import" className="contents">
+            <Button variant="secondary">Import CSV</Button>
+          </Link>
+          <Link href="/fee-notes/new" className="contents">
+            <Button>New</Button>
+          </Link>
+        </div>
       </div>
 
       <div className="mb-3 flex gap-1 overflow-x-auto">

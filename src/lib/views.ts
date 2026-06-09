@@ -96,6 +96,37 @@ export function awaitingApproval(db: Db): FeeNoteView[] {
   );
 }
 
+export interface MissedInstalment {
+  view: FeeNoteView;
+  dueDate: string;
+  shortfallCents: number;
+}
+
+/** Payment-plan instalments past due where receipts haven't kept pace. */
+export function missedInstalments(db: Db, today: string): MissedInstalment[] {
+  const missed: MissedInstalment[] = [];
+  for (const plan of db.paymentPlans) {
+    const fn = db.feeNotes.find((f) => f.id === plan.feeNoteId);
+    if (!fn || fn.state === "SETTLED" || fn.state === "WRITTEN_OFF") continue;
+    const v = feeNoteView(db, fn);
+    let expected = 0;
+    let lastOverdue: { dueDate: string } | null = null;
+    for (const inst of plan.instalments) {
+      if (inst.dueDate > today) break;
+      expected += inst.amountCents;
+      lastOverdue = inst;
+    }
+    if (lastOverdue && v.paidCents < expected) {
+      missed.push({
+        view: v,
+        dueDate: lastOverdue.dueDate,
+        shortfallCents: expected - v.paidCents,
+      });
+    }
+  }
+  return missed;
+}
+
 export interface FirmRollup {
   firm: SolicitorFirm;
   outstandingCents: number;

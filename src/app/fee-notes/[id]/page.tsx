@@ -73,6 +73,12 @@ function Header({ v }: { v: FeeNoteView }) {
           <div className="mt-1">
             <StateBadge state={v.fn.state} paused={v.fn.paused} />
           </div>
+          <Link
+            href={`/fee-notes/${v.fn.id}/document`}
+            className="mt-1 block text-xs text-[--color-brand] underline"
+          >
+            View fee note document
+          </Link>
         </div>
       </div>
     </Card>

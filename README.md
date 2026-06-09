@@ -9,7 +9,8 @@ FeeNote depersonalises the chase — the system escalates on schedule, the
 barrister stays clean.
 
 Built against the June 2026 handover spec. This codebase covers **Milestone 1
-(Ledger)** and the core of **Milestone 2 (Engine)**.
+(Ledger)**, the core of **Milestone 2 (Engine)**, the ingestion/document side
+of **Milestone 3**, and the reports from **Milestone 4**.
 
 ## What's implemented
 
@@ -42,6 +43,18 @@ Built against the June 2026 handover spec. This codebase covers **Milestone 1
   surfaced only in defamation-safe bands.
 - **Audit log** — append-only record of every state change, send and user
   action; the LSRA evidence base.
+- **Email ingestion** — paste/forward a fee note email and it's parsed into a
+  draft record via the Claude API (`/api/parse-fee-note`, structured outputs)
+  with a deterministic local fallback when no `ANTHROPIC_API_KEY` is set.
+  Either way every field passes through a review screen before saving —
+  nothing AI-extracted is stored unconfirmed.
+- **Documents** — printable fee note (clean template carrying the barrister's
+  identity, VAT and bank details) and Section 150 notice rendered from the
+  versioned template; matters view tracks s.150 issue/delivery per matter.
+- **Reports** — aged debt summary, monthly receipts (cash basis, calendar tax
+  year / Form 11 oriented), bi-monthly VAT3 summary (flagged draft pending
+  owner sign-off on VAT treatment), with CSV exports.
+- **Payment plan monitoring** — missed instalments surface on the dashboard.
 
 ## Running it
 
@@ -76,9 +89,12 @@ payment stats.
 
 - Supabase Auth + adapter wiring (schema is ready; demo mode unblocks
   evaluation meanwhile)
-- Email-forward ingestion with Claude parsing, outbound email (Postmark /
-  Resend) and per-fee-note reply-to capture — Milestone 3
-- Server-side PDF generation, Stripe billing, reports/exports — Milestones 3–4
+- Inbound email infrastructure (Postmark routes to unique per-user
+  addresses) — the parse → review → confirm pipeline is built; demo mode
+  takes a pasted email instead
+- Outbound email sending (Postmark/Resend) and per-fee-note reply-to capture
+- Server-side PDF generation (printable documents use browser print for now)
+  and Stripe billing — Milestone 4
 - Section 150 **content** — the engine renders owner-supplied templates; the
   shipped wording is a clearly-marked placeholder pending review by the owner
   (handover §9.1)

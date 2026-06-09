@@ -5,9 +5,11 @@ import { useDb, getStore } from "@/lib/store/store";
 import { summariseAgeing } from "@/lib/domain/ageing";
 import { formatCents, formatCentsCompact } from "@/lib/domain/money";
 import { stepLabel } from "@/lib/domain/pack";
+import { todayISO } from "@/lib/domain/dates";
 import {
   awaitingApproval,
   firmRollups,
+  missedInstalments,
   outstandingViews,
   paidCentsByFeeNote,
 } from "@/lib/views";
@@ -30,6 +32,11 @@ export default function Dashboard() {
         <div className="flex flex-col gap-2">
           <Link href="/import" className="contents">
             <Button className="w-full">Import existing fee notes (CSV)</Button>
+          </Link>
+          <Link href="/ingest" className="contents">
+            <Button variant="secondary" className="w-full">
+              Forward a fee note email
+            </Button>
           </Link>
           <Link href="/fee-notes/new" className="contents">
             <Button variant="secondary" className="w-full">
@@ -55,6 +62,7 @@ export default function Dashboard() {
   const firms = firmRollups(db).filter((f) => f.outstandingCents > 0);
   const maxBand = Math.max(1, ...ageing.bands.map((b) => b.cents));
   const disputed = outstandingViews(db).filter((v) => v.fn.state === "DISPUTED");
+  const missed = missedInstalments(db, todayISO());
 
   return (
     <div className="space-y-1">
@@ -94,6 +102,31 @@ export default function Dashboard() {
                   </div>
                   <span className="shrink-0 text-sm font-semibold tabular-nums">
                     {formatCentsCompact(v.outstandingCents)}
+                  </span>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
+
+      {missed.length > 0 && (
+        <>
+          <SectionTitle>Missed instalments</SectionTitle>
+          <div className="space-y-2">
+            {missed.map((m) => (
+              <Link key={m.view.fn.id} href={`/fee-notes/${m.view.fn.id}`} className="block">
+                <Card className="flex items-center justify-between gap-3 border-l-4 border-l-[--color-danger] py-3">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium">
+                      {m.view.fn.number} · {m.view.firm?.name ?? "—"}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      Payment plan behind since {m.dueDate}
+                    </p>
+                  </div>
+                  <span className="shrink-0 text-sm font-semibold tabular-nums text-[--color-danger]">
+                    {formatCentsCompact(m.shortfallCents)} short
                   </span>
                 </Card>
               </Link>
