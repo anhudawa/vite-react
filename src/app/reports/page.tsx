@@ -69,10 +69,10 @@ export default function ReportsPage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-1 pb-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-lg font-semibold">Reports</h1>
+      <div className="mb-2 flex items-end justify-between">
+        <h1 className="font-display text-[1.65rem] font-semibold leading-tight tracking-tight">Reports</h1>
         <select
-          className="rounded-lg border border-black/15 bg-white px-2 py-1 text-sm"
+          className="rounded-lg border border-line-strong bg-white px-2 py-1 text-sm"
           value={year}
           onChange={(e) => setYear(parseInt(e.target.value, 10))}
         >
@@ -92,7 +92,7 @@ export default function ReportsPage() {
             {formatCents(ageing.totalOutstandingCents)}
           </span>
         </p>
-        <ul className="mt-2 space-y-1 text-sm text-gray-600">
+        <ul className="mt-2 space-y-1 text-sm text-ink-soft">
           {ageing.bands.map((b) => (
             <li key={b.key} className="flex justify-between">
               <span>{b.label}</span>
@@ -116,13 +116,13 @@ export default function ReportsPage() {
           <span className="font-semibold tabular-nums">
             {formatCents(totalReceipts(db.payments, year))}
           </span>
-          <span className="ml-1 text-xs text-gray-500">(cash-receipts basis, Form 11 oriented)</span>
+          <span className="ml-1 text-xs text-ink-soft">(cash-receipts basis, Form 11 oriented)</span>
         </p>
         <div className="space-y-1">
           {monthly.map((m) => (
             <div key={m.month} className="flex items-center gap-2">
-              <span className="w-8 text-xs text-gray-500">{m.month}</span>
-              <div className="h-4 flex-1 overflow-hidden rounded bg-gray-100">
+              <span className="w-8 text-xs text-ink-soft">{m.month}</span>
+              <div className="h-4 flex-1 overflow-hidden rounded bg-paper">
                 <div
                   className="h-full rounded bg-brand"
                   style={{ width: `${(m.cents / maxMonth) * 100}%` }}
@@ -150,7 +150,7 @@ export default function ReportsPage() {
         </p>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-black/10 text-left text-xs text-gray-500">
+            <tr className="border-b border-line text-left text-xs text-ink-soft">
               <th className="py-1">VAT3 period</th>
               <th className="py-1 text-right">Gross</th>
               <th className="py-1 text-right">Net</th>
@@ -159,7 +159,7 @@ export default function ReportsPage() {
           </thead>
           <tbody>
             {vat.map((p) => (
-              <tr key={p.label} className="border-b border-black/5">
+              <tr key={p.label} className="border-b border-line">
                 <td className="py-1">{p.label}</td>
                 <td className="py-1 text-right tabular-nums">
                   {p.grossCents > 0 ? formatCents(p.grossCents) : "—"}
@@ -176,7 +176,7 @@ export default function ReportsPage() {
         </table>
       </Card>
 
-      <p className="pt-2 text-xs text-gray-400">
+      <p className="pt-2 text-xs text-ink-faint">
         Use your browser&apos;s print dialog for a PDF of this page.
       </p>
     </div>

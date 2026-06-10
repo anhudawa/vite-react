@@ -4,7 +4,7 @@ import { useDb } from "@/lib/store/store";
 import { firmRollups } from "@/lib/views";
 import { formatCents } from "@/lib/domain/money";
 import { meanDaysToPay, paymentBandLabel } from "@/lib/domain/stats";
-import { Card, EmptyState } from "@/components/ui";
+import { Card, EmptyState, PageHeader } from "@/components/ui";
 
 export default function FirmsPage() {
   const db = useDb();
@@ -12,11 +12,10 @@ export default function FirmsPage() {
 
   return (
     <div>
-      <h1 className="mb-1 text-lg font-semibold">Solicitor firms</h1>
-      <p className="mb-4 text-xs text-gray-500">
-        Payment behaviour is computed from your own fee notes only. Cross-user
-        benchmarks are a Phase 2 feature gated on legal review.
-      </p>
+      <PageHeader
+        title="Solicitor firms"
+        subtitle="Payment behaviour is computed from your own fee notes only. Cross-user benchmarks are a Phase 2 feature gated on legal review."
+      />
       {rollups.length === 0 ? (
         <EmptyState title="No firms yet">
           Firms are created automatically when you add or import fee notes.
@@ -30,7 +29,7 @@ export default function FirmsPage() {
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">{r.firm.name}</p>
-                    <p className="mt-0.5 text-xs text-gray-500">
+                    <p className="mt-0.5 text-xs text-ink-soft">
                       {paymentBandLabel(r.firm.stats)}
                       {mean !== null && ` · avg ${mean} days over ${r.firm.stats.paidCount} paid`}
                     </p>
@@ -39,7 +38,7 @@ export default function FirmsPage() {
                     <p className="text-sm font-semibold tabular-nums">
                       {formatCents(r.outstandingCents)}
                     </p>
-                    <p className="text-[11px] text-gray-500">
+                    <p className="text-[11px] text-ink-soft">
                       {r.noteCount} outstanding
                       {r.oldestAgeDays > 0 && ` · oldest ${r.oldestAgeDays}d`}
                     </p>

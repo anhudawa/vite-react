@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { getStore, useDb, todayInputValue } from "@/lib/store/store";
 import { parseAmountToCents } from "@/lib/domain/money";
-import { Button, Card, Field, inputCls } from "@/components/ui";
+import { Button, Card, Field, inputCls, PageHeader } from "@/components/ui";
 
 export default function NewFeeNotePage() {
   const db = useDb();
@@ -60,7 +60,7 @@ export default function NewFeeNotePage() {
 
   return (
     <div className="mx-auto max-w-lg">
-      <h1 className="mb-4 text-lg font-semibold">New fee note</h1>
+      <PageHeader title="New fee note" />
       <Card className="space-y-3">
         <Field label="Existing matter (optional)">
           <select
@@ -128,7 +128,7 @@ export default function NewFeeNotePage() {
                 onChange={(e) => setMatterRef(e.target.value)}
               />
             </Field>
-            <label className="flex items-center gap-2 text-sm text-gray-700">
+            <label className="flex items-center gap-2 text-sm text-ink">
               <input
                 type="checkbox"
                 checked={issueS150}
@@ -177,7 +177,7 @@ export default function NewFeeNotePage() {
             Save as draft
           </Button>
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-ink-soft">
           Issuing starts the escalation clock: a first reminder is scheduled
           automatically; nothing beyond that ever goes out without your
           approval.

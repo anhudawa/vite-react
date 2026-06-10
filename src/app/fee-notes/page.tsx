@@ -6,7 +6,7 @@ import { useDb } from "@/lib/store/store";
 import { allViews } from "@/lib/views";
 import { formatCents } from "@/lib/domain/money";
 import { formatDate } from "@/lib/domain/dates";
-import { Button, Card, EmptyState, StateBadge } from "@/components/ui";
+import { Button, Card, EmptyState, PageHeader, StateBadge } from "@/components/ui";
 
 type Filter = "OUTSTANDING" | "ALL" | "DISPUTED" | "CLOSED";
 
@@ -33,20 +33,22 @@ export default function FeeNotesPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between gap-2">
-        <h1 className="text-lg font-semibold">Fee notes</h1>
-        <div className="flex gap-2">
-          <Link href="/ingest" className="contents">
-            <Button variant="secondary">From email</Button>
-          </Link>
-          <Link href="/import" className="contents">
-            <Button variant="secondary">Import CSV</Button>
-          </Link>
-          <Link href="/fee-notes/new" className="contents">
-            <Button>New</Button>
-          </Link>
-        </div>
-      </div>
+      <PageHeader
+        title="Fee notes"
+        actions={
+          <>
+            <Link href="/ingest" className="contents">
+              <Button variant="secondary">From email</Button>
+            </Link>
+            <Link href="/import" className="contents">
+              <Button variant="secondary">Import CSV</Button>
+            </Link>
+            <Link href="/fee-notes/new" className="contents">
+              <Button>New</Button>
+            </Link>
+          </>
+        }
+      />
 
       <div className="mb-3 flex gap-1 overflow-x-auto">
         {(
@@ -63,7 +65,7 @@ export default function FeeNotesPage() {
             className={`whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium ${
               filter === key
                 ? "bg-brand text-white"
-                : "bg-white text-gray-600 ring-1 ring-black/10"
+                : "bg-white text-ink-soft ring-1 ring-line-strong"
             }`}
           >
             {label}
@@ -87,7 +89,7 @@ export default function FeeNotesPage() {
                   <p className="truncate text-sm font-medium">
                     {v.fn.number} · {v.matter?.title ?? "(no matter)"}
                   </p>
-                  <p className="truncate text-xs text-gray-500">
+                  <p className="truncate text-xs text-ink-soft">
                     {v.firm?.name ?? "—"} · issued {formatDate(v.fn.issueDate)} ·{" "}
                     {v.ageDays}d
                   </p>
@@ -100,7 +102,7 @@ export default function FeeNotesPage() {
                     {formatCents(v.outstandingCents)}
                   </p>
                   {v.paidCents > 0 && (
-                    <p className="text-[11px] text-gray-500">
+                    <p className="text-[11px] text-ink-soft">
                       {formatCents(v.paidCents)} paid
                     </p>
                   )}

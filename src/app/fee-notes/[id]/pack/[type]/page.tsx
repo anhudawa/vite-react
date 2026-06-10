@@ -1,5 +1,7 @@
 "use client";
 
+import { plural } from "@/lib/plural";
+
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useDb } from "@/lib/store/store";
@@ -18,7 +20,7 @@ export default function PackPage() {
   const db = useDb();
   const { id, type } = useParams<{ id: string; type: string }>();
   const fn = db.feeNotes.find((f) => f.id === id);
-  if (!fn) return <p className="text-sm text-gray-500">Fee note not found.</p>;
+  if (!fn) return <p className="text-sm text-ink-soft">Fee note not found.</p>;
   const v = feeNoteView(db, fn);
   const isBar = type === "bar";
   const title = isBar
@@ -37,13 +39,14 @@ export default function PackPage() {
         <Button onClick={() => window.print()}>Print / save as PDF</Button>
       </div>
 
-      <div className="rounded-xl border border-black/10 bg-white p-8 text-sm leading-relaxed">
-        <h1 className="text-lg font-semibold">{title}</h1>
-        <p className="mt-1 text-xs text-gray-500">
+      <div className="print-sheet rounded-lg border border-line bg-white p-8 font-display text-sm leading-relaxed shadow-[0_2px_12px_rgba(28,37,34,0.06)] sm:p-12">
+        <h1 className="text-xl font-semibold tracking-tight">{title}</h1>
+        <div className="mt-3 border-b-2 border-double border-line-strong" aria-hidden />
+        <p className="mt-1 text-xs text-ink-soft">
           Generated {formatDateTime(new Date().toISOString())} · {fn.number}
         </p>
 
-        <h2 className="mt-6 font-semibold">1. Parties</h2>
+        <h2 className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">1. Parties</h2>
         <table className="mt-2 w-full text-sm">
           <tbody>
             <Row k="Barrister" v={`${db.profile.fullName || "—"} BL`} />
@@ -53,7 +56,7 @@ export default function PackPage() {
           </tbody>
         </table>
 
-        <h2 className="mt-6 font-semibold">2. Fee note</h2>
+        <h2 className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">2. Fee note</h2>
         <table className="mt-2 w-full text-sm">
           <tbody>
             <Row k="Fee note" v={fn.number} />
@@ -73,9 +76,9 @@ export default function PackPage() {
           </tbody>
         </table>
 
-        <h2 className="mt-6 font-semibold">3. Chase history</h2>
-        <p className="mt-1 text-xs text-gray-500">
-          {sentSteps.length} escalation step(s) sent through the platform, each
+        <h2 className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">3. Chase history</h2>
+        <p className="mt-1 text-xs text-ink-soft">
+          {plural(sentSteps.length, "escalation step")} sent through the platform, each
           recorded with the template version used and, where applicable, the
           explicit user approval timestamp.
         </p>
@@ -88,21 +91,21 @@ export default function PackPage() {
           ))}
         </ul>
 
-        <h2 className="mt-6 font-semibold">4. Full chronology</h2>
-        <p className="mt-1 text-xs text-gray-500">
+        <h2 className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">4. Full chronology</h2>
+        <p className="mt-1 text-xs text-ink-soft">
           Reproduced from the append-only audit log. Every timestamp below was
           recorded at the time of the event.
         </p>
         <table className="mt-2 w-full text-xs">
           <tbody>
             {chronology.map((e, i) => (
-              <tr key={i} className="border-b border-black/5 align-top">
-                <td className="whitespace-nowrap py-1 pr-3 text-gray-500">
+              <tr key={i} className="border-b border-line align-top">
+                <td className="whitespace-nowrap py-1 pr-3 text-ink-soft">
                   {formatDateTime(e.at)}
                 </td>
                 <td className="py-1">
                   <span className="font-medium">{e.summary}</span>
-                  {e.detail && <span className="text-gray-500"> — {e.detail}</span>}
+                  {e.detail && <span className="text-ink-soft"> — {e.detail}</span>}
                 </td>
               </tr>
             ))}
@@ -111,7 +114,7 @@ export default function PackPage() {
 
         {!isBar && (
           <>
-            <h2 className="mt-6 font-semibold">5. Grounds of complaint</h2>
+            <h2 className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">5. Grounds of complaint</h2>
             <p className="mt-1">
               The fee note above has remained unpaid for {v.ageDays} days
               despite the reminders and formal correspondence listed at section
@@ -122,7 +125,7 @@ export default function PackPage() {
           </>
         )}
 
-        <p className="mt-8 text-[11px] text-gray-400">
+        <p className="mt-8 text-[11px] text-ink-faint">
           Prepared with FeeNote. Chronology generated from an append-only audit
           log; entries cannot be edited or deleted after the fact.
         </p>
@@ -133,8 +136,8 @@ export default function PackPage() {
 
 function Row({ k, v }: { k: string; v: string }) {
   return (
-    <tr className="border-b border-black/5">
-      <td className="w-44 py-1 pr-3 text-gray-500">{k}</td>
+    <tr className="border-b border-line">
+      <td className="w-44 py-1 pr-3 text-ink-soft">{k}</td>
       <td className="py-1 font-medium">{v}</td>
     </tr>
   );

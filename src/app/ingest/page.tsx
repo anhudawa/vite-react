@@ -5,7 +5,7 @@ import { useState } from "react";
 import { getStore, useDb } from "@/lib/store/store";
 import { heuristicParse, ParsedFeeNote } from "@/lib/domain/emailParse";
 import { parseAmountToCents } from "@/lib/domain/money";
-import { Button, Card, Field, inputCls } from "@/components/ui";
+import { Button, Card, Field, inputCls, PageHeader } from "@/components/ui";
 
 const SAMPLE_EMAIL = `Fwd: Re: O'Brien v Galtee Logistics Ltd (ref MH-2241) — fee note
 
@@ -101,14 +101,10 @@ export default function IngestPage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
-      <div>
-        <h1 className="text-lg font-semibold">Forward a fee note</h1>
-        <p className="mt-1 text-sm text-gray-600">
-          Paste a fee note email you sent (or a forwarded thread). It&apos;s
-          parsed into a draft record — you confirm every field before anything
-          is saved.
-        </p>
-      </div>
+      <PageHeader
+        title="Forward a fee note"
+        subtitle="Paste a fee note email you sent (or a forwarded thread). It's parsed into a draft record — you confirm every field before anything is saved."
+      />
 
       <Card className="space-y-3">
         <textarea
@@ -132,7 +128,7 @@ export default function IngestPage() {
         <Card className="space-y-3">
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium">Review before saving</p>
-            <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] text-gray-500">
+            <span className="rounded-full bg-paper px-2 py-0.5 text-[11px] text-ink-soft">
               {draft.source === "claude" ? "Parsed by Claude" : "Parsed locally (demo mode)"}
             </span>
           </div>

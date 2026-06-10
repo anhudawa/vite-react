@@ -1,12 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #1a2332;
-  --color-paper: #f7f6f3;
-  --color-brand: #1e4d45;
-  --color-brand-light: #e8f0ee;
-  --color-accent: #b8860b;
-  --color-danger: #a4343a;
+  --font-sans:
+    var(--font-ui), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-display: var(--font-display-serif), Georgia, "Times New Roman", serif;
+
+  /* Ink & paper — warm, restrained, stationery-grade */
+  --color-ink: #1c2522;
+  --color-ink-soft: #59635e;
+  --color-ink-faint: #8a938e;
+  --color-paper: #f2f1ec;
+  --color-surface: #fdfcfa;
+  --color-line: #e2e0d6;
+  --color-line-strong: #c9c6b8;
+
+  /* Brand — deep counsel green with a measured gold accent */
+  --color-brand: #1c4740;
+  --color-brand-deep: #0f2b26;
+  --color-brand-light: #e6eeea;
+  --color-accent: #a07f2c;
+  --color-accent-soft: #f4ecd9;
+  --color-danger: #96343a;
+  --color-danger-soft: #f5e9e7;
 }
 
 html {
@@ -15,13 +31,22 @@ html {
 
 body {
   color: var(--color-ink);
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01";
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+/* Keyboard focus is part of feeling engineered, not bolted on */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 @media print {
@@ -31,5 +56,10 @@ body {
   html,
   body {
     background: white;
+  }
+  .print-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
   }
 }

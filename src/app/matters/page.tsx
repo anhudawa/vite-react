@@ -1,10 +1,12 @@
 "use client";
 
+import { plural } from "@/lib/plural";
+
 import Link from "next/link";
 import { getStore, useDb } from "@/lib/store/store";
 import { formatDate } from "@/lib/domain/dates";
 import { formatCents } from "@/lib/domain/money";
-import { Button, Card, EmptyState } from "@/components/ui";
+import { Button, Card, EmptyState, PageHeader } from "@/components/ui";
 
 export default function MattersPage() {
   const db = useDb();
@@ -12,11 +14,10 @@ export default function MattersPage() {
 
   return (
     <div>
-      <h1 className="mb-1 text-lg font-semibold">Matters</h1>
-      <p className="mb-4 text-xs text-gray-500">
-        Section 150 costs notices are tracked per matter — the compliance hook
-        that makes this the start of every matter, not just the recovery end.
-      </p>
+      <PageHeader
+        title="Matters"
+        subtitle="Section 150 costs notices are tracked per matter — the compliance hook that makes this the start of every matter, not just the recovery end."
+      />
       {db.matters.length === 0 ? (
         <EmptyState title="No matters yet">
           Matters are created with fee notes, or when you import.
@@ -34,16 +35,16 @@ export default function MattersPage() {
                     <p className="truncate text-sm font-medium">
                       {m.title}
                       {m.reference && (
-                        <span className="font-normal text-gray-500"> · {m.reference}</span>
+                        <span className="font-normal text-ink-soft"> · {m.reference}</span>
                       )}
                     </p>
-                    <p className="text-xs text-gray-500">
-                      {firm?.name ?? "—"} · {notes.length} fee note(s) ·{" "}
+                    <p className="text-xs text-ink-soft">
+                      {firm?.name ?? "—"} · {plural(notes.length, "fee note")} ·{" "}
                       {formatCents(totalCents)}
                     </p>
                     <p className="mt-1 text-xs">
                       {m.section150 ? (
-                        <span className="text-green-700">
+                        <span className="text-brand">
                           s.150 issued {formatDate(m.section150.issuedAt)}
                           {m.section150.deliveryConfirmedAt
                             ? " · delivery confirmed"

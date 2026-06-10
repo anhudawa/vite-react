@@ -18,7 +18,7 @@ export default function FeeNoteDetailPage() {
   const { id } = useParams<{ id: string }>();
   const fn = db.feeNotes.find((f) => f.id === id);
   if (!fn) {
-    return <p className="text-sm text-gray-500">Fee note not found.</p>;
+    return <p className="text-sm text-ink-soft">Fee note not found.</p>;
   }
   const v = feeNoteView(db, fn);
 
@@ -36,52 +36,51 @@ export default function FeeNoteDetailPage() {
 
 function Header({ v }: { v: FeeNoteView }) {
   return (
-    <Card>
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-xs text-gray-500">
-            <Link href="/fee-notes" className="underline">
-              Fee notes
-            </Link>{" "}
-            / {v.fn.number}
-          </p>
-          <h1 className="mt-1 text-lg font-semibold leading-tight">
-            {v.matter?.title ?? "(no matter)"}
-          </h1>
-          <p className="mt-0.5 text-sm text-gray-600">
-            {v.firm?.name ?? "—"}
-            {v.contact ? ` · ${v.contact.name}` : ""}
-            {v.matter?.reference ? ` · ref ${v.matter.reference}` : ""}
-          </p>
-          {v.fn.workDescription && (
-            <p className="mt-1 text-sm text-gray-500">{v.fn.workDescription}</p>
-          )}
-          {v.matter?.section150 && (
-            <p className="mt-1 text-[11px] text-gray-400">
-              s.150 notice issued {formatDate(v.matter.section150.issuedAt)}
-              {v.matter.section150.deliveryConfirmedAt ? " · delivery confirmed" : ""}
-            </p>
-          )}
-        </div>
-        <div className="shrink-0 text-right">
-          <p className="text-xl font-semibold tabular-nums">
+    <Card className="p-5">
+      <p className="text-xs text-ink-soft">
+        <Link href="/fee-notes" className="underline decoration-line-strong underline-offset-2 hover:text-brand">
+          Fee notes
+        </Link>{" "}
+        / <span className="tabular-nums">{v.fn.number}</span>
+      </p>
+      <h1 className="mt-1.5 font-display text-xl font-semibold leading-snug tracking-tight">
+        {v.matter?.title ?? "(no matter)"}
+      </h1>
+      <p className="mt-0.5 text-sm text-ink-soft">
+        {v.firm?.name ?? "—"}
+        {v.contact ? ` · ${v.contact.name}` : ""}
+        {v.matter?.reference ? ` · ref ${v.matter.reference}` : ""}
+      </p>
+      {v.fn.workDescription && (
+        <p className="mt-1 text-sm text-ink-soft">{v.fn.workDescription}</p>
+      )}
+
+      <div className="mt-4 flex flex-wrap items-end justify-between gap-3 border-t border-line pt-4">
+        <div>
+          <p className="font-display text-[1.7rem] font-semibold leading-none tracking-tight tabular-nums">
             {formatCents(v.outstandingCents)}
           </p>
-          <p className="text-[11px] text-gray-500">
+          <p className="mt-1 text-[11px] text-ink-soft">
             of {formatCents(v.fn.amountCents)} · issued {formatDate(v.fn.issueDate)} ·{" "}
-            {v.ageDays}d
+            {v.ageDays} days outstanding
           </p>
-          <div className="mt-1">
-            <StateBadge state={v.fn.state} paused={v.fn.paused} />
-          </div>
+        </div>
+        <div className="flex flex-col items-end gap-1.5">
+          <StateBadge state={v.fn.state} paused={v.fn.paused} />
           <Link
             href={`/fee-notes/${v.fn.id}/document`}
-            className="mt-1 block text-xs text-brand underline"
+            className="text-xs text-brand underline decoration-line-strong underline-offset-2 hover:decoration-brand"
           >
             View fee note document
           </Link>
         </div>
       </div>
+      {v.matter?.section150 && (
+        <p className="mt-2 text-[11px] text-ink-faint">
+          s.150 notice issued {formatDate(v.matter.section150.issuedAt)}
+          {v.matter.section150.deliveryConfirmedAt ? " · delivery confirmed" : ""}
+        </p>
+      )}
     </Card>
   );
 }
@@ -136,8 +135,8 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
   if (!v.proposed) {
     if (v.fn.paused) {
       return (
-        <Card className="border-l-4 border-l-gray-300">
-          <p className="text-sm text-gray-600">
+        <Card className="border-l-4 border-l-line-strong">
+          <p className="text-sm text-ink-soft">
             Ladder paused — no chases will be proposed or sent until you resume.
           </p>
         </Card>
@@ -168,7 +167,7 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
         <p className="text-sm font-medium">
           The ladder is exhausted. How do you want to escalate?
         </p>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-ink-soft">
           Both packs are assembled from the logged chronology below — every
           reminder is timestamped evidence of non-engagement.
         </p>
@@ -225,11 +224,11 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
   }
 
   return (
-    <Card className={`border-l-4 ${due ? "border-l-accent" : "border-l-gray-200"}`}>
+    <Card className={`border-l-4 ${due ? "border-l-accent" : "border-l-line-strong"}`}>
       <p className="text-sm font-medium">
         {stepLabel(step)} {due ? "is due" : `scheduled for ${formatDate(dueDate)}`}
       </p>
-      <p className="mt-1 text-xs text-gray-500">
+      <p className="mt-1 text-xs text-ink-soft">
         Nothing is sent without your say-so. Review the letter, then approve
         with one tap.
       </p>
@@ -253,12 +252,12 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
       </div>
       {actionError && <p className="mt-2 text-xs text-danger">{actionError}</p>}
       {showPreview && rendered && (
-        <div className="mt-3 rounded-lg bg-gray-50 p-3 text-sm">
+        <div className="mt-3 rounded-lg bg-paper p-3 text-sm">
           <p className="font-medium">{rendered.subject}</p>
-          <pre className="mt-2 whitespace-pre-wrap font-sans text-xs text-gray-700">
+          <pre className="mt-2 whitespace-pre-wrap font-sans text-xs text-ink">
             {rendered.body}
           </pre>
-          <p className="mt-2 text-[11px] text-gray-400">
+          <p className="mt-2 text-[11px] text-ink-faint">
             Template v{template?.version} · sent as {db.profile.fullName || "you"},
             replies go to {db.profile.email || "your address"}.
           </p>
@@ -311,8 +310,8 @@ function LadderControls({ v }: { v: FeeNoteView }) {
           </Button>
         </div>
         {showCadence && (
-          <div className="mt-3 space-y-2 rounded-lg bg-gray-50 p-3">
-            <p className="text-xs text-gray-500">
+          <div className="mt-3 space-y-2 rounded-lg bg-paper p-3">
+            <p className="text-xs text-ink-soft">
               Days after issue for each step — this fee note only. Some
               relationships warrant a softer cadence.
             </p>
@@ -379,7 +378,7 @@ function PaymentsSection({ v }: { v: FeeNoteView }) {
       <SectionTitle>Payments</SectionTitle>
       <Card className="space-y-3">
         {v.payments.length > 0 && (
-          <ul className="divide-y divide-black/5 text-sm">
+          <ul className="divide-y divide-line text-sm">
             {v.payments.map((p) => (
               <li key={p.id} className="flex justify-between py-1.5">
                 <span>
@@ -394,8 +393,8 @@ function PaymentsSection({ v }: { v: FeeNoteView }) {
           </ul>
         )}
         {v.plan && (
-          <div className="rounded-lg bg-gray-50 p-3 text-xs text-gray-600">
-            <p className="font-medium text-gray-700">Payment plan</p>
+          <div className="rounded-lg bg-paper p-3 text-xs text-ink-soft">
+            <p className="font-medium text-ink">Payment plan</p>
             {v.plan.instalments.map((i, idx) => (
               <p key={idx}>
                 {formatDate(i.dueDate)} — {formatCents(i.amountCents)}
@@ -438,7 +437,7 @@ function PaymentsSection({ v }: { v: FeeNoteView }) {
               </Button>
             </div>
             {showPlan && (
-              <div className="space-y-2 rounded-lg bg-gray-50 p-3">
+              <div className="space-y-2 rounded-lg bg-paper p-3">
                 <div className="grid grid-cols-2 gap-2">
                   <Field label="Instalments">
                     <input className={inputCls} inputMode="numeric" value={planCount} onChange={(e) => setPlanCount(e.target.value)} />
@@ -483,7 +482,7 @@ function CorrespondenceSection({ v }: { v: FeeNoteView }) {
       <SectionTitle>Correspondence</SectionTitle>
       <Card className="space-y-3">
         {v.correspondence.length === 0 ? (
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-ink-soft">
             No correspondence yet. Chases sent by the ladder land here
             automatically; log inbound replies so the chronology stays complete.
           </p>
@@ -498,20 +497,20 @@ function CorrespondenceSection({ v }: { v: FeeNoteView }) {
                     : "bg-brand-light"
                 }`}
               >
-                <p className="text-[11px] text-gray-500">
+                <p className="text-[11px] text-ink-soft">
                   {c.direction === "INBOUND" ? "From" : "To"}{" "}
                   {c.direction === "INBOUND" ? c.from : c.to} ·{" "}
                   {formatDateTime(c.at)}
                 </p>
                 <p className="mt-0.5 font-medium">{c.subject}</p>
-                <p className="mt-1 whitespace-pre-wrap text-xs text-gray-600">
+                <p className="mt-1 whitespace-pre-wrap text-xs text-ink-soft">
                   {c.body}
                 </p>
               </li>
             ))}
           </ul>
         )}
-        <div className="space-y-2 border-t border-black/5 pt-3">
+        <div className="space-y-2 border-t border-line pt-3">
           <Field label="Log an inbound reply (subject)">
             <input className={inputCls} value={subject} onChange={(e) => setSubject(e.target.value)} />
           </Field>
@@ -558,16 +557,16 @@ function ChronologySection({ v, db }: { v: FeeNoteView; db: Db }) {
     <>
       <SectionTitle>Chronology (audit log)</SectionTitle>
       <Card>
-        <p className="mb-2 text-xs text-gray-500">
+        <p className="mb-2 text-xs text-ink-soft">
           Append-only. This is the evidence base for any Bar referral or LSRA
           complaint — packs are generated from it, never reconstructed.
         </p>
-        <ol className="space-y-1.5 border-l border-black/10 pl-3 text-xs">
+        <ol className="space-y-1.5 border-l border-line pl-3 text-xs">
           {chronology.map((e, i) => (
             <li key={i}>
-              <span className="text-gray-400">{formatDateTime(e.at)}</span>{" "}
+              <span className="text-ink-faint">{formatDateTime(e.at)}</span>{" "}
               <span className="font-medium">{e.summary}</span>
-              {e.detail && <span className="text-gray-500"> — {e.detail}</span>}
+              {e.detail && <span className="text-ink-soft"> — {e.detail}</span>}
             </li>
           ))}
         </ol>

@@ -5,26 +5,26 @@ import { getStore, useDb } from "@/lib/store/store";
 import { Template } from "@/lib/domain/types";
 import { validateTimings } from "@/lib/domain/escalation";
 import { downloadJSON } from "@/lib/download";
-import { Button, Card, Field, inputCls, SectionTitle } from "@/components/ui";
+import { Button, Card, Field, inputCls, PageHeader, SectionTitle } from "@/components/ui";
 
 export default function SettingsPage() {
   const db = useDb();
   return (
     <div className="mx-auto max-w-2xl space-y-1 pb-8">
-      <h1 className="text-lg font-semibold">Settings</h1>
+      <PageHeader title="Settings" />
       {/* Keyed by profile id: the form state initialises during hydration
           from the empty server snapshot; the id change on the client
           snapshot forces a remount with the real values. */}
       <ProfileSection key={`p-${db.profile.id}`} />
       <TimingsSection key={`t-${db.profile.id}`} />
       <SectionTitle>Letter templates</SectionTitle>
-      <p className="mb-2 text-xs text-gray-500">
+      <p className="mb-2 text-xs text-ink-soft">
         Templates are versioned: every chase records the version actually sent,
         so a recovery pack can reproduce exactly what went out. Merge fields:{" "}
-        <code className="rounded bg-gray-100 px-1">{"{{fee_note_number}}"}</code>{" "}
-        <code className="rounded bg-gray-100 px-1">{"{{outstanding_amount}}"}</code>{" "}
-        <code className="rounded bg-gray-100 px-1">{"{{age_days}}"}</code>{" "}
-        <code className="rounded bg-gray-100 px-1">{"{{firm_name}}"}</code> etc.
+        <code className="rounded bg-paper px-1">{"{{fee_note_number}}"}</code>{" "}
+        <code className="rounded bg-paper px-1">{"{{outstanding_amount}}"}</code>{" "}
+        <code className="rounded bg-paper px-1">{"{{age_days}}"}</code>{" "}
+        <code className="rounded bg-paper px-1">{"{{firm_name}}"}</code> etc.
       </p>
       {db.templates.map((t) => (
         <TemplateEditor key={t.id} template={t} />
@@ -72,7 +72,7 @@ function ProfileSection() {
         <Field label="Bank details (printed on fee notes)">
           <input className={inputCls} value={form.bankDetails} onChange={set("bankDetails")} />
         </Field>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-ink-soft">
           In production, changing bank details requires re-authentication with
           2FA — fee note bank details are the number one BEC fraud target in
           Irish legal practice.
@@ -95,7 +95,7 @@ function TimingsSection() {
     <>
       <SectionTitle>Escalation cadence (global default)</SectionTitle>
       <Card className="space-y-3">
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-ink-soft">
           Days after issue for each step. You can soften the cadence on any
           individual fee note; first reminders go out automatically, everything
           beyond that waits for your one-tap approval.
@@ -144,7 +144,7 @@ function TemplateEditor({ template }: { template: Template }) {
         onClick={() => setOpen((s) => !s)}
       >
         <span className="text-sm font-medium">{template.name}</span>
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-ink-soft">
           v{template.version} {open ? "▴" : "▾"}
         </span>
       </button>
@@ -195,7 +195,7 @@ function DangerZone() {
     <>
       <SectionTitle>Data</SectionTitle>
       <Card>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-ink-soft">
           Demo mode stores everything in this browser. Production uses Supabase
           (EU region) with row-level security; export and deletion work the
           same way there.

@@ -17,7 +17,7 @@ export default function Section150Page() {
   const db = useDb();
   const { id } = useParams<{ id: string }>();
   const matter = db.matters.find((m) => m.id === id);
-  if (!matter) return <p className="text-sm text-gray-500">Matter not found.</p>;
+  if (!matter) return <p className="text-sm text-ink-soft">Matter not found.</p>;
   const firm = db.firms.find((f) => f.id === matter.firmId);
   const template = db.templates.find((t) => t.kind === "SECTION_150");
 
@@ -40,22 +40,22 @@ export default function Section150Page() {
         <Button onClick={() => window.print()}>Print / save as PDF</Button>
       </div>
 
-      <div className="rounded-xl border border-black/10 bg-white p-10 text-sm leading-relaxed">
-        <h1 className="text-base font-semibold">
+      <div className="print-sheet rounded-lg border border-line bg-white p-10 font-display text-[0.95rem] leading-relaxed shadow-[0_2px_12px_rgba(28,37,34,0.06)] sm:p-14">
+        <h1 className="text-lg font-semibold tracking-tight">
           {template ? renderTemplate(template.subject, fields) : "Section 150 notice"}
         </h1>
         {matter.section150 && (
-          <p className="mt-1 text-xs text-gray-500">
+          <p className="mt-1 text-xs text-ink-soft">
             Issued {formatDateTime(matter.section150.issuedAt)}
             {matter.section150.deliveryConfirmedAt &&
               ` · delivery confirmed ${formatDateTime(matter.section150.deliveryConfirmedAt)}`}
           </p>
         )}
-        <pre className="mt-6 whitespace-pre-wrap font-sans">
+        <pre className="mt-6 whitespace-pre-wrap font-display">
           {template ? renderTemplate(template.body, fields) : "No SECTION_150 template found."}
         </pre>
         {template && (
-          <p className="mt-8 text-[11px] text-gray-400">
+          <p className="mt-8 text-[11px] text-ink-faint">
             Rendered from template “{template.name}” v{template.version}.
           </p>
         )}

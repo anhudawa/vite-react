@@ -23,6 +23,13 @@ scope. Working title only — naming TBD.
 - **Tailwind v4**: use `@theme`-generated utilities (`bg-brand`,
   `text-danger`, `bg-brand-light`…) defined in `src/app/globals.css`. The
   v3 `bg-[--color-x]` bracket shorthand is NOT supported and fails silently.
+- **Design system**: Spectral (serif, `font-display`) for headings, large
+  figures and printable documents; Public Sans for UI. Palette is the
+  ink/paper/line/brand/accent tokens in `globals.css` — never raw
+  `gray-*`/`black/*` utilities. Components come from `src/components/ui.tsx`
+  (`PageHeader`, `Card`, `SectionTitle`, `StateBadge`…); icons are
+  lucide-react. Use `plural()` from `src/lib/plural.ts`, never "note(s)".
+  The product must read as legal stationery, not a SaaS template.
 - Pages are client components over `useDb()`; `getStore()` only inside
   event handlers (it throws `TransitionError` on blocked transitions —
   catch and surface inline, don't let it crash the handler).

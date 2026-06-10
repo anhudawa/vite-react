@@ -1,5 +1,7 @@
 "use client";
 
+import { plural } from "@/lib/plural";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { getStore } from "@/lib/store/store";
@@ -30,8 +32,8 @@ export default function ImportPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <div>
-        <h1 className="text-lg font-semibold">Import your outstanding fees</h1>
-        <p className="mt-1 text-sm text-gray-600">
+        <h1 className="font-display text-[1.65rem] font-semibold leading-tight tracking-tight">Import your outstanding fees</h1>
+        <p className="mt-1 text-sm text-ink-soft">
           Bring in your existing book in one go — paste from a spreadsheet or
           upload a CSV. Required columns: <strong>firm</strong>,{" "}
           <strong>amount</strong>, <strong>issue date</strong> (dd/mm/yyyy).
@@ -82,8 +84,8 @@ export default function ImportPage() {
           {result.errors.length > 0 && (
             <div className="rounded-lg bg-rose-50 p-3 text-sm text-rose-800">
               <p className="font-medium">
-                {result.errors.length} row(s) need attention (they will be
-                skipped):
+                {plural(result.errors.length, "row needs", "rows need")} attention (they
+                will be skipped):
               </p>
               <ul className="mt-1 list-disc pl-5 text-xs">
                 {result.errors.map((e, i) => (
@@ -97,14 +99,14 @@ export default function ImportPage() {
           {result.ok.length > 0 && (
             <>
               <p className="text-sm font-medium">
-                {result.ok.length} fee note(s) ready to import —{" "}
+                {plural(result.ok.length, "fee note")} ready to import —{" "}
                 {formatCents(result.ok.reduce((s, r) => s + r.amountCents, 0))}{" "}
                 total
               </p>
               <div className="max-h-64 overflow-y-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-black/10 text-left text-gray-500">
+                    <tr className="border-b border-line text-left text-ink-soft">
                       <th className="py-1 pr-2">Firm</th>
                       <th className="py-1 pr-2">Matter</th>
                       <th className="py-1 pr-2">Issued</th>
@@ -113,7 +115,7 @@ export default function ImportPage() {
                   </thead>
                   <tbody>
                     {result.ok.map((r, i) => (
-                      <tr key={i} className="border-b border-black/5">
+                      <tr key={i} className="border-b border-line">
                         <td className="py-1 pr-2">{r.firmName}</td>
                         <td className="py-1 pr-2">{r.matterTitle}</td>
                         <td className="py-1 pr-2">{formatDate(r.issueDate)}</td>
@@ -131,9 +133,9 @@ export default function ImportPage() {
                   router.push("/");
                 }}
               >
-                Import {result.ok.length} fee note(s)
+                Import {plural(result.ok.length, "fee note")}
               </Button>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-ink-soft">
                 Imported notes are treated as already issued; the ladder picks
                 up from each note&apos;s real age, and anything beyond a first
                 reminder still waits for your approval.
