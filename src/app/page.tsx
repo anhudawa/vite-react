@@ -66,8 +66,9 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-1">
-      {/* Headline: one thumb, ten seconds, full picture */}
-      <Card className="bg-brand text-white">
+      {/* Headline: one thumb, ten seconds, full picture. Not a <Card> —
+          its bg-white would tie with bg-brand and win by stylesheet order. */}
+      <div className="rounded-xl bg-brand p-4 text-white shadow-sm">
         <p className="text-xs uppercase tracking-wider text-white/70">
           Total outstanding
         </p>
@@ -79,7 +80,7 @@ export default function Dashboard() {
           {disputed.length > 0 ? `${disputed.length} disputed · ` : ""}
           {queue.length} awaiting your decision
         </p>
-      </Card>
+      </div>
 
       {queue.length > 0 && (
         <>
