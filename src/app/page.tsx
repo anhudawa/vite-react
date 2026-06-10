@@ -7,7 +7,7 @@ import { useDb, getStore } from "@/lib/store/store";
 import { summariseAgeing } from "@/lib/domain/ageing";
 import { formatCents, formatCentsCompact } from "@/lib/domain/money";
 import { stepLabel } from "@/lib/domain/pack";
-import { todayISO } from "@/lib/domain/dates";
+import { formatDate, todayISO } from "@/lib/domain/dates";
 import {
   awaitingApproval,
   firmRollups,
@@ -24,6 +24,12 @@ export default function Dashboard() {
   if (!hasData) {
     return (
       <div className="mx-auto mt-12 max-w-md space-y-5">
+        <div className="mx-auto flex h-14 w-14 flex-col items-center justify-center gap-1 rounded-xl bg-brand-deep shadow-[0_2px_8px_rgba(15,43,38,0.3)]">
+          <span className="font-display text-xl font-semibold leading-none text-accent-soft">
+            Fn
+          </span>
+          <span className="h-0.5 w-6 rounded-full bg-accent" aria-hidden />
+        </div>
         <h1 className="text-center font-display text-[1.75rem] font-semibold leading-snug tracking-tight">
           Get paid without being the
           <br />
@@ -118,7 +124,7 @@ export default function Dashboard() {
                       {v.proposed?.kind === "RECOVERY_DECISION"
                         ? "Ladder exhausted — choose Bar referral or LSRA complaint"
                         : v.proposed?.kind === "SEND_STEP"
-                          ? `${stepLabel(v.proposed.step)} proposed (due ${v.proposed.dueDate})`
+                          ? `${stepLabel(v.proposed.step)} proposed — due ${formatDate(v.proposed.dueDate)}`
                           : ""}
                     </p>
                   </div>
@@ -144,7 +150,7 @@ export default function Dashboard() {
                       {m.view.fn.number} · {m.view.firm?.name ?? "—"}
                     </p>
                     <p className="text-xs text-ink-soft">
-                      Payment plan behind since {m.dueDate}
+                      Payment plan behind since {formatDate(m.dueDate)}
                     </p>
                   </div>
                   <span className="shrink-0 text-sm font-semibold tabular-nums text-danger">

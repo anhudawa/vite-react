@@ -65,8 +65,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-28 pt-6 sm:pb-12">
         {/* Server HTML and the hydration render can't see localStorage, so
-            hold content back one frame rather than flash the empty state. */}
-        {hydrated ? children : null}
+            hold content back one frame rather than flash the empty state.
+            Keyed by pathname so each page gets one quiet entrance. */}
+        {hydrated ? (
+          <div key={pathname} className="animate-rise">
+            {children}
+          </div>
+        ) : null}
       </main>
 
       <footer className="no-print mx-auto hidden w-full max-w-5xl px-4 pb-6 text-[11px] text-ink-faint sm:block">

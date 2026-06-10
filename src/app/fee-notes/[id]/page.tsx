@@ -255,12 +255,18 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
       </div>
       {actionError && <p className="mt-2 text-xs text-danger">{actionError}</p>}
       {showPreview && rendered && (
-        <div className="mt-3 rounded-lg bg-paper p-3 text-sm">
-          <p className="font-medium">{rendered.subject}</p>
-          <pre className="mt-2 whitespace-pre-wrap font-sans text-xs text-ink">
+        <div className="mt-3 rounded-md border border-line bg-white p-5 shadow-[0_1px_3px_rgba(28,37,34,0.06)]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-ink-faint">
+            Subject
+          </p>
+          <p className="mt-0.5 font-display text-[15px] font-semibold">
+            {rendered.subject}
+          </p>
+          <div className="my-3 h-px bg-line" aria-hidden />
+          <pre className="whitespace-pre-wrap font-display text-[13.5px] leading-relaxed text-ink">
             {rendered.body}
           </pre>
-          <p className="mt-2 text-[11px] text-ink-faint">
+          <p className="mt-4 border-t border-line pt-2.5 text-[11px] text-ink-faint">
             Template v{template?.version} · sent as {db.profile.fullName || "you"},
             replies go to {db.profile.email || "your address"}.
           </p>
