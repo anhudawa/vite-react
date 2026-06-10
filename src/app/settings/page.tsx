@@ -5,7 +5,7 @@ import { getStore, useDb } from "@/lib/store/store";
 import { Template } from "@/lib/domain/types";
 import { validateTimings } from "@/lib/domain/escalation";
 import { downloadJSON } from "@/lib/download";
-import { Button, Card, Field, inputCls, PageHeader, SectionTitle } from "@/components/ui";
+import { Button, Card, Field, inputCls, PageHeader, SaveButton, SectionTitle } from "@/components/ui";
 
 export default function SettingsPage() {
   const db = useDb();
@@ -77,7 +77,7 @@ function ProfileSection() {
           2FA — fee note bank details are the number one BEC fraud target in
           Irish legal practice.
         </p>
-        <Button onClick={() => getStore().updateProfile(form)}>Save profile</Button>
+        <SaveButton onSave={() => getStore().updateProfile(form)}>Save profile</SaveButton>
       </Card>
     </>
   );
@@ -112,21 +112,21 @@ function TimingsSection() {
           </Field>
         </div>
         {error && <p className="text-sm text-danger">{error}</p>}
-        <Button
-          onClick={() => {
+        <SaveButton
+          onSave={() => {
             const [a, b, c] = [r1, r2, fl].map((x) => parseInt(x, 10));
             const timings = { reminder1Days: a, reminder2Days: b, formalLetterDays: c };
             const problem = validateTimings(timings);
             if (problem) {
               setError(problem);
-              return;
+              return false;
             }
             setError("");
             getStore().updateGlobalTimings(timings);
           }}
         >
           Save cadence
-        </Button>
+        </SaveButton>
       </Card>
     </>
   );

@@ -21,6 +21,14 @@ export const metadata: Metadata = {
   title: "FeeNote",
   description:
     "Fee management and recovery for barristers — get paid without being the one doing the chasing.",
+  appleWebApp: {
+    capable: true,
+    title: "FeeNote",
+    statusBarStyle: "black-translucent",
+  },
+  icons: {
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {

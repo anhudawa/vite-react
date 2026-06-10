@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useHydrated } from "@/lib/store/store";
 import {
   LayoutDashboard,
   ReceiptText,
@@ -22,6 +23,7 @@ const NAV = [
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const hydrated = useHydrated();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -62,7 +64,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-28 pt-6 sm:pb-12">
-        {children}
+        {/* Server HTML and the hydration render can't see localStorage, so
+            hold content back one frame rather than flash the empty state. */}
+        {hydrated ? children : null}
       </main>
 
       <footer className="no-print mx-auto hidden w-full max-w-5xl px-4 pb-6 text-[11px] text-ink-faint sm:block">

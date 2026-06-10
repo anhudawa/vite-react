@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { FeeNoteState } from "@/lib/domain/types";
 
 const STATE_STYLES: Record<FeeNoteState, { label: string; dot: string }> = {
@@ -124,6 +125,73 @@ export function Button({
     >
       {children}
     </button>
+  );
+}
+
+/**
+ * Two-tap guard for irreversible actions (settle, write off, skip a rung):
+ * the first tap arms, the second within 3 seconds confirms.
+ */
+export function ConfirmButton({
+  children,
+  confirmLabel = "Tap again to confirm",
+  onConfirm,
+  variant = "ghost",
+  className = "",
+}: {
+  children: React.ReactNode;
+  confirmLabel?: string;
+  onConfirm: () => void;
+  variant?: "primary" | "secondary" | "danger" | "ghost";
+  className?: string;
+}) {
+  const [armed, setArmed] = useState(false);
+  useEffect(() => {
+    if (!armed) return;
+    const t = setTimeout(() => setArmed(false), 3000);
+    return () => clearTimeout(t);
+  }, [armed]);
+  return (
+    <Button
+      variant={armed ? "danger" : variant}
+      className={className}
+      onClick={() => {
+        if (armed) {
+          setArmed(false);
+          onConfirm();
+        } else {
+          setArmed(true);
+        }
+      }}
+    >
+      {armed ? confirmLabel : children}
+    </Button>
+  );
+}
+
+/** Save button that acknowledges success — silent saves feel broken.
+ * `onSave` returning false (e.g. validation failure) suppresses the flash. */
+export function SaveButton({
+  children,
+  onSave,
+}: {
+  children: React.ReactNode;
+  onSave: () => boolean | void;
+}) {
+  const [saved, setSaved] = useState(false);
+  useEffect(() => {
+    if (!saved) return;
+    const t = setTimeout(() => setSaved(false), 1800);
+    return () => clearTimeout(t);
+  }, [saved]);
+  return (
+    <Button
+      onClick={() => {
+        if (onSave() !== false) setSaved(true);
+      }}
+    >
+      {saved ? "Saved ✓" : children}
+    </Button>
   );
 }
 

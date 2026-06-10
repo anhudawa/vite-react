@@ -672,6 +672,19 @@ export function useDb(): Db {
   );
 }
 
+/**
+ * False during SSR and the hydration render, true once the client store is
+ * live. Gating page content on this avoids the flash of empty-state content
+ * before localStorage has been read.
+ */
+export function useHydrated(): boolean {
+  return useSyncExternalStore(
+    (fn) => getStore().subscribe(fn),
+    () => true,
+    () => false,
+  );
+}
+
 export function todayInputValue(): string {
   return todayISO();
 }

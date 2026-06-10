@@ -11,7 +11,7 @@ import { renderForFeeNote } from "@/lib/domain/templates";
 import { validateTimings } from "@/lib/domain/escalation";
 import { buildChronology, canCreateBarReferral, stepLabel } from "@/lib/domain/pack";
 import { Db } from "@/lib/store/db";
-import { Button, Card, Field, inputCls, SectionTitle, StateBadge } from "@/components/ui";
+import { Button, Card, ConfirmButton, Field, inputCls, SectionTitle, StateBadge } from "@/components/ui";
 
 export default function FeeNoteDetailPage() {
   const db = useDb();
@@ -246,9 +246,12 @@ function NextAction({ v, db }: { v: FeeNoteView; db: Db }) {
         <Button variant="secondary" onClick={() => setShowPreview((s) => !s)}>
           {showPreview ? "Hide letter" : "Review letter"}
         </Button>
-        <Button variant="ghost" onClick={() => store.skipStep(v.fn.id, step)}>
+        <ConfirmButton
+          confirmLabel="Confirm — skip this step"
+          onConfirm={() => store.skipStep(v.fn.id, step)}
+        >
           Skip this step
-        </Button>
+        </ConfirmButton>
       </div>
       {actionError && <p className="mt-2 text-xs text-danger">{actionError}</p>}
       {showPreview && rendered && (
@@ -302,12 +305,18 @@ function LadderControls({ v }: { v: FeeNoteView }) {
           <Button variant="secondary" onClick={() => setShowCadence((s) => !s)}>
             Adjust cadence
           </Button>
-          <Button variant="ghost" onClick={() => store.settle(v.fn.id)}>
+          <ConfirmButton
+            confirmLabel="Confirm — mark settled"
+            onConfirm={() => store.settle(v.fn.id)}
+          >
             Mark settled
-          </Button>
-          <Button variant="ghost" onClick={() => store.writeOff(v.fn.id)}>
+          </ConfirmButton>
+          <ConfirmButton
+            confirmLabel="Confirm — write off"
+            onConfirm={() => store.writeOff(v.fn.id)}
+          >
             Write off
-          </Button>
+          </ConfirmButton>
         </div>
         {showCadence && (
           <div className="mt-3 space-y-2 rounded-lg bg-paper p-3">
