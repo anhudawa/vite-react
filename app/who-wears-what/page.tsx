@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { Figure } from "@/components/Figure";
+import { Reveal } from "@/components/Reveal";
 import {
   publishedAthletes,
   inReviewAthletes,
@@ -9,6 +11,29 @@ import {
 import { GATE_COUNT } from "@/lib/verification";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./index.module.css";
+
+// Editorial sightings — photography, not yet verified references. Watch named
+// only where it's confirmed in frame.
+const spotted = [
+  {
+    src: "/photography/topuria-rm.jpg",
+    alt: "Ilia Topuria in low-key light, a Richard Mille on his wrist",
+    subject: "Ilia Topuria",
+    watch: "Richard Mille",
+  },
+  {
+    src: "/photography/aston-martin-breitling.jpg",
+    alt: "An Aston Martin Formula 1 driver wearing a Breitling chronograph",
+    subject: "Aston Martin F1",
+    watch: "Breitling",
+  },
+  {
+    src: "/photography/beckham-stadium.jpg",
+    alt: "David Beckham pitchside at Inter Miami",
+    subject: "David Beckham",
+    watch: undefined,
+  },
+];
 
 export const metadata: Metadata = {
   title: "Who Wears What",
@@ -57,6 +82,28 @@ export default function WhoWearsWhat() {
             );
           })}
         </ul>
+      </section>
+
+      <section className={`container ${styles.section}`}>
+        <p className={styles.sectionLabel}>In the field</p>
+        <div className={styles.gallery}>
+          {spotted.map((s, i) => (
+            <Reveal key={s.src} delay={i * 90}>
+              <Figure
+                src={s.src}
+                alt={s.alt}
+                subject={s.subject}
+                watch={s.watch}
+                ratio="4 / 5"
+                sizes="(max-width: 700px) 100vw, 30vw"
+              />
+            </Reveal>
+          ))}
+        </div>
+        <p className={styles.note}>
+          Sightings we&rsquo;re working to source. Photography, not yet a verified
+          reference — the relationship has to clear the gauntlet before it earns a page.
+        </p>
       </section>
 
       <section className={`container ${styles.section}`}>
