@@ -1,16 +1,9 @@
+import type { Confidence, DisplayFact } from "@/lib/verification";
 import styles from "./FactBlock.module.css";
 
-export type Confidence = "High" | "Medium" | "Low";
-
-export interface Fact {
-  athlete: string;
-  watch: string;
-  relation: string;
-  evidence: string;
-  confidence: Confidence;
-  confidenceNote?: string;
-  reference?: string; // movement / reference number, set in mono
-}
+// Kept for backwards-compatible imports.
+export type { Confidence };
+export type Fact = DisplayFact;
 
 const ROWS: { key: keyof Fact; label: string }[] = [
   { key: "athlete", label: "Athlete" },

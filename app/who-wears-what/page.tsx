@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { athletes, forthcoming } from "@/data/athletes";
+import {
+  publishedAthletes,
+  inReviewAthletes,
+  renderableFacts,
+} from "@/data/athletes";
+import { GATE_COUNT } from "@/lib/verification";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./index.module.css";
 
@@ -12,7 +17,8 @@ export const metadata: Metadata = {
 };
 
 export default function WhoWearsWhat() {
-  const published = athletes.filter((a) => a.published);
+  const published = publishedAthletes();
+  const inReview = inReviewAthletes();
   return (
     <>
       <JsonLd
@@ -31,43 +37,47 @@ export default function WhoWearsWhat() {
       <section className={`container ${styles.section}`}>
         <p className={styles.sectionLabel}>Published references</p>
         <ul className={styles.refs}>
-          {published.map((a) => (
-            <li key={a.slug}>
-              <Link href={`/who-wears-what/${a.slug}`} className={styles.ref}>
-                <span className={styles.refName}>{a.name}</span>
-                <span className={styles.refWatch}>{a.facts[0].watch}</span>
-                <span className={styles.refRel}>{a.facts[0].relation}</span>
-                <span className={styles.refConf}>
-                  <span
-                    className={styles.dot}
-                    data-conf={a.facts[0].confidence}
-                  />
-                  {a.facts[0].confidence}
-                </span>
-                <span className={styles.refArrow} aria-hidden="true">
-                  →
-                </span>
-              </Link>
-            </li>
-          ))}
+          {published.map((a) => {
+            const f = renderableFacts(a)[0];
+            return (
+              <li key={a.slug}>
+                <Link href={`/who-wears-what/${a.slug}`} className={styles.ref}>
+                  <span className={styles.refName}>{a.name}</span>
+                  <span className={styles.refWatch}>{f.watch}</span>
+                  <span className={styles.refRel}>{f.relation}</span>
+                  <span className={styles.refConf}>
+                    <span className={styles.dot} data-conf={f.confidence} />
+                    {f.confidence}
+                  </span>
+                  <span className={styles.refArrow} aria-hidden="true">
+                    →
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </section>
 
       <section className={`container ${styles.section}`}>
         <p className={styles.sectionLabel}>In the workshop</p>
         <ul className={styles.pipe}>
-          {forthcoming.map((f) => (
-            <li key={f.name} className={styles.pipeItem}>
-              <span className={styles.pipeName}>{f.name}</span>
-              <span className={styles.pipeLine}>{f.line}</span>
-              <span className={styles.pipeTag}>Sourcing</span>
+          {inReview.map((a) => (
+            <li key={a.slug} className={styles.pipeItem}>
+              <span className={styles.pipeName}>{a.name}</span>
+              <span className={styles.pipeLine}>{a.summary}</span>
+              <span className={styles.pipeTag}>Held · in review</span>
             </li>
           ))}
         </ul>
         <p className={styles.note}>
-          A name only earns a reference page once the relationship is sourced to
-          publication standard. Until then it waits here. That restraint is the
-          point.
+          A name only earns a reference page once its claim clears all {GATE_COUNT}{" "}
+          verification gates. Until then it is held here — visible, but never shown as
+          fact. That restraint is the whole point. See the{" "}
+          <Link href="/verification" className={styles.noteLink}>
+            verification method
+          </Link>
+          .
         </p>
       </section>
     </>

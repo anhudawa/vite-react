@@ -2,12 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FactBlock } from "@/components/FactBlock";
-import { athletes, getAthlete } from "@/data/athletes";
+import { FactProvenance } from "@/components/FactProvenance";
+import {
+  athletes,
+  getPublishedAthlete,
+  publishedAthletes,
+  renderableFacts,
+} from "@/data/athletes";
+import { assertPublishedFactsAreValid } from "@/lib/verification";
 import { JsonLd, breadcrumb, personJsonLd } from "@/lib/jsonld";
 import styles from "./athlete.module.css";
 
+// BUILD-TIME ENFORCEMENT. Evaluated when this route module loads during
+// `next build`. If any fact marked "published" cannot clear the gauntlet, this
+// throws and the build fails — wrong information cannot reach production.
+assertPublishedFactsAreValid(athletes.flatMap((a) => a.facts));
+
 export function generateStaticParams() {
-  return athletes.filter((a) => a.published).map((a) => ({ athlete: a.slug }));
+  return publishedAthletes().map((a) => ({ athlete: a.slug }));
 }
 
 export function generateMetadata({
@@ -15,7 +27,7 @@ export function generateMetadata({
 }: {
   params: { athlete: string };
 }): Metadata {
-  const a = getAthlete(params.athlete);
+  const a = getPublishedAthlete(params.athlete);
   if (!a) return {};
   return {
     title: `${a.name} — Who Wears What`,
@@ -28,8 +40,9 @@ export default function AthletePage({
 }: {
   params: { athlete: string };
 }) {
-  const a = getAthlete(params.athlete);
-  if (!a || !a.published) notFound();
+  const a = getPublishedAthlete(params.athlete);
+  if (!a) notFound();
+  const facts = renderableFacts(a);
   const path = `/who-wears-what/${a.slug}`;
 
   return (
@@ -67,8 +80,11 @@ export default function AthletePage({
       <div className={`container ${styles.grid}`}>
         <div className={styles.facts}>
           <p className={styles.factsLabel}>Logged references</p>
-          {a.facts.map((f, i) => (
-            <FactBlock key={i} fact={f} />
+          {facts.map((f) => (
+            <div key={f.id} className={styles.factGroup}>
+              <FactBlock fact={f} />
+              <FactProvenance fact={f} />
+            </div>
           ))}
           <p className={styles.disclaimer}>
             Confidence reflects the strength and number of independent sources, not our

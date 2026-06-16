@@ -5,13 +5,14 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { FactBlock } from "@/components/FactBlock";
 import { Subscribe } from "@/components/Subscribe";
 import { essays } from "@/content/essays/registry";
-import { athletes } from "@/data/athletes";
+import { publishedAthletes, renderableFacts } from "@/data/athletes";
 import { nav, site } from "@/lib/site";
 import styles from "./page.module.css";
 
 export default function HomePage() {
   const [lead, ...rest] = essays;
-  const pogacar = athletes[0];
+  const pogacar = publishedAthletes()[0];
+  const pogacarFact = renderableFacts(pogacar)[0];
 
   return (
     <>
@@ -97,7 +98,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div className={styles.refPanel}>
-            <FactBlock fact={pogacar.facts[0]} />
+            <FactBlock fact={pogacarFact} />
           </div>
         </div>
       </section>

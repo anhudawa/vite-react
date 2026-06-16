@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run verify:facts",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify:facts": "tsx scripts/verify-facts.mts",
+    "test": "tsx --test \"lib/verification/**/*.test.ts\""
   },
   "dependencies": {
     "next": "14.2.15",
@@ -22,6 +25,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/mdx": "^2.0.13",
+    "tsx": "^4.19.2",
     "typescript": "^5.5.3"
   }
 }

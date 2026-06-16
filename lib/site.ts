@@ -19,4 +19,7 @@ export const nav: NavItem[] = [
   { label: "Essays", href: "/essays", note: "Athletes and time" },
 ];
 
-export const secondaryNav: NavItem[] = [{ label: "About", href: "/about" }];
+export const secondaryNav: NavItem[] = [
+  { label: "About", href: "/about" },
+  { label: "Verification", href: "/verification" },
+];
