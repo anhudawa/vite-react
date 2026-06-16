@@ -24,7 +24,17 @@ export interface AthleteRef {
   summary: string;
   facts: VerifiedFact[];
   notes: string[];
-  image?: { src: string; alt: string; caption?: string };
+  image?: {
+    src: string;
+    alt: string;
+    caption?: string;
+    /** Credit line + licensing status. `unlicensed-placeholder` images are
+     *  on-file editorial roughs that MUST be replaced with licensed photography
+     *  before public launch — see RIGHTS.md. Tracked structurally so the gap is
+     *  auditable, never silent. */
+    credit?: string;
+    rights?: "licensed" | "editorial-use" | "unlicensed-placeholder";
+  };
 }
 
 const pogacar: AthleteRef = {
@@ -42,6 +52,7 @@ const pogacar: AthleteRef = {
     src: "/photography/pogacar-2.jpg",
     alt: "Tadej Pogačar in the UAE Team Emirates world-champion jersey, a Richard Mille RM 67-02 on his wrist",
     caption: "Richard Mille RM 67-02",
+    rights: "unlicensed-placeholder",
   },
   facts: [
     {
@@ -193,6 +204,7 @@ const tiger: AthleteRef = {
     src: "/photography/tiger-rolex-1.jpg",
     alt: "Tiger Woods on the course wearing an Everose Rolex Day-Date on the President bracelet",
     caption: "Rolex Day-Date 40",
+    rights: "unlicensed-placeholder",
   },
   facts: [
     {

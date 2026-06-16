@@ -10,6 +10,7 @@
     "lint": "next lint",
     "verify:facts": "tsx scripts/verify-facts.mts",
     "verify:sources": "tsx scripts/verify-sources.mts",
+    "verify:freshness": "tsx scripts/verify-freshness.mts",
     "test": "tsx --test lib/verification/*.test.ts"
   },
   "dependencies": {
