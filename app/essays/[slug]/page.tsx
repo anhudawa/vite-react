@@ -1,0 +1,88 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { essays, getEssay } from "@/content/essays/registry";
+import { formatDate } from "@/lib/content";
+import { site } from "@/lib/site";
+import { JsonLd, articleJsonLd, breadcrumb } from "@/lib/jsonld";
+import styles from "./prose.module.css";
+
+export function generateStaticParams() {
+  return essays.map((e) => ({ slug: e.slug }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const essay = getEssay(params.slug);
+  if (!essay) return {};
+  return {
+    title: essay.title,
+    description: essay.dek,
+    openGraph: {
+      type: "article",
+      title: essay.title,
+      description: essay.dek,
+      publishedTime: essay.date,
+    },
+  };
+}
+
+export default function EssayPage({ params }: { params: { slug: string } }) {
+  const essay = getEssay(params.slug);
+  if (!essay) notFound();
+
+  const idx = essays.findIndex((e) => e.slug === essay.slug);
+  const next = essays[(idx + 1) % essays.length];
+  const Content = essay.Content;
+  const path = `/essays/${essay.slug}`;
+
+  return (
+    <article className={styles.article}>
+      <JsonLd
+        data={[
+          articleJsonLd({
+            title: essay.title,
+            description: essay.dek,
+            datePublished: essay.date,
+            path,
+          }),
+          breadcrumb([
+            { name: "Home", path: "/" },
+            { name: "Essays", path: "/essays" },
+            { name: essay.title, path },
+          ]),
+        ]}
+      />
+
+      <header className={styles.head}>
+        <nav className={styles.crumbs} aria-label="Breadcrumb">
+          <Link href="/">Escapement</Link>
+          <span className={styles.crumbSep}>/</span>
+          <Link href="/essays">Essays</Link>
+        </nav>
+        <p className={styles.kicker}>{essay.kicker ?? "Essay"}</p>
+        <h1 className={styles.title}>{essay.title}</h1>
+        <p className={styles.dek}>{essay.dek}</p>
+        <div className={styles.byline}>
+          <time dateTime={essay.date}>{formatDate(essay.date)}</time>
+          <span>{essay.readingTime}</span>
+        </div>
+      </header>
+
+      <div className={styles.body}>
+        <Content />
+      </div>
+
+      <footer className={styles.foot}>
+        <p className={styles.footEssence}>{site.essence}</p>
+        <div className={styles.next}>
+          <span className={styles.nextLabel}>Next essay</span>
+          <Link href={`/essays/${next.slug}`}>{next.title} →</Link>
+        </div>
+      </footer>
+    </article>
+  );
+}

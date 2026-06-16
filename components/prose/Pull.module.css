@@ -1,0 +1,30 @@
+.pull {
+  margin: var(--s-7) 0;
+  /* break out of the reading measure, to the left */
+  margin-left: calc(-1 * clamp(0rem, 6vw, 5rem));
+  max-width: 30ch;
+}
+.pull blockquote {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  border-left: 2px solid var(--accent);
+  padding-left: var(--s-5);
+}
+.pull figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: var(--s-4);
+  padding-left: var(--s-5);
+}
+
+@media (max-width: 900px) {
+  .pull {
+    margin-left: 0;
+  }
+}

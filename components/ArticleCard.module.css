@@ -1,0 +1,84 @@
+.card {
+  position: relative;
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5) 0;
+  border-top: var(--hairline) solid var(--rule);
+  transition: border-color var(--dur-2) var(--ease-mech);
+}
+.link:hover {
+  border-color: var(--rule-strong);
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.num {
+  color: var(--accent);
+}
+.kicker {
+  color: var(--text-dim);
+}
+.time {
+  margin-left: auto;
+  color: var(--text-faint);
+}
+
+.title {
+  font-size: var(--t-h4);
+  letter-spacing: -0.01em;
+  transition: color var(--dur-1) var(--ease-mech);
+  max-width: 26ch;
+}
+.link:hover .title {
+  color: var(--accent);
+}
+.dek {
+  color: var(--text-dim);
+  font-size: var(--t-body-s);
+  max-width: 52ch;
+  line-height: 1.55;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+}
+.read {
+  color: var(--text-dim);
+  transition: transform var(--dur-1) var(--ease-mech);
+}
+.link:hover .read {
+  color: var(--accent);
+}
+
+/* --- Lead (the large featured essay) -------------------------------------- */
+.card[data-variant="lead"] .link {
+  border-top: 0;
+  padding-top: 0;
+  gap: var(--s-4);
+}
+.card[data-variant="lead"] .title {
+  font-size: var(--t-h1);
+  max-width: 16ch;
+  line-height: 1.02;
+}
+.card[data-variant="lead"] .dek {
+  font-size: var(--t-lead);
+  max-width: 40ch;
+  line-height: 1.4;
+}
