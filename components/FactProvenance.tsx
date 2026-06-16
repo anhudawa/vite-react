@@ -65,6 +65,25 @@ export function FactProvenance({ fact }: { fact: VerifiedFact }) {
                     s.publisher
                   )}
                   <span className={styles.sourceKind}> · {s.kind}</span>
+                  {s.snapshot === "unarchivable" ? (
+                    <span
+                      className={styles.sourceArchive}
+                      data-state="blocked"
+                      title="Publisher blocks archiving — this fact stands on its other, archivable sources"
+                    >
+                      no archive
+                    </span>
+                  ) : s.snapshot ? (
+                    <a
+                      className={styles.sourceArchive}
+                      href={s.snapshot.archivedUrl}
+                      rel="nofollow noreferrer"
+                      target="_blank"
+                      title={`Permanent archived copy · captured ${s.snapshot.capturedAt}`}
+                    >
+                      archived
+                    </a>
+                  ) : null}
                 </span>
                 <span className={styles.sourceExcerpt}>“{s.excerpt}”</span>
               </li>

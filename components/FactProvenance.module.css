@@ -108,6 +108,20 @@
 .sourceKind {
   color: var(--text-faint);
 }
+.sourceArchive {
+  margin-left: 0.5em;
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-bottom: var(--hairline) dotted currentColor;
+  color: var(--text-dim);
+}
+.sourceArchive[data-state="blocked"] {
+  color: var(--text-faint);
+  border-bottom-style: none;
+  font-style: italic;
+  cursor: help;
+}
 .sourceExcerpt {
   grid-column: 2;
   color: var(--text-dim);

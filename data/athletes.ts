@@ -73,6 +73,11 @@ const pogacar: AthleteRef = {
           kind: "official",
           tier: "primary",
           url: "https://www.uaeteamemirates.com/rider/tadej-pogacar/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260423024512/https://www.uaeteamemirates.com/rider/tadej-pogacar/",
+            capturedAt: "2026-04-23",
+          },
           accessedAt: "2026-06-10",
           excerpt:
             "Team partner listings name Richard Mille; Pogačar is the team's lead rider.",
@@ -207,6 +212,7 @@ const tiger: AthleteRef = {
           kind: "official",
           tier: "primary",
           url: "https://www.rolex.com/rolex-family/golf/tiger-woods",
+          snapshot: "unarchivable", // rolex.com blocks the Wayback Machine
           accessedAt: "2026-06-16",
           excerpt:
             "Rolex's official Rolex Family pages present Tiger Woods among its golf Testimonees.",
@@ -219,6 +225,11 @@ const tiger: AthleteRef = {
           kind: "media",
           tier: "secondary",
           url: "https://www.coronet.org/new-1minute-reads/in-golf-rolex-stands-by-tiger-woods",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260424081551/https://www.coronet.org/new-1minute-reads/in-golf-rolex-stands-by-tiger-woods",
+            capturedAt: "2026-04-24",
+          },
           publishedAt: "2026-04-01",
           accessedAt: "2026-06-16",
           excerpt:
@@ -232,6 +243,11 @@ const tiger: AthleteRef = {
           kind: "media",
           tier: "secondary",
           url: "https://www.wristenthusiast.com/latest/2022/8/4/tiger-woods-watches",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260227055258/https://www.wristenthusiast.com/latest/2022/8/4/tiger-woods-watches",
+            capturedAt: "2026-02-27",
+          },
           publishedAt: "2022-08-04",
           accessedAt: "2026-06-16",
           excerpt:

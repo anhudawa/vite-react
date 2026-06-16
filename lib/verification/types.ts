@@ -42,6 +42,11 @@ export interface Source {
   accessedAt: string; // ISO date an editor last confirmed it
   excerpt: string; // the exact supporting quote or description
   supports: ClaimField[]; // the claim fields this source corroborates
+  /** An immutable archived copy of the source, so the citation survives
+   *  link-rot. `unarchivable` records that the publisher blocks archiving
+   *  (e.g. rolex.com) — in which case the claim must stand on other,
+   *  archivable sources rather than this one. */
+  snapshot?: { archivedUrl: string; capturedAt: string } | "unarchivable";
   /** ids of sources this one is NOT independent from (same owner, syndication,
    *  a party to the relationship reporting on itself). Used to prevent an echo
    *  chamber from counting as corroboration. */
