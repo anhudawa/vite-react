@@ -1,0 +1,15 @@
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  /* a soft cast shadow seats the dial as a real object */
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.45));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg {
+    will-change: auto;
+  }
+}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LongSecondHero } from "@/components/hero/LongSecondHero";
+import { LongSecondDial } from "@/components/hero/LongSecondDial";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FactBlock } from "@/components/FactBlock";
@@ -17,16 +17,18 @@ export default function HomePage() {
   return (
     <>
       {/* ===================== HERO ===================== */}
-      <section className={styles.hero} aria-labelledby="hero-title">
+      <section className={`${styles.hero} vignette`} aria-labelledby="hero-title">
+        <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroInner}>
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>
+              <span className={styles.eyebrowMark} aria-hidden="true" />
               Endurance athletes <span aria-hidden="true">·</span> fine watches
             </p>
             <h1 id="hero-title" className={styles.heroTitle}>
               Not every second
               <br />
-              is the same length.
+              is the same <em>length</em>.
             </h1>
             <p className={styles.heroDek}>
               The clock says they are. The body knows better. {site.name} is watches,
@@ -43,8 +45,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className={styles.heroFigure}>
-            <LongSecondHero />
+          <div className={`${styles.heroFigure} sapphire`}>
+            <LongSecondDial />
           </div>
         </div>
 

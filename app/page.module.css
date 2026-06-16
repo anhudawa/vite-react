@@ -1,38 +1,74 @@
 /* ===================== HERO ===================== */
 .hero {
   position: relative;
+  overflow: hidden;
   border-bottom: var(--hairline) solid var(--rule);
 }
+/* atmospheric depth behind the dial */
+.heroGlow {
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  width: min(46vw, 620px);
+  aspect-ratio: 1;
+  transform: translateY(-52%);
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(var(--lume-rgb), 0.05),
+    rgba(var(--steel-rgb), 0.05) 38%,
+    transparent 66%
+  );
+  filter: blur(8px);
+}
 .heroInner {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1.02fr 0.98fr;
   align-items: center;
-  gap: clamp(1.5rem, 5vw, 5rem);
+  gap: clamp(1.5rem, 5vw, 5.5rem);
   max-width: var(--container-wide);
   margin-inline: auto;
-  padding: clamp(2.5rem, 6vw, 6rem) var(--gutter) clamp(2rem, 4vw, 4rem);
-  min-height: min(82vh, 760px);
+  padding: clamp(2.5rem, 6vw, 6.5rem) var(--gutter) clamp(2rem, 4vw, 4rem);
+  min-height: min(88vh, 820px);
 }
 
 .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
   font-family: var(--font-mono);
   font-size: var(--t-mono-xs);
-  letter-spacing: 0.24em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--text-dim);
   margin-bottom: var(--s-6);
 }
+.eyebrowMark {
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  flex: none;
+}
 .eyebrow span {
-  color: var(--accent-text);
-  padding-inline: 0.4em;
+  padding: 0;
 }
 
 .heroTitle {
   font-family: var(--font-serif);
-  font-size: var(--t-h1);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  margin-bottom: var(--s-5);
+  font-weight: 400;
+  font-size: clamp(2.9rem, 1.2rem + 7vw, 7rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--s-6);
+  text-wrap: balance;
+}
+.heroTitle em {
+  font-style: italic;
+  /* a quiet stretch on "length" — the long second, felt in the type */
+  letter-spacing: 0.01em;
 }
 
 .heroDek {
@@ -90,16 +126,8 @@
   position: relative;
   display: grid;
   place-items: center;
-  padding: var(--s-4);
-}
-.heroFigure::before {
-  /* a faint dial ring framing the mechanism */
-  content: "";
-  position: absolute;
-  inset: clamp(0px, 2vw, 24px);
-  border: var(--hairline) solid var(--rule);
+  padding: clamp(0.5rem, 2vw, 1.5rem);
   border-radius: 50%;
-  pointer-events: none;
 }
 
 .spec {

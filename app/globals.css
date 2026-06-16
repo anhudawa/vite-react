@@ -300,6 +300,125 @@ table {
 }
 
 /* =============================================================================
+   MATERIALITY — depth, metal, sapphire, light. The tactile register that
+   separates a luxury object from a wireframe. Used sparingly, with intent.
+   ============================================================================= */
+
+:root {
+  /* brushed-steel sheen for metal accents and the chapter ring */
+  --metal: linear-gradient(
+    145deg,
+    #6b7075 0%,
+    #c9ced3 18%,
+    #8b9095 34%,
+    #eef1f4 52%,
+    #7c8186 70%,
+    #b6bbc0 86%,
+    #5f6469 100%
+  );
+  /* warm brass sheen, for the rare premium physical cue */
+  --brass-sheen: linear-gradient(145deg, #7a6233 0%, #d8bd86 50%, #6f5a30 100%);
+  /* soft luxury shadow — large, barely there, never harsh */
+  --shadow-soft: 0 1px 1px rgba(0, 0, 0, 0.2), 0 12px 28px rgba(0, 0, 0, 0.28),
+    0 40px 80px rgba(0, 0, 0, 0.32);
+  --shadow-lift: 0 2px 10px rgba(0, 0, 0, 0.24), 0 24px 60px rgba(0, 0, 0, 0.36);
+}
+
+/* a domed, dimensional dark surface — top-lit, hairline-rimmed */
+.surface-deep {
+  position: relative;
+  background:
+    radial-gradient(120% 100% at 50% -10%, rgba(var(--bone-rgb), 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg-raised), var(--bg-sunken));
+  border: var(--hairline) solid var(--rule);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(var(--bone-rgb), 0.05);
+}
+
+/* a sapphire-glass sheen — a slow diagonal sweep of light */
+.sapphire {
+  position: relative;
+  overflow: hidden;
+}
+.sapphire::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(var(--bone-rgb), 0.06) 46%,
+    rgba(var(--bone-rgb), 0.12) 50%,
+    rgba(var(--bone-rgb), 0.04) 54%,
+    transparent 70%
+  );
+  transform: translateX(-30%);
+  animation: sheen 9s var(--ease-mech) infinite;
+}
+@keyframes sheen {
+  0%, 100% { transform: translateX(-40%); opacity: 0; }
+  45% { opacity: 1; }
+  55% { opacity: 1; }
+  70%, 100% { transform: translateX(40%); opacity: 0; }
+}
+
+/* a radial vignette to seat content and add depth on dark sections */
+.vignette {
+  position: relative;
+}
+.vignette::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    130% 120% at 50% 35%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+[data-theme="light"] .vignette::before {
+  background: radial-gradient(
+    130% 120% at 50% 35%,
+    transparent 60%,
+    rgba(22, 24, 27, 0.06) 100%
+  );
+}
+
+/* hairline that carries a brushed-metal sheen */
+.rule-metal {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--bone-rgb), 0.28) 18%,
+    rgba(var(--bone-rgb), 0.28) 82%,
+    transparent
+  );
+}
+
+/* a refined, finer film grain for premium surfaces */
+.grain-fine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sapphire::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* =============================================================================
    MOTION — reduced-motion respected globally
    ============================================================================= */
 
