@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "verify:facts": "tsx scripts/verify-facts.mts",
-    "test": "tsx --test \"lib/verification/**/*.test.ts\""
+    "test": "tsx --test lib/verification/*.test.ts"
   },
   "dependencies": {
     "next": "14.2.15",
