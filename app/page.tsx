@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LongSecondDial } from "@/components/hero/LongSecondDial";
 import { Figure } from "@/components/Figure";
+import { CinematicVideo } from "@/components/CinematicVideo";
 import { Reveal } from "@/components/Reveal";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -149,6 +150,28 @@ export default function HomePage() {
               sizes="(max-width: 900px) 100vw, 46vw"
             />
           </Reveal>
+        </div>
+      </section>
+
+      {/* ===================== CINEMATIC (Pogačar climb) ===================== */}
+      <section className={styles.cine} aria-labelledby="cine-h">
+        <div className={styles.cineMedia}>
+          <CinematicVideo
+            src="/video/pogacar-climb.mp4"
+            poster="/video/pogacar-climb-poster.jpg"
+            label="Tadej Pogačar climbing a mountain road in the world champion's jersey"
+            className={styles.cineVideo}
+          />
+          <div className={styles.cineScrim} aria-hidden="true" />
+        </div>
+        <div className={`container ${styles.cineInner}`}>
+          <p className={styles.cineKicker}>The proof</p>
+          <h2 id="cine-h" className={styles.cineTitle}>
+            It isn&rsquo;t a claim until it&rsquo;s on the wrist, in the race.
+          </h2>
+          <p className={styles.cineCredit}>
+            Tadej Pogačar <span aria-hidden="true">·</span> Richard Mille RM 67-02
+          </p>
         </div>
       </section>
 

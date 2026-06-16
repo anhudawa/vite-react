@@ -225,6 +225,74 @@
   }
 }
 
+/* ===================== CINEMATIC (full-bleed video) ===================== */
+.cine {
+  position: relative;
+  min-height: min(88vh, 860px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-block: var(--hairline) solid var(--rule);
+  background: #0c0e10;
+}
+.cineMedia {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.cineVideo {
+  /* the footage sits in the brand's near-monochrome register */
+  filter: grayscale(0.45) contrast(1.06) brightness(0.84);
+  object-position: center 30%;
+}
+.cineScrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 120% at 18% 92%, rgba(12, 14, 16, 0.85), transparent 52%),
+    linear-gradient(0deg, rgba(12, 14, 16, 0.8), transparent 50%),
+    linear-gradient(90deg, rgba(12, 14, 16, 0.45), transparent 55%);
+}
+.cineInner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(2.5rem, 7vw, 5.5rem);
+  color: #f2eee6;
+}
+.cineKicker {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--lume-glow);
+  margin-bottom: var(--s-5);
+}
+.cineKicker::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--lume-glow);
+}
+.cineTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 1rem + 3.4vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  max-width: 18ch;
+  margin: 0 0 var(--s-5);
+  text-wrap: balance;
+}
+.cineCredit {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c2c7cc;
+}
+
 /* ===================== THE EFFORT ===================== */
 .effort {
   padding-block: clamp(3.5rem, 9vw, 8rem);
