@@ -1,7 +1,23 @@
+import { readFileSync } from "fs";
+import { join } from "path";
 import { ImageResponse } from "next/og";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
+
+// Brand fonts for the card (Satori takes WOFF/TTF, not WOFF2). Read once at
+// module load. Fraunces carries the title (latin + latin-ext for names like
+// "Pogačar"); IBM Plex Mono carries the uppercase labels.
+const fontDir = join(process.cwd(), "lib/og-fonts");
+const FRAUNCES = readFileSync(join(fontDir, "Fraunces-400.woff"));
+const FRAUNCES_EXT = readFileSync(join(fontDir, "Fraunces-400-ext.woff"));
+const PLEX_MONO = readFileSync(join(fontDir, "PlexMono-500.woff"));
+
+const OG_FONTS = [
+  { name: "Fraunces", data: FRAUNCES, weight: 400 as const, style: "normal" as const },
+  { name: "Fraunces", data: FRAUNCES_EXT, weight: 400 as const, style: "normal" as const },
+  { name: "Plex Mono", data: PLEX_MONO, weight: 500 as const, style: "normal" as const },
+];
 
 const INK = "#16181B";
 const BONE = "#F2EEE6";
@@ -55,6 +71,7 @@ export function ogCard({
           background: INK,
           color: BONE,
           padding: "72px 80px",
+          fontFamily: "Plex Mono",
           // a faint dial seam down the left, echoing the Fact Block
           borderLeft: `10px solid ${LUME}`,
         }}
@@ -68,11 +85,10 @@ export function ogCard({
         >
           <div
             style={{
-              fontSize: 24,
-              letterSpacing: 12,
+              fontSize: 22,
+              letterSpacing: 11,
               textTransform: "uppercase",
               color: BONE,
-              fontWeight: 600,
             }}
           >
             ESCAPEMENT
@@ -94,10 +110,11 @@ export function ogCard({
           </div>
           <div
             style={{
-              fontSize: title.length > 48 ? 64 : 80,
-              lineHeight: 1.04,
+              fontFamily: "Fraunces",
+              fontSize: title.length > 48 ? 66 : 84,
+              lineHeight: 1.02,
               letterSpacing: -2,
-              maxWidth: 940,
+              maxWidth: 980,
               color: BONE,
             }}
           >
@@ -120,6 +137,6 @@ export function ogCard({
         </div>
       </div>
     ),
-    { ...OG_SIZE }
+    { ...OG_SIZE, fonts: OG_FONTS }
   );
 }

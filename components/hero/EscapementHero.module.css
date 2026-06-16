@@ -3,6 +3,14 @@
   height: auto;
   color: var(--text);
   overflow: visible;
+  transform-origin: center 62%; /* zoom toward the escape wheel */
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg {
+    will-change: auto;
+  }
 }
 
 /* line weights tuned for a precision-instrument feel */

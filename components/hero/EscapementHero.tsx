@@ -153,10 +153,34 @@ export function EscapementHero() {
     );
     if (rootRef.current) io.observe(rootRef.current);
 
+    // Subtle scroll-reactivity — the view travels a touch *into* the movement as
+    // the hero leaves. Decoupled from the 60fps tick loop: throttled to one
+    // rAF per scroll burst so it stays cheap and smooth.
+    let ticking = false;
+    function applyTravel() {
+      ticking = false;
+      const svg = rootRef.current;
+      if (!svg) return;
+      const span = window.innerHeight * 0.85;
+      const p = Math.min(Math.max(window.scrollY / span, 0), 1);
+      const scale = (1 + p * 0.16).toFixed(4);
+      svg.style.transform = `scale(${scale})`;
+      svg.style.opacity = (1 - p * 0.6).toFixed(3);
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(applyTravel);
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    applyTravel();
+
     return () => {
       runningRef.current = false;
       cancelAnimationFrame(rafRef.current);
       io.disconnect();
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
