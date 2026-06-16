@@ -1,89 +1,72 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { JsonLd, breadcrumb } from "@/lib/jsonld";
+import { AuthorModule } from "@/components/AuthorModule";
+import { JsonLd, authorPersonJsonLd, breadcrumb } from "@/lib/jsonld";
 import { site } from "@/lib/site";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Escapement is the insider's record of where serious athletes and fine watches meet — told by an athlete who fell down the rabbit hole, for the ones falling down it too.",
+    "The Long Second is watches, and the athletes who live by them — told by Anthony Walsh, a masters racer who knows exactly what a second can cost.",
 };
 
 export default function AboutPage() {
   return (
     <>
       <JsonLd
-        data={breadcrumb([
-          { name: "Home", path: "/" },
-          { name: "About", path: "/about" },
-        ])}
+        data={[
+          authorPersonJsonLd(),
+          breadcrumb([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+        ]}
       />
       <PageHeader
-        index="05"
-        kicker="The brand"
-        title="From the inside"
-        intro="Not a dealer. Not a horology authority performing expertise. The credible voice on the one obsession an athlete and a watch share: time."
+        index="—"
+        kicker="The publication"
+        title="The other version"
+        intro="A named publication. The masthead leads; Anthony Walsh signs the work — watch coverage from someone who has actually buried himself in the red."
       />
 
       <div className={`container ${styles.body}`}>
-        <div className={styles.portrait}>
-          <Image
-            src="/brand/founder-bone.png"
-            alt={`${site.founder}, founder of Escapement`}
-            width={328}
-            height={508}
-            sizes="(max-width: 760px) 60vw, 320px"
-            priority
-          />
-          <p className={styles.caption}>
-            {site.founder}
-            <span aria-hidden="true"> · </span>founder
-          </p>
-        </div>
-
         <div className={styles.prose}>
+          <p className={styles.lead}>Not every second is the same length.</p>
+          <p>The clock says they are. Your body knows better.</p>
           <p>
-            The space where athletes and watches meet is not empty. It is full of
-            shallow content, none of it from athletes. Strap retailers and dealers
-            publish celebrity-watch listicles as a side activity, recycling the same
-            fifteen names. They review the watch as an object. They have never buried
-            themselves in the last five kilometres of a race, and it shows.
+            The last kilometre. The final 200 metres. The breath you hold at the start
+            line. In those moments a single second stretches out long enough to live a
+            small lifetime inside.
           </p>
           <p>
-            Escapement takes the inside position. It is written by someone who came to
-            watches the way most serious athletes do — sideways, through an obsession
-            with time, with the measured release of a finite reserve, with the machine
-            that meters effort against the clock. The same wiring that optimises a
-            training block falls hard for a movement&rsquo;s beat rate.
-          </p>
-
-          <h2>What we promise</h2>
-          <p>
-            No dealer spin. No fake expertise. The truth about what is on the wrist —
-            and why it is there. Every claim is sourced, the relationship logged as it
-            actually is, and our confidence stated plainly. The accuracy is the whole
-            point; it is the only thing the rest of the field does not have.
-          </p>
-
-          <h2>Why the name</h2>
-          <p>
-            An escapement is the mechanism at the heart of every mechanical watch — the
-            part that releases the mainspring&rsquo;s stored energy in tiny, controlled
-            beats. Without it, the spring would unwind in a single instant and time
-            would mean nothing. It is also the breakaway, the solo effort off the
-            front, the escape from the desk and the clock running on a career.
+            That&rsquo;s the long second. The one that matters.
           </p>
           <p>
-            We never explain it past that. The restraint is the brand.
+            I spent years chasing it on a bike. Then I started reading about the machines
+            built to measure it — and fell as hard for the watch as I ever did for the
+            race.
           </p>
+          <p>
+            Most watch writing comes from people who&rsquo;ve never buried themselves in
+            the red. They describe the object. They miss the feeling.
+          </p>
+          <p>This is the other version.</p>
+          <p>
+            Watches, and the athletes who live by them. Told by someone who knows exactly
+            what a second can cost.
+          </p>
+          <p className={styles.sign}>— {site.author.name}</p>
 
           <div className={styles.cta}>
             <Link href="/who-wears-what">See the reference →</Link>
             <Link href="/essays">Read the essays →</Link>
           </div>
+        </div>
+
+        <div className={styles.author}>
+          <AuthorModule heading="Who's writing" />
         </div>
       </div>
     </>

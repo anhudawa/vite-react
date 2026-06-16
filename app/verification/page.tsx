@@ -8,7 +8,7 @@ import styles from "./verification.module.css";
 export const metadata: Metadata = {
   title: "The Verification Method",
   description:
-    "How Escapement keeps the record accurate: every claim passes an explicit gauntlet of independent gates before it can appear as fact.",
+    "How The Long Second keeps the record accurate: every claim passes an explicit gauntlet of independent gates before it can appear as fact.",
 };
 
 // Modeled joint residual across all gates — illustrative, not a guarantee.

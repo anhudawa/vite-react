@@ -10,7 +10,7 @@ import styles from "./colophon.module.css";
 export const metadata: Metadata = {
   title: "Colophon",
   description:
-    "The Escapement design system, shown live: colour, the three type voices, the Fact Block, the mark, and the rules that hold them together.",
+    "The Long Second's design system, shown live: colour, the three type voices, the Fact Block, the mark, and the rules that hold them together.",
 };
 
 const COLOURS = [
@@ -33,9 +33,9 @@ const VOICES = [
   },
   {
     name: "Editorial serif",
-    spec: "Fraunces (web) / GT Sectra · Canela (licensed)",
-    role: "Headlines and essays — the literary soul.",
-    sample: "The same machine, described twice.",
+    spec: "Newsreader (web) / GT Sectra · Canela (licensed)",
+    role: "The masthead, headlines and essays — the voice.",
+    sample: "Not every second is the same length.",
     cls: styles.serif,
   },
   {
@@ -149,8 +149,8 @@ export default function ColophonPage() {
           The mark
         </h2>
         <p className={styles.lede}>
-          A glyph built from escapement geometry — the escape-wheel teeth, the pallet
-          fork, the arc of oscillation. The name rendered as a machine.
+          The elongated second: a track of sixty even ticks with one index stretched
+          long and overshooting, in lume. The name, drawn — and legible to 16px.
         </p>
         <div className={styles.markRow}>
           <div className={styles.markCell}>

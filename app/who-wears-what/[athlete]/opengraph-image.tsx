@@ -3,7 +3,7 @@ import { publishedAthletes, getPublishedAthlete, renderableFacts } from "@/data/
 
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
-export const alt = "An Escapement reference";
+export const alt = "A sourced reference from The Long Second";
 
 export function generateStaticParams() {
   return publishedAthletes().map((a) => ({ athlete: a.slug }));
@@ -14,7 +14,7 @@ export default function Image({ params }: { params: { athlete: string } }) {
   const fact = a ? renderableFacts(a)[0] : undefined;
   return ogCard({
     kicker: "Who wears what · Reference",
-    title: a && fact ? `${a.name} — ${fact.watch}` : "Escapement",
+    title: a && fact ? `${a.name} — ${fact.watch}` : "The Long Second",
     footer: "Sourced reference",
   });
 }

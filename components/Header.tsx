@@ -31,8 +31,8 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.bar}>
-        <Link href="/" className={styles.brand} aria-label="Escapement — home">
-          <Wordmark withMark className={styles.wordmark} />
+        <Link href="/" className={styles.brand} aria-label="The Long Second — home">
+          <Wordmark withMark byline className={styles.wordmark} />
         </Link>
 
         <nav className={styles.nav} aria-label="Primary">

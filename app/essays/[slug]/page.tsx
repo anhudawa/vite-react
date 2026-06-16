@@ -4,9 +4,11 @@ import { notFound } from "next/navigation";
 import { essays, getEssay } from "@/content/essays/registry";
 import { formatDate } from "@/lib/content";
 import { site } from "@/lib/site";
-import { JsonLd, articleJsonLd, breadcrumb } from "@/lib/jsonld";
+import { JsonLd, articleJsonLd, authorPersonJsonLd, breadcrumb } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { RelatedEssays } from "@/components/RelatedEssays";
+import { Byline } from "@/components/Byline";
+import { AuthorModule } from "@/components/AuthorModule";
 import { tagSlug } from "@/lib/tags";
 import styles from "./prose.module.css";
 
@@ -53,6 +55,7 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
             datePublished: essay.date,
             path,
           }),
+          authorPersonJsonLd(),
           breadcrumb([
             { name: "Home", path: "/" },
             { name: "Essays", path: "/essays" },
@@ -63,16 +66,18 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
 
       <header className={styles.head}>
         <nav className={styles.crumbs} aria-label="Breadcrumb">
-          <Link href="/">Escapement</Link>
+          <Link href="/">{site.name}</Link>
           <span className={styles.crumbSep}>/</span>
           <Link href="/essays">Essays</Link>
         </nav>
         <p className={styles.kicker}>{essay.kicker ?? "Essay"}</p>
         <h1 className={styles.title}>{essay.title}</h1>
         <p className={styles.dek}>{essay.dek}</p>
-        <div className={styles.byline}>
-          <time dateTime={essay.date}>{formatDate(essay.date)}</time>
-          <span>{essay.readingTime}</span>
+        <div className={styles.bylineRow}>
+          <Byline readingTime={essay.readingTime} />
+          <time className={styles.pubdate} dateTime={essay.date}>
+            {formatDate(essay.date)}
+          </time>
         </div>
         {essay.tags && essay.tags.length > 0 && (
           <ul className={styles.tags} aria-label="Tags">
@@ -89,6 +94,10 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
 
       <div className={styles.body}>
         <Content />
+      </div>
+
+      <div className={styles.authorSlot}>
+        <AuthorModule />
       </div>
 
       <div className={styles.related}>

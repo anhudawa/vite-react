@@ -6,7 +6,7 @@ import { JsonLd, breadcrumb } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Search",
-  description: "Search the Escapement archive — essays, sourced references, and sections.",
+  description: "Search The Long Second — essays, sourced references, and sections.",
 };
 
 export default function SearchPage() {

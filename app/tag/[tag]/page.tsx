@@ -20,7 +20,7 @@ export function generateMetadata({
   if (!label) return {};
   return {
     title: `${label} — Tag`,
-    description: `Every Escapement essay tagged “${label}”.`,
+    description: `Every essay tagged “${label}”.`,
   };
 }
 

@@ -1,11 +1,13 @@
-# Escapement
+# The Long Second
 
-The editorial website for **Escapement** — a media brand at the intersection of
-endurance athletes and fine watches. Essence: *measured release.*
+The editorial website for **The Long Second** — a named publication on watches and
+the athletes who wear them, bylined by **Anthony Walsh**. Essence: *measured release.*
+(Formerly *Escapement*; renamed and given a founder/author layer — same engine.)
 
 Built per the brand identity and build briefs: a restrained, world-class editorial
-site (95% disciplined editorial restraint) with one kinetic signature — a living
-lever-escapement hero.
+site (95% disciplined editorial restraint) with one kinetic signature — the hero
+where a single second dilates: a seconds hand that slows and stretches through one
+long second, then resolves.
 
 ## Stack
 
@@ -39,17 +41,22 @@ npm run start        # serve the production build
 
 ## Signature pieces
 
-- **The hero** — `components/hero/EscapementHero.tsx`. A genuine lever escapement
-  (escape wheel + pallet fork + balance/hairspring) rendered in SVG and animated with
-  `requestAnimationFrame`: lock → impulse → drop, the wheel advancing tooth by tooth at
-  a slowed ~1.4 Hz, the Lume glowing on the pallet jewels at the instant of impulse.
-  Pauses off-screen via `IntersectionObserver`; never blocks LCP (the headline is the
-  LCP element); reduced-motion gets a frozen, composed instant; real mobile composition.
+- **The hero** — `components/hero/LongSecondHero.tsx`. A seconds hand sweeps an even
+  track of sixty ticks; as it reaches twelve it slows and *stretches* — one second
+  dilating, overshooting the track, the Lume glowing — then releases and resolves.
+  `requestAnimationFrame`; paused off-screen via `IntersectionObserver`; never blocks
+  LCP (the headline is the LCP element); reduced-motion freezes at the long second;
+  real mobile composition; subtle scroll-travel.
 - **The Fact Block** — `components/FactBlock.tsx`. The credibility signature: a sourced
   spec-plate (athlete / watch / relation / evidence / confidence), set largely in mono,
   with a single Lume confidence tick. Reusable across every reference page.
-- **The Mark** — `components/Mark.tsx`. An ownable glyph built from escapement geometry
-  (escape-wheel teeth + pallet-fork anchor). Drives the favicon (`app/icon.svg`).
+- **The Mark** — `components/Mark.tsx`. "The Elongated Second": a seconds track with one
+  index stretched long and overshooting at twelve, in Lume. Drives the favicon, the
+  masthead lockup (`Wordmark`) and the `Monogram` (TLS).
+- **The author layer** — `components/Byline.tsx` + `components/AuthorModule.tsx`. The
+  masthead leads; Anthony Walsh signs. A designed byline and a recurring E-E-A-T module
+  (bio + mono credentials + portrait) on articles and the About page, backed by `Person`
+  JSON-LD.
 
 ## Templates
 
@@ -78,7 +85,7 @@ so the build uses the brief's named **web fallbacks**, wired in `app/fonts.ts`:
 | Voice      | Spec'd (premium)            | In use (fallback)   |
 |------------|-----------------------------|---------------------|
 | Grotesque  | Suisse Int'l / Söhne        | Schibsted Grotesk   |
-| Serif      | GT Sectra / Canela          | Fraunces (variable) |
+| Serif      | GT Sectra / Canela          | Newsreader          |
 | Mono       | Monument Mono / GT America  | IBM Plex Mono       |
 
 Swapping in the licensed faces is a one-file change in `app/fonts.ts` (self-host via
@@ -139,7 +146,7 @@ gate definitions so it can never drift from the code.
 ## Other applications
 
 - **Social/OG** — dynamic branded cards (`next/og`, `lib/og.tsx`) for the site, each essay,
-  and each athlete, rendered in the brand serif (Fraunces) + mono.
+  and each athlete, rendered in the brand serif (Newsreader) + mono.
 - **Newsletter** — the restrained "dispatch" module (`components/Subscribe.tsx`) with a
   validating `/api/subscribe` endpoint; connect a provider where noted.
 - **Quality bars** — verified WCAG 2.2 AA in both themes (axe-core, every route clean);

@@ -1,30 +1,5 @@
 .body {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: clamp(2.5rem, 7vw, 6rem);
   padding-block: clamp(3rem, 7vw, 5rem) var(--s-9);
-  align-items: start;
-}
-
-.portrait {
-  position: sticky;
-  top: 6rem;
-}
-.portrait img {
-  width: 100%;
-  height: auto;
-  /* the bone stipple reads as a print on the dial; a hairline frames it */
-  border: var(--hairline) solid var(--rule);
-  padding: var(--s-5);
-  background: var(--bg-raised);
-}
-.caption {
-  margin-top: var(--s-4);
-  font-family: var(--font-mono);
-  font-size: var(--t-mono-xs);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-dim);
 }
 
 .prose {
@@ -35,17 +10,21 @@
 .prose p {
   margin-bottom: var(--s-5);
 }
-.prose p:first-of-type {
-  font-size: var(--t-lead);
-  line-height: 1.45;
-}
-.prose h2 {
+.lead {
   font-family: var(--font-serif);
-  font-size: var(--t-h3);
-  letter-spacing: -0.015em;
-  margin-top: var(--s-8);
-  margin-bottom: var(--s-4);
+  font-size: var(--t-h2);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--s-6) !important;
 }
+.sign {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
 .cta {
   display: flex;
   flex-wrap: wrap;
@@ -64,12 +43,6 @@
   opacity: 0.7;
 }
 
-@media (max-width: 760px) {
-  .body {
-    grid-template-columns: 1fr;
-  }
-  .portrait {
-    position: static;
-    max-width: 240px;
-  }
+.author {
+  margin-top: var(--s-9);
 }

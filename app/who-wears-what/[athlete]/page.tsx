@@ -65,7 +65,7 @@ export default function AthletePage({
 
       <header className={`container ${styles.head}`}>
         <nav className={styles.crumbs} aria-label="Breadcrumb">
-          <Link href="/">Escapement</Link>
+          <Link href="/">The Long Second</Link>
           <span className={styles.sep}>/</span>
           <Link href="/who-wears-what">Who Wears What</Link>
         </nav>

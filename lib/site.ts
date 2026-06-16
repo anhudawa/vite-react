@@ -1,14 +1,31 @@
 export const site = {
-  name: "Escapement",
+  name: "The Long Second",
   // Override per environment with NEXT_PUBLIC_SITE_URL so canonical/OG/sitemap
   // URLs match the deployed domain; falls back to the production default.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://escapement.cc",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thelongsecond.cc",
   essence: "Measured release.",
-  // Holds both meanings — time and effort — without explaining the name.
-  tagline: "Time, told from the inside.",
+  // The second that matters most — felt, never explained.
+  tagline: "The second that matters most.",
   description:
-    "The insider's brand for the place where serious athletes and fine watches meet. Sourced, literate coverage of who wears what — and why it's there.",
+    "Watches, and the athletes who live by them. Told by someone who knows exactly what a second can cost. Sourced, literate coverage of who wears what — and why it's there.",
   founder: "Anthony Walsh",
+  // The named author who signs the work. The masthead leads; the byline authenticates.
+  author: {
+    name: "Anthony Walsh",
+    role: "Founder",
+    bio: "A masters racer who buried years into the bike, then fell as hard for the watch as he ever did for the race. He writes the thing he couldn't find: watch coverage from someone who knows what a second costs.",
+    portrait: "/brand/founder-bone.png",
+    sameAs: [
+      "https://roadmancycling.com",
+      "https://www.instagram.com/roadmancycling",
+    ],
+    credentials: [
+      { label: "Discipline", value: "Road · endurance" },
+      { label: "Racing", value: "Masters category · 20+ years" },
+      { label: "Field", value: "Horology — independent study" },
+      { label: "Standard", value: "Every reference, sourced" },
+    ],
+  },
 } as const;
 
 export type NavItem = { label: string; href: string; note?: string };

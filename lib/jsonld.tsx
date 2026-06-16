@@ -28,6 +28,21 @@ export function breadcrumb(items: { name: string; path: string }[]) {
   };
 }
 
+/** Anthony Walsh as the bylined author — the E-E-A-T signal the dealer sites lack. */
+export function authorPersonJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: site.author.name,
+    jobTitle: `${site.author.role}, ${site.name}`,
+    description: site.author.bio,
+    url: `${site.url}/about`,
+    image: `${site.url}${site.author.portrait}`,
+    sameAs: site.author.sameAs,
+    knowsAbout: ["Horology", "Watchmaking", "Endurance cycling", "Triathlon"],
+  };
+}
+
 export function articleJsonLd(opts: {
   title: string;
   description: string;
@@ -42,7 +57,12 @@ export function articleJsonLd(opts: {
     datePublished: opts.datePublished,
     dateModified: opts.datePublished,
     mainEntityOfPage: `${site.url}${opts.path}`,
-    author: { "@type": "Organization", name: site.name },
+    author: {
+      "@type": "Person",
+      name: site.author.name,
+      url: `${site.url}/about`,
+      sameAs: site.author.sameAs,
+    },
     publisher: {
       "@type": "Organization",
       name: site.name,

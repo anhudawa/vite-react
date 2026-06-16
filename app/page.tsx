@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EscapementHero } from "@/components/hero/EscapementHero";
+import { LongSecondHero } from "@/components/hero/LongSecondHero";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FactBlock } from "@/components/FactBlock";
@@ -24,14 +24,14 @@ export default function HomePage() {
               Endurance athletes <span aria-hidden="true">·</span> fine watches
             </p>
             <h1 id="hero-title" className={styles.heroTitle}>
-              The same machine,
+              Not every second
               <br />
-              described twice.
+              is the same length.
             </h1>
             <p className={styles.heroDek}>
-              An escapement meters a finite reserve into the world, beat by beat.
-              So does an athlete. {site.name} is the insider&rsquo;s record of where
-              the two obsessions meet — sourced, literate, and told from inside both.
+              The clock says they are. The body knows better. {site.name} is watches,
+              and the athletes who live by them — sourced, literate, and told by
+              someone who knows exactly what a second can cost.
             </p>
             <div className={styles.heroActions}>
               <Link href="/who-wears-what" className={styles.primary}>
@@ -44,16 +44,16 @@ export default function HomePage() {
           </div>
 
           <div className={styles.heroFigure}>
-            <EscapementHero />
+            <LongSecondHero />
           </div>
         </div>
 
         {/* spec strip — a running, engineered footer to the hero */}
         <div className={styles.spec}>
           <span>{site.essence}</span>
-          <span>BEAT · 1.4 Hz</span>
-          <span>LOCK → IMPULSE → DROP</span>
-          <span className={styles.specPron}>ess·KAYP·ment</span>
+          <span>THE LONG SECOND</span>
+          <span>SWEEP → DILATE → RESOLVE</span>
+          <span className={styles.specPron}>By Anthony Walsh</span>
         </div>
       </section>
 

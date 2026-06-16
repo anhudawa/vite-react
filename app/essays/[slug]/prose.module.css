@@ -51,17 +51,27 @@
   color: var(--text-dim);
   max-width: 48ch;
 }
-.byline {
+.bylineRow {
   display: flex;
-  gap: var(--s-5);
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-4);
   margin-top: var(--s-6);
   padding-top: var(--s-5);
   border-top: var(--hairline) solid var(--rule);
+}
+.pubdate {
   font-family: var(--font-mono);
   font-size: var(--t-mono-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-faint);
+  white-space: nowrap;
+}
+.authorSlot {
+  max-width: 54rem;
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
 }
 
 .tags {

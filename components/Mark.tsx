@@ -1,47 +1,48 @@
 import * as React from "react";
 
 /**
- * THE ESCAPEMENT MARK (Territory A — the hero glyph).
+ * THE MARK — "The Elongated Second" (identity direction A).
  *
- * An abstract glyph built from the escapement's own geometry: the pointed
- * teeth of the escape wheel and the anchor of the pallet fork. Single-colour
- * (currentColor), no fills that depend on theme, designed to survive at 16px
- * and as a blind emboss. The soul of a watch rendered as one mark.
+ * A seconds track of sixty even ticks — clock-time — with one index frozen at
+ * twelve, stretched long and overshooting the track, drawn in lume. Literally
+ * "the long second" as a glyph. Single-colour track in currentColor; the long
+ * index in lume. Built to survive to 16px, where the track recedes and the bold
+ * lume index reads alone.
  */
 
-const TEETH = 13;
-const WHEEL_CX = 50;
-const WHEEL_CY = 60;
-const TIP_R = 33;
-const ROOT_R = 25;
+const CX = 50;
+const CY = 50;
+const R = 38; // chapter-ring radius
 
-function escapeWheelPath(): string {
-  const seg: string[] = [];
-  for (let i = 0; i < TEETH; i++) {
-    const a0 = (i / TEETH) * Math.PI * 2 - Math.PI / 2;
-    const a1 = ((i + 0.5) / TEETH) * Math.PI * 2 - Math.PI / 2;
-    const a2 = ((i + 1) / TEETH) * Math.PI * 2 - Math.PI / 2;
-    // tip leans into the direction of rotation (club-tooth suggestion)
-    const tipX = WHEEL_CX + TIP_R * Math.cos(a0 + 0.06);
-    const tipY = WHEEL_CY + TIP_R * Math.sin(a0 + 0.06);
-    const valX = WHEEL_CX + ROOT_R * Math.cos(a1);
-    const valY = WHEEL_CY + ROOT_R * Math.sin(a1);
-    const nextRootX = WHEEL_CX + ROOT_R * Math.cos(a2);
-    const nextRootY = WHEEL_CY + ROOT_R * Math.sin(a2);
-    if (i === 0) seg.push(`M ${tipX.toFixed(2)} ${tipY.toFixed(2)}`);
-    else seg.push(`L ${tipX.toFixed(2)} ${tipY.toFixed(2)}`);
-    seg.push(`L ${valX.toFixed(2)} ${valY.toFixed(2)}`);
-    seg.push(`L ${nextRootX.toFixed(2)} ${nextRootY.toFixed(2)}`);
+function ticks(): React.ReactNode[] {
+  const out: React.ReactNode[] = [];
+  for (let i = 0; i < 60; i++) {
+    if (i === 0) continue; // twelve o'clock belongs to the long second
+    const a = (i / 60) * Math.PI * 2 - Math.PI / 2;
+    const major = i % 5 === 0;
+    const len = major ? 6 : 3.5;
+    const x1 = CX + (R - len) * Math.cos(a);
+    const y1 = CY + (R - len) * Math.sin(a);
+    const x2 = CX + R * Math.cos(a);
+    const y2 = CY + R * Math.sin(a);
+    out.push(
+      <line
+        key={i}
+        x1={x1.toFixed(2)}
+        y1={y1.toFixed(2)}
+        x2={x2.toFixed(2)}
+        y2={y2.toFixed(2)}
+        strokeWidth={major ? 2 : 1.4}
+        opacity={major ? 0.55 : 0.32}
+      />
+    );
   }
-  seg.push("Z");
-  return seg.join(" ");
+  return out;
 }
-
-const WHEEL = escapeWheelPath();
 
 export function Mark({
   size = 28,
-  title = "Escapement",
+  title = "The Long Second",
   className,
 }: {
   size?: number | string;
@@ -58,54 +59,121 @@ export function Mark({
       className={className}
       fill="none"
       stroke="currentColor"
-      strokeWidth={3}
-      strokeLinejoin="round"
       strokeLinecap="round"
     >
-      {/* escape wheel */}
-      <path d={WHEEL} />
-      <circle cx={WHEEL_CX} cy={WHEEL_CY} r={6} />
-      {/* pallet fork / anchor — pivots above the wheel, two pallet stones
-          reaching down to lock the teeth at roughly 10 and 2 o'clock */}
-      <path d="M50 8 L50 22" />
-      <path d="M50 22 L31 41 L37 47" strokeLinejoin="miter" />
-      <path d="M50 22 L69 41 L63 47" strokeLinejoin="miter" />
-      <circle cx={50} cy={20} r={3.4} fill="currentColor" stroke="none" />
+      {/* the even seconds track — clock-time, all around it */}
+      <g>{ticks()}</g>
+
+      {/* the long second — one index, stretched long and overshooting the track,
+          frozen mid-sweep at twelve, in lume */}
+      <line
+        x1={CX}
+        y1={CY}
+        x2={CX}
+        y2={4}
+        stroke="var(--lume-glow, #D8F26A)"
+        strokeWidth={5}
+      />
+      {/* counterweight tail for balance */}
+      <line
+        x1={CX}
+        y1={CY}
+        x2={CX}
+        y2={62}
+        stroke="var(--lume-glow, #D8F26A)"
+        strokeWidth={5}
+      />
+      {/* pivot */}
+      <circle cx={CX} cy={CY} r={4.2} fill="var(--lume-glow, #D8F26A)" stroke="none" />
+      <circle cx={CX} cy={CY} r={7.5} strokeWidth={1.4} opacity={0.5} />
     </svg>
   );
 }
 
 /**
- * Wordmark — ESCAPEMENT set with precision: letter-spaced, confident, with one
- * quiet distinctive detail (the lume tick that replaces the dot of the "I"
- * register is carried via the mark elsewhere; here restraint rules). Rendered
- * in the grotesque so it stays crisp at every size.
+ * The masthead lockup — "THE LONG SECOND" set in the editorial serif, with
+ * "THE" subordinate and a quiet elongation of "LONG" (felt, never a gimmick).
+ * Optionally signed "BY ANTHONY WALSH". The masthead always leads; the byline
+ * only authenticates — never louder.
  */
 export function Wordmark({
   className,
   withMark = false,
+  byline = false,
 }: {
   className?: string;
   withMark?: boolean;
+  byline?: boolean;
 }) {
   return (
     <span
       className={className}
+      style={{ display: "inline-flex", alignItems: "center", gap: "0.55em" }}
+    >
+      {withMark && <Mark size="1.7em" />}
+      <span style={{ display: "inline-flex", flexDirection: "column", lineHeight: 1 }}>
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "baseline",
+            gap: "0.4em",
+            fontFamily: "var(--font-serif)",
+            fontWeight: 500,
+            fontSize: "1.05em",
+            letterSpacing: "0.02em",
+            textTransform: "uppercase",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.42em",
+              letterSpacing: "0.34em",
+              fontWeight: 500,
+              alignSelf: "center",
+              color: "var(--label-muted)",
+            }}
+          >
+            THE
+          </span>
+          {/* the long second — LONG given a quiet extra width */}
+          <span style={{ letterSpacing: "0.26em", paddingRight: "0.1em" }}>Long</span>
+          <span style={{ letterSpacing: "0.02em" }}>Second</span>
+        </span>
+        {byline && (
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.34em",
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+              color: "var(--label-muted)",
+              marginTop: "0.5em",
+            }}
+          >
+            By Anthony Walsh
+          </span>
+        )}
+      </span>
+    </span>
+  );
+}
+
+/** Monogram — TLS — for the app icon / tight spaces. */
+export function Monogram({ size = 28, className }: { size?: number | string; className?: string }) {
+  return (
+    <span
+      className={className}
       style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "0.6em",
-        fontFamily: "var(--font-grotesque)",
+        fontFamily: "var(--font-serif)",
         fontWeight: 600,
-        letterSpacing: "0.34em",
-        textTransform: "uppercase",
+        fontSize: typeof size === "number" ? `${size}px` : size,
+        letterSpacing: "0.04em",
         lineHeight: 1,
-        // optical: pull the trailing letter-space back so the word sits centred
-        paddingLeft: "0.17em",
       }}
     >
-      {withMark && <Mark size="1.15em" />}
-      <span>Escapement</span>
+      TLS
     </span>
   );
 }
