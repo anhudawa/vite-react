@@ -2,7 +2,7 @@ export const site = {
   name: "The Long Second",
   // Override per environment with NEXT_PUBLIC_SITE_URL so canonical/OG/sitemap
   // URLs match the deployed domain; falls back to the production default.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thelongsecond.cc",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thelongsecond.com",
   essence: "Measured release.",
   // The second that matters most — felt, never explained.
   tagline: "The second that matters most.",
