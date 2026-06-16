@@ -1,4 +1,5 @@
 import type { Confidence, DisplayFact } from "@/lib/verification";
+import { acquisitionOf, valueLine } from "@/lib/economics";
 import styles from "./FactBlock.module.css";
 
 // Kept for backwards-compatible imports.
@@ -22,6 +23,8 @@ export function FactBlock({ fact, as = "aside" }: { fact: Fact; as?: "aside" | "
   const Tag = as;
   const dots =
     fact.confidence === "High" ? 3 : fact.confidence === "Medium" ? 2 : 1;
+  const acq = acquisitionOf(fact.relation);
+  const value = valueLine(fact);
 
   return (
     <Tag className={styles.block} aria-label="Sourced fact">
@@ -29,6 +32,16 @@ export function FactBlock({ fact, as = "aside" }: { fact: Fact; as?: "aside" | "
         <span className={styles.kicker}>Sourced fact</span>
         {fact.reference && <span className={styles.ref}>{fact.reference}</span>}
       </header>
+
+      <div className={styles.stance} data-stance={acq.stance}>
+        <span className={styles.stanceLabel}>{acq.label}</span>
+        {value && (
+          <span className={styles.stanceValue}>
+            {value}
+            <span className={styles.stanceValueNote}>est.</span>
+          </span>
+        )}
+      </div>
 
       <dl className={styles.rows}>
         {ROWS.map(({ key, label }) => (

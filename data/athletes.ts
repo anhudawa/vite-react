@@ -65,6 +65,7 @@ const pogacar: AthleteRef = {
       confidence: "High",
       confidenceNote: "multiple sources",
       reference: "RM 67-02",
+      value: { gbpApprox: 150000, note: "RM 67-02, indicative retail" },
       sources: [
         {
           id: "rm-official",
@@ -217,6 +218,7 @@ const tiger: AthleteRef = {
       confidence: "High",
       confidenceNote: "official + independent media",
       reference: undefined,
+      value: { gbpApprox: 40000, note: "Day-Date 40 Everose, indicative retail" },
       sources: [
         {
           id: "rolex-official",
@@ -332,6 +334,7 @@ const rahm: AthleteRef = {
       confidence: "High",
       confidenceNote: "official + independent media",
       reference: undefined,
+      value: { gbpApprox: 15000, note: "Sky-Dweller white Rolesor, indicative retail" },
       sources: [
         {
           id: "robb-report",

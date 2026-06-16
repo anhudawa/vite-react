@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Figure } from "@/components/Figure";
 import { Reveal } from "@/components/Reveal";
+import { acquisitionOf, valueLine } from "@/lib/economics";
 import {
   publishedAthletes,
   inReviewAthletes,
@@ -48,9 +49,9 @@ export default function WhoWearsWhat() {
       />
       <PageHeader
         index="01"
-        kicker="The reference"
+        kicker="Bought it, or paid to wear it"
         title="Who Wears What"
-        intro="The internet recycles the same fifteen names and reviews the watch as an object. This is the opposite: the relationship, sourced, with the evidence shown and the confidence stated."
+        intro="The real question isn't which watch — it's whether he bought it or he's paid to wear it, and what it cost. Almost nobody checks. We do, separate the placement from the purchase, and show the proof."
       />
 
       <section className={`container ${styles.section}`}>
@@ -58,16 +59,17 @@ export default function WhoWearsWhat() {
         <ul className={styles.refs}>
           {published.map((a) => {
             const f = renderableFacts(a)[0];
+            const acq = acquisitionOf(f.relation);
+            const value = valueLine(f);
             return (
               <li key={a.slug}>
                 <Link href={`/who-wears-what/${a.slug}`} className={styles.ref}>
                   <span className={styles.refName}>{a.name}</span>
                   <span className={styles.refWatch}>{f.watch}</span>
-                  <span className={styles.refRel}>{f.relation}</span>
-                  <span className={styles.refConf}>
-                    <span className={styles.dot} data-conf={f.confidence} />
-                    {f.confidence}
+                  <span className={styles.refStance} data-stance={acq.stance}>
+                    {acq.label}
                   </span>
+                  <span className={styles.refValue}>{value ?? ""}</span>
                   <span className={styles.refArrow} aria-hidden="true">
                     →
                   </span>

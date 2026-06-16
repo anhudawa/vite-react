@@ -18,6 +18,9 @@ export interface DisplayFact {
   confidence: Confidence;
   confidenceNote?: string;
   reference?: string; // movement / reference number, set in mono
+  /** Indicative market value of the watch — editorial context, NOT a verified
+   *  claim. Always labelled as an estimate so it never reads as sourced fact. */
+  value?: { gbpApprox: number; note?: string };
 }
 
 /** Which display claim a given source actually corroborates. */

@@ -36,31 +36,20 @@
   font-size: var(--t-caption);
   color: var(--text);
 }
-.refRel {
+.refStance {
   font-size: var(--t-body-s);
   color: var(--text-dim);
 }
-.refConf {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
+.refStance[data-stance="own-money"] {
+  color: var(--accent-text);
+}
+.refValue {
   font-family: var(--font-mono);
-  font-size: var(--t-mono-xs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--accent);
-}
-.dot[data-conf="Medium"] {
-  opacity: 0.55;
-}
-.dot[data-conf="Low"] {
-  opacity: 0.3;
+  font-size: var(--t-caption);
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-align: right;
+  white-space: nowrap;
 }
 .refArrow {
   color: var(--text-dim);
@@ -120,12 +109,13 @@
     gap: var(--s-2) var(--s-4);
   }
   .refWatch,
-  .refRel {
+  .refStance {
     grid-column: 1;
   }
-  .refConf {
+  .refValue {
     grid-column: 2;
     grid-row: 1;
+    text-align: right;
   }
   .refArrow {
     display: none;
