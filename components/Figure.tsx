@@ -14,6 +14,7 @@ export function Figure({
   ratio = "5 / 6",
   treatment = "mono",
   priority = false,
+  objectPosition,
   sizes = "(max-width: 900px) 100vw, 40vw",
   className = "",
 }: {
@@ -24,6 +25,7 @@ export function Figure({
   ratio?: string;
   treatment?: "mono" | "natural";
   priority?: boolean;
+  objectPosition?: string;
   sizes?: string;
   className?: string;
 }) {
@@ -41,6 +43,7 @@ export function Figure({
           sizes={sizes}
           priority={priority}
           className={styles.img}
+          style={objectPosition ? { objectPosition } : undefined}
         />
         <span className={styles.sheen} aria-hidden="true" />
       </div>

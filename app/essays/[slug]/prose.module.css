@@ -172,6 +172,11 @@
 }
 
 /* --- Footer / next ------------------------------------------------------- */
+.lead {
+  max-width: 62rem;
+  margin: clamp(2rem, 5vw, 3.5rem) auto clamp(2.5rem, 6vw, 4rem);
+  padding-inline: var(--gutter);
+}
 .related {
   max-width: 54rem;
   margin-inline: auto;

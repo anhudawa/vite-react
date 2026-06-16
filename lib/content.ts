@@ -8,6 +8,14 @@ export interface EssayMeta {
   readingTime: string;
   kicker?: string;
   tags?: string[];
+  image?: {
+    src: string;
+    alt: string;
+    subject?: string;
+    watch?: string;
+    ratio?: string;
+    position?: string;
+  };
 }
 
 export interface EssayEntry extends EssayMeta {

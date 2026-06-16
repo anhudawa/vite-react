@@ -9,6 +9,7 @@ import { ReadingProgress } from "@/components/ReadingProgress";
 import { RelatedEssays } from "@/components/RelatedEssays";
 import { Byline } from "@/components/Byline";
 import { AuthorModule } from "@/components/AuthorModule";
+import { Figure } from "@/components/Figure";
 import { tagSlug } from "@/lib/tags";
 import styles from "./prose.module.css";
 
@@ -91,6 +92,21 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
           </ul>
         )}
       </header>
+
+      {essay.image && (
+        <div className={styles.lead}>
+          <Figure
+            src={essay.image.src}
+            alt={essay.image.alt}
+            subject={essay.image.subject}
+            watch={essay.image.watch}
+            ratio={essay.image.ratio ?? "3 / 2"}
+            objectPosition={essay.image.position}
+            priority
+            sizes="(max-width: 960px) 100vw, 880px"
+          />
+        </div>
+      )}
 
       <div className={styles.body}>
         <Content />
