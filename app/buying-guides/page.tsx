@@ -53,6 +53,14 @@ export default function BuyingGuides() {
         kicker="Considered"
         title="Buying Guides"
         intro="Not a shop. We admire the mechanism, never the money — so these guides are about how a watch is made and how it lives on a wrist that works, not about chasing a hype reference up an auction chart."
+        image={{
+          src: "/photography/tudor-giro-chrono.jpg",
+          alt: "A Tudor Black Bay Chrono among the Giro d'Italia trophy spiral",
+          subject: "Tudor Black Bay Chrono",
+          watch: "Giro d'Italia",
+          ratio: "4 / 5",
+          position: "center 45%",
+        }}
       />
       <IndexList items={live} label="Start here" />
       <IndexList items={forthcoming} label="In the workshop" />

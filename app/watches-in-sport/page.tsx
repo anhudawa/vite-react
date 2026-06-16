@@ -53,6 +53,14 @@ export default function WatchesInSport() {
         kicker="In the race"
         title="Watches in Sport"
         intro="The deep luxury-mechanical vein runs through cycling — Richard Mille in the peloton, a watchmaker backing a whole team, quartz timing the Tour. We cover how the watches actually show up, contradictions intact."
+        image={{
+          src: "/photography/pogacar-1.jpg",
+          alt: "Tadej Pogačar in the world-champion jersey, a Richard Mille on his wrist",
+          subject: "Tadej Pogačar",
+          watch: "Richard Mille",
+          ratio: "4 / 5",
+          position: "center 30%",
+        }}
       />
       <IndexList items={live} label="Now reading" />
       <IndexList items={forthcoming} label="In the workshop" />
