@@ -1,6 +1,8 @@
 export const site = {
   name: "Escapement",
-  url: "https://escapement.cc",
+  // Override per environment with NEXT_PUBLIC_SITE_URL so canonical/OG/sitemap
+  // URLs match the deployed domain; falls back to the production default.
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://escapement.cc",
   essence: "Measured release.",
   // Holds both meanings — time and effort — without explaining the name.
   tagline: "Time, told from the inside.",

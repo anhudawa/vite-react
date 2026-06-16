@@ -59,8 +59,10 @@
 .item[data-live] .link:hover .title {
   color: var(--accent-text);
 }
-.static {
-  opacity: 0.62;
+/* Forthcoming items read as quieter via a muted title (large text, so still AA)
+   rather than a blanket opacity that would drag the small meta text under AA. */
+.static .title {
+  color: var(--text-dim);
 }
 .dek {
   grid-column: 1;
