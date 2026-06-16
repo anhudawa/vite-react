@@ -122,3 +122,7 @@
     position: static;
   }
 }
+
+.portrait {
+  margin-bottom: var(--s-7);
+}

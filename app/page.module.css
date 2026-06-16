@@ -225,6 +225,57 @@
   }
 }
 
+/* ===================== THE EFFORT ===================== */
+.effort {
+  padding-block: clamp(3.5rem, 9vw, 8rem);
+}
+.effortGrid {
+  display: grid;
+  grid-template-columns: 1fr 0.88fr;
+  gap: clamp(2rem, 6vw, 5.5rem);
+  align-items: center;
+}
+.effortKicker {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: var(--s-5);
+}
+.effortKicker::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--accent);
+}
+.effortQuote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 1rem + 2.6vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  margin: 0 0 var(--s-6);
+  text-wrap: balance;
+}
+.effortCredit {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+@media (max-width: 900px) {
+  .effortGrid {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+}
+
 /* ===================== BLOCKS ===================== */
 .block {
   padding-block: clamp(3.5rem, 8vw, 7rem);

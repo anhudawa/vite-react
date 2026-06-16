@@ -124,6 +124,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===================== THE EFFORT ===================== */}
+      <section className={`container ${styles.effort}`} aria-labelledby="effort-h">
+        <div className={styles.effortGrid}>
+          <div className={styles.effortText}>
+            <p className={styles.effortKicker}>The effort</p>
+            <blockquote id="effort-h" className={styles.effortQuote}>
+              A finite reserve, spent against the clock. The rider and the watch are the
+              same machine — both meter out everything they hold, and both are judged by
+              the last second.
+            </blockquote>
+            <p className={styles.effortCredit}>
+              Mathieu van der Poel <span aria-hidden="true">·</span> Richard Mille RM
+              67-02
+            </p>
+          </div>
+          <Reveal className={styles.effortImg} delay={100}>
+            <Figure
+              src="/photography/van-der-poel.jpg"
+              alt="Mathieu van der Poel roars in victory, a Richard Mille on his clenched wrist"
+              subject="Mathieu van der Poel"
+              watch="Richard Mille RM 67-02"
+              ratio="4 / 5"
+              sizes="(max-width: 900px) 100vw, 46vw"
+            />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ===================== THE FACT BLOCK / REFERENCE ===================== */}
       <section className={`container ${styles.block}`} aria-labelledby="reference">
         <div className={styles.refGrid}>

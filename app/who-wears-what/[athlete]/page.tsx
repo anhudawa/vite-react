@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FactBlock } from "@/components/FactBlock";
 import { FactProvenance } from "@/components/FactProvenance";
+import { Figure } from "@/components/Figure";
 import {
   athletes,
   getPublishedAthlete,
@@ -94,6 +95,17 @@ export default function AthletePage({
         </div>
 
         <div className={styles.notes}>
+          {a.image && (
+            <Figure
+              src={a.image.src}
+              alt={a.image.alt}
+              watch={a.image.caption}
+              ratio="4 / 5"
+              priority
+              sizes="(max-width: 900px) 100vw, 44vw"
+              className={styles.portrait}
+            />
+          )}
           <p className={styles.notesLabel}>The context</p>
           {a.notes.map((n, i) => (
             <p key={i} className={styles.note}>

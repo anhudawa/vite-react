@@ -24,6 +24,7 @@ export interface AthleteRef {
   summary: string;
   facts: VerifiedFact[];
   notes: string[];
+  image?: { src: string; alt: string; caption?: string };
 }
 
 const pogacar: AthleteRef = {
@@ -37,6 +38,11 @@ const pogacar: AthleteRef = {
   ],
   summary:
     "The defining rider of his generation, and the clearest case study the sport offers of a Richard Mille worn in genuine competition rather than on a red carpet.",
+  image: {
+    src: "/photography/pogacar-2.jpg",
+    alt: "Tadej Pogačar in the UAE Team Emirates world-champion jersey, a Richard Mille RM 67-02 on his wrist",
+    caption: "Richard Mille RM 67-02",
+  },
   facts: [
     {
       id: "pogacar-rm-67-02",
