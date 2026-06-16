@@ -12,8 +12,8 @@ import { GATE_COUNT } from "@/lib/verification";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./index.module.css";
 
-// Editorial sightings — photography, not yet verified references. Watch named
-// only where it's confirmed in frame.
+// Editorial sightings — photography, not yet verified references. Named athlete
+// and the watch confirmed in frame.
 const spotted = [
   {
     src: "/photography/topuria-rm.jpg",
@@ -22,16 +22,16 @@ const spotted = [
     watch: "Richard Mille",
   },
   {
-    src: "/photography/aston-martin-breitling.jpg",
-    alt: "An Aston Martin Formula 1 driver wearing a Breitling chronograph",
-    subject: "Aston Martin F1",
-    watch: "Breitling",
+    src: "/photography/mcgregor-rm.jpg",
+    alt: "Conor McGregor ringside in black, a Richard Mille on his wrist",
+    subject: "Conor McGregor",
+    watch: "Richard Mille",
   },
   {
-    src: "/photography/beckham-stadium.jpg",
-    alt: "David Beckham pitchside at Inter Miami",
-    subject: "David Beckham",
-    watch: undefined,
+    src: "/photography/rahm-rolex-1.jpg",
+    alt: "Jon Rahm on the green, a Rolex Datejust on his wrist",
+    subject: "Jon Rahm",
+    watch: "Rolex Datejust",
   },
 ];
 
