@@ -101,7 +101,6 @@ export default function AthletePage({
               alt={a.image.alt}
               watch={a.image.caption}
               ratio="4 / 5"
-              priority
               sizes="(max-width: 900px) 100vw, 44vw"
               className={styles.portrait}
             />

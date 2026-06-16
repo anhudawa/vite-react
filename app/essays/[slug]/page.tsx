@@ -102,7 +102,6 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
             watch={essay.image.watch}
             ratio={essay.image.ratio ?? "3 / 2"}
             objectPosition={essay.image.position}
-            priority
             sizes="(max-width: 960px) 100vw, 880px"
           />
         </div>

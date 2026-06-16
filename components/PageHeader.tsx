@@ -40,7 +40,6 @@ export function PageHeader({
             watch={image.watch}
             ratio={image.ratio ?? "4 / 5"}
             objectPosition={image.position}
-            priority
             sizes="(max-width: 900px) 100vw, 36vw"
             className={styles.image}
           />
