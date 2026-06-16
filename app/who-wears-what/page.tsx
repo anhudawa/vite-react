@@ -33,6 +33,12 @@ const spotted = [
     subject: "Jon Rahm",
     watch: "Rolex Datejust",
   },
+  {
+    src: "/photography/tiger-rolex-1.jpg",
+    alt: "Tiger Woods on the course, a rose-gold Rolex Day-Date on his wrist",
+    subject: "Tiger Woods",
+    watch: "Rolex Day-Date",
+  },
 ];
 
 export const metadata: Metadata = {

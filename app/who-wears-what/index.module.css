@@ -141,23 +141,24 @@
 /* --- In the field (editorial sightings) ---------------------------------- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 3vw, 2.25rem);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2.2vw, 1.75rem);
   margin-bottom: var(--s-6);
 }
-.gallery > :nth-child(2) {
-  margin-top: clamp(1.5rem, 5vw, 3.5rem);
+/* editorial stagger — even columns sit lower */
+.gallery > :nth-child(even) {
+  margin-top: clamp(1.5rem, 5vw, 3.25rem);
 }
-@media (max-width: 700px) {
+@media (max-width: 860px) {
   .gallery {
     grid-template-columns: 1fr 1fr;
-  }
-  .gallery > :nth-child(2) {
-    margin-top: 0;
   }
 }
 @media (max-width: 460px) {
   .gallery {
     grid-template-columns: 1fr;
+  }
+  .gallery > :nth-child(even) {
+    margin-top: 0;
   }
 }
