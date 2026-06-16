@@ -68,7 +68,7 @@
 }
 .ref:hover .refArrow {
   transform: translateX(6px);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* --- Pipeline ------------------------------------------------------------- */

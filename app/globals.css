@@ -81,10 +81,12 @@
   --bg-sunken: #121315;
   --text: var(--bone);
   --text-dim: var(--steel);
-  --text-faint: #5c6064;
+  --text-faint: #82878c; /* WCAG AA (4.75:1) on Movement Black */
   --rule: rgba(var(--bone-rgb), 0.12);
   --rule-strong: rgba(var(--bone-rgb), 0.22);
-  --accent: var(--lume-glow);
+  --accent: var(--lume-glow); /* graphical fills, ticks, jewels */
+  --accent-text: var(--lume-glow); /* accent used as text — AA on dark */
+  --label-muted: #a0a5aa; /* muted labels on raised graphite — AA */
   --accent-ink: var(--movement-black); /* text on an accent fill */
   --grain-opacity: 0.05;
   --selection: rgba(var(--lume-rgb), 0.22);
@@ -97,10 +99,13 @@
   --bg-sunken: #e9e4d9;
   --text: var(--movement-black);
   --text-dim: #5f6469;
-  --text-faint: #989da1;
+  --text-faint: #61656a; /* WCAG AA on Bone, sunken and raised light surfaces */
   --rule: rgba(22, 24, 27, 0.14);
   --rule-strong: rgba(22, 24, 27, 0.26);
   --accent: var(--lume); /* the aged, print-side lume reads with more class on Bone */
+  /* Lume is never legible as small text on Bone — a deep lume-olive for text use */
+  --accent-text: #586012;
+  --label-muted: #5f6469;
   --accent-ink: var(--movement-black);
   --grain-opacity: 0.035;
   --selection: rgba(194, 210, 74, 0.3);
@@ -227,7 +232,7 @@ table {
 .prose-link:hover,
 .prose a:hover {
   background-size: 100% 2px;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* =============================================================================

@@ -33,12 +33,12 @@
   font-size: var(--t-mono-xs);
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--label-muted);
 }
 .ref {
   font-size: var(--t-mono-xs);
   letter-spacing: 0.1em;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .rows {
@@ -55,7 +55,7 @@
   font-size: var(--t-mono-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--label-muted);
 }
 .value {
   font-size: var(--t-body-s);
@@ -85,7 +85,7 @@
   border-color: var(--accent);
 }
 .confText {
-  color: var(--text-dim);
+  color: var(--label-muted);
 }
 
 @media (max-width: 520px) {

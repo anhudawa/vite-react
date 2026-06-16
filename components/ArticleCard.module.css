@@ -23,7 +23,7 @@
   text-transform: uppercase;
 }
 .num {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .kicker {
   color: var(--text-dim);
@@ -40,7 +40,7 @@
   max-width: 26ch;
 }
 .link:hover .title {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .dek {
   color: var(--text-dim);
@@ -63,7 +63,7 @@
   transition: transform var(--dur-1) var(--ease-mech);
 }
 .link:hover .read {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* --- Lead (the large featured essay) -------------------------------------- */

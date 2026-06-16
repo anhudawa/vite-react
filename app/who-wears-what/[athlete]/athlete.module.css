@@ -18,7 +18,7 @@
   align-items: center;
 }
 .crumbs a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .sep {
   color: var(--rule-strong);
@@ -28,7 +28,7 @@
   font-size: var(--t-mono-xs);
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: var(--s-4);
 }
 .name {
@@ -106,7 +106,7 @@
   font-size: var(--t-caption);
 }
 .back a {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 @media (max-width: 900px) {

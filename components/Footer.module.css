@@ -56,7 +56,7 @@
   transition: color var(--dur-1) var(--ease-mech);
 }
 .fLink:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .base {

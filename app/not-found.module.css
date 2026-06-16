@@ -18,7 +18,7 @@
   font-size: var(--t-mono-xs);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: var(--s-4);
 }
 .title {
@@ -61,5 +61,5 @@
   transition: color var(--dur-1) var(--ease-mech);
 }
 .silos a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }

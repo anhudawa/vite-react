@@ -3,6 +3,7 @@ import { EscapementHero } from "@/components/hero/EscapementHero";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FactBlock } from "@/components/FactBlock";
+import { Subscribe } from "@/components/Subscribe";
 import { essays } from "@/content/essays/registry";
 import { athletes } from "@/data/athletes";
 import { nav, site } from "@/lib/site";
@@ -123,6 +124,9 @@ export default function HomePage() {
           ))}
         </ul>
       </section>
+
+      {/* ===================== THE DISPATCH ===================== */}
+      <Subscribe />
     </>
   );
 }

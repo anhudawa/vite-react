@@ -57,7 +57,7 @@
   transition: color var(--dur-1) var(--ease-mech);
 }
 .item[data-live] .link:hover .title {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .static {
   opacity: 0.62;
@@ -80,7 +80,7 @@
   color: var(--text-dim);
 }
 .item[data-live] .link:hover .arrow {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 @media (max-width: 640px) {

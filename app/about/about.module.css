@@ -57,7 +57,7 @@
   font-size: var(--t-caption);
 }
 .cta a {
-  color: var(--accent);
+  color: var(--accent-text);
   transition: opacity var(--dur-1) var(--ease-mech);
 }
 .cta a:hover {

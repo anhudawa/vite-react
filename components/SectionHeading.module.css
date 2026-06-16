@@ -13,7 +13,7 @@
 .index {
   font-family: var(--font-mono);
   font-size: var(--t-mono-xs);
-  color: var(--accent);
+  color: var(--accent-text);
   letter-spacing: 0.1em;
 }
 .kicker {
