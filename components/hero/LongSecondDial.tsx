@@ -262,28 +262,51 @@ export function LongSecondDial() {
           six. The masthead leads; the byline authenticates — even on the dial. */}
       <text
         x={C}
-        y={C - 78}
+        y={C - 76}
         textAnchor="middle"
-        fill="#c7ccd1"
-        style={{ fontFamily: "var(--font-serif)", fontSize: "19px", letterSpacing: "0.03em" }}
+        fill="#f2f4f6"
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "21px",
+          fontWeight: 500,
+          letterSpacing: "0.03em",
+          paintOrder: "stroke",
+          stroke: "#0b0d0f",
+          strokeWidth: "1.4px",
+          strokeLinejoin: "round",
+        }}
       >
         The Long Second
       </text>
       <text
         x={C}
-        y={C - 60}
+        y={C - 58}
         textAnchor="middle"
-        fill="#8b9095"
-        style={{ fontFamily: "var(--font-mono)", fontSize: "7px", letterSpacing: "0.42em" }}
+        fill="#cfd4d9"
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "7.5px",
+          letterSpacing: "0.42em",
+          paintOrder: "stroke",
+          stroke: "#0b0d0f",
+          strokeWidth: "1px",
+        }}
       >
         EST. MMXXVI
       </text>
       <text
         x={C}
-        y={C + 116}
+        y={C + 118}
         textAnchor="middle"
-        fill="#9a9fa4"
-        style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.34em" }}
+        fill="#d3d8dd"
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "8.5px",
+          letterSpacing: "0.34em",
+          paintOrder: "stroke",
+          stroke: "#0b0d0f",
+          strokeWidth: "1px",
+        }}
       >
         BY ANTHONY WALSH
       </text>
