@@ -300,7 +300,121 @@ const tiger: AthleteRef = {
   ],
 };
 
-export const athletes: AthleteRef[] = [pogacar, tiger, pidcock];
+// Sourced autonomously by a research pass, then put through the gauntlet. The
+// claim is the brand-level testimoneeship — the documented competition watch is
+// the Sky-Dweller. A green Datejust appears in some imagery but is photo-only and
+// corroborated by no text source, so it is explicitly NOT claimed here.
+const rahm: AthleteRef = {
+  slug: "jon-rahm",
+  name: "Jon Rahm",
+  discipline: "Golf",
+  nationality: "Spanish",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Jon_Rahm",
+    "https://www.rolex.com/rolex-family/golf/jon-rahm",
+  ],
+  summary:
+    "A Rolex golf testimonee — most documented in the Sky-Dweller, the watch he wore celebrating the 2023 Masters.",
+  image: {
+    src: "/photography/rahm-rolex-1.jpg",
+    alt: "Jon Rahm on the green, a Rolex on his wrist",
+    caption: "Rolex",
+    rights: "unlicensed-placeholder",
+  },
+  facts: [
+    {
+      id: "rahm-rolex-testimonee",
+      status: "published",
+      athlete: "Jon Rahm",
+      watch: "Rolex",
+      relation: "Ambassador — Rolex testimonee",
+      evidence: "Sky-Dweller worn celebrating the 2023 Masters",
+      confidence: "High",
+      confidenceNote: "official + independent media",
+      reference: undefined,
+      sources: [
+        {
+          id: "robb-report",
+          publisher: "Robb Report",
+          kind: "media",
+          tier: "secondary",
+          url: "https://robbreport.com/style/watch-collector/jon-rahm-rolex-sky-dweller-masters-victory-1234828608/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20230607132842/https://robbreport.com/style/watch-collector/jon-rahm-rolex-sky-dweller-masters-victory-1234828608/",
+            capturedAt: "2023-06-07",
+          },
+          publishedAt: "2023-04-10",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Rahm, who is currently the top-ranked golfer in the world, is a Testimonee for the watchmaker and has been for a while now.",
+          supports: ["athlete", "relation", "watch", "evidence"],
+          verified: true,
+        },
+        {
+          id: "rolex-official-rahm",
+          publisher: "Rolex",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.rolex.com/rolex-family/golf/jon-rahm",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260217144950/https://www.rolex.com/rolex-family/golf/jon-rahm",
+            capturedAt: "2026-02-17",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Rolex's official Rolex Family pages list Jon Rahm among its golf Testimonees (live page access-restricted; confirmed via the archived capture).",
+          supports: ["athlete", "relation", "watch"],
+          verified: true,
+        },
+        {
+          id: "bobs-skydweller",
+          publisher: "Bob's Watches",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.bobswatches.com/rolex-blog/breaking-news/rolex-watches-spotted-masters-golf-tournament.html",
+          publishedAt: "2023-04-10",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "We have seen the golfer wearing this particular timepiece — the Sky-Dweller ref. 326934 — as far back as 2019.",
+          supports: ["watch", "evidence"],
+          verified: true,
+        },
+        {
+          id: "rahm-photo",
+          publisher: "On-file photograph",
+          kind: "photo",
+          tier: "primary",
+          accessedAt: "2026-06-16",
+          excerpt: "Jon Rahm on the green wearing a Rolex.",
+          supports: ["athlete", "evidence"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Green Datejust — photo-only, corroborated by no text source; the documented competition watch is the Sky-Dweller (ref. 326934 / M336934-0006)",
+          "A '2016' testimonee start date surfaced in search summaries but could not be verified against a source body, so it is not claimed",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Logged as a brand-level testimoneeship. The Sky-Dweller is the documented watch; the green Datejust seen in some imagery is held as unverified.",
+      },
+    },
+  ],
+  notes: [
+    "Rahm is a Rolex golf testimonee — confirmed by Rolex's own family pages and by independent watch reporting. The relationship is the verifiable claim; the specific watch most often documented on him is the Sky-Dweller in white Rolesor with a blue dial.",
+    "He wore that Sky-Dweller celebrating the 2023 Masters, and it has been photographed on him as far back as 2019. That consistency over years is what separates a relationship from a one-off red-carpet loan.",
+    "A green-dial Datejust appears in some imagery of Rahm, but we could find no text source tying him to it — so we do not claim it. The ambassadorship is published; the Datejust is held. That line is the whole point of the page.",
+  ],
+};
+
+export const athletes: AthleteRef[] = [pogacar, tiger, rahm, pidcock];
 
 /** An athlete is publishable iff it has at least one publishable fact. */
 export function publishedAthletes(): AthleteRef[] {

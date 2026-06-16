@@ -27,12 +27,6 @@ const spotted = [
     subject: "Conor McGregor",
     watch: "Richard Mille",
   },
-  {
-    src: "/photography/rahm-rolex-1.jpg",
-    alt: "Jon Rahm on the green, a Rolex on his wrist",
-    subject: "Jon Rahm",
-    watch: "Rolex",
-  },
 ];
 
 export const metadata: Metadata = {

@@ -141,8 +141,9 @@
 /* --- In the field (editorial sightings) ---------------------------------- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2.6vw, 2rem);
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  max-width: 760px;
   margin-bottom: var(--s-6);
 }
 /* editorial stagger — the middle column sits lower */
