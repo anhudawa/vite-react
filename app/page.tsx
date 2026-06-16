@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { LongSecondDial } from "@/components/hero/LongSecondDial";
+import { Figure } from "@/components/Figure";
+import { Reveal } from "@/components/Reveal";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FactBlock } from "@/components/FactBlock";
@@ -56,6 +58,48 @@ export default function HomePage() {
           <span>THE LONG SECOND</span>
           <span>SWEEP → DILATE → RESOLVE</span>
           <span className={styles.specPron}>By Anthony Walsh</span>
+        </div>
+      </section>
+
+      {/* ===================== THE INTERSECTION ===================== */}
+      <section className={`container ${styles.feature}`} aria-labelledby="feature-h">
+        <div className={styles.featureGrid}>
+          <Reveal className={styles.featureImgA}>
+            <Figure
+              src="/photography/beckham-tudor-bb58.jpg"
+              alt="David Beckham wearing a Tudor Black Bay 58 against a concrete wall"
+              subject="David Beckham"
+              watch="Tudor Black Bay 58"
+              ratio="5 / 6"
+              sizes="(max-width: 900px) 100vw, 42vw"
+            />
+          </Reveal>
+
+          <div className={styles.featureText}>
+            <p className={styles.featureKicker}>The intersection</p>
+            <h2 id="feature-h" className={styles.featureTitle}>
+              What&rsquo;s actually on the wrist.
+            </h2>
+            <p className={styles.featureBody}>
+              Not a press release, not a flat-lay. The watch as it is really worn — by
+              the people who measure their lives in seconds and never take it off. We
+              cover the relationship, source it, and show the evidence.
+            </p>
+            <Link href="/who-wears-what" className={styles.featureLink}>
+              See who wears what →
+            </Link>
+          </div>
+
+          <Reveal className={styles.featureImgB} delay={120}>
+            <Figure
+              src="/photography/tudor-giro-chrono.jpg"
+              alt="A Tudor Black Bay Chrono with a pink strap among the Giro d'Italia trophy spiral"
+              subject="Tudor BB Chrono"
+              watch="Giro d’Italia"
+              ratio="4 / 5"
+              sizes="(max-width: 900px) 100vw, 30vw"
+            />
+          </Reveal>
         </div>
       </section>
 

@@ -1,44 +1,66 @@
 .block {
-  --pad: clamp(1.1rem, 2.4vw, 1.6rem);
+  --pad: clamp(1.2rem, 2.6vw, 1.75rem);
   display: block;
-  background: var(--bg-raised);
+  /* an engraved steel plate: domed, top-lit, seated with a soft shadow */
+  background:
+    radial-gradient(140% 120% at 50% -20%, rgba(var(--bone-rgb), 0.05), transparent 55%),
+    linear-gradient(180deg, var(--bg-raised), var(--bg-sunken));
   border: var(--hairline) solid var(--rule-strong);
   border-radius: var(--radius);
   padding: var(--pad);
   font-family: var(--font-mono);
   font-feature-settings: "tnum", "lnum";
   position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(var(--bone-rgb), 0.06);
 }
-/* a spec-plate seam down the left edge */
+/* a brushed-metal seam down the left edge */
 .block::before {
   content: "";
   position: absolute;
   left: 0;
-  top: var(--pad);
-  bottom: var(--pad);
-  width: 2px;
-  background: var(--rule-strong);
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--metal);
+  opacity: 0.7;
 }
 
 .head {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: var(--s-4);
   padding-bottom: var(--s-3);
-  margin-bottom: var(--s-3);
+  margin-bottom: var(--s-4);
   border-bottom: var(--hairline) solid var(--rule);
+  position: relative;
+}
+/* the header rule carries a brushed sheen at its origin */
+.head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 36px;
+  height: 1px;
+  background: var(--metal);
 }
 .kicker {
   font-size: var(--t-mono-xs);
-  letter-spacing: 0.24em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--label-muted);
 }
+/* the reference set as an engraved chip */
 .ref {
   font-size: var(--t-mono-xs);
   letter-spacing: 0.1em;
   color: var(--accent-text);
+  border: var(--hairline) solid var(--rule-strong);
+  border-radius: 999px;
+  padding: 0.2em 0.7em;
+  white-space: nowrap;
 }
 
 .rows {
