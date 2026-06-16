@@ -17,9 +17,11 @@ lever-escapement hero.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # production build (16 static routes)
-npm run start    # serve the production build
+npm run dev          # http://localhost:3000
+npm run verify:facts # run the fact-verification gauntlet (also runs in prebuild)
+npm test             # the verification test suite (node:test)
+npm run build        # production build (23 routes); fails if any fact fails a gate
+npm run start        # serve the production build
 ```
 
 ## Design system (single source of truth)
@@ -77,7 +79,61 @@ so the build uses the brief's named **web fallbacks**, wired in `app/fonts.ts`:
 Swapping in the licensed faces is a one-file change in `app/fonts.ts` (self-host via
 `next/font/local`); the token names downstream do not change.
 
-## Accuracy note
+## Accuracy — the verification gauntlet
 
-Accuracy is the brand's moat. Only relationships sourced to publication standard ship as
-published reference pages; everything else is held, honestly labelled, in "the workshop."
+Accuracy is the brand's moat, so it is **enforced in code**, not promised. Every claim is
+a `VerifiedFact` that carries its own provenance and must clear six independent gates
+before it can render. Because the gates are independent, the modeled probability of a
+wrong claim passing all of them is their product (~`2e-6` for a typical published fact).
+
+Everything lives in `lib/verification/`:
+
+| File | Role |
+|------|------|
+| `types.ts` | `VerifiedFact`, `Source`, `Review` — verification is *structural*; you cannot build a publishable fact without the provenance the gates require. |
+| `policy.ts` | Every threshold in one place (min sources, corroboration, confidence floor, staleness) + per-gate residuals. |
+| `gates.ts` | The six gates, each a pure function catching a distinct error class. |
+| `confidence.ts` | Confidence **computed from evidence**, never merely asserted. |
+| `references.ts` | A maker→reference-grammar registry (catches RM 67-01 vs 67-02, transposed Tudor refs). |
+| `validate.ts` | `verifyFact`, `isPublishable`, and `assertPublishedFactsAreValid` (the build-time throw). |
+
+**The six gates:** independent sourcing · field corroboration · reference integrity ·
+adversarial review · confidence threshold · editorial sign-off. The public
+[`/verification`](app/verification/page.tsx) page explains them, generated from the live
+gate definitions so it can never drift from the code.
+
+**Enforcement is layered — wrong information cannot ship:**
+
+- **Build-time** — `prebuild` runs `verify:facts`, and the athlete route calls
+  `assertPublishedFactsAreValid` at module load. Either one fails `next build`.
+- **CI** — `.github/workflows/ci.yml` runs the gate, tests, and build on every PR. Under
+  branch protection, a fact that fails a gate blocks the merge.
+- **Runtime** — pages render only `publishableFacts()`; a fact's `status` is never trusted
+  on its own.
+- **Visible** — every Fact Block carries a `FactProvenance` disclosure (gates, sources,
+  computed confidence, the accountable editor). Held claims sit in "the workshop",
+  honestly labelled, never shown as fact.
+
+### Adding a verified athlete
+
+1. Add an `AthleteRef` to `data/athletes.ts`. Start the fact at `status: "in-review"`.
+2. Attach **≥2 independent, verified sources**, each with the exact `url` + `excerpt` and
+   the claim `supports` it corroborates. A party to the relationship (maker/team) does not
+   independently corroborate that a watch was *worn* — add media/photo evidence for that.
+3. Fill `review`: perform a disconfirming search, rule out look-alikes, then set
+   `approvedBy` / `approvedAt` / `method: "dual-control"`.
+4. Run `npm run verify:facts`. It prints exactly which gates fail and why.
+5. Only when it reads `6/6 gates` may you set `status: "published"`. The build enforces it.
+
+> Source `url`s/`excerpts` in the current seed are representative — the machinery checks
+> the citations *exist and corroborate*; the human (`dual-control`) gate confirms they are
+> *real and current*. Replace seed citations with editor-confirmed ones before launch.
+
+## Other applications
+
+- **Social/OG** — dynamic branded cards (`next/og`, `lib/og.tsx`) for the site, each essay,
+  and each athlete, rendered in the brand serif (Fraunces) + mono.
+- **Newsletter** — the restrained "dispatch" module (`components/Subscribe.tsx`) with a
+  validating `/api/subscribe` endpoint; connect a provider where noted.
+- **Quality bars** — verified WCAG 2.2 AA in both themes (axe-core, clean); Lighthouse
+  perf 95+, a11y/best-practices/SEO 100, CLS 0.
