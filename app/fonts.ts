@@ -20,19 +20,23 @@ export const grotesque = Schibsted_Grotesk({
   variable: "--font-grotesque",
 });
 
-// Variable, high-contrast. opsz drives optical sizing; SOFT/WONK add character.
+// Variable, high-contrast. Only the opsz (optical sizing) axis is used in the
+// system, so we ship just that — it roughly halves the Fraunces payload and the
+// time-to-final-LCP versus carrying SOFT/WONK too.
 export const serif = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-serif",
   style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
+  axes: ["opsz"],
 });
 
-// Not variable — load the weights we use.
+// Not variable — load the weights we use. Mono only sets small labels/specs, so
+// keep it off the critical path; the headline serif gets the bandwidth first.
 export const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
   weight: ["400", "500", "600"],
+  preload: false,
 });
