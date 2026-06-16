@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { GATES, POLICY, GATE_RESIDUALS } from "@/lib/verification";
+import { GATES, POLICY, GATE_RESIDUALS, verifyFact } from "@/lib/verification";
+import { publishableFacts } from "@/lib/verification";
+import { athletes } from "@/data/athletes";
+import { corrections, correctionsPolicy } from "@/data/corrections";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./verification.module.css";
 
@@ -19,6 +22,20 @@ function fmt(p: number): string {
   const mant = (p / Math.pow(10, exp)).toFixed(1);
   return `${mant} × 10^${exp}`;
 }
+
+const ledger = publishableFacts(athletes.flatMap((a) => a.facts)).map((f) => {
+  const archived = f.sources.filter(
+    (s) => s.verified && s.snapshot && s.snapshot !== "unarchivable"
+  ).length;
+  return {
+    id: f.id,
+    subject: `${f.athlete} — ${f.watch}`,
+    confidence: verifyFact(f).computedConfidence,
+    approvedAt: f.review.approvedAt?.slice(0, 10) ?? "—",
+    durable: archived >= 2,
+    archived,
+  };
+});
 
 export default function VerificationPage() {
   return (
@@ -102,6 +119,60 @@ export default function VerificationPage() {
             <dd>Named editor · dual control</dd>
           </div>
         </dl>
+      </section>
+
+      <section className={`container ${styles.policy}`}>
+        <p className={styles.gatesLabel}>The public record</p>
+        <p className={styles.ledgerIntro}>
+          Every published reference, with the confidence the evidence earned, the date
+          an editor last signed it, and whether its proof is archived against
+          link-rot. This is the audit trail — not a badge.
+        </p>
+        <ul className={styles.ledger}>
+          <li className={`${styles.ledgerRow} ${styles.ledgerHead}`} aria-hidden="true">
+            <span>Reference</span>
+            <span>Confidence</span>
+            <span>Signed</span>
+            <span>Evidence</span>
+          </li>
+          {ledger.map((r) => (
+            <li key={r.id} className={styles.ledgerRow}>
+              <span className={styles.ledgerSubject}>{r.subject}</span>
+              <span>{r.confidence}</span>
+              <span className={styles.ledgerMono}>{r.approvedAt}</span>
+              <span
+                className={styles.ledgerDurable}
+                data-durable={r.durable || undefined}
+                title={`${r.archived} independent source(s) permanently archived`}
+              >
+                {r.durable ? "Durable" : "Thin"}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className={`container ${styles.policy}`}>
+        <p className={styles.gatesLabel}>Corrections &amp; retractions</p>
+        <p className={styles.ledgerIntro}>{correctionsPolicy}</p>
+        {corrections.length === 0 ? (
+          <p className={styles.correctionsEmpty}>
+            No corrections to date. When that changes, the entry will appear here —
+            dated, described, and permanent.
+          </p>
+        ) : (
+          <ul className={styles.corrections}>
+            {corrections.map((c) => (
+              <li key={c.id} className={styles.correction}>
+                <span className={styles.correctionMeta}>
+                  {c.date} · {c.kind}
+                </span>
+                <span className={styles.correctionSubject}>{c.subject}</span>
+                <span className={styles.correctionSummary}>{c.summary}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <section className={`container ${styles.outro}`}>
