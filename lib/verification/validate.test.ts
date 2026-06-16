@@ -86,6 +86,38 @@ test("a reference for an absent maker is rejected", () => {
   assert.equal(verifyFact(f2).gates.find((g) => g.id === "reference-integrity")!.pass, false);
 });
 
+test("a High rating without a photo/video fails visual-evidence", () => {
+  const f = goodFact({
+    confidence: "High",
+    sources: [
+      src({ id: "a", publisher: "Maker", kind: "official", tier: "primary" }),
+      src({ id: "b", publisher: "Team", kind: "official", tier: "primary" }),
+      src({ id: "c", publisher: "Outlet", kind: "media", tier: "secondary" }),
+    ],
+  });
+  const r = verifyFact(f);
+  assert.equal(r.gates.find((g) => g.id === "visual-evidence")!.pass, false);
+  assert.equal(r.publishable, false);
+});
+
+test("visual-evidence is not required below a High rating", () => {
+  const f = goodFact({
+    confidence: "Medium",
+    sources: [
+      src({ id: "a", publisher: "Maker", kind: "official", tier: "primary" }),
+      src({ id: "b", publisher: "Outlet", kind: "media", tier: "secondary" }),
+    ],
+  });
+  assert.equal(verifyFact(f).gates.find((g) => g.id === "visual-evidence")!.pass, true);
+});
+
+test("a vague relationship fails relationship-clarity", () => {
+  const f = goodFact({ relation: "spotted on the wrist" });
+  const r = verifyFact(f);
+  assert.equal(r.gates.find((g) => g.id === "relationship-clarity")!.pass, false);
+  assert.equal(r.publishable, false);
+});
+
 test("no disconfirming search fails adversarial-review", () => {
   const f = goodFact({
     review: { ...goodFact().review, disconfirmingSearch: false },

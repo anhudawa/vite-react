@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import { JsonLd, articleJsonLd, breadcrumb } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { RelatedEssays } from "@/components/RelatedEssays";
+import { tagSlug } from "@/lib/tags";
 import styles from "./prose.module.css";
 
 export function generateStaticParams() {
@@ -73,6 +74,17 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
           <time dateTime={essay.date}>{formatDate(essay.date)}</time>
           <span>{essay.readingTime}</span>
         </div>
+        {essay.tags && essay.tags.length > 0 && (
+          <ul className={styles.tags} aria-label="Tags">
+            {essay.tags.map((t) => (
+              <li key={t}>
+                <Link href={`/tag/${tagSlug(t)}`} className={styles.tag}>
+                  {t}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </header>
 
       <div className={styles.body}>

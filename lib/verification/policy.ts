@@ -20,6 +20,22 @@ export const POLICY = {
 } as const;
 
 /**
+ * The only relationship types a reference may declare. A claim must name how the
+ * watch reached the wrist — vague affiliation is not allowed. The `relation`
+ * field must begin with one of these (case-insensitive).
+ */
+export const RELATIONSHIP_TYPES = [
+  "Sponsored",
+  "Ambassador",
+  "Personal", // personal purchase / collection
+  "Loan",
+  "Gifted",
+  "Team-issued",
+  "Retailer", // supplied by a retailer/partner
+  "Unverified", // explicitly logged as not-yet-established
+] as const;
+
+/**
  * Modeled residual error per gate — the assumed probability that a *wrong* claim
  * slips past that gate alone. These are conservative engineering estimates, not
  * measured rates; their product is what makes a wrong fact statistically
@@ -30,6 +46,8 @@ export const GATE_RESIDUALS: Record<GateId, number> = {
   "independent-sourcing": 0.1,
   "field-corroboration": 0.1,
   "reference-integrity": 0.2,
+  "visual-evidence": 0.15,
+  "relationship-clarity": 0.3,
   "adversarial-review": 0.08,
   "confidence-threshold": 0.25,
   "editorial-signoff": 0.05,

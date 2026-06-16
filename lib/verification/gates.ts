@@ -1,5 +1,5 @@
 import type { ClaimField, GateId, GateResult, VerifiedFact } from "./types";
-import { POLICY } from "./policy";
+import { POLICY, RELATIONSHIP_TYPES } from "./policy";
 import { checkReference } from "./references";
 import {
   computeConfidence,
@@ -68,6 +68,45 @@ export const GATES: Gate[] = [
         label: "Reference integrity",
         pass: r.ok,
         detail: r.reason,
+      };
+    },
+  },
+  {
+    id: "visual-evidence",
+    label: "Visual evidence",
+    catches: "a 'High' rating resting on words alone, with nothing you can see",
+    run: (fact) => {
+      const hasVisual = liveSources(fact.sources).some(
+        (s) => (s.kind === "photo" || s.kind === "video") && s.verified
+      );
+      // Only the strongest rating demands a dated, located image or footage.
+      const pass = fact.confidence !== "High" || hasVisual;
+      return {
+        id: "visual-evidence",
+        label: "Visual evidence",
+        pass,
+        detail: pass
+          ? hasVisual
+            ? "Direct visual evidence (photo/video) on file."
+            : "Not required below a High rating."
+          : "A High rating requires at least one verified photo or video source.",
+      };
+    },
+  },
+  {
+    id: "relationship-clarity",
+    label: "Relationship clarity",
+    catches: "vague affiliation — never saying how the watch reached the wrist",
+    run: (fact) => {
+      const rel = fact.relation.trim().toLowerCase();
+      const matched = RELATIONSHIP_TYPES.find((t) => rel.startsWith(t.toLowerCase()));
+      return {
+        id: "relationship-clarity",
+        label: "Relationship clarity",
+        pass: !!matched,
+        detail: matched
+          ? `Declared relationship type: ${matched}.`
+          : `Relation must declare a type (${RELATIONSHIP_TYPES.join(", ")}).`,
       };
     },
   },

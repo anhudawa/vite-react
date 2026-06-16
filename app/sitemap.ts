@@ -3,6 +3,7 @@ import { site } from "@/lib/site";
 import { nav, secondaryNav } from "@/lib/site";
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes } from "@/data/athletes";
+import { allTags } from "@/lib/tags";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
@@ -22,9 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}/who-wears-what/${a.slug}`,
   }));
 
+  const tagRoutes = allTags().map((t) => ({ url: `${base}/tag/${t.slug}` }));
+
   return [
     ...staticRoutes.map((path) => ({ url: `${base}${path}` })),
     ...essayRoutes,
     ...athleteRoutes,
+    ...tagRoutes,
   ];
 }

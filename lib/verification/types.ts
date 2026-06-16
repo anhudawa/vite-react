@@ -78,6 +78,8 @@ export type GateId =
   | "independent-sourcing"
   | "field-corroboration"
   | "reference-integrity"
+  | "visual-evidence"
+  | "relationship-clarity"
   | "adversarial-review"
   | "confidence-threshold"
   | "editorial-signoff";

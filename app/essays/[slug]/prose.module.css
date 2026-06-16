@@ -64,6 +64,30 @@
   color: var(--text-faint);
 }
 
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.tag {
+  display: inline-block;
+  border: var(--hairline) solid var(--rule);
+  border-radius: 999px;
+  padding: var(--s-1) var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  transition: color var(--dur-1) var(--ease-mech),
+    border-color var(--dur-1) var(--ease-mech);
+}
+.tag:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
 /* --- Body — the reading column ------------------------------------------- */
 .body {
   max-width: var(--measure);
