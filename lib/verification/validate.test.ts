@@ -118,6 +118,22 @@ test("a vague relationship fails relationship-clarity", () => {
   assert.equal(r.publishable, false);
 });
 
+test("a brand-level claim (named maker, no reference) passes reference-integrity", () => {
+  const f = goodFact({ watch: "Rolex Day-Date 40", reference: undefined });
+  assert.equal(
+    verifyFact(f).gates.find((g) => g.id === "reference-integrity")!.pass,
+    true
+  );
+});
+
+test("no reference and no recognised maker fails reference-integrity", () => {
+  const f = goodFact({ watch: "Some Unknown Diver", reference: undefined });
+  assert.equal(
+    verifyFact(f).gates.find((g) => g.id === "reference-integrity")!.pass,
+    false
+  );
+});
+
 test("no disconfirming search fails adversarial-review", () => {
   const f = goodFact({
     review: { ...goodFact().review, disconfirmingSearch: false },

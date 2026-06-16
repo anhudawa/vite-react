@@ -35,15 +35,26 @@ export interface ReferenceCheck {
  *  - an unknown brand passes only on a generic plausibility check, flagged
  */
 export function checkReference(watch: string, reference?: string): ReferenceCheck {
-  if (!reference) {
-    return { ok: false, reason: "No reference number supplied." };
-  }
   const w = watch.toLowerCase();
   const rule = BRANDS.find(
     (b) =>
       w.includes(b.brand.toLowerCase()) ||
       b.aliases?.some((a) => w.includes(a.toLowerCase()))
   );
+
+  // A brand-level relationship claim ("X is a Rolex ambassador") is legitimate
+  // without a model number — but the maker must be named and recognised. If a
+  // reference IS asserted, it has to be correct (checked below).
+  if (!reference) {
+    if (rule) {
+      return {
+        ok: true,
+        brandMatched: rule.brand,
+        reason: `Brand-level claim (${rule.brand}); no specific reference asserted.`,
+      };
+    }
+    return { ok: false, reason: "No reference and no recognised maker named." };
+  }
 
   if (!rule) {
     const plausible = /^[A-Za-z0-9][A-Za-z0-9.\-\/ ]{2,}$/.test(reference);

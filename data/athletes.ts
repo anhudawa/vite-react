@@ -170,7 +170,109 @@ const pidcock: AthleteRef = {
   notes: [],
 };
 
-export const athletes: AthleteRef[] = [pogacar, pidcock];
+// Sourced autonomously (web research), then put through the gauntlet. The
+// relationship is an official Rolex testimoneeship — a brand-level claim — with
+// the Everose Day-Date in our frame as the model on the wrist.
+const tiger: AthleteRef = {
+  slug: "tiger-woods",
+  name: "Tiger Woods",
+  discipline: "Golf",
+  nationality: "American",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Tiger_Woods",
+    "https://www.rolex.com/rolex-family/golf/tiger-woods",
+  ],
+  summary:
+    "One of the longest-running ambassadorships in golf — a Rolex testimonee since 2011, here in the Everose Day-Date.",
+  image: {
+    src: "/photography/tiger-rolex-1.jpg",
+    alt: "Tiger Woods on the course wearing an Everose Rolex Day-Date on the President bracelet",
+    caption: "Rolex Day-Date 40",
+  },
+  facts: [
+    {
+      id: "tiger-rolex-daydate",
+      status: "published",
+      athlete: "Tiger Woods",
+      watch: "Rolex Day-Date 40",
+      relation: "Ambassador — Rolex testimonee since 2011",
+      evidence: "Everose Day-Date in his collection; Deepsea worn winning the 2019 Masters",
+      confidence: "High",
+      confidenceNote: "official + independent media",
+      reference: undefined,
+      sources: [
+        {
+          id: "rolex-official",
+          publisher: "Rolex",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.rolex.com/rolex-family/golf/tiger-woods",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Rolex's official Rolex Family pages present Tiger Woods among its golf Testimonees.",
+          supports: ["athlete", "relation"],
+          verified: true,
+        },
+        {
+          id: "coronet",
+          publisher: "Coronet Magazine",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.coronet.org/new-1minute-reads/in-golf-rolex-stands-by-tiger-woods",
+          publishedAt: "2026-04-01",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Rolex has kept the golf legend as a brand ambassador; Woods has been a Rolex ambassador since 2011.",
+          supports: ["relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "wrist-enthusiast",
+          publisher: "Wrist Enthusiast",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.wristenthusiast.com/latest/2022/8/4/tiger-woods-watches",
+          publishedAt: "2022-08-04",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Tiger Woods became a Rolex ambassador in 2011 and owns a Rolex Day-Date 40 in Everose gold, alongside a Deepsea Sea-Dweller.",
+          supports: ["athlete", "relation", "watch", "evidence"],
+          verified: true,
+        },
+        {
+          id: "tiger-photo",
+          publisher: "On-file photograph",
+          kind: "photo",
+          tier: "primary",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Tiger Woods wearing an Everose (rose-gold) Rolex Day-Date on the President bracelet.",
+          supports: ["athlete", "watch", "evidence"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Day-Date vs Datejust — the President bracelet and Everose gold confirm a Day-Date",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Logged as a brand-level testimoneeship, not a single-reference claim; the Everose Day-Date is the model in our frame.",
+      },
+    },
+  ],
+  notes: [
+    "Woods has been a Rolex testimonee since 2011 — one of the longest-running ambassadorships in golf, and Rolex still publishes him among its golf family. The relationship is the verifiable fact here, corroborated by Rolex itself and by independent watch media.",
+    "He is most associated with the Deepsea Sea-Dweller — a watch he has called a natural fit for its reliability, and wore (in the James Cameron edition) winning the 2019 Masters. In our frame it is the dress side of the same relationship: the Everose Day-Date on the President bracelet.",
+    "We log this as an ambassadorship rather than a single reference. That distinction — the relationship versus a specific model — is exactly the thing the rest of the internet flattens, and exactly what this page exists to keep straight.",
+  ],
+};
+
+export const athletes: AthleteRef[] = [pogacar, tiger, pidcock];
 
 /** An athlete is publishable iff it has at least one publishable fact. */
 export function publishedAthletes(): AthleteRef[] {
