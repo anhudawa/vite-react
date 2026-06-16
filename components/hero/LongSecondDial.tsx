@@ -258,6 +258,36 @@ export function LongSecondDial() {
         fill="#d8f26a"
       />
 
+      {/* dial signature — the maker's name printed under twelve, the byline at
+          six. The masthead leads; the byline authenticates — even on the dial. */}
+      <text
+        x={C}
+        y={C - 78}
+        textAnchor="middle"
+        fill="#c7ccd1"
+        style={{ fontFamily: "var(--font-serif)", fontSize: "19px", letterSpacing: "0.03em" }}
+      >
+        The Long Second
+      </text>
+      <text
+        x={C}
+        y={C - 60}
+        textAnchor="middle"
+        fill="#8b9095"
+        style={{ fontFamily: "var(--font-mono)", fontSize: "7px", letterSpacing: "0.42em" }}
+      >
+        EST. MMXXVI
+      </text>
+      <text
+        x={C}
+        y={C + 116}
+        textAnchor="middle"
+        fill="#9a9fa4"
+        style={{ fontFamily: "var(--font-mono)", fontSize: "8px", letterSpacing: "0.34em" }}
+      >
+        BY ANTHONY WALSH
+      </text>
+
       {/* seconds hand */}
       <g ref={handRef}>
         <circle ref={tipGlow} cx={C} cy={C - HAND_LEN} r={26} fill="url(#lumeRad)" opacity="0.25" />
