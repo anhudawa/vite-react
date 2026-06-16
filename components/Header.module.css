@@ -75,6 +75,20 @@
   gap: var(--s-3);
 }
 
+.searchLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--text-dim);
+  border-radius: var(--radius);
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.searchLink:hover {
+  color: var(--accent-text);
+}
+
 .menuBtn {
   display: none;
   background: none;

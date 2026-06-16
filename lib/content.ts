@@ -7,6 +7,7 @@ export interface EssayMeta {
   date: string; // ISO
   readingTime: string;
   kicker?: string;
+  tags?: string[];
 }
 
 export interface EssayEntry extends EssayMeta {

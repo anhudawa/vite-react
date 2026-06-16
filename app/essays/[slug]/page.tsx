@@ -5,6 +5,8 @@ import { essays, getEssay } from "@/content/essays/registry";
 import { formatDate } from "@/lib/content";
 import { site } from "@/lib/site";
 import { JsonLd, articleJsonLd, breadcrumb } from "@/lib/jsonld";
+import { ReadingProgress } from "@/components/ReadingProgress";
+import { RelatedEssays } from "@/components/RelatedEssays";
 import styles from "./prose.module.css";
 
 export function generateStaticParams() {
@@ -41,6 +43,7 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
 
   return (
     <article className={styles.article}>
+      <ReadingProgress />
       <JsonLd
         data={[
           articleJsonLd({
@@ -74,6 +77,10 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
 
       <div className={styles.body}>
         <Content />
+      </div>
+
+      <div className={styles.related}>
+        <RelatedEssays slug={essay.slug} />
       </div>
 
       <footer className={styles.foot}>

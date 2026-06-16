@@ -6,7 +6,12 @@ import { publishedAthletes } from "@/data/athletes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
-  const staticRoutes = ["/", ...nav.map((n) => n.href), ...secondaryNav.map((n) => n.href)];
+  const staticRoutes = [
+    "/",
+    ...nav.map((n) => n.href),
+    ...secondaryNav.map((n) => n.href),
+    "/search",
+  ];
 
   const essayRoutes = essays.map((e) => ({
     url: `${base}/essays/${e.slug}`,

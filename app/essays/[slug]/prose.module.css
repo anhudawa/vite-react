@@ -138,6 +138,11 @@
 }
 
 /* --- Footer / next ------------------------------------------------------- */
+.related {
+  max-width: 54rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
 .foot {
   max-width: var(--measure);
   margin: var(--s-9) auto 0;

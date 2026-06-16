@@ -49,6 +49,20 @@ export function Header() {
         </nav>
 
         <div className={styles.controls}>
+          <Link href="/search" className={styles.searchLink} aria-label="Search">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              aria-hidden="true"
+            >
+              <circle cx="7" cy="7" r="5" />
+              <path d="M11 11l3.5 3.5" strokeLinecap="round" />
+            </svg>
+          </Link>
           <ThemeToggle />
           <button
             type="button"
