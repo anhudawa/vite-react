@@ -23,10 +23,10 @@ const spotted = [
     watch: "Richard Mille",
   },
   {
-    src: "/photography/mcgregor-rm.jpg",
-    alt: "Conor McGregor ringside in black, a Richard Mille on his wrist",
-    subject: "Conor McGregor",
-    watch: "Richard Mille",
+    src: "/photography/beckham-tudor-bb58.jpg",
+    alt: "David Beckham against a concrete wall, a Tudor Black Bay on his wrist",
+    subject: "David Beckham",
+    watch: "Tudor",
   },
 ];
 
@@ -37,7 +37,12 @@ export const metadata: Metadata = {
 };
 
 export default function WhoWearsWhat() {
-  const published = publishedAthletes();
+  // Lead with the money: sort the ledger by indicative value, dearest first.
+  const published = publishedAthletes().sort(
+    (a, b) =>
+      (renderableFacts(b)[0].value?.gbpApprox ?? 0) -
+      (renderableFacts(a)[0].value?.gbpApprox ?? 0)
+  );
   const inReview = inReviewAthletes();
   return (
     <>

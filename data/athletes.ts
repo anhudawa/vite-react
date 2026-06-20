@@ -417,7 +417,226 @@ const rahm: AthleteRef = {
   ],
 };
 
-export const athletes: AthleteRef[] = [pogacar, tiger, rahm, pidcock];
+// Sourced autonomously, then gauntlet-checked. A marquee money story: a watch
+// built for him, bearing his name, worn at ~£850k ON COURT — the opposite of a
+// red-carpet loan.
+const nadal: AthleteRef = {
+  slug: "rafael-nadal",
+  name: "Rafael Nadal",
+  discipline: "Tennis",
+  nationality: "Spanish",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Rafael_Nadal",
+    "https://www.richardmille.com/friends-and-partners/rafael-nadal",
+  ],
+  summary:
+    "The purest worn-in-competition case in sport: a Richard Mille built for him, bearing his name, worn through five-set matches — at roughly £850,000.",
+  facts: [
+    {
+      id: "nadal-rm-27",
+      status: "published",
+      athlete: "Rafael Nadal",
+      watch: "Richard Mille RM 27 series",
+      relation: "Ambassador — Richard Mille partner since 2010",
+      evidence: "RM 27-05 worn on court at the 2024 Roland Garros",
+      confidence: "High",
+      confidenceNote: "official + independent media",
+      reference: undefined,
+      value: { gbpApprox: 850000, note: "RM 27-05, indicative" },
+      sources: [
+        {
+          id: "rm-official-nadal",
+          publisher: "Richard Mille",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.richardmille.com/friends-and-partners/rafael-nadal",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260512094253/https://www.richardmille.com/friends-and-partners/rafael-nadal",
+            capturedAt: "2026-05-12",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "The RM 027 — the first watch to bear the King of Clay's name. “The watch is now like a second skin for me.”",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "robb-report-nadal",
+          publisher: "Robb Report",
+          kind: "photo",
+          tier: "secondary",
+          url: "https://robbreport.com/style/watch-collector/gallery/rafael-nadal-richard-mille-1235474541/",
+          publishedAt: "2024-05-29",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Nadal is one of the few pros who actually wears his watch during the match; the debut RM 027 came in 2010.",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "tennis-com-nadal",
+          publisher: "Tennis.com",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.tennis.com/baseline/articles/grand-finale-rafael-nadal-richard-mille-flying-turbillon-watch-extreme-luxury-1-million",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20240615182836/https://www.tennis.com/baseline/articles/grand-finale-rafael-nadal-richard-mille-flying-turbillon-watch-extreme-luxury-1-million",
+            capturedAt: "2024-06-15",
+          },
+          publishedAt: "2024-06-13",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "My relationship with Richard Mille has undoubtedly been a pillar of my sports career since 2010.",
+          supports: ["athlete", "relation", "evidence", "watch"],
+          verified: true,
+        },
+        {
+          id: "time-and-watches-nadal",
+          publisher: "Time and Watches",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.timeandwatches.com/2020/09/richard-mille-rm-27-04-tourbillon.html",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260115080712/https://www.timeandwatches.com/2020/09/richard-mille-rm-27-04-tourbillon.html",
+            capturedAt: "2026-01-15",
+          },
+          publishedAt: "2020-09-24",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "To mark the 10th anniversary of its partnership with Rafa Nadal, Richard Mille has presented the new RM 27-04.",
+          supports: ["watch", "relation"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "The RM 27 references are easily conflated — RM 027 (2010), RM 27-01, -02, -03, -04, -05; we log the series and name the RM 27-05 as the 2024 on-court instance",
+          "Dealer asks (>$1.3M) vs Richard Mille list (CHF 952,000, RM 27-04) — we use list, indicatively",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Brand-partner relationship since 2010; the RM 27 line is purpose-built for and named after him, and worn during competition — corroborated by Richard Mille and independent media.",
+      },
+    },
+  ],
+  notes: [
+    "This is the case the whole site is built to honour: not a watch worn to dinner, but a tourbillon worn through the most physical tennis of his generation. Richard Mille built the RM 27 line for Nadal, named the first one after him, and engineered each iteration lighter and more shock-resistant so he could actually play in it.",
+    "The money is the story. The RM 27-04 launched at CHF 952,000; the RM 27-05 he wore at the 2024 Roland Garros runs to roughly a million dollars. He is paid to wear it — but he wears it where almost no one would risk a watch a fraction of the price.",
+    "We log it as a brand partnership, name the specific on-court reference in the evidence, and keep the series and the single watch distinct — because conflating the RM 27 references is the most common way this story gets told wrong.",
+  ],
+};
+
+// HELD by the system, not for lack of fame but for lack of OUR standard of proof:
+// the relationship is beyond doubt, but we hold a High rating until a dated,
+// on-file image clears the visual-evidence gate. Held in public, honestly.
+const federer: AthleteRef = {
+  slug: "roger-federer",
+  name: "Roger Federer",
+  discipline: "Tennis",
+  nationality: "Swiss",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Roger_Federer",
+    "https://www.rolex.com/rolex-family/tennis/roger-federer",
+  ],
+  summary:
+    "The relationship is beyond doubt — a Rolex testimonee for over two decades. We hold it here for one reason only: our visual-evidence gate wants a dated, on-file image before we rate it High.",
+  facts: [
+    {
+      id: "federer-rolex",
+      status: "in-review",
+      athlete: "Roger Federer",
+      watch: "Rolex",
+      relation: "Ambassador — Rolex testimonee since 2001",
+      evidence: "Documented for two decades; Day-Date, Datejust 'Wimbledon', Sky-Dweller",
+      confidence: "High",
+      confidenceNote: "held: on-file visual pending",
+      reference: undefined,
+      value: { gbpApprox: 30000, note: "Day-Date / Datejust, indicative" },
+      sources: [
+        {
+          id: "rolex-official-fed",
+          publisher: "Rolex",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.rolex.com/rolex-family/tennis/roger-federer",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260520233304/https://www.rolex.com/rolex-family/tennis/roger-federer",
+            capturedAt: "2026-05-20",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Rolex's official Rolex Family pages present Roger Federer in its tennis family (live page access-restricted; confirmed via the archived capture).",
+          supports: ["athlete", "relation"],
+          verified: true,
+        },
+        {
+          id: "bobs-fed",
+          publisher: "Bob's Watches",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.bobswatches.com/rolex-blog/editorial/roger-federer-rolex-collection-unveiling-the-tennis-legends-favorite-timepieces.html",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20250128191719/https://www.bobswatches.com/rolex-blog/editorial/roger-federer-rolex-collection-unveiling-the-tennis-legends-favorite-timepieces.html",
+            capturedAt: "2025-01-28",
+          },
+          publishedAt: "2024-10-03",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "As an official Rolex brand ambassador, or 'testimonee' as they're officially called, Roger Federer has access to literally any timepiece.",
+          supports: ["athlete", "relation", "watch", "evidence"],
+          verified: true,
+        },
+        {
+          id: "perfect-tennis-fed",
+          publisher: "Perfect Tennis",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.perfect-tennis.com/what-rolex-watches-does-roger-federer-wear/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20231013102636/https://www.perfect-tennis.com/what-rolex-watches-does-roger-federer-wear/",
+            capturedAt: "2023-10-13",
+          },
+          publishedAt: "2023-09-29",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Rolex partnered with Roger back in 2006 in what was one of the largest single endorsements for any professional athlete at the time.",
+          supports: ["athlete", "relation", "watch", "evidence"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Start date 2001 (Rolex's framing) vs 2006 (the major signing) — the same relationship from two anchor points, not a contradiction",
+          "Rolex's current in-play tennis testimonee is Carlos Alcaraz — do not conflate his watches with Federer's",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Textually airtight across Rolex's own pages and independent media. Held only because we lack a dated on-file image to satisfy visual-evidence — the gate doing its job on a famous name.",
+      },
+    },
+  ],
+  notes: [
+    "There is no real doubt that Federer is a Rolex testimonee — Rolex says so on its own site, and independent reporting has for twenty years. We could publish on the strength of the words alone.",
+    "We don't. Our visual-evidence gate asks for a dated, located image we hold before any claim is rated High — words, however authoritative, aren't enough. Until we attach that image, Federer stays here, in review.",
+    "That is the standard working on the hardest case to apply it to. If we hold Federer, you can trust what we do publish.",
+  ],
+};
+
+export const athletes: AthleteRef[] = [pogacar, tiger, rahm, nadal, federer, pidcock];
 
 /** An athlete is publishable iff it has at least one publishable fact. */
 export function publishedAthletes(): AthleteRef[] {

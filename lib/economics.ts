@@ -22,7 +22,8 @@ export interface Acquisition {
 
 /** Read the acquisition stance from the verified `relation` string. */
 export function acquisitionOf(relation: string): Acquisition {
-  const head = relation.split(/[—–-]/)[0].trim().toLowerCase();
+  // Split on a *spaced* dash only, so hyphenated words ("Team-issued") survive.
+  const head = relation.split(/\s+[—–-]\s+/)[0].trim().toLowerCase();
   switch (head) {
     case "personal":
       return {
@@ -75,3 +76,28 @@ export function valueLine(fact: DisplayFact): string | null {
   if (!fact.value) return null;
   return `~${formatGBP(fact.value.gbpApprox)}`;
 }
+
+export interface CorpusStats {
+  count: number;
+  totalGBP: number;
+  paid: number; // paid to wear it (incl. team-issued)
+  bought: number; // bought with own money
+  other: number; // gifted / loan / unverified
+}
+
+/** Aggregate the money story across a set of facts — for the ledger band. */
+export function corpusStats(facts: DisplayFact[]): CorpusStats {
+  return facts.reduce<CorpusStats>(
+    (acc, f) => {
+      acc.count += 1;
+      acc.totalGBP += f.value?.gbpApprox ?? 0;
+      const s = acquisitionOf(f.relation).stance;
+      if (s === "paid") acc.paid += 1;
+      else if (s === "own-money") acc.bought += 1;
+      else acc.other += 1;
+      return acc;
+    },
+    { count: 0, totalGBP: 0, paid: 0, bought: 0, other: 0 }
+  );
+}
+
