@@ -1,0 +1,111 @@
+.list {
+  padding-bottom: var(--s-8);
+  border-top: var(--hairline) solid var(--rule);
+}
+.brand {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) auto auto auto;
+  gap: var(--s-5);
+  align-items: baseline;
+  padding: var(--s-5) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.brandName {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  letter-spacing: -0.01em;
+}
+.brandMeta {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--label-muted);
+}
+.brandTotal {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  color: var(--text);
+  text-align: right;
+}
+.brandArrow,
+.refArrow {
+  color: var(--text-dim);
+  transition: transform var(--dur-2) var(--ease-mech), color var(--dur-1);
+}
+.brand:hover .brandArrow,
+.ref:hover .refArrow {
+  transform: translateX(6px);
+  color: var(--accent-text);
+}
+
+/* brand detail — wearer ledger */
+.refs {
+  padding-bottom: var(--s-7);
+  border-top: var(--hairline) solid var(--rule);
+}
+.ref {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr) minmax(0, 1fr) auto auto;
+  gap: var(--s-5);
+  align-items: baseline;
+  padding: var(--s-5) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.refName {
+  font-family: var(--font-serif);
+  font-size: var(--t-h4);
+  letter-spacing: -0.01em;
+}
+.refWatch {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  color: var(--text);
+}
+.refStance {
+  font-size: var(--t-body-s);
+  color: var(--text-dim);
+}
+.refStance[data-stance="own-money"] {
+  color: var(--accent-text);
+}
+.refValue {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-align: right;
+  white-space: nowrap;
+}
+.foot {
+  padding-bottom: var(--s-8);
+}
+.back {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.08em;
+  color: var(--accent-text);
+}
+
+@media (max-width: 640px) {
+  .brand {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.2rem;
+  }
+  .brandMeta {
+    grid-column: 1;
+  }
+  .ref {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.15rem;
+  }
+  .refWatch,
+  .refStance {
+    grid-column: 1;
+  }
+  .refValue {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+}
