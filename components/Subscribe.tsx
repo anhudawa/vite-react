@@ -39,11 +39,12 @@ export function Subscribe() {
         <div className={styles.copy}>
           <p className={styles.kicker}>The dispatch</p>
           <h2 id="sub-h" className={styles.title}>
-            One considered email. No more than the subject deserves.
+            Who bought it, who&rsquo;s paid to wear it — in your inbox.
           </h2>
           <p className={styles.note}>
-            The occasional sourced reference, a new essay, nothing else. No hype, no
-            urgency, no &ldquo;you won&rsquo;t believe.&rdquo; Unsubscribe in one click.
+            Each new verified reference: the watch, the money, and whether it was
+            bought or it&rsquo;s a paid placement. The occasional essay. Nothing else,
+            no hype. Unsubscribe in one click.
           </p>
         </div>
 
