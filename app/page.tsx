@@ -9,12 +9,19 @@ import { FactBlock } from "@/components/FactBlock";
 import { Subscribe } from "@/components/Subscribe";
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
+import { corpusStats, formatGBP } from "@/lib/economics";
 import { nav, site } from "@/lib/site";
 import styles from "./page.module.css";
 
 export default function HomePage() {
   const [lead, ...rest] = essays;
-  const pogacar = publishedAthletes()[0];
+  const published = publishedAthletes();
+  const facts = published.map((a) => renderableFacts(a)[0]);
+  const stats = corpusStats(facts);
+  const dearest = facts.reduce((m, f) =>
+    (f.value?.gbpApprox ?? 0) > (m.value?.gbpApprox ?? 0) ? f : m
+  );
+  const pogacar = published[0];
   const pogacarFact = renderableFacts(pogacar)[0];
 
   return (
@@ -181,17 +188,33 @@ export default function HomePage() {
           <div className={styles.refText}>
             <SectionHeading
               index="02"
-              kicker="The reference"
-              title="Every claim, sourced"
+              kicker="The money"
+              title="Bought it, or paid to wear it"
             >
               <p id="reference">
-                The whole moat is accuracy. Each reference logs the watch, the nature
-                of the relationship, the evidence, and how sure we are — set like a
-                spec plate on a movement.
+                The real question isn&rsquo;t which watch — it&rsquo;s whether he bought
+                it or he&rsquo;s paid to wear it, and what it cost. Almost nobody checks.
+                We do, separate the placement from the purchase, and show the proof.
               </p>
             </SectionHeading>
-            <Link href={`/who-wears-what/${pogacar.slug}`} className={styles.refLink}>
-              Open the {pogacar.name} reference →
+            <dl className={styles.moneyStats}>
+              <div>
+                <dt>{formatGBP(stats.totalGBP)}</dt>
+                <dd>across {stats.count} verified wrists</dd>
+              </div>
+              <div>
+                <dt>
+                  {stats.paid}/{stats.count}
+                </dt>
+                <dd>paid placements, not purchases</dd>
+              </div>
+              <div>
+                <dt>~{formatGBP(dearest.value!.gbpApprox)}</dt>
+                <dd>the dearest — {dearest.athlete}, on court</dd>
+              </div>
+            </dl>
+            <Link href="/who-wears-what" className={styles.refLink}>
+              See the whole ledger →
             </Link>
           </div>
           <div className={styles.refPanel}>
