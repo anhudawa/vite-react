@@ -35,6 +35,7 @@ function classify(s: Source): Status {
 const facts = athletes.flatMap((a) => a.facts).filter(isPublishable);
 
 let missingTotal = 0;
+let thinCount = 0;
 console.log(`\nSOURCE PERMANENCE — ${facts.length} published fact(s)\n`);
 
 for (const fact of facts) {
@@ -49,7 +50,8 @@ for (const fact of facts) {
   // A fact's permanence rests on having at least two *archived* independent
   // sources — so it survives even if the live web changes underneath it.
   const durable = covered >= 2;
-  const head = durable ? `${GREEN}DURABLE${RESET}` : `${YELLOW}THIN${RESET}`;
+  if (!durable) thinCount += 1;
+  const head = durable ? `${GREEN}DURABLE${RESET}` : `${RED}THIN${RESET}`;
   console.log(
     `${head}  ${fact.athlete} — ${fact.watch}  ${DIM}` +
       `${covered} archived / ${archivable.length} archivable${RESET}`
@@ -74,8 +76,20 @@ for (const fact of facts) {
 if (missingTotal > 0) {
   console.log(
     `${YELLOW}NOTE${RESET}: ${missingTotal} cited URL(s) lack a permanent archive. ` +
-      `Capture them (Wayback Save Page Now) before permanence becomes a hard gate.\n`
+      `Capture them (Wayback Save Page Now) to harden the record.\n`
   );
-} else {
-  console.log(`${GREEN}OK${RESET}: every archivable source carries a permanent snapshot.\n`);
 }
+
+// HARD GATE: a published reference must be durable — at least two archived,
+// independent sources — so the claim survives even if the live web changes.
+if (thinCount > 0) {
+  console.error(
+    `${RED}FAIL${RESET}: ${thinCount} published reference(s) are THIN ` +
+      `(fewer than two archived independent sources). Archive their sources before publishing.\n`
+  );
+  process.exit(1);
+}
+
+console.log(
+  `${GREEN}OK${RESET}: every published reference is DURABLE (≥2 archived independent sources).\n`
+);

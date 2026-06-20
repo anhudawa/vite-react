@@ -115,6 +115,10 @@ export default function VerificationPage() {
             <dd>{POLICY.staleMediaYears} years (primary records never expire)</dd>
           </div>
           <div>
+            <dt>Source permanence</dt>
+            <dd>≥2 archived independent sources — enforced at build</dd>
+          </div>
+          <div>
             <dt>Final sign-off</dt>
             <dd>Named editor · dual control</dd>
           </div>

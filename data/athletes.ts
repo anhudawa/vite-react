@@ -72,10 +72,15 @@ const pogacar: AthleteRef = {
           publisher: "Richard Mille",
           kind: "official",
           tier: "primary",
-          url: "https://www.richardmille.com/partners",
-          accessedAt: "2026-06-10",
+          url: "https://www.richardmille.com/friends-and-partners/uae-team-emirates",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260414030345/https://www.richardmille.com/friends-and-partners/uae-team-emirates",
+            capturedAt: "2026-04-14",
+          },
+          accessedAt: "2026-06-16",
           excerpt:
-            "Richard Mille's partnership programme places its extra-flat automatic RM 67-02 on competing endurance athletes.",
+            "Richard Mille's dedicated UAE Team Emirates partner page places the extra-flat automatic RM 67-02 on the team's riders.",
           supports: ["watch", "relation"],
           verified: true,
         },
@@ -98,13 +103,14 @@ const pogacar: AthleteRef = {
         },
         {
           id: "watch-media",
-          publisher: "Hodinkee",
+          publisher: "Cyclingnews",
           kind: "media",
           tier: "secondary",
+          url: "https://www.cyclingnews.com/pro-cycling/tadej-pogacars-usd350k-richard-mille-watch-placement-is-the-ultimate-paris-roubaix-marginal-gain/",
           publishedAt: "2025-04-14",
-          accessedAt: "2026-06-10",
+          accessedAt: "2026-06-16",
           excerpt:
-            "Reporting from the 2025 Classics identified the RM 67-02 on Pogačar's wrist.",
+            "Pogačar raced Paris-Roubaix in the Richard Mille RM 67-02 — a roughly $350k placement on the cobbles.",
           supports: ["watch", "evidence"],
           verified: true,
         },
