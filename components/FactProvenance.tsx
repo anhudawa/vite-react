@@ -1,5 +1,5 @@
 import type { VerifiedFact } from "@/lib/verification";
-import { verifyFact, GATE_COUNT } from "@/lib/verification";
+import { verifyFact, GATE_COUNT, nextReCheck } from "@/lib/verification";
 import styles from "./FactProvenance.module.css";
 
 function formatResidual(p: number): string {
@@ -25,6 +25,7 @@ export function FactProvenance({ fact }: { fact: VerifiedFact }) {
   const report = verifyFact(fact);
   const passed = report.gates.filter((g) => g.pass).length;
   const live = fact.sources.filter((s) => s.verified);
+  const recheck = nextReCheck(fact);
 
   return (
     <details className={styles.wrap}>
@@ -107,6 +108,12 @@ export function FactProvenance({ fact }: { fact: VerifiedFact }) {
             <dt>Modeled residual error</dt>
             <dd title="Product of independent per-gate residuals — illustrative, not a guarantee">
               ~{formatResidual(report.residualErrorEstimate)}
+            </dd>
+          </div>
+          <div>
+            <dt>Next re-check</dt>
+            <dd title="When a critical field's live corroboration would next decay; primary-backed claims don't expire">
+              {recheck ? recheck.toISOString().slice(0, 10) : "no decay"}
             </dd>
           </div>
         </dl>

@@ -12,8 +12,7 @@
  * to drive the re-verification queue.
  */
 import { athletes } from "../data/athletes";
-import { isPublishable, POLICY } from "../lib/verification";
-import type { ClaimField, VerifiedFact } from "../lib/verification";
+import { isPublishable, nextReCheck } from "../lib/verification";
 
 const DIM = "\x1b[2m";
 const RED = "\x1b[31m";
@@ -23,30 +22,6 @@ const RESET = "\x1b[0m";
 
 const NOW = new Date();
 const MS_YEAR = 365.25 * 24 * 3600 * 1000;
-
-/** The date a media source stops counting toward live corroboration. Primary
- *  records never expire (a filing or dated photograph doesn't drift). */
-function expiryOf(s: VerifiedFact["sources"][number]): Date | null {
-  if (s.tier === "primary") return null;
-  const base = s.publishedAt ?? s.accessedAt;
-  return new Date(new Date(base).getTime() + POLICY.staleMediaYears * MS_YEAR);
-}
-
-/** Earliest date `field` falls below the required live-source count. */
-function fieldCliff(fact: VerifiedFact, field: ClaimField): Date | null {
-  const expiries = fact.sources
-    .filter((s) => s.verified && s.supports.includes(field))
-    .map(expiryOf)
-    .filter((d): d is Date => d !== null)
-    .sort((a, b) => a.getTime() - b.getTime());
-  const live = fact.sources.filter(
-    (s) => s.verified && s.supports.includes(field)
-  ).length;
-  if (live < POLICY.minCorroborationPerField) return NOW; // already thin
-  // After this many media sources expire, we cross below the threshold.
-  const canLose = live - POLICY.minCorroborationPerField;
-  return expiries[canLose] ?? null; // null => never decays (enough primaries)
-}
 
 function monthsBetween(a: Date, b: Date): number {
   return (b.getTime() - a.getTime()) / (MS_YEAR / 12);
@@ -60,12 +35,8 @@ for (const fact of facts) {
   const reviewed = fact.review.approvedAt ? new Date(fact.review.approvedAt) : null;
   const ageMonths = reviewed ? monthsBetween(reviewed, NOW) : Infinity;
 
-  // Earliest cliff across all critical fields.
-  let soonest: Date | null = null;
-  for (const f of POLICY.criticalFields) {
-    const c = fieldCliff(fact, f);
-    if (c && (!soonest || c < soonest)) soonest = c;
-  }
+  // Earliest cliff across all critical fields (shared with the provenance UI).
+  const soonest = nextReCheck(fact);
   const monthsToCliff = soonest ? monthsBetween(NOW, soonest) : Infinity;
 
   // Due for re-check if not reviewed in 12 months, or a cliff is under 12 away.

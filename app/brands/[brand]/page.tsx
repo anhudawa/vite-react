@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { deriveBrands, getBrand } from "@/lib/brands";
 import { formatGBP } from "@/lib/economics";
-import { JsonLd, breadcrumb } from "@/lib/jsonld";
+import { JsonLd, breadcrumb, brandJsonLd, itemListJsonLd } from "@/lib/jsonld";
 import styles from "../brands.module.css";
 
 export function generateStaticParams() {
@@ -31,11 +31,22 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
   return (
     <>
       <JsonLd
-        data={breadcrumb([
-          { name: "Home", path: "/" },
-          { name: "By Brand", path: "/brands" },
-          { name: b.brand, path: `/brands/${b.slug}` },
-        ])}
+        data={[
+          brandJsonLd({ name: b.brand, path: `/brands/${b.slug}` }),
+          itemListJsonLd({
+            name: `${b.brand} in sport`,
+            path: `/brands/${b.slug}`,
+            items: b.wearers.map((w) => ({
+              name: `${w.athlete} — ${w.watch}`,
+              path: `/who-wears-what/${w.slug}`,
+            })),
+          }),
+          breadcrumb([
+            { name: "Home", path: "/" },
+            { name: "By Brand", path: "/brands" },
+            { name: b.brand, path: `/brands/${b.slug}` },
+          ]),
+        ]}
       />
       <PageHeader
         index="—"

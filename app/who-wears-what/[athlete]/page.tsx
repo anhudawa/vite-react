@@ -11,7 +11,13 @@ import {
   renderableFacts,
 } from "@/data/athletes";
 import { assertPublishedFactsAreValid } from "@/lib/verification";
-import { JsonLd, breadcrumb, personJsonLd } from "@/lib/jsonld";
+import { brandOfWatch } from "@/lib/brands";
+import {
+  JsonLd,
+  breadcrumb,
+  personJsonLd,
+  productWatchJsonLd,
+} from "@/lib/jsonld";
 import styles from "./athlete.module.css";
 
 // BUILD-TIME ENFORCEMENT. Evaluated when this route module loads during
@@ -45,6 +51,9 @@ export default function AthletePage({
   if (!a) notFound();
   const facts = renderableFacts(a);
   const path = `/who-wears-what/${a.slug}`;
+  const lead = facts[0];
+  const brand = brandOfWatch(lead.watch);
+  const brandSlug = brand?.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <article className={styles.page}>
@@ -55,6 +64,11 @@ export default function AthletePage({
             nationality: a.nationality,
             sameAs: a.sameAs,
             path,
+          }),
+          productWatchJsonLd({
+            watch: lead.watch,
+            brand,
+            reference: lead.reference,
           }),
           breadcrumb([
             { name: "Home", path: "/" },
@@ -116,6 +130,9 @@ export default function AthletePage({
 
       <div className={`container ${styles.back}`}>
         <Link href="/who-wears-what">← All references</Link>
+        {brand && brandSlug && (
+          <Link href={`/brands/${brandSlug}`}>More {brand} in sport →</Link>
+        )}
       </div>
     </article>
   );

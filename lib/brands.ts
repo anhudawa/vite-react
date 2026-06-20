@@ -33,6 +33,10 @@ function brandSlug(brand: string): string {
 }
 
 /** Find the registry maker named in a watch string, if any. */
+export function brandOfWatch(watch: string): string | undefined {
+  return makerOf(watch);
+}
+
 function makerOf(watch: string): string | undefined {
   const w = watch.toLowerCase();
   return BRANDS.find(

@@ -32,6 +32,12 @@ jobs:
       - name: Verify every published fact clears the gauntlet
         run: npm run verify:facts
 
+      - name: Audit source permanence (report)
+        run: npm run verify:sources
+
+      - name: Forecast re-verification due dates (report)
+        run: npm run verify:freshness
+
       - name: Run verification test suite
         run: npm test
 

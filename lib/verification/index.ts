@@ -14,3 +14,4 @@ export {
   publishableFacts,
   assertPublishedFactsAreValid,
 } from "./validate";
+export { nextReCheck, sourceExpiry } from "./freshness";

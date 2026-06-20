@@ -87,3 +87,49 @@ export function personJsonLd(opts: {
     url: `${site.url}${opts.path}`,
   };
 }
+
+/** The watch itself, as a Product with its maker. No price/offers: an indicative
+ *  value is editorial context, not a real offer, so we never emit it as one. */
+export function productWatchJsonLd(opts: {
+  watch: string;
+  brand?: string;
+  reference?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: opts.watch,
+    category: "Wristwatch",
+    ...(opts.brand ? { brand: { "@type": "Brand", name: opts.brand } } : {}),
+    ...(opts.reference ? { mpn: opts.reference } : {}),
+  };
+}
+
+export function brandJsonLd(opts: { name: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    name: opts.name,
+    url: `${site.url}${opts.path}`,
+  };
+}
+
+export function itemListJsonLd(opts: {
+  name: string;
+  path: string;
+  items: { name: string; path: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: opts.name,
+    url: `${site.url}${opts.path}`,
+    numberOfItems: opts.items.length,
+    itemListElement: opts.items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      url: `${site.url}${it.path}`,
+    })),
+  };
+}
