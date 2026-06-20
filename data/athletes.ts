@@ -642,7 +642,415 @@ const federer: AthleteRef = {
   ],
 };
 
-export const athletes: AthleteRef[] = [pogacar, tiger, rahm, nadal, federer, pidcock];
+// Ambassador case — clean and archivable. Also backs the homepage image, closing
+// the gap between what we showed editorially and what we had verified.
+const beckham: AthleteRef = {
+  slug: "david-beckham",
+  name: "David Beckham",
+  discipline: "Football (retired)",
+  nationality: "British",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/David_Beckham",
+    "https://www.tudorwatch.com/en/partnerships/david-beckham",
+  ],
+  summary:
+    "Tudor's first brand ambassador, since 2017 — and the floor of the whole ledger: a few thousand pounds of Black Bay, not a six-figure flex.",
+  image: {
+    src: "/photography/beckham-tudor-bb58.jpg",
+    alt: "David Beckham against a concrete wall, a Tudor Black Bay on his wrist",
+    caption: "Tudor Black Bay 58",
+    rights: "unlicensed-placeholder",
+  },
+  facts: [
+    {
+      id: "beckham-tudor",
+      status: "published",
+      athlete: "David Beckham",
+      watch: "Tudor Black Bay 58",
+      relation: "Ambassador — Tudor since 2017",
+      evidence: "Tudor's first ambassador; worn at Wimbledon 2025",
+      confidence: "High",
+      confidenceNote: "official + independent media",
+      reference: undefined,
+      value: { gbpApprox: 3200, note: "Black Bay 58, indicative retail" },
+      sources: [
+        {
+          id: "tudor-official",
+          publisher: "Tudor",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.tudorwatch.com/en/partnerships/david-beckham",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260203021312/https://www.tudorwatch.com/en/partnerships/david-beckham",
+            capturedAt: "2026-02-03",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Tudor's official partnerships pages present David Beckham as a brand ambassador (live page access-restricted; confirmed via the archived capture).",
+          supports: ["athlete", "relation"],
+          verified: true,
+        },
+        {
+          id: "watchonista-beckham",
+          publisher: "Watchonista",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.watchonista.com/articles/events/david-beckham-best-brand-ambassador-ever",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260212032957/https://www.watchonista.com/articles/events/david-beckham-best-brand-ambassador-ever",
+            capturedAt: "2026-02-12",
+          },
+          publishedAt: "2025-06-24",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“I like to have a long-term plan with partners,” Beckham on roughly a decade with Tudor.",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "watchpro-beckham",
+          publisher: "WatchPro",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.watchpro.com/david-beckham-teases-tiffany-dialled-tudor-black-bay-chronograph-in-turquoise/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20250117131650/https://www.watchpro.com/david-beckham-teases-tiffany-dialled-tudor-black-bay-chronograph-in-turquoise/",
+            capturedAt: "2025-01-17",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Reported Beckham teasing a custom Tudor Black Bay Chronograph (page access-restricted; confirmed via the archived capture).",
+          supports: ["watch", "evidence"],
+          verified: true,
+        },
+        {
+          id: "beckham-photo",
+          publisher: "On-file photograph",
+          kind: "photo",
+          tier: "primary",
+          accessedAt: "2026-06-16",
+          excerpt: "David Beckham wearing a Tudor Black Bay on the wrist.",
+          supports: ["athlete", "watch", "evidence"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Black Bay 58 vs Black Bay Chrono — both documented on him; the one-off diamond Chrono is not a catalogue reference",
+          "Beckham's older Breitling-era endorsements predate the current Tudor relationship",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Tudor's first brand ambassador (2017). Logged as a paid ambassadorship; the Black Bay 58 is the model in our frame.",
+      },
+    },
+  ],
+  notes: [
+    "Beckham was Tudor's first brand ambassador, signed in 2017, and remains the face the brand built its modern relaunch around. The relationship is a paid ambassadorship — confirmed by Tudor itself and by independent watch media.",
+    "He matters to this ledger for the opposite reason to Nadal: the watch is a few thousand pounds, not a few hundred thousand. A Black Bay is an honest tool watch worn by a man who could buy anything — which is its own kind of statement.",
+    "Logged as paid to wear it, with the model in our frame named and the source archived against the day the brand quietly edits the page.",
+  ],
+};
+
+// Ambassador case — also backs the homepage and essay imagery of him.
+const mvdp: AthleteRef = {
+  slug: "mathieu-van-der-poel",
+  name: "Mathieu van der Poel",
+  discipline: "Road / cyclo-cross — Alpecin-Deceuninck",
+  nationality: "Dutch",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Mathieu_van_der_Poel",
+    "https://www.richardmille.com/friends-and-partners/mathieu-van-der-poel",
+  ],
+  summary:
+    "Pogačar's great rival, in the same six-figure Richard Mille — worn to win Paris-Roubaix, not to dinner.",
+  image: {
+    src: "/photography/van-der-poel.jpg",
+    alt: "Mathieu van der Poel roars in victory, a Richard Mille on his wrist",
+    caption: "Richard Mille RM 67-02",
+    rights: "unlicensed-placeholder",
+  },
+  facts: [
+    {
+      id: "mvdp-rm-67-02",
+      status: "published",
+      athlete: "Mathieu van der Poel",
+      watch: "Richard Mille RM 67-02",
+      relation: "Ambassador — Richard Mille partner since 2025",
+      evidence: "Worn winning the 2025 Paris-Roubaix; RM partner since January 2025",
+      confidence: "High",
+      confidenceNote: "official + independent media",
+      reference: "RM 67-02",
+      value: { gbpApprox: 150000, note: "RM 67-02, indicative" },
+      sources: [
+        {
+          id: "rm-official-mvdp",
+          publisher: "Richard Mille",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.richardmille.com/friends-and-partners/mathieu-van-der-poel",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260414034854/https://www.richardmille.com/friends-and-partners/mathieu-van-der-poel",
+            capturedAt: "2026-04-14",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“We are proud to welcome him to our family and look forward to supporting him in his next challenges.” — Amanda Mille",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "cyclingnews-mvdp",
+          publisher: "Cyclingnews",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.cyclingnews.com/news/why-are-tadej-pogacar-and-mathieu-van-der-poel-racing-the-tour-de-france-in-usd300k-watches-and-arent-they-going-to-break-them/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260311034157/https://www.cyclingnews.com/news/why-are-tadej-pogacar-and-mathieu-van-der-poel-racing-the-tour-de-france-in-usd300k-watches-and-arent-they-going-to-break-them/",
+            capturedAt: "2026-03-11",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Reported Pogačar and van der Poel racing in roughly $300k Richard Mille watches (the RM 67-02).",
+          supports: ["watch", "evidence"],
+          verified: true,
+        },
+        {
+          id: "domestique-mvdp",
+          publisher: "Domestique Cycling",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.domestiquecycling.com/en/features/luxury-on-the-line-why-pogacar-and-van-der-poel-wear-eur300k-watches-in-the-heat-of-the-battle/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260413035516/https://www.domestiquecycling.com/en/features/luxury-on-the-line-why-pogacar-and-van-der-poel-wear-eur300k-watches-in-the-heat-of-the-battle/",
+            capturedAt: "2026-04-13",
+          },
+          publishedAt: "2026-04-11",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“Mathieu van der Poel thundered to victory, also wearing the same Richard Mille model.”",
+          supports: ["athlete", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "mvdp-photo",
+          publisher: "On-file photograph",
+          kind: "photo",
+          tier: "primary",
+          accessedAt: "2026-06-16",
+          excerpt: "Mathieu van der Poel in victory, a Richard Mille RM 67-02 on his wrist.",
+          supports: ["athlete", "watch", "evidence"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "NOT a Canyon-SRAM tie — it is an individual Richard Mille partnership; his trade team is Alpecin-Deceuninck",
+          "Teammate-in-the-peloton look-alike: Pogačar wears the same RM at the same races — confirm the wrist is MvdP's",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Individual Richard Mille partnership announced January 2025; the RM 67-02 worn racing — corroborated by Richard Mille and independent cycling media.",
+      },
+    },
+  ],
+  notes: [
+    "Van der Poel joined Richard Mille's family in January 2025, and like his rival Pogačar he wears the RM 67-02 — the extra-flat automatic built to be raced — over the cobbles of Paris-Roubaix, which he won with it on his wrist.",
+    "It is the same watch, the same race, the same contradiction as Pogačar's: a six-figure mechanical movement asked to do the one thing it is actually engineered for — survive — while a bike computer does the timing.",
+    "Logged as a paid partnership, and kept distinct from the false 'Canyon-SRAM' framing that circulates: this is an individual deal, his trade team is Alpecin-Deceuninck.",
+  ],
+};
+
+// HELD personal-purchase cases — the hard, true side of the thesis. Each is
+// almost certainly real, and each fails OUR bar for a specific, honest reason.
+const ronaldo: AthleteRef = {
+  slug: "cristiano-ronaldo",
+  name: "Cristiano Ronaldo",
+  discipline: "Football",
+  nationality: "Portuguese",
+  sameAs: ["https://en.wikipedia.org/wiki/Cristiano_Ronaldo"],
+  summary:
+    "The cleanest 'bought it himself' case we found — in his own words a Franck Muller collector, not their ambassador. Held only because the independent reporting predates our freshness window.",
+  facts: [
+    {
+      id: "ronaldo-franck-muller",
+      status: "in-review",
+      athlete: "Cristiano Ronaldo",
+      watch: "Franck Muller",
+      relation: "Personal — private collection",
+      evidence: "In his own words owned 'four or five Franck Muller watches' before any gift; not an FM ambassador",
+      confidence: "High",
+      confidenceNote: "held: independent sources predate freshness window",
+      reference: undefined,
+      value: { gbpApprox: 1200000, note: "one-of-one Cintrée Tourbillon, media-reported" },
+      sources: [
+        {
+          id: "fm-official-ronaldo",
+          publisher: "Franck Muller",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.franckmuller.com/news/cristiano-ronaldo-special-edition",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20220331014705/https://www.franckmuller.com/news/cristiano-ronaldo-special-edition",
+            capturedAt: "2022-03-31",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“I already have four or five Franck Muller watches, but never had a Perpetual Calendar in my collection.” — Ronaldo",
+          supports: ["athlete", "watch", "relation"],
+          verified: true,
+        },
+        {
+          id: "worldtempus-ronaldo",
+          publisher: "WorldTempus",
+          kind: "media",
+          tier: "secondary",
+          url: "https://en.worldtempus.com/article/watches/trends-and-style/franck-muller-cristiano-ronaldo-in-perpetuity-13356.html",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20200223220332/http://en.worldtempus.com:80/article/watches/trends-and-style/franck-muller-cristiano-ronaldo-in-perpetuity-13356.html",
+            capturedAt: "2020-02-23",
+          },
+          publishedAt: "2012-10-15",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“I already had four or five Franck Muller watches and the fact that Franck Muller himself came over and gave me the first timepiece…”",
+          supports: ["athlete", "watch", "relation"],
+          verified: true,
+        },
+        {
+          id: "highsnobiety-ronaldo",
+          publisher: "Highsnobiety",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.highsnobiety.com/p/cristiano-ronaldo-franck-muller-watch/",
+          publishedAt: "2020-01-01",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Ronaldo took to Instagram to show off his one-of-one Franck Muller Cintrée Tourbillon, worth a cool $1.5 million.",
+          supports: ["watch", "evidence"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "He IS a paid TAG Heuer and Jacob & Co (CR7) ambassador — those pieces are NOT personal purchases",
+          "The CR7 Perpetual Calendar was a GIFT, not bought — used only as evidence he was already an FM collector",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Held: the personal-collector claim is excellent in his own words, but the independent reporting is 2012–2020, beyond our freshness window, and we hold no archived visual of the specific watch. A current independent source or a dated image would clear it.",
+      },
+    },
+  ],
+  notes: [
+    "This is the case that proves the rule. Ronaldo is on record, in his own words, that he owned four or five Franck Muller watches before the brand ever gave him one — and he is not a Franck Muller ambassador. As a 'bought it himself' story, the framing is clean.",
+    "And yet we hold it. The independent reporting dates from 2012 to 2020, beyond the window where our policy still counts media as live, and we hold no archived image of the specific watch. The relationship is real; the proof, to our standard, is not yet current.",
+    "That is not a flaw to apologise for. It is the asymmetry at the heart of this site: a brand will hand you proof of its ambassadors today, but nobody files a press release when a man spends his own money. The truer story is the harder one to stand up — which is exactly why it is worth the work.",
+  ],
+};
+
+const canelo: AthleteRef = {
+  slug: "canelo-alvarez",
+  name: "Canelo Álvarez",
+  discipline: "Boxing",
+  nationality: "Mexican",
+  sameAs: ["https://en.wikipedia.org/wiki/Canelo_%C3%81lvarez"],
+  summary:
+    "Filmed selecting and buying a $1.4M Jacob & Co. himself — held only because the sources aren't archived to our permanence standard.",
+  facts: [
+    {
+      id: "canelo-jacob-co",
+      status: "in-review",
+      athlete: "Canelo Álvarez",
+      watch: "Jacob & Co Opera Godfather",
+      relation: "Personal — private purchase",
+      evidence: "Filmed at the boutique selecting the watch: 'I want this one'",
+      confidence: "High",
+      confidenceNote: "held: sources not archived to permanence standard",
+      reference: undefined,
+      value: { gbpApprox: 1050000, note: "~$1.4M, media-reported" },
+      sources: [
+        {
+          id: "netflix-canelo",
+          publisher: "Netflix Sports",
+          kind: "video",
+          tier: "secondary",
+          url: "https://www.facebook.com/NetflixSports/videos/canelo-shows-off-his-14-million-watch/1097140789193663/",
+          publishedAt: "2025-09-13",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Canelo Álvarez puts on a $1.4 million Jacob & Co. watch and says, 'I want this one too.'",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "essentially-canelo",
+          publisher: "EssentiallySports",
+          kind: "media",
+          tier: "tertiary",
+          url: "https://www.essentiallysports.com/boxing-news-canelo-alvarez-s-watch-collection-including-new-three-point-eight-million-dollar-purchase/",
+          publishedAt: "2025-09-10",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“The super middleweight champion indulged in a shopping spree and spent about $3.8M.”",
+          supports: ["watch", "relation", "evidence"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Roger Dubuis IS a paid Canelo partnership — those pieces are not personal purchases",
+          "$3.8M vs $2.85M shopping-spree totals don't reconcile across outlets; the $1.4M single piece is the firmest figure",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Held: we have load-bearing video of him buying it, but the sources carry no web archive (permanence requires ≥2 archived independent) and the text reporting is tier-3. Archive the footage and add a watch-desk source to clear it.",
+      },
+    },
+  ],
+  notes: [
+    "On camera, in a boutique, Canelo tries on a $1.4 million Jacob & Co. Opera Godfather and says, simply, 'I want this one.' There is no cleaner picture of a man buying a watch with his own money — no ambassador contract, no press release, just the purchase.",
+    "We hold it anyway. The footage is real but unarchived, and the written reporting is from sports-aggregator outlets rather than a watch desk — below the permanence and corroboration bar we now enforce.",
+    "It sits here as honest work-in-progress, and as the second half of the lesson Ronaldo teaches: the personal purchase, the most interesting story in the room, is the one the evidence ecosystem is built to ignore.",
+  ],
+};
+
+export const athletes: AthleteRef[] = [
+  pogacar,
+  tiger,
+  rahm,
+  nadal,
+  mvdp,
+  beckham,
+  ronaldo,
+  canelo,
+  federer,
+  pidcock,
+];
 
 /** An athlete is publishable iff it has at least one publishable fact. */
 export function publishedAthletes(): AthleteRef[] {

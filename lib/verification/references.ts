@@ -20,6 +20,10 @@ export const BRANDS: BrandRule[] = [
   { brand: "Audemars Piguet", aliases: ["AP"], pattern: /^\d{5}[A-Z]{2}\.[A-Z0-9.]+$/i },
   { brand: "Patek Philippe", aliases: ["Patek"], pattern: /^\d{4}[A-Z]?(\/\d+[A-Z]?)?(-\d{3})?$/i },
   { brand: "Tag Heuer", aliases: ["TAG Heuer"], pattern: /^[A-Z]{3}\d{4}\.[A-Z]{2}\d{4}$/i },
+  // High-jewellery / independent makers that recur in personal-collection cases.
+  { brand: "Jacob & Co", aliases: ["Jacob and Co", "Jacob & Co."], pattern: /^[A-Z]{2}\d{3}\..+$/i },
+  { brand: "Roger Dubuis", pattern: /^[A-Z]{4}\d{2}.+$/i },
+  { brand: "Franck Muller", pattern: /^\d{3,4}\s?[A-Z]{1,4}.+$/i },
 ];
 
 export interface ReferenceCheck {

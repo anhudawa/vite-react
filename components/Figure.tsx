@@ -17,6 +17,7 @@ export function Figure({
   objectPosition,
   sizes = "(max-width: 900px) 100vw, 40vw",
   className = "",
+  unverified = false,
 }: {
   src: string;
   alt: string;
@@ -28,6 +29,9 @@ export function Figure({
   objectPosition?: string;
   sizes?: string;
   className?: string;
+  /** Marks a photo whose watch claim has NOT cleared the gauntlet — an honest
+   *  sighting, visibly distinct from a verified reference. */
+  unverified?: boolean;
 }) {
   return (
     <figure className={`${styles.figure} ${className}`}>
@@ -56,6 +60,11 @@ export function Figure({
             </span>
           )}
           {watch && <span className={styles.watch}>{watch}</span>}
+          {unverified && (
+            <span className={styles.unverified} title="A sighting — not a verified reference">
+              unverified sighting
+            </span>
+          )}
         </figcaption>
       )}
     </figure>

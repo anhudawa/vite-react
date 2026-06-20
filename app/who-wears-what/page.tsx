@@ -22,12 +22,6 @@ const spotted = [
     subject: "Ilia Topuria",
     watch: "Richard Mille",
   },
-  {
-    src: "/photography/beckham-tudor-bb58.jpg",
-    alt: "David Beckham against a concrete wall, a Tudor Black Bay on his wrist",
-    subject: "David Beckham",
-    watch: "Tudor",
-  },
 ];
 
 export const metadata: Metadata = {
@@ -95,6 +89,7 @@ export default function WhoWearsWhat() {
                 alt={s.alt}
                 subject={s.subject}
                 watch={s.watch}
+                unverified
                 ratio="4 / 5"
                 sizes="(max-width: 700px) 100vw, 30vw"
               />
