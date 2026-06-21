@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { FactBlock } from "@/components/FactBlock";
 import { FactProvenance } from "@/components/FactProvenance";
 import { Figure } from "@/components/Figure";
+import { EmailCapture } from "@/components/EmailCapture";
 import {
   athletes,
   getPublishedAthlete,
@@ -27,6 +28,18 @@ assertPublishedFactsAreValid(athletes.flatMap((a) => a.facts));
 
 export function generateStaticParams() {
   return publishedAthletes().map((a) => ({ athlete: a.slug }));
+}
+
+// A sport-aware capture hook for the reference pages — these are the AI-search
+// landing pages where converting the reader to email matters most.
+function directoryHook(discipline = ""): string {
+  const d = discipline.toLowerCase();
+  if (/cycl|road|tour|peloton|gravel/.test(d)) return "Get the full pro peloton watch directory.";
+  if (/golf/.test(d)) return "Get the full golf watch directory.";
+  if (/tennis/.test(d)) return "Get the full tennis watch directory.";
+  if (/mma|ufc|box|fight/.test(d)) return "Get the full fight-game watch directory.";
+  if (/foot|soccer/.test(d)) return "Get the full football watch directory.";
+  return "Get the full athlete watch directory.";
 }
 
 export function generateMetadata({
@@ -126,6 +139,15 @@ export default function AthletePage({
             </p>
           ))}
         </div>
+      </div>
+
+      <div className={`container ${styles.capture}`}>
+        <EmailCapture
+          variant="inline"
+          source={`athlete:${a.slug}`}
+          hook={directoryHook(a.discipline)}
+          offer={`Every new athlete we add: the watch, whether they bought it or are paid to wear it, and what it costs. Starting with the names like ${a.name.split(" ").slice(-1)[0]}.`}
+        />
       </div>
 
       <div className={`container ${styles.back}`}>

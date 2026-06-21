@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import { FactBlock } from "@/components/FactBlock";
 import { Figure } from "@/components/Figure";
 import { Pull } from "@/components/prose/Pull";
+import { EmailCapture } from "@/components/EmailCapture";
 
 /**
  * Root MDX mapping (App Router). Essays render through these so the typographic
@@ -14,6 +15,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     FactBlock,
     Figure,
     Pull,
+    EmailCapture,
     ...components,
   };
 }

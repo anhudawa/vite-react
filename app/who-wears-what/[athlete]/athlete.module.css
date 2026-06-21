@@ -105,6 +105,10 @@
   margin-right: 0.07em;
 }
 
+.capture {
+  margin-top: var(--s-9);
+}
+
 .back {
   margin-top: var(--s-8);
   display: flex;

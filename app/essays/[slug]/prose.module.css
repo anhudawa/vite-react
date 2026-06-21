@@ -74,6 +74,12 @@
   padding-inline: var(--gutter);
 }
 
+.inlineCapture {
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
+}
+
 .tags {
   list-style: none;
   display: flex;

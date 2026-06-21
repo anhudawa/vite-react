@@ -75,6 +75,28 @@
   gap: var(--s-3);
 }
 
+.cta {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--radius);
+  padding: var(--s-2) var(--s-4);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: filter var(--dur-1) var(--ease-mech);
+}
+.cta:hover {
+  filter: brightness(1.06);
+}
+@media (max-width: 820px) {
+  .cta {
+    display: none;
+  }
+}
+
 .searchLink {
   display: inline-flex;
   align-items: center;

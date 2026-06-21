@@ -3,6 +3,7 @@ import { grotesque, serif, mono } from "./fonts";
 import { ThemeScript } from "@/components/ThemeScript";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { EmailPopup } from "@/components/EmailPopup";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -78,6 +79,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <EmailPopup />
       </body>
     </html>
   );

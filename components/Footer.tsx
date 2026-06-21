@@ -1,12 +1,22 @@
 import Link from "next/link";
 import { nav, secondaryNav, site } from "@/lib/site";
 import { Mark } from "./Mark";
+import { EmailCapture } from "./EmailCapture";
 import styles from "./Footer.module.css";
 
 export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
+      <div className={styles.capture}>
+        <EmailCapture
+          variant="footer"
+          source="footer"
+          hook="Every new wrist, in your inbox."
+          offer="Who wears what, whether they bought it or are paid to, and what it costs. The occasional essay. No hype."
+        />
+      </div>
+
       <div className={styles.inner}>
         <div className={styles.brandCol}>
           <Mark size={40} className={styles.mark} />

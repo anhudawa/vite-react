@@ -49,6 +49,9 @@ export function Header() {
         </nav>
 
         <div className={styles.controls}>
+          <Link href="/find-your-watch" className={styles.cta}>
+            Find your watch
+          </Link>
           <Link href="/search" className={styles.searchLink} aria-label="Search">
             <svg
               width="16"
@@ -84,6 +87,13 @@ export function Header() {
         hidden={!open}
       >
         <ol className={styles.sheetList}>
+          <li>
+            <Link href="/find-your-watch" className={styles.sheetLink}>
+              <span className={styles.sheetIndex}>→</span>
+              <span className={styles.sheetLabel}>Find your watch</span>
+              <span className={styles.sheetNote}>The 7-question diagnostic</span>
+            </Link>
+          </li>
           {nav.map((item, i) => (
             <li key={item.href}>
               <Link href={item.href} className={styles.sheetLink}>

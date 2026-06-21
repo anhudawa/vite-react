@@ -10,6 +10,7 @@ import { RelatedEssays } from "@/components/RelatedEssays";
 import { Byline } from "@/components/Byline";
 import { AuthorModule } from "@/components/AuthorModule";
 import { Figure } from "@/components/Figure";
+import { EmailCapture } from "@/components/EmailCapture";
 import { tagSlug } from "@/lib/tags";
 import styles from "./prose.module.css";
 
@@ -110,6 +111,15 @@ export default function EssayPage({ params }: { params: { slug: string } }) {
 
       <div className={styles.body}>
         <Content />
+      </div>
+
+      <div className={styles.inlineCapture}>
+        <EmailCapture
+          variant="inline"
+          source={`essay:${essay.slug}`}
+          hook={essay.emailHook}
+          offer={essay.emailOffer}
+        />
       </div>
 
       <div className={styles.authorSlot}>

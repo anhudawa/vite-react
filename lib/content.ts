@@ -8,6 +8,9 @@ export interface EssayMeta {
   readingTime: string;
   kicker?: string;
   tags?: string[];
+  /** Drive the after-article email capture CTA, per piece. */
+  emailHook?: string;
+  emailOffer?: string;
   image?: {
     src: string;
     alt: string;

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { SportGuide } from "@/components/SportGuide";
+import { EmailCapture } from "@/components/EmailCapture";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import { buyersGuides, getGuide } from "@/data/buyers-guides";
 
@@ -49,6 +50,16 @@ export default async function SportGuidePage({
         image={guide.image}
       />
       <SportGuide guide={guide} />
+
+      <div className="container" style={{ maxWidth: "44rem", margin: "0 auto", paddingBottom: "4rem" }}>
+        <EmailCapture
+          variant="gate"
+          source={`guide:${guide.slug}`}
+          hook="Get the athlete’s watch buying guide."
+          offer={`The full ${guide.sport.toLowerCase()} shortlist, the next sports as we publish them, and the bought-vs-paid breakdowns — in your inbox.`}
+          cta="Send it to me"
+        />
+      </div>
     </>
   );
 }

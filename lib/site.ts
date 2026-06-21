@@ -42,4 +42,5 @@ export const secondaryNav: NavItem[] = [
   { label: "By Brand", href: "/brands" },
   { label: "About", href: "/about" },
   { label: "Colophon", href: "/colophon" },
+  { label: "Privacy", href: "/privacy" },
 ];
