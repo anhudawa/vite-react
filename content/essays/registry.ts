@@ -4,8 +4,20 @@ import SameMachine, { meta as sameMachine } from "./the-same-machine.mdx";
 import WhatItCosts, { meta as whatItCosts } from "./what-it-costs-to-keep-time.mdx";
 import SweepSurge, { meta as sweepSurge } from "./the-sweep-and-the-surge.mdx";
 import MessiWore, { meta as messiWore } from "./what-messi-actually-wore.mdx";
+import FieldGuide, { meta as fieldGuide } from "./watches-in-sport-field-guide.mdx";
+import WorldCup, { meta as worldCup } from "./watches-and-the-world-cup.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "watches-and-the-world-cup",
+    meta: worldCup as unknown as EssayMeta,
+    Content: WorldCup,
+  },
+  {
+    slug: "watches-in-sport-field-guide",
+    meta: fieldGuide as unknown as EssayMeta,
+    Content: FieldGuide,
+  },
   {
     slug: "what-messi-actually-wore",
     meta: messiWore as unknown as EssayMeta,

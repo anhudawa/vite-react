@@ -11,6 +11,18 @@ export const metadata: Metadata = {
 
 const live: IndexItem[] = [
   {
+    title: "Watches in Sport: A Field Guide",
+    dek: "Tennis, golf, cycling, football, boxing — where fine watches show up across every sport, and the one question that tells you what each really means.",
+    href: "/essays/watches-in-sport-field-guide",
+    meta: "Essay · The overview",
+  },
+  {
+    title: "Watches and the World Cup",
+    dek: "The most-watched event on earth is the best wrist-watching on earth — and unlike golf or tennis, the watches there are mostly bought, not placed.",
+    href: "/essays/watches-and-the-world-cup",
+    meta: "Essay · On the wrist",
+  },
+  {
     title: "The Same Machine, Described Twice",
     dek: "Why a movement and an endurance athlete are the same device, described in two vocabularies — and why that is the only honest lens on the subject.",
     href: "/essays/the-same-machine",
