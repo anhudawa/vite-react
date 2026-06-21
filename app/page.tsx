@@ -42,8 +42,8 @@ export default function HomePage() {
             </h1>
             <p className={styles.heroDek}>
               The clock says they are. The body knows better. {site.name} is watches,
-              and the athletes who live by them — sourced, literate, and told by
-              someone who knows exactly what a second can cost.
+              and the athletes who live by them — told by someone who knows exactly
+              what a second can cost.
             </p>
             <div className={styles.heroActions}>
               <Link href="/who-wears-what" className={styles.primary}>
@@ -172,9 +172,9 @@ export default function HomePage() {
           <div className={styles.cineScrim} aria-hidden="true" />
         </div>
         <div className={`container ${styles.cineInner}`}>
-          <p className={styles.cineKicker}>The proof</p>
+          <p className={styles.cineKicker}>In the race</p>
           <h2 id="cine-h" className={styles.cineTitle}>
-            It isn&rsquo;t a claim until it&rsquo;s on the wrist, in the race.
+            Six figures on the wrist, over the worst roads in sport.
           </h2>
           <p className={styles.cineCredit}>
             Tadej Pogačar <span aria-hidden="true">·</span> Richard Mille RM 67-02
@@ -193,8 +193,8 @@ export default function HomePage() {
             >
               <p id="reference">
                 The real question isn&rsquo;t which watch — it&rsquo;s whether he bought
-                it or he&rsquo;s paid to wear it, and what it cost. Almost nobody checks.
-                We do, separate the placement from the purchase, and show the proof.
+                it or he&rsquo;s paid to wear it, and what it cost. That&rsquo;s the line
+                nobody else bothers to draw.
               </p>
             </SectionHeading>
             <dl className={styles.moneyStats}>

@@ -9,7 +9,7 @@ import styles from "./brands.module.css";
 export const metadata: Metadata = {
   title: "By Brand",
   description:
-    "The verified references grouped by maker — who wears each brand, whether they bought it or are paid to wear it, and what sits on those wrists.",
+    "The references grouped by maker — who wears each brand, whether they bought it or are paid to wear it, and what sits on those wrists.",
 };
 
 export default function BrandsPage() {
@@ -26,7 +26,7 @@ export default function BrandsPage() {
         index="—"
         kicker="The browse graph"
         title="By Brand"
-        intro="The same verified references, entered from the maker. Who wears each brand, whether they bought it or are paid to wear it, and what it all costs."
+        intro="The same references, entered from the maker. Who wears each brand, whether they bought it or are paid to wear it, and what it all costs."
       />
       <section className={`container ${styles.list}`}>
         {brands.map((b) => (

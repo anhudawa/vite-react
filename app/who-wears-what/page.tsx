@@ -51,7 +51,7 @@ export default function WhoWearsWhat() {
         index="01"
         kicker="Bought it, or paid to wear it"
         title="Who Wears What"
-        intro="The real question isn't which watch — it's whether he bought it or he's paid to wear it, and what it cost. Almost nobody checks. We do, separate the placement from the purchase, and show the proof."
+        intro="The real question isn't which watch — it's whether he bought it or he's paid to wear it, and what it cost. That's the line nobody else bothers to draw."
       />
 
       <section className={`container ${styles.lookup}`}>
@@ -119,13 +119,8 @@ export default function WhoWearsWhat() {
           ))}
         </ul>
         <p className={styles.note}>
-          A name only earns a reference page once its claim is fully verified. Until
-          then it&rsquo;s held here — visible, but never shown as fact. That restraint is
-          the whole point. See{" "}
-          <Link href="/verification" className={styles.noteLink}>
-            how we verify
-          </Link>
-          .
+          Names we&rsquo;re still standing up. Until the evidence is there, they stay
+          here — visible, but not yet presented as fact.
         </p>
       </section>
     </>

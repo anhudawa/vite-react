@@ -42,9 +42,9 @@ export function Subscribe() {
             Who bought it, who&rsquo;s paid to wear it — in your inbox.
           </h2>
           <p className={styles.note}>
-            Each new verified reference: the watch, the money, and whether it was
-            bought or it&rsquo;s a paid placement. The occasional essay. Nothing else,
-            no hype. Unsubscribe in one click.
+            Each new athlete we add: the watch, the money, and whether it was bought
+            or it&rsquo;s a paid placement. The occasional essay. Nothing else, no hype.
+            Unsubscribe in one click.
           </p>
         </div>
 
