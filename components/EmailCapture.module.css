@@ -157,6 +157,16 @@
 
 /* ====================== variants ====================== */
 
+/* The inline and gate variants sit on a raised (graphite) surface where
+   --text-dim drops below AA. Lift the offer and the legally-important consent
+   line to full --text on those surfaces. */
+.root[data-variant="inline"] .offer,
+.root[data-variant="gate"] .offer,
+.root[data-variant="inline"] .consentLabel,
+.root[data-variant="gate"] .consentLabel {
+  color: var(--text);
+}
+
 /* inline — a bordered block inside article flow */
 .root[data-variant="inline"] {
   border: var(--hairline) solid var(--rule);

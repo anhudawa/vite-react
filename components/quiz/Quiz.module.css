@@ -237,7 +237,7 @@ a.recCard:hover {
 }
 .recMovement {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: var(--t-mono-xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-text);

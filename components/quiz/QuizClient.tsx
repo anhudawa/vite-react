@@ -34,29 +34,36 @@ export function QuizClient() {
   const [answers, setAnswers] = useState<Answers>({});
   const [unlocked, setUnlocked] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const liveRef = useRef<HTMLParagraphElement>(null);
 
-  // restore progress on refresh
+  // Restore progress on refresh. `hydrated` gates the writer below so the
+  // initial commit (default state) can't clobber saved progress before the
+  // restored state lands.
   useEffect(() => {
     try {
       const raw = sessionStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const saved = JSON.parse(raw) as { phase: Phase; step: number; answers: Answers };
-      if (saved.answers) setAnswers(saved.answers);
-      if (saved.phase) setPhase(saved.phase);
-      if (typeof saved.step === "number") setStep(saved.step);
+      if (raw) {
+        const saved = JSON.parse(raw) as { phase: Phase; step: number; answers: Answers };
+        if (saved.answers) setAnswers(saved.answers);
+        if (saved.phase) setPhase(saved.phase);
+        if (typeof saved.step === "number") setStep(saved.step);
+      }
     } catch {
       /* ignore */
+    } finally {
+      setHydrated(true);
     }
   }, []);
 
   useEffect(() => {
+    if (!hydrated) return;
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ phase, step, answers }));
     } catch {
       /* ignore */
     }
-  }, [phase, step, answers]);
+  }, [hydrated, phase, step, answers]);
 
   const result = useMemo(
     () => (phase === "result" ? resolveResult(answers) : null),

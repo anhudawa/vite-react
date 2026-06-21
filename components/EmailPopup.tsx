@@ -138,7 +138,7 @@ export function EmailPopup() {
         className={styles.dialog}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="popup-hook"
+        aria-label="Subscribe to The Long Second"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -149,7 +149,7 @@ export function EmailPopup() {
         >
           <span aria-hidden="true">×</span>
         </button>
-        <div id="popup-hook">
+        <div>
           <EmailCapture
             variant="popup"
             source="popup"

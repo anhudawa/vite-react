@@ -5,6 +5,7 @@ import { SportGuide } from "@/components/SportGuide";
 import { EmailCapture } from "@/components/EmailCapture";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import { buyersGuides, getGuide } from "@/data/buyers-guides";
+import styles from "./guide.module.css";
 
 export function generateStaticParams() {
   return buyersGuides.map((g) => ({ sport: g.slug }));
@@ -51,7 +52,7 @@ export default async function SportGuidePage({
       />
       <SportGuide guide={guide} />
 
-      <div className="container" style={{ maxWidth: "44rem", margin: "0 auto", paddingBottom: "4rem" }}>
+      <div className={`container ${styles.capture}`}>
         <EmailCapture
           variant="gate"
           source={`guide:${guide.slug}`}
