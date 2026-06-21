@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { IndexList, type IndexItem } from "@/components/IndexList";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
+import { buyersGuides } from "@/data/buyers-guides";
+
+const bySport: IndexItem[] = buyersGuides.map((g) => ({
+  title: `${g.sport}: ${g.title}`,
+  dek: g.dek,
+  href: `/buying-guides/${g.slug}`,
+  meta: "Guide · by sport & budget",
+}));
 
 export const metadata: Metadata = {
   title: "Buying Guides",
@@ -26,15 +34,15 @@ const live: IndexItem[] = [
 
 const forthcoming: IndexItem[] = [
   {
-    title: "The Athlete's First Mechanical Watch",
-    dek: "Coming off a lifetime of GPS watches, the first mechanical is a different decision entirely. What to weigh, what to ignore, and why the cheapest honest answer is often the right one.",
-    meta: "Guide",
+    title: "Golf: What to Wear Inside the Ropes",
+    dek: "The most watch-saturated sport there is, and the one where the line between bought and paid runs straight down the fairway. Picks for the round and the clubhouse, by budget.",
+    meta: "Guide · by sport & budget",
     tag: "Drafting",
   },
   {
-    title: "What Survives the Sweat",
-    dek: "A watch worn while training lives a harder life than most collectors imagine. Water resistance, crystals, straps — the unglamorous specs that actually matter to someone who moves.",
-    meta: "Guide",
+    title: "Swimming & Triathlon: What Survives the Water",
+    dek: "Three disciplines, one wrist, and a watch that has to do all of it without drowning. The specs that matter when the swim leg is non-negotiable.",
+    meta: "Guide · by sport & budget",
     tag: "Drafting",
   },
 ];
@@ -62,7 +70,8 @@ export default function BuyingGuides() {
           position: "center 45%",
         }}
       />
-      <IndexList items={live} label="Start here" />
+      <IndexList items={bySport} label="Buy for your sport" />
+      <IndexList items={live} label="Read first — the frame" />
       <IndexList items={forthcoming} label="In the workshop" />
     </>
   );

@@ -33,8 +33,7 @@ export default function HomePage() {
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>
               <span className={styles.eyebrowMark} aria-hidden="true" />
-              Every sport <span aria-hidden="true">·</span> the watches{" "}
-              <span aria-hidden="true">·</span> the money
+              Every sport <span aria-hidden="true">·</span> every watch
             </p>
             <h1 id="hero-title" className={styles.heroTitle}>
               The watches athletes wear.
