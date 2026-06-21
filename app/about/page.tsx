@@ -57,6 +57,11 @@ export default function AboutPage() {
             Watches, and the athletes who live by them. Told by someone who knows exactly
             what a second can cost.
           </p>
+          <p>
+            How we work is simple: every watch here is something we can point you to a
+            source for, and we&rsquo;ll always tell you whether he bought it or was paid to
+            wear it. The sources sit under each fact. Open them.
+          </p>
           <p className={styles.sign}>— {site.author.name}</p>
 
           <div className={styles.cta}>

@@ -1,5 +1,9 @@
 import type { EssayEntry, EssayMeta } from "@/lib/content";
 
+// NOTE: `readingTime` in each essay's meta is COMPUTED, never hand-typed — run
+// `npm run reading-time` (scripts/reading-time.mjs) to regenerate it from the
+// actual word count at ~230 wpm. A label can't lie if no one writes it by hand.
+
 import SameMachine, { meta as sameMachine } from "./the-same-machine.mdx";
 import WhatItCosts, { meta as whatItCosts } from "./what-it-costs-to-keep-time.mdx";
 import SweepSurge, { meta as sweepSurge } from "./the-sweep-and-the-surge.mdx";

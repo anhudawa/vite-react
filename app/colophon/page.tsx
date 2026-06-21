@@ -176,11 +176,7 @@ export default function ColophonPage() {
           <li>Motion is mechanical and purposeful, and yields to reduced-motion.</li>
           <li>
             Make the Fact Block beautiful and consistent — and never let a claim render
-            until it has been{" "}
-            <a href="/verification" className={styles.inlineLink}>
-              fully verified
-            </a>
-            .
+            without the sources sitting quietly underneath it.
           </li>
         </ul>
       </section>

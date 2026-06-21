@@ -52,7 +52,7 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
         index="—"
         kicker="By brand"
         title={b.brand}
-        intro={`${b.wearers.length} verified ${
+        intro={`${b.wearers.length} ${
           b.wearers.length === 1 ? "wrist" : "wrists"
         } · ${formatGBP(b.totalGBP)} on the wrist · ${
           b.bought > 0

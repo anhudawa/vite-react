@@ -64,7 +64,7 @@ const pogacar: AthleteRef = {
       relation: "Sponsored — UAE Team Emirates",
       evidence: "Worn at 2025 Paris–Roubaix",
       confidence: "High",
-      confidenceNote: "multiple sources",
+      confidenceNote: "multiple independent reports",
       reference: "RM 67-02",
       value: { gbpApprox: 150000, note: "RM 67-02, indicative retail" },
       sources: [
@@ -159,7 +159,7 @@ const pidcock: AthleteRef = {
   nationality: "British",
   sameAs: ["https://en.wikipedia.org/wiki/Tom_Pidcock"],
   summary:
-    "A reference in progress. The relationship is plausible but not yet sourced to the standard the gauntlet requires — so it is held here, not published.",
+    "A reference in progress. The relationship is plausible, but we haven't pinned down the watch yet — so it sits here, not published.",
   facts: [
     {
       id: "pidcock-draft",
@@ -167,7 +167,7 @@ const pidcock: AthleteRef = {
       athlete: "Tom Pidcock",
       watch: "(undetermined)",
       relation: "Reportedly brand-affiliated",
-      evidence: "Single uncorroborated mention",
+      evidence: "Single unconfirmed mention",
       confidence: "Low",
       reference: undefined,
       sources: [
@@ -303,7 +303,7 @@ const tiger: AthleteRef = {
     },
   ],
   notes: [
-    "Woods has been a Rolex testimonee since 2011 — one of the longest-running ambassadorships in golf, and Rolex still publishes him among its golf family. The relationship is the verifiable fact here, corroborated by Rolex itself and by independent watch media.",
+    "Woods has been a Rolex testimonee since 2011 — one of the longest-running ambassadorships in golf, and Rolex still publishes him among its golf family. The relationship is the fact here, confirmed by Rolex itself and by independent watch media.",
     "He is most associated with the Deepsea Sea-Dweller — a watch he has called a natural fit for its reliability, and wore (in the James Cameron edition) winning the 2019 Masters. In our frame it is the dress side of the same relationship: the Everose Day-Date on the President bracelet.",
     "We log this as an ambassadorship rather than a single reference. That distinction — the relationship versus a specific model — is exactly the thing the rest of the internet flattens, and exactly what this page exists to keep straight.",
   ],
@@ -418,7 +418,7 @@ const rahm: AthleteRef = {
     },
   ],
   notes: [
-    "Rahm is a Rolex golf testimonee — confirmed by Rolex's own family pages and by independent watch reporting. The relationship is the verifiable claim; the specific watch most often documented on him is the Sky-Dweller in white Rolesor with a blue dial.",
+    "Rahm is a Rolex golf testimonee — confirmed by Rolex's own family pages and by independent watch reporting. The relationship is on the record; the specific watch most often documented on him is the Sky-Dweller in white Rolesor with a blue dial.",
     "He wore that Sky-Dweller celebrating the 2023 Masters, and it has been photographed on him as far back as 2019. That consistency over years is what separates a relationship from a one-off red-carpet loan.",
     "A green-dial Datejust appears in some imagery of Rahm, but we could find no text source tying him to it — so we do not claim it. The ambassadorship is published; the Datejust is held. That line is the whole point of the page.",
   ],
@@ -553,7 +553,7 @@ const federer: AthleteRef = {
     "https://www.rolex.com/rolex-family/tennis/roger-federer",
   ],
   summary:
-    "The relationship is beyond doubt — a Rolex testimonee for over two decades. We hold it here for one reason only: our visual-evidence gate wants a dated, on-file image before we rate it High.",
+    "The relationship is beyond doubt — a Rolex testimonee for over two decades. We hold it here for one reason only: we want a dated, on-file image of the watch on his wrist before we rate it High.",
   facts: [
     {
       id: "federer-rolex",
@@ -563,7 +563,7 @@ const federer: AthleteRef = {
       relation: "Ambassador — Rolex testimonee since 2001",
       evidence: "Documented for two decades; Day-Date, Datejust 'Wimbledon', Sky-Dweller",
       confidence: "High",
-      confidenceNote: "held: on-file visual pending",
+      confidenceNote: "holding for a dated on-file image",
       reference: undefined,
       value: { gbpApprox: 30000, note: "Day-Date / Datejust, indicative" },
       sources: [
@@ -638,8 +638,8 @@ const federer: AthleteRef = {
   ],
   notes: [
     "There is no real doubt that Federer is a Rolex testimonee — Rolex says so on its own site, and independent reporting has for twenty years. We could publish on the strength of the words alone.",
-    "We don't. Our visual-evidence gate asks for a dated, located image we hold before any claim is rated High — words, however authoritative, aren't enough. Until we attach that image, Federer stays here, in review.",
-    "That is the standard working on the hardest case to apply it to. If we hold Federer, you can trust what we do publish.",
+    "We don't. We want a dated, located image of the watch in hand before we rate any claim High — words, however authoritative, aren't enough. Until we have that image, Federer stays here, in review.",
+    "That is the discipline working on the hardest case to apply it to. If we hold Federer, you can trust what we do publish.",
   ],
 };
 
@@ -885,7 +885,7 @@ const ronaldo: AthleteRef = {
   nationality: "Portuguese",
   sameAs: ["https://en.wikipedia.org/wiki/Cristiano_Ronaldo"],
   summary:
-    "The cleanest 'bought it himself' case we found — in his own words a Franck Muller collector, not their ambassador. Now held on one thing only: a dated, on-file image to satisfy visual evidence.",
+    "The cleanest 'bought it himself' case we found — in his own words a Franck Muller collector, not their ambassador. Now held on one thing only: a dated, on-file image of the watch on his wrist.",
   facts: [
     {
       id: "ronaldo-franck-muller",
@@ -895,7 +895,7 @@ const ronaldo: AthleteRef = {
       relation: "Personal — private collection",
       evidence: "In his own words owned 'four or five Franck Muller watches' before any gift; not an FM ambassador",
       confidence: "High",
-      confidenceNote: "held: on-file visual pending",
+      confidenceNote: "holding for a dated on-file image",
       reference: undefined,
       value: { gbpApprox: 1200000, note: "one-of-one Cintrée Tourbillon, media-reported" },
       sources: [
@@ -966,7 +966,7 @@ const ronaldo: AthleteRef = {
   notes: [
     "This is the case that proves the rule. Ronaldo is on record, in his own words, that he owned four or five Franck Muller watches before the brand ever gave him one — and he is not a Franck Muller ambassador. As a 'bought it himself' story, the framing is clean.",
     "It taught us something about our own method. A sponsorship can end, so we expire old media — but a purchase already happened, and stays true. So we changed the policy: ownership claims no longer go stale. That alone moved Ronaldo from four gates to seven.",
-    "He is held now on one thing only: a dated, on-file image to satisfy visual evidence. That is the honest asymmetry — a brand hands you proof of its ambassadors today, but nobody files a press release when a man spends his own money. The truer story is the harder one to stand up.",
+    "He is held now on one thing only: a dated, on-file image of the watch on his wrist. That is the honest asymmetry — a brand hands you proof of its ambassadors today, but nobody files a press release when a man spends his own money. The truer story is the harder one to stand up.",
   ],
 };
 
@@ -1099,8 +1099,8 @@ const canelo: AthleteRef = {
   ],
   notes: [
     "On camera, in a boutique, Canelo tries on a Jacob & Co. Opera Godfather and says, simply, 'I want this one.' There is no cleaner picture of a man buying a watch with his own money — no ambassador contract, no press release, just the purchase.",
-    "This is the reference that completes the thesis. Every other published name here is paid to wear it; Canelo bought it. That it took filmed evidence and multiple archived reports to clear — while a brand can confirm an ambassador with one press release — is exactly the asymmetry this site exists to push against.",
-    "We log the conservative price. The footage and one outlet say $1.4 million; two others put the Rose Gold Opera Godfather nearer $435,000. We show the lower, better-corroborated figure and name the spread rather than reach for the bigger number.",
+    "This is the reference that completes the thesis. Every other published name here is paid to wear it; Canelo bought it. That it took filmed evidence and multiple archived reports to stand up — while a brand can confirm an ambassador with one press release — is exactly the asymmetry this site exists to push against.",
+    "We log the conservative price. The footage and one outlet say $1.4 million; two others put the Rose Gold Opera Godfather nearer $435,000. We show the lower, better-documented figure and name the spread rather than reach for the bigger number.",
   ],
 };
 
@@ -1115,7 +1115,7 @@ const mcgregor: AthleteRef = {
   nationality: "Irish",
   sameAs: ["https://en.wikipedia.org/wiki/Conor_McGregor"],
   summary:
-    "Brand-confirmed as a Jacob & Co. buyer, not an ambassador — he purchased it himself. Held on visual evidence and a primary source: the footage is his own, on Instagram, where we can't verify it.",
+    "Brand-confirmed as a Jacob & Co. buyer, not an ambassador — he purchased it himself. Held for two reasons: the footage is his own, locked behind Instagram, and the brand's word reaches us only second-hand.",
   facts: [
     {
       id: "mcgregor-jacob-co",
@@ -1125,7 +1125,7 @@ const mcgregor: AthleteRef = {
       relation: "Personal — private purchase",
       evidence: "Jacob & Co. confirmed he 'purchased' it at the boutique; he filmed the visit",
       confidence: "High",
-      confidenceNote: "held: verifiable visual + a primary source pending",
+      confidenceNote: "holding for first-hand footage and a primary source",
       reference: undefined,
       value: { gbpApprox: 730000, note: "Astronomia; a second piece (Rasputin) is contested across sources" },
       sources: [
@@ -1200,8 +1200,8 @@ const mcgregor: AthleteRef = {
   ],
   notes: [
     "Jacob & Co. publicly stated McGregor 'purchased' the watch at their boutique — a customer, not a paid ambassador. That brand confirmation, plus independent archived coverage, makes the purchase one of the better-attested personal buys in sport.",
-    "We still hold it. Our visual-evidence gate wants footage we can verify, and his is on Instagram, behind a login we can't get past; and the brand's confirmation reaches us only second-hand. Strong as it is, it isn't yet proven to our standard.",
-    "There is an arc here worth being honest about: we removed an earlier 'McGregor · Richard Mille' sighting because we couldn't source it, and logged the correction. This is the opposite — a claim we CAN largely source, parked one or two gates short. Both are the system working.",
+    "We still hold it. We want footage we can open and watch for ourselves, and his is on Instagram, behind a login we can't get past; and the brand's confirmation reaches us only second-hand. Strong as it is, we're not putting our name to it yet.",
+    "There is an arc here worth being honest about: we removed an earlier 'McGregor · Richard Mille' sighting because we couldn't source it, and logged the correction. This is the opposite — a claim we CAN largely source, parked just short of the bar. Both are the same care working.",
   ],
 };
 

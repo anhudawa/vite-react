@@ -23,7 +23,7 @@ export const site = {
       { label: "Discipline", value: "Road · endurance" },
       { label: "Racing", value: "Masters category · 20+ years" },
       { label: "Field", value: "Horology — independent study" },
-      { label: "Standard", value: "Every reference, sourced" },
+      { label: "Standard", value: "Every reference, cited" },
     ],
   },
 } as const;
@@ -41,6 +41,5 @@ export const nav: NavItem[] = [
 export const secondaryNav: NavItem[] = [
   { label: "By Brand", href: "/brands" },
   { label: "About", href: "/about" },
-  { label: "Verification", href: "/verification" },
   { label: "Colophon", href: "/colophon" },
 ];

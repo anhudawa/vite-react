@@ -15,12 +15,11 @@ export interface SearchDoc {
 
 const SECTION_BLURBS: Record<string, string> = {
   "/who-wears-what":
-    "The sourced reference — which athletes wear which watches, and exactly how sure we are.",
+    "Which athletes wear which watches — and whether they bought it or are paid to.",
   "/watches-in-sport": "How timing, sponsorship and the watch live inside sport.",
   "/buying-guides": "Not a shop. How a watch is made and how it lives on a wrist.",
   "/essays": "Long-form on athletes, watches, and the one thing they share — time.",
   "/about": "Who The Long Second is for, and why an athlete is the one telling it.",
-  "/verification": "How every claim clears the verification gauntlet before it is published.",
 };
 
 /** The whole searchable corpus, assembled at build time. Small by design — titles,

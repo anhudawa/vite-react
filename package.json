@@ -12,7 +12,8 @@
     "verify:sources": "tsx scripts/verify-sources.mts",
     "verify:freshness": "tsx scripts/verify-freshness.mts",
     "qa:copy": "tsx scripts/qa-copy.mts",
-    "test": "tsx --test lib/*.test.ts lib/verification/*.test.ts"
+    "test": "tsx --test lib/*.test.ts lib/verification/*.test.ts",
+    "reading-time": "node scripts/reading-time.mjs"
   },
   "dependencies": {
     "next": "14.2.15",

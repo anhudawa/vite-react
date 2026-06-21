@@ -21,17 +21,16 @@ const ROWS: { key: keyof Fact; label: string }[] = [
  */
 export function FactBlock({ fact, as = "aside" }: { fact: Fact; as?: "aside" | "div" }) {
   const Tag = as;
-  const dots =
-    fact.confidence === "High" ? 3 : fact.confidence === "Medium" ? 2 : 1;
   const acq = acquisitionOf(fact.relation);
   const value = valueLine(fact);
 
   return (
-    <Tag className={styles.block} aria-label="Sourced fact">
-      <header className={styles.head}>
-        <span className={styles.kicker}>Sourced fact</span>
-        {fact.reference && <span className={styles.ref}>{fact.reference}</span>}
-      </header>
+    <Tag className={styles.block} aria-label="Watch reference">
+      {fact.reference && (
+        <header className={styles.head}>
+          <span className={styles.ref}>{fact.reference}</span>
+        </header>
+      )}
 
       <div className={styles.stance} data-stance={acq.stance}>
         <span className={styles.stanceLabel}>{acq.label}</span>
@@ -50,25 +49,6 @@ export function FactBlock({ fact, as = "aside" }: { fact: Fact; as?: "aside" | "
             <dd className={styles.value}>{fact[key] as string}</dd>
           </div>
         ))}
-
-        <div className={`${styles.row} ${styles.confRow}`}>
-          <dt className={styles.label}>Confidence</dt>
-          <dd className={styles.value}>
-            <span className={styles.dots} aria-hidden="true">
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className={styles.dot}
-                  data-on={i < dots || undefined}
-                />
-              ))}
-            </span>
-            <span className={styles.confText}>
-              {fact.confidence}
-              {fact.confidenceNote ? ` · ${fact.confidenceNote}` : ""}
-            </span>
-          </dd>
-        </div>
       </dl>
     </Tag>
   );
