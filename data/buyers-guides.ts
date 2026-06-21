@@ -81,7 +81,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£525",
             kind: "Mechanical",
             why: "The platonic field watch: hand-wound, legible, light, with genuine military lineage. Wind it before the ride, read it at a glance, and it costs less than a mid-range GPS unit you'll replace twice over.",
-            href: "/brands/hamilton",
           },
           {
             name: "Seiko 5 Sport",
@@ -89,7 +88,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£250",
             kind: "Mechanical",
             why: "The default honest automatic: 100m, tough, endlessly wearable. The watch that turns a tracker-only wrist into a collector's, and the one most people should start with.",
-            href: "/brands/seiko",
           },
           {
             name: "Coros Pace 3",
@@ -113,7 +111,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£650",
             kind: "Mechanical",
             why: "The integrated-bracelet icon at Swatch-group money: a Genta-era silhouette, an 80-hour movement, and the versatility to go from a café stop to a dinner without changing a thing.",
-            href: "/brands/tissot",
           },
           {
             name: "Black Bay 58",
@@ -121,7 +118,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£3,200",
             kind: "Mechanical",
             why: "Tudor backs a WorldTour team for a reason. The mechanical you can actually wear hard: 200m water resistance, a slim 39mm case that vanishes under a sleeve, and nothing precious about it.",
-            href: "/brands/tudor",
           },
           {
             name: "Casio F-91W",
@@ -145,7 +141,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£5,200",
             kind: "Mechanical",
             why: "The quiet all-rounder grail: a Master Chronometer movement, 150m of water resistance, and a clean dial that swims, trains, and dresses up without a second thought. The one watch most riders should stop at.",
-            href: "/brands/omega",
           },
           {
             name: "RM 67-02",
@@ -204,7 +199,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£525",
             kind: "Mechanical",
             why: "Hand-wound, 38mm, light enough to forget — the field watch that suits a runner's wrist and a runner's restraint. Wears the training without shouting about it, and costs less than the GPS unit you'll replace before it.",
-            href: "/brands/hamilton",
           },
           {
             name: "Coros Pace 3",
@@ -237,7 +231,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£650",
             kind: "Mechanical",
             why: "An 80-hour automatic on an integrated bracelet for Swatch-group money. Clean enough for the office, tough enough for the everyday, and the kind of watch that earns its keep across a training block.",
-            href: "/brands/tissot",
           },
           {
             name: "Black Bay 54",
@@ -245,7 +238,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£2,750",
             kind: "Mechanical",
             why: "37mm, slim, and light on the wrist — 200m of water resistance and in-house guts in the most restrained case Tudor makes. The mechanical you can actually wear hard and still wear to dinner.",
-            href: "/brands/tudor",
           },
         ],
       },
@@ -260,7 +252,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£5,200",
             kind: "Mechanical",
             why: "A Master Chronometer movement, a clean dial, and the versatility to swim, train near, and dress up without a thought. If a marathon is worth marking, this is a watch that holds the memory better than a finisher's tee.",
-            href: "/brands/omega",
           },
           {
             name: "Explorer 36",
@@ -268,7 +259,6 @@ export const buyersGuides: SportGuide[] = [
             price: "~£6,500",
             kind: "Mechanical",
             why: "The most honest Rolex: no date fuss, no diver's heft, a tool watch with a serious record behind it. 36mm sits right on a runner's wrist, and it's built to be worn every day for a lifetime.",
-            href: "/brands/rolex",
           },
         ],
       },
