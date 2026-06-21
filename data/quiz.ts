@@ -5,6 +5,14 @@
 // │ Confirm models, current prices and proportions, then fill `affiliateUrl`  │
 // │ for each before launch. Prices are hedged ("~€280") on purpose — they     │
 // │ drift. Nothing here invents a spec; where unsure, it stays general.       │
+// │                                                                           │
+// │ CENTRE OF GRAVITY: mechanical. The catalog leads with real manual/auto    │
+// │ references (field/dive/GMT bias for an endurance athlete). GPS is a single │
+// │ honest thread — one pick (GPS_PICK) that does the session and points back  │
+// │ to the keeper; it never leads or dominates a result. No quartz lives here  │
+// │ because the Recommendation.movement type is only "mechanical" | "gps" and  │
+// │ the card badge would mislabel a quartz piece; the quartz nod lives in the  │
+// │ buyers-guides instead (which has a proper "Digital" kind).                 │
 // └──────────────────────────────────────────────────────────────────────────┘
 
 export type Answers = Record<string, string>;
@@ -118,25 +126,25 @@ export const questions: QuizQuestion[] = [
 // ─────────────────────────────── profiles ───────────────────────────────
 const PROFILES: Record<string, Profile> = {
   gps: {
-    id: "gps-trainer",
-    name: "The GPS-First Trainer",
-    tagline: "You train by the numbers, so your watch should keep them honest.",
+    id: "by-the-numbers",
+    name: "The Watch You Keep",
+    tagline: "Wear the GPS for the session. Own something that outlasts it.",
     blurb:
-      "You want the instrument: accurate, light, and always charged. Buy the best tool for the sport and don't overthink the jewellery — the watch you love can come later.",
+      "If you genuinely train by the numbers, a GPS watch is the honest tool for the session — strap it on, get the data, take it off. But it's outdated in three years, and nobody hands one down. The watch worth choosing is the mechanical you wear for the life around the sport. Here's that one.",
   },
   both: {
     id: "two-watch",
     name: "The Two-Watch Athlete",
     tagline: "One to train in, one to live in.",
     blurb:
-      "The honest answer for most serious athletes. A GPS watch does the work on the session; a mechanical marks the rest of your life. Buy the tool now, the keeper when it's right.",
+      "The honest answer for most serious athletes. A GPS watch does the work on the session; a mechanical marks the rest of your life. The instrument is easy to choose and easy to replace. The keeper is the decision that lasts, so most of this is about that.",
   },
   "mech-under-500": {
     id: "first-mechanical",
     name: "The First Mechanical",
     tagline: "The honest way into watches that outlive their batteries.",
     blurb:
-      "You don't need to spend big to own something real. At this budget the right automatic is tough, wearable, and the start of a habit — the watch that turns a GPS-only wrist into a collector's.",
+      "You don't need to spend big to own something real. At this budget the right automatic is tough, wearable, and the start of a habit — the watch that turns a tracker-only wrist into a collector's.",
   },
   "mech-500-1500": {
     id: "sport-mechanical",
@@ -148,7 +156,7 @@ const PROFILES: Record<string, Profile> = {
   "mech-1500-5000": {
     id: "one-watch",
     name: "The One-Watch All-Rounder",
-    tagline: "Train, swim, dress — one watch that does all of it.",
+    tagline: "Swim, dress, hand it down — one watch that does all of it.",
     blurb:
       "Enough budget for the watch most people should stop at: in-house movements, serious build, and the versatility to be the only watch you own without ever feeling like a compromise.",
   },
@@ -162,19 +170,19 @@ const PROFILES: Record<string, Profile> = {
 };
 
 // ─────────────────────────── recommendation catalog ───────────────────────────
-const GPS: Record<string, Recommendation[]> = {
-  entry: [
-    { name: "Pace 3", brand: "Coros", priceEUR: "~€249", movement: "gps", reason: "The smartest value in sport: ~38g, dual-band GPS, a battery measured in weeks.", affiliateUrl: "" },
-    { name: "Forerunner 165", brand: "Garmin", priceEUR: "~€279", movement: "gps", reason: "Garmin's tools at their lowest honest price, with a screen you can read mid-stride.", affiliateUrl: "" },
-  ],
-  mid: [
-    { name: "Forerunner 965", brand: "Garmin", priceEUR: "~€649", movement: "gps", reason: "AMOLED, full maps, multi-band GPS — the do-everything watch most athletes should stop at.", affiliateUrl: "" },
-    { name: "Apex 2 Pro", brand: "Coros", priceEUR: "~€449", movement: "gps", reason: "Titanium bezel, sapphire, and battery for the genuinely long stuff.", affiliateUrl: "" },
-  ],
-  premium: [
-    { name: "Fenix series", brand: "Garmin", priceEUR: "~€900", movement: "gps", reason: "Mapping, multi-band, and a case built to be hit — the rugged ceiling of the tool watch.", affiliateUrl: "" },
-    { name: "Enduro", brand: "Garmin", priceEUR: "~€800", movement: "gps", reason: "Solar charging and weeks of battery, for people whose long day is measured in days.", affiliateUrl: "" },
-  ],
+// The GPS thread is deliberately one watch, not a tier ladder. If you train by
+// the numbers, almost any current Coros or Garmin will do the job honestly; the
+// real decision is the mechanical you wear the rest of the time, so that's where
+// the catalog has depth. This single pick exists to be the honest training tool
+// and then get out of the way.
+const GPS_PICK: Recommendation = {
+  name: "Pace 3",
+  brand: "Coros",
+  priceEUR: "~€249",
+  movement: "gps",
+  reason:
+    "If you train by the numbers, this is the honest tool: ~38g, dual-band GPS, a battery measured in weeks. Wear it for the session, then take it off — the watch you keep is below.",
+  affiliateUrl: "",
 };
 
 const MECH: Record<string, Recommendation[]> = {
@@ -192,11 +200,14 @@ const MECH: Record<string, Recommendation[]> = {
   "1500-5000": [
     { name: "Black Bay 58", brand: "Tudor", priceEUR: "~€3,600", movement: "mechanical", reason: "The one-watch answer for most people: 200m, slim, in-house, Rolex DNA at a third of the cost.", styleFit: ["tool", "vintage"], affiliateUrl: "" },
     { name: "Pelagos FXD", brand: "Tudor", priceEUR: "~€4,100", movement: "mechanical", reason: "Titanium, fixed lugs, built with the French navy — the tool watch for someone hard on gear.", styleFit: ["tool", "sporty-modern"], affiliateUrl: "" },
+    { name: "Black Bay GMT", brand: "Tudor", priceEUR: "~€4,200", movement: "mechanical", reason: "A second time zone for the athlete who races abroad — in-house GMT, real travel utility, none of the wait of a crown-stamped one.", styleFit: ["tool", "sporty-modern", "vintage"], affiliateUrl: "" },
     { name: "Divers Sixty-Five", brand: "Oris", priceEUR: "~€2,200", movement: "mechanical", reason: "Independent and full of character — the enthusiast's quiet, well-made flex.", styleFit: ["vintage", "tool"], affiliateUrl: "" },
     { name: "Spirit", brand: "Longines", priceEUR: "~€2,400", movement: "mechanical", reason: "Heritage and a silicon-balance movement at a price the big crowns can't touch.", styleFit: ["dress", "vintage"], affiliateUrl: "" },
   ],
   "no-ceiling": [
     { name: "Seamaster Diver 300M", brand: "Omega", priceEUR: "~€6,500", movement: "mechanical", reason: "The all-rounder grail: a Master Chronometer movement, real history, swim-to-black-tie versatility.", styleFit: ["sporty-modern", "tool"], affiliateUrl: "" },
+    { name: "Aqua Terra 150M", brand: "Omega", priceEUR: "~€6,000", movement: "mechanical", reason: "The quieter Omega: a clean 150m all-rounder you can swim, train near, and wear to dinner without a second thought.", styleFit: ["dress", "sporty-modern"], affiliateUrl: "" },
+    { name: "Explorer 36", brand: "Rolex", priceEUR: "~€7,500", movement: "mechanical", reason: "The mountaineer's Rolex and the most honest one — no date fuss, no diver's heft, just a tool watch with a serious record behind it.", styleFit: ["tool", "vintage"], affiliateUrl: "" },
     { name: "Submariner", brand: "Rolex", priceEUR: "~€10,000", movement: "mechanical", reason: "The reference the whole category is measured against. If you want the icon, buy the icon.", styleFit: ["tool", "sporty-modern"], affiliateUrl: "" },
     { name: "Evolution 9 Spring Drive", brand: "Grand Seiko", priceEUR: "~€6,500", movement: "mechanical", reason: "The smoothest seconds hand in watchmaking, and finishing that humbles watches twice the price.", styleFit: ["dress", "sporty-modern"], affiliateUrl: "" },
   ],
@@ -212,32 +223,29 @@ function orderByStyle(recs: Recommendation[], style?: string): Recommendation[] 
   });
 }
 
-function gpsTier(budget: string): Recommendation[] {
-  if (budget === "under-500") return GPS.entry;
-  if (budget === "500-1500") return [...GPS.entry.slice(0, 1), ...GPS.mid];
-  return GPS.premium;
-}
-
 export function resolveResult(answers: Answers): QuizResult {
   const { movement = "mechanical", budget = "500-1500", style } = answers;
+  const mech = orderByStyle(MECH[budget] ?? MECH["500-1500"], style);
 
+  // "I train by the numbers" — answer it honestly with the one tool, then point
+  // straight back at the keeper. The GPS is a single thread, never the spine.
   if (movement === "gps") {
     return {
       profile: PROFILES.gps,
-      recommendations: gpsTier(budget).slice(0, 3),
+      recommendations: [GPS_PICK, ...mech.slice(0, 2)],
     };
   }
 
+  // "Honestly, both" — the tool plus the watch that lasts. Mechanical leads the
+  // weight of the list even here.
   if (movement === "both") {
-    const mech = orderByStyle(MECH[budget] ?? MECH["500-1500"], style);
     return {
       profile: PROFILES.both,
-      recommendations: [gpsTier(budget)[0], ...mech.slice(0, 2)],
+      recommendations: [GPS_PICK, ...mech.slice(0, 2)],
     };
   }
 
-  // mechanical
+  // mechanical — the default centre of gravity.
   const profile = PROFILES[`mech-${budget}`] ?? PROFILES["mech-500-1500"];
-  const mech = orderByStyle(MECH[budget] ?? MECH["500-1500"], style);
   return { profile, recommendations: mech.slice(0, 3) };
 }
