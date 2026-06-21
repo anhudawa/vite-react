@@ -5,6 +5,7 @@ export { checkReference, BRANDS } from "./references";
 export {
   computeConfidence,
   independentSources,
+  isOwnershipFact,
   liveSources,
   rankConfidence,
 } from "./confidence";

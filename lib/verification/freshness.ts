@@ -1,4 +1,5 @@
 import { POLICY } from "./policy";
+import { isOwnershipFact } from "./confidence";
 import type { ClaimField, Source, VerifiedFact } from "./types";
 
 /**
@@ -31,8 +32,10 @@ function fieldCliff(fact: VerifiedFact, field: ClaimField): Date | null {
   return expiries[canLose] ?? null; // null => never decays (enough primaries)
 }
 
-/** Earliest corroboration cliff across all critical fields, or null if none. */
+/** Earliest corroboration cliff across all critical fields, or null if none.
+ *  Ownership facts never decay — a past purchase stays true. */
 export function nextReCheck(fact: VerifiedFact): Date | null {
+  if (isOwnershipFact(fact)) return null;
   let soonest: Date | null = null;
   for (const f of POLICY.criticalFields) {
     const c = fieldCliff(fact, f);

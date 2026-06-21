@@ -134,6 +134,42 @@ test("no reference and no recognised maker fails reference-integrity", () => {
   );
 });
 
+test("ownership facts exempt old media from the staleness clock", () => {
+  const oldMedia = {
+    id: "old",
+    publisher: "Old Mag",
+    kind: "media" as const,
+    tier: "secondary" as const,
+    url: "https://example.com/old",
+    publishedAt: "2014-01-01", // well beyond staleMediaYears
+    accessedAt: "2026-06-16",
+    excerpt: "He bought it himself years ago.",
+    supports: ["athlete", "watch", "relation", "evidence"] as const,
+    verified: true,
+  };
+  const old2 = { ...oldMedia, id: "old2", publisher: "Other Old Mag" };
+
+  // As a sponsorship, two 2014 sources are stale → independent-sourcing fails.
+  const sponsored = goodFact({
+    relation: "Sponsored — Brand",
+    sources: [oldMedia, old2],
+  });
+  assert.equal(
+    verifyFact(sponsored).gates.find((g) => g.id === "independent-sourcing")!.pass,
+    false
+  );
+
+  // As a personal purchase, the same sources stay live → it passes.
+  const owned = goodFact({
+    relation: "Personal — private collection",
+    sources: [oldMedia, old2],
+  });
+  assert.equal(
+    verifyFact(owned).gates.find((g) => g.id === "independent-sourcing")!.pass,
+    true
+  );
+});
+
 test("no disconfirming search fails adversarial-review", () => {
   const f = goodFact({
     review: { ...goodFact().review, disconfirmingSearch: false },

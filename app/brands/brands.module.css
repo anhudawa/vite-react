@@ -67,7 +67,17 @@
   color: var(--text-dim);
 }
 .refStance[data-stance="own-money"] {
-  color: var(--accent-text);
+  color: var(--text);
+}
+.refStance[data-stance="own-money"]::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  margin-right: 0.5em;
+  vertical-align: middle;
 }
 .refValue {
   font-family: var(--font-mono);

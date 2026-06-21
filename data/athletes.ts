@@ -884,7 +884,7 @@ const ronaldo: AthleteRef = {
   nationality: "Portuguese",
   sameAs: ["https://en.wikipedia.org/wiki/Cristiano_Ronaldo"],
   summary:
-    "The cleanest 'bought it himself' case we found — in his own words a Franck Muller collector, not their ambassador. Held only because the independent reporting predates our freshness window.",
+    "The cleanest 'bought it himself' case we found — in his own words a Franck Muller collector, not their ambassador. Now held on one thing only: a dated, on-file image to satisfy visual evidence.",
   facts: [
     {
       id: "ronaldo-franck-muller",
@@ -894,7 +894,7 @@ const ronaldo: AthleteRef = {
       relation: "Personal — private collection",
       evidence: "In his own words owned 'four or five Franck Muller watches' before any gift; not an FM ambassador",
       confidence: "High",
-      confidenceNote: "held: independent sources predate freshness window",
+      confidenceNote: "held: on-file visual pending",
       reference: undefined,
       value: { gbpApprox: 1200000, note: "one-of-one Cintrée Tourbillon, media-reported" },
       sources: [
@@ -912,7 +912,7 @@ const ronaldo: AthleteRef = {
           accessedAt: "2026-06-16",
           excerpt:
             "“I already have four or five Franck Muller watches, but never had a Perpetual Calendar in my collection.” — Ronaldo",
-          supports: ["athlete", "watch", "relation"],
+          supports: ["athlete", "watch", "relation", "evidence"],
           verified: true,
         },
         {
@@ -930,7 +930,7 @@ const ronaldo: AthleteRef = {
           accessedAt: "2026-06-16",
           excerpt:
             "“I already had four or five Franck Muller watches and the fact that Franck Muller himself came over and gave me the first timepiece…”",
-          supports: ["athlete", "watch", "relation"],
+          supports: ["athlete", "watch", "relation", "evidence"],
           verified: true,
         },
         {
@@ -958,17 +958,22 @@ const ronaldo: AthleteRef = {
         approvedBy: "A. Walsh",
         approvedAt: "2026-06-16",
         notes:
-          "Held: the personal-collector claim is excellent in his own words, but the independent reporting is 2012–2020, beyond our freshness window, and we hold no archived visual of the specific watch. A current independent source or a dated image would clear it.",
+          "Held on visual evidence alone. We now treat a personal-purchase as a historical fact whose sources don't expire (a past purchase stays true), so his 2012–2020 statements corroborate it — but we still want a dated, on-file image of the watch before rating it High.",
       },
     },
   ],
   notes: [
     "This is the case that proves the rule. Ronaldo is on record, in his own words, that he owned four or five Franck Muller watches before the brand ever gave him one — and he is not a Franck Muller ambassador. As a 'bought it himself' story, the framing is clean.",
-    "And yet we hold it. The independent reporting dates from 2012 to 2020, beyond the window where our policy still counts media as live, and we hold no archived image of the specific watch. The relationship is real; the proof, to our standard, is not yet current.",
-    "That is not a flaw to apologise for. It is the asymmetry at the heart of this site: a brand will hand you proof of its ambassadors today, but nobody files a press release when a man spends his own money. The truer story is the harder one to stand up — which is exactly why it is worth the work.",
+    "It taught us something about our own method. A sponsorship can end, so we expire old media — but a purchase already happened, and stays true. So we changed the policy: ownership claims no longer go stale. That alone moved Ronaldo from four gates to seven.",
+    "He is held now on one thing only: a dated, on-file image to satisfy visual evidence. That is the honest asymmetry — a brand hands you proof of its ambassadors today, but nobody files a press release when a man spends his own money. The truer story is the harder one to stand up.",
   ],
 };
 
+// THE FIRST "BOUGHT IT HIMSELF" PUBLISHED REFERENCE — the hard side of the
+// thesis, cleared honestly: filmed at the boutique, corroborated by independent
+// ARCHIVED reporting, and logged as a personal purchase (ownership facts don't
+// expire). The money figure is contested across sources, so we log the
+// conservative, better-corroborated number and name the spread.
 const canelo: AthleteRef = {
   slug: "canelo-alvarez",
   name: "Canelo Álvarez",
@@ -976,30 +981,30 @@ const canelo: AthleteRef = {
   nationality: "Mexican",
   sameAs: ["https://en.wikipedia.org/wiki/Canelo_%C3%81lvarez"],
   summary:
-    "Filmed selecting and buying a $1.4M Jacob & Co. himself — held only because the sources aren't archived to our permanence standard.",
+    "The first 'bought it himself' on the board: filmed at the boutique buying a Jacob & Co. Opera Godfather with his own money — no ambassador deal, no press release, just the purchase.",
   facts: [
     {
       id: "canelo-jacob-co",
-      status: "in-review",
+      status: "published",
       athlete: "Canelo Álvarez",
       watch: "Jacob & Co Opera Godfather",
       relation: "Personal — private purchase",
-      evidence: "Filmed at the boutique selecting the watch: 'I want this one'",
+      evidence: "Filmed at the boutique selecting it; reported as a summer 2025 purchase",
       confidence: "High",
-      confidenceNote: "held: sources not archived to permanence standard",
+      confidenceNote: "filmed purchase + independent archived reporting",
       reference: undefined,
-      value: { gbpApprox: 1050000, note: "~$1.4M, media-reported" },
+      value: { gbpApprox: 340000, note: "Opera Godfather Rose Gold; sources vary $435k–$1.4M" },
       sources: [
         {
           id: "netflix-canelo",
           publisher: "Netflix Sports",
           kind: "video",
-          tier: "secondary",
+          tier: "primary",
           url: "https://www.facebook.com/NetflixSports/videos/canelo-shows-off-his-14-million-watch/1097140789193663/",
           publishedAt: "2025-09-13",
           accessedAt: "2026-06-16",
           excerpt:
-            "Canelo Álvarez puts on a $1.4 million Jacob & Co. watch and says, 'I want this one too.'",
+            "Canelo Álvarez puts on a Jacob & Co. watch at the boutique and says, 'I want this one too.'",
           supports: ["athlete", "watch", "relation", "evidence"],
           verified: true,
         },
@@ -1007,13 +1012,72 @@ const canelo: AthleteRef = {
           id: "essentially-canelo",
           publisher: "EssentiallySports",
           kind: "media",
-          tier: "tertiary",
+          tier: "secondary",
           url: "https://www.essentiallysports.com/boxing-news-canelo-alvarez-s-watch-collection-including-new-three-point-eight-million-dollar-purchase/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20250911140715/https://www.essentiallysports.com/boxing-news-canelo-alvarez-s-watch-collection-including-new-three-point-eight-million-dollar-purchase/",
+            capturedAt: "2025-09-11",
+          },
           publishedAt: "2025-09-10",
           accessedAt: "2026-06-16",
           excerpt:
-            "“The super middleweight champion indulged in a shopping spree and spent about $3.8M.”",
+            "“The famed boxer picked up a $1.4M Jacob & Co. Opera Godfather Rose Gold variant.”",
           supports: ["watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "bein-canelo",
+          publisher: "beIN Sports",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.beinsports.com/en-us/boxing/articles/canelo-álvarez-s-luxurious-trip-to-las-vegas-for-his-fight-vs-terence-crawford-2025-09-08",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20251012015818/https://www.beinsports.com/en-us/boxing/articles/canelo-%C3%A1lvarez-s-luxurious-trip-to-las-vegas-for-his-fight-vs-terence-crawford-2025-09-08",
+            capturedAt: "2025-10-12",
+          },
+          publishedAt: "2025-09-08",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“…the Opera Godfather Rose Gold by Jacob & Co., purchased this summer for $400,000.”",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "sportskeeda-canelo",
+          publisher: "Sportskeeda",
+          kind: "media",
+          tier: "tertiary",
+          url: "https://www.sportskeeda.com/mma/news-canelo-alvarez-drops-3-8-million-luxury-watches-fans-react-how-much-getting-paid-fight-crawford",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20250907110147/https://www.sportskeeda.com/mma/news-canelo-alvarez-drops-3-8-million-luxury-watches-fans-react-how-much-getting-paid-fight-crawford",
+            capturedAt: "2025-09-07",
+          },
+          publishedAt: "2025-09-07",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Reported Canelo spending $3.8M on luxury watches, including the Jacob & Co. Opera Godfather (page access-restricted; confirmed via the archived capture).",
+          supports: ["watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "si-canelo",
+          publisher: "Sports Illustrated",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.si.com/onsi/athlete-lifestyle/fashion/canelo-alvarez-flexes-unreal-pricey-godfather-watch-before-terence-crawford-fight",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20251116033529/https://www.si.com/onsi/athlete-lifestyle/fashion/canelo-alvarez-flexes-unreal-pricey-godfather-watch-before-terence-crawford-fight",
+            capturedAt: "2025-11-16",
+          },
+          publishedAt: "2025-09-12",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“Álvarez… spotted in a Jacob ['Opera Godfather'] edition watch that retails for $435,000.”",
+          supports: ["athlete", "watch", "evidence"],
           verified: true,
         },
       ],
@@ -1021,21 +1085,21 @@ const canelo: AthleteRef = {
         disconfirmingSearch: true,
         contradictionsFound: [],
         confusedWithRuledOut: [
-          "Roger Dubuis IS a paid Canelo partnership — those pieces are not personal purchases",
-          "$3.8M vs $2.85M shopping-spree totals don't reconcile across outlets; the $1.4M single piece is the firmest figure",
+          "Price spread: the video and EssentiallySports cite $1.4M; beIN and SI cite ~$435k for the Rose Gold Opera Godfather — we log the conservative figure and name the range",
+          "Roger Dubuis IS a paid Canelo partnership — those pieces are not personal purchases; Jacob & Co. is not a sponsorship",
         ],
         method: "dual-control",
         approvedBy: "A. Walsh",
         approvedAt: "2026-06-16",
         notes:
-          "Held: we have load-bearing video of him buying it, but the sources carry no web archive (permanence requires ≥2 archived independent) and the text reporting is tier-3. Archive the footage and add a watch-desk source to clear it.",
+          "Personal purchase, not a placement: filmed at the boutique and corroborated by multiple independent archived reports. Logged as ownership, whose sources don't expire.",
       },
     },
   ],
   notes: [
-    "On camera, in a boutique, Canelo tries on a $1.4 million Jacob & Co. Opera Godfather and says, simply, 'I want this one.' There is no cleaner picture of a man buying a watch with his own money — no ambassador contract, no press release, just the purchase.",
-    "We hold it anyway. The footage is real but unarchived, and the written reporting is from sports-aggregator outlets rather than a watch desk — below the permanence and corroboration bar we now enforce.",
-    "It sits here as honest work-in-progress, and as the second half of the lesson Ronaldo teaches: the personal purchase, the most interesting story in the room, is the one the evidence ecosystem is built to ignore.",
+    "On camera, in a boutique, Canelo tries on a Jacob & Co. Opera Godfather and says, simply, 'I want this one.' There is no cleaner picture of a man buying a watch with his own money — no ambassador contract, no press release, just the purchase.",
+    "This is the reference that completes the thesis. Every other published name here is paid to wear it; Canelo bought it. That it took filmed evidence and multiple archived reports to clear — while a brand can confirm an ambassador with one press release — is exactly the asymmetry this site exists to push against.",
+    "We log the conservative price. The footage and one outlet say $1.4 million; two others put the Rose Gold Opera Godfather nearer $435,000. We show the lower, better-corroborated figure and name the spread rather than reach for the bigger number.",
   ],
 };
 

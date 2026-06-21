@@ -204,9 +204,9 @@ export default function HomePage() {
               </div>
               <div>
                 <dt>
-                  {stats.paid}/{stats.count}
+                  {stats.paid} paid · {stats.bought} bought
                 </dt>
-                <dd>paid placements, not purchases</dd>
+                <dd>placements vs purchases</dd>
               </div>
               <div>
                 <dt>~{formatGBP(dearest.value!.gbpApprox)}</dt>

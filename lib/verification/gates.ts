@@ -4,6 +4,7 @@ import { checkReference } from "./references";
 import {
   computeConfidence,
   independentSources,
+  isOwnershipFact,
   liveSources,
   rankConfidence,
 } from "./confidence";
@@ -17,7 +18,9 @@ export interface Gate {
 }
 
 function countIndependentForField(fact: VerifiedFact, field: ClaimField): number {
-  const supporting = liveSources(fact.sources).filter((s) => s.supports.includes(field));
+  const supporting = liveSources(fact.sources, isOwnershipFact(fact)).filter((s) =>
+    s.supports.includes(field)
+  );
   return independentSources(supporting).length;
 }
 
@@ -28,7 +31,9 @@ export const GATES: Gate[] = [
     label: "Independent sourcing",
     catches: "a single source, or an echo chamber, masquerading as corroboration",
     run: (fact) => {
-      const n = independentSources(liveSources(fact.sources)).length;
+      const n = independentSources(
+        liveSources(fact.sources, isOwnershipFact(fact))
+      ).length;
       const pass = n >= POLICY.minIndependentSources;
       return {
         id: "independent-sourcing",

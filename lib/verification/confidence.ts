@@ -29,11 +29,20 @@ function yearsSince(iso?: string): number {
   return (Date.now() - new Date(iso).getTime()) / (365.25 * 24 * 3600 * 1000);
 }
 
+/** A personal-purchase / ownership claim ("he bought it") is a historical fact,
+ *  so its media sources do not expire the way a current sponsorship would — a
+ *  brand deal can end, but a purchase already happened. Relation begins
+ *  "Personal". */
+export function isOwnershipFact(fact: { relation: string }): boolean {
+  return fact.relation.trim().toLowerCase().startsWith("personal");
+}
+
 /** Sources that still count as live corroboration (primary records never go
- *  stale; media reporting does). */
-export function liveSources(sources: Source[]): Source[] {
+ *  stale; media reporting does — unless `ignoreStaleness`, for ownership facts). */
+export function liveSources(sources: Source[], ignoreStaleness = false): Source[] {
   return sources.filter((s) => {
     if (!s.verified) return false;
+    if (ignoreStaleness) return true;
     if (s.tier === "primary") return true;
     return yearsSince(s.publishedAt) <= POLICY.staleMediaYears;
   });
@@ -46,7 +55,7 @@ export function liveSources(sources: Source[]): Source[] {
  * dated, located photo/video) exists.
  */
 export function computeConfidence(fact: VerifiedFact): Confidence {
-  const live = liveSources(fact.sources);
+  const live = liveSources(fact.sources, isOwnershipFact(fact));
   const independent = independentSources(live);
   const hasPrimary = independent.some((s) => s.tier === "primary");
   const hasVisual = independent.some((s) => s.kind === "photo" || s.kind === "video");
