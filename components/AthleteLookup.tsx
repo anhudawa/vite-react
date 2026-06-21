@@ -66,7 +66,7 @@ export function AthleteLookup({ athletes }: { athletes: AthleteSearchEntry[] }) 
           type="text"
           autoComplete="off"
           spellCheck={false}
-          placeholder="Messi, LeBron, Pogačar…"
+          placeholder="Pogačar, van der Poel, Pidcock…"
           className={styles.input}
           value={q}
           onChange={(e) => {

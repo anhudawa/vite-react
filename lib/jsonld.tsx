@@ -43,11 +43,10 @@ export function authorPersonJsonLd() {
       "Horology",
       "Watchmaking",
       "Watches in sport",
-      "Football",
-      "Basketball",
+      "Endurance sport",
       "Cycling",
-      "Combat sports",
-      "Golf",
+      "Running",
+      "Triathlon",
     ],
   };
 }

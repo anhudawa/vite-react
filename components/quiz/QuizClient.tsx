@@ -15,7 +15,7 @@ const GUIDE_FOR: Record<string, string> = {
   gravel: "/buying-guides/cycling",
   running: "/buying-guides/running",
   triathlon: "/buying-guides/running",
-  "gym-multi": "/buying-guides/gym",
+  "swim-row": "/buying-guides/running",
   climbing: "/buying-guides",
 };
 

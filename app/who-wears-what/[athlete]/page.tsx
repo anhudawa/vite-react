@@ -35,11 +35,10 @@ export function generateStaticParams() {
 function directoryHook(discipline = ""): string {
   const d = discipline.toLowerCase();
   if (/cycl|road|tour|peloton|gravel/.test(d)) return "Get the full pro peloton watch directory.";
-  if (/golf/.test(d)) return "Get the full golf watch directory.";
-  if (/tennis/.test(d)) return "Get the full tennis watch directory.";
-  if (/mma|ufc|box|fight/.test(d)) return "Get the full fight-game watch directory.";
-  if (/foot|soccer/.test(d)) return "Get the full football watch directory.";
-  return "Get the full athlete watch directory.";
+  if (/run|marathon|trail|ultra/.test(d)) return "Get the full endurance-running watch directory.";
+  if (/tri|swim|row/.test(d)) return "Get the full triathlon watch directory.";
+  if (/climb|mountain|alp/.test(d)) return "Get the full mountain-sport watch directory.";
+  return "Get the full endurance-athlete watch directory.";
 }
 
 export function generateMetadata({

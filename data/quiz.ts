@@ -50,8 +50,8 @@ export const questions: QuizQuestion[] = [
       { value: "gravel", label: "Gravel / off-road" },
       { value: "running", label: "Running" },
       { value: "triathlon", label: "Triathlon / swim" },
+      { value: "swim-row", label: "Swimming / rowing" },
       { value: "climbing", label: "Climbing / outdoors" },
-      { value: "gym-multi", label: "Gym & a bit of everything" },
     ],
   },
   {

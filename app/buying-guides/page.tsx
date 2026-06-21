@@ -34,14 +34,14 @@ const live: IndexItem[] = [
 
 const forthcoming: IndexItem[] = [
   {
-    title: "Golf: What to Wear Inside the Ropes",
-    dek: "The most watch-saturated sport there is, and the one where the line between bought and paid runs straight down the fairway. Picks for the round and the clubhouse, by budget.",
+    title: "Swimming & Triathlon: What Survives the Water",
+    dek: "Three disciplines, one wrist, and a watch that has to do all of it without drowning. The specs that matter when the swim leg is non-negotiable.",
     meta: "Guide · by sport & budget",
     tag: "Drafting",
   },
   {
-    title: "Swimming & Triathlon: What Survives the Water",
-    dek: "Three disciplines, one wrist, and a watch that has to do all of it without drowning. The specs that matter when the swim leg is non-negotiable.",
+    title: "Trail & Ultra: What Lasts the Night",
+    dek: "The races that outrun a battery and a forecast. What to trust when the watch has to read true at hour fifteen, in the dark, with your hands gone.",
     meta: "Guide · by sport & budget",
     tag: "Drafting",
   },

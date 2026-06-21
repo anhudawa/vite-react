@@ -73,10 +73,10 @@ export default function HomePage() {
         <div className={styles.featureGrid}>
           <Reveal className={styles.featureImgA}>
             <Figure
-              src="/photography/beckham-tudor-bb58.jpg"
-              alt="David Beckham wearing a Tudor Black Bay 58 against a concrete wall"
-              subject="David Beckham"
-              watch="Tudor Black Bay 58"
+              src="/photography/van-der-poel.jpg"
+              alt="Mathieu van der Poel roars in victory, a Richard Mille on his wrist"
+              subject="Mathieu van der Poel"
+              watch="Richard Mille"
               ratio="5 / 6"
               sizes="(max-width: 900px) 100vw, 42vw"
             />
