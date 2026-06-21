@@ -59,7 +59,7 @@ const BANNED_WORDS: { term: string; re: RegExp; note?: string }[] = [
 
 const BANNED_OPENERS: { term: string; re: RegExp }[] = [
   { term: "Here's what nobody tells you", re: /\bhere[’'`]?s what nobody tells you\b/gi },
-  { term: "the [X] won't tell you", re: /\bthe\b[^.?!\n]{0,40}\bwon[’'`]?t tell you\b/gi },
+  { term: "the [x] internet won't tell you", re: /\bthe\b[^.?!\n]{0,40}\bwon[’'`]?t tell you\b/gi },
   { term: "let me break this down", re: /\blet me break (?:this|it) down\b/gi },
   { term: "stick around to the end", re: /\bstick around (?:to|until|for) the end\b/gi },
 ];

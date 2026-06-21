@@ -2,38 +2,57 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { lintVoice, hasErrors } from "./voiceLint";
 
-// Calibrated examples from content/voice/VOICE.md (placeholders, no real facts).
-const GOOD_BLOG =
-  "When [Athlete] crossed the line in [Event], the watch on his wrist had already been there for every dark morning that made the win possible. It wasn't a trophy bought afterwards. It was the [Brand Model], picked up years earlier for reasons he can still describe exactly — and worn through the whole long climb toward that day.";
+// Calibrated examples from content/voice/VOICE.md (the new TLS voice).
+const GOOD_FEATURE =
+  "There is a moment in every long effort when the watch stops being information. You've looked at it too often; the numbers have stopped meaning anything your body can act on. And still the seconds hand sweeps — unhurried, built for exactly this, indifferent to all of it. Under the crystal a balance wheel is keeping its 28,800 beats an hour whether you finish or not. You are an oscillator too, tuned by years of training, and tonight you are running slow.";
 
-const GOOD_PODCAST =
-  "I'm not here as the watch expert. I'm here as the guy who got obsessed somewhere along the way and wants to know the story. Today I'm sitting down with [Athlete] — and we're talking about one watch. The one that was on his wrist when everything he'd worked for came down to a single day.";
+const GOOD_GUIDE =
+  "An ultra is a long argument with your own pacing, and the watch on your wrist is the only party to it that won't lie. These are the seven we'd trust to tell the truth at hour eleven, judged on the things that actually decide it once the field has thinned: battery that outlasts the night, a screen you can still read when your hands have stopped working, and a GPS track you'd stake a result on.";
 
-const BAD =
+const GOOD_REVIEW =
+  "It isn't a watch you'll fall for across a room. It's one you come to trust over a winter of dark commutes, which is the more lasting kind of affection.";
+
+// Slop examples from the "Slop vs TLS" section — these must be caught.
+const SLOP_PRODUCT =
+  "The Black Bay 58 is a game-changer that elevates any collection and unlocks new versatility on your watch journey.";
+const SLOP_CATEGORY =
+  "Join us as we delve into the world of dive watches and elevate your collection to the next level.";
+
+const BAD_OPENER =
   "Here's what nobody tells you about luxury watches. It isn't about the movement. It's about the moment. Let me break this down.";
 
-test("BAD example is caught (banned openers, with errors)", () => {
-  const findings = lintVoice(BAD);
-  assert.ok(findings.length >= 2, "expected multiple findings");
-  assert.ok(hasErrors(findings), "expected at least one error-severity finding");
-  const openers = findings.filter((f) => f.rule === "banned-opener");
-  const terms = openers.map((f) => f.term.toLowerCase());
-  assert.ok(
-    terms.some((t) => t.includes("here")),
-    "expected the 'Here's what nobody tells you' opener flagged",
-  );
-  assert.ok(
-    terms.some((t) => t.includes("break")),
-    "expected the 'let me break this down' phrase flagged",
-  );
+test("TLS feature/guide/review examples pass clean", () => {
+  assert.deepEqual(lintVoice(GOOD_FEATURE), []);
+  assert.deepEqual(lintVoice(GOOD_GUIDE), []);
+  assert.deepEqual(lintVoice(GOOD_REVIEW), []);
 });
 
-test("GOOD blog example passes clean", () => {
-  assert.deepEqual(lintVoice(GOOD_BLOG), []);
+test("a single 'It isn't X. It's Y.' (the review line) is allowed", () => {
+  assert.equal(lintVoice(GOOD_REVIEW).filter((f) => f.rule === "antithesis-repetition").length, 0);
 });
 
-test("GOOD podcast example passes clean", () => {
-  assert.deepEqual(lintVoice(GOOD_PODCAST), []);
+test("SLOP product line is caught on banned words", () => {
+  const findings = lintVoice(SLOP_PRODUCT);
+  assert.ok(hasErrors(findings));
+  const words = findings.filter((f) => f.rule === "banned-word").map((f) => f.term.toLowerCase());
+  assert.ok(words.some((w) => w.includes("game")), "game-changer");
+  assert.ok(words.some((w) => w.includes("elevat")), "elevates");
+  assert.ok(words.some((w) => w.includes("journey")), "journey");
+});
+
+test("SLOP category line is caught on banned words", () => {
+  const findings = lintVoice(SLOP_CATEGORY);
+  const words = findings.filter((f) => f.rule === "banned-word").map((f) => f.term.toLowerCase());
+  assert.ok(words.some((w) => w.startsWith("delve")));
+  assert.ok(words.some((w) => w.includes("elevat")));
+});
+
+test("BAD opener example is caught (banned openers, with errors)", () => {
+  const findings = lintVoice(BAD_OPENER);
+  assert.ok(hasErrors(findings));
+  const openers = findings.filter((f) => f.rule === "banned-opener").map((f) => f.term.toLowerCase());
+  assert.ok(openers.some((t) => t.includes("here")), "'Here's what nobody tells you'");
+  assert.ok(openers.some((t) => t.includes("break")), "'let me break this down'");
 });
 
 test("banned words are flagged with location", () => {
@@ -44,30 +63,27 @@ test("banned words are flagged with location", () => {
   assert.ok(f.every((x) => x.line >= 1 && x.column >= 1));
 });
 
-test("a single 'It isn't X. It's Y.' is allowed; two are flagged", () => {
-  const one = lintVoice("It wasn't a trophy. It was the [Brand Model].");
-  assert.equal(one.filter((x) => x.rule === "antithesis-repetition").length, 0);
-
+test("two 'It isn't X. It's Y.' constructions are flagged as a loop", () => {
   const two = lintVoice("It isn't the steel. It's the story. It wasn't the price. It was the day.");
   assert.ok(two.filter((x) => x.rule === "antithesis-repetition").length >= 2);
 });
 
-test("em-dash overuse is flagged; a single em-dash is not", () => {
+test("em-dash leaning is flagged; a single matched pair is not", () => {
   const heavy = lintVoice("The watch — the one — that he wore — every day — mattered.");
   assert.ok(heavy.some((x) => x.rule.startsWith("em-dash")));
 
-  const light = lintVoice(
-    "He wore it — every single day of that long hard season, and never once thought to take it off.",
+  const aside = lintVoice(
+    "He wore it through the night section — the part that actually decides an ultra — without once looking down.",
   );
-  assert.equal(light.filter((x) => x.rule.startsWith("em-dash")).length, 0);
+  assert.equal(aside.filter((x) => x.rule.startsWith("em-dash")).length, 0);
 });
 
-test("the 'the [X] won't tell you' opener is caught", () => {
-  const f = lintVoice("The brand won't tell you which one he actually bought.");
+test("the 'the [x] internet won't tell you' opener is caught", () => {
+  const f = lintVoice("The watch internet won't tell you which one he actually bought.");
   assert.ok(f.some((x) => x.rule === "banned-opener"));
 });
 
-test("findings never rewrite — input is returned untouched conceptually (pure read)", () => {
+test("findings never rewrite — input is left untouched", () => {
   const input = "We delve into it.";
   const copy = String(input);
   lintVoice(input);
