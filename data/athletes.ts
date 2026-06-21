@@ -1,5 +1,6 @@
 import type { VerifiedFact } from "../lib/verification";
 import { isPublishable, publishableFacts } from "../lib/verification";
+import { acquisitionOf } from "../lib/economics";
 
 /**
  * REFERENCE DATA
@@ -1241,4 +1242,35 @@ export function renderableFacts(a: AthleteRef): VerifiedFact[] {
 /** Held-back references, with their status, for honest display in "the workshop". */
 export function inReviewAthletes(): AthleteRef[] {
   return athletes.filter((a) => !a.facts.some(isPublishable));
+}
+
+/** A flat, searchable index for the athlete -> watch lookup. */
+export interface AthleteSearchEntry {
+  slug: string;
+  name: string;
+  discipline: string;
+  watch: string;
+  stance: string; // own-money | paid | gifted | loan | unverified
+  stanceLabel: string;
+  valueGBP?: number;
+  published: boolean;
+}
+
+export function athleteSearchList(): AthleteSearchEntry[] {
+  return athletes
+    .map((a) => {
+      const f = a.facts[0];
+      const acq = acquisitionOf(f.relation);
+      return {
+        slug: a.slug,
+        name: a.name,
+        discipline: a.discipline,
+        watch: f.watch,
+        stance: acq.stance,
+        stanceLabel: acq.label,
+        valueGBP: f.value?.gbpApprox,
+        published: a.facts.some(isPublishable),
+      };
+    })
+    .sort((x, y) => x.name.localeCompare(y.name));
 }

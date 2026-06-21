@@ -140,6 +140,12 @@
 }
 
 /* --- In the field (editorial sightings) ---------------------------------- */
+.lookup {
+  padding-bottom: var(--s-7);
+  margin-bottom: var(--s-6);
+  border-bottom: var(--hairline) solid var(--rule);
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

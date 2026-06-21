@@ -3,11 +3,13 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Figure } from "@/components/Figure";
 import { Reveal } from "@/components/Reveal";
+import { AthleteLookup } from "@/components/AthleteLookup";
 import { acquisitionOf, valueLine } from "@/lib/economics";
 import {
   publishedAthletes,
   inReviewAthletes,
   renderableFacts,
+  athleteSearchList,
 } from "@/data/athletes";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./index.module.css";
@@ -51,6 +53,10 @@ export default function WhoWearsWhat() {
         title="Who Wears What"
         intro="The real question isn't which watch — it's whether he bought it or he's paid to wear it, and what it cost. Almost nobody checks. We do, separate the placement from the purchase, and show the proof."
       />
+
+      <section className={`container ${styles.lookup}`}>
+        <AthleteLookup athletes={athleteSearchList()} />
+      </section>
 
       <section className={`container ${styles.section}`}>
         <p className={styles.sectionLabel}>Published references</p>
