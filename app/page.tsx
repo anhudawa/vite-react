@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FactBlock } from "@/components/FactBlock";
-import { Subscribe } from "@/components/Subscribe";
+import { QuizPromo } from "@/components/QuizPromo";
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
 import { corpusStats, formatGBP } from "@/lib/economics";
@@ -245,8 +245,8 @@ export default function HomePage() {
         </ul>
       </section>
 
-      {/* ===================== THE DISPATCH ===================== */}
-      <Subscribe />
+      {/* ===================== FIND YOUR WATCH ===================== */}
+      <QuizPromo />
     </>
   );
 }
