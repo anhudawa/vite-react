@@ -37,9 +37,7 @@ export default function HomePage() {
               <span aria-hidden="true">·</span> the money
             </p>
             <h1 id="hero-title" className={styles.heroTitle}>
-              The watches athletes wear,
-              <br />
-              and <em>who paid</em> for them.
+              The watches athletes wear.
             </h1>
             <p className={styles.heroDek}>
               Across every sport, the world&rsquo;s best wear something on their wrist.
