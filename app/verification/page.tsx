@@ -115,6 +115,10 @@ export default function VerificationPage() {
             <dd>{POLICY.staleMediaYears} years (primary records never expire)</dd>
           </div>
           <div>
+            <dt>Ownership claims</dt>
+            <dd>Don&rsquo;t expire — a purchase is historical, unlike a sponsorship</dd>
+          </div>
+          <div>
             <dt>Source permanence</dt>
             <dd>≥2 archived independent sources — enforced at build</dd>
           </div>
