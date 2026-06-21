@@ -33,7 +33,7 @@ export default function HomePage() {
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>
               <span className={styles.eyebrowMark} aria-hidden="true" />
-              Endurance athletes <span aria-hidden="true">·</span> fine watches
+              Every sport <span aria-hidden="true">·</span> fine watches
             </p>
             <h1 id="hero-title" className={styles.heroTitle}>
               Not every second
@@ -115,8 +115,8 @@ export default function HomePage() {
       <section className={`container ${styles.block}`} aria-labelledby="reading">
         <SectionHeading index="01" kicker="The reading" title="Athletes and time">
           <p id="reading">
-            Essays on the one relationship a watch and an endurance athlete share.
-            No dealer spin, no borrowed expertise.
+            Essays on the one relationship a watch and an athlete share — across
+            every sport. No dealer spin, no borrowed expertise.
           </p>
         </SectionHeading>
 

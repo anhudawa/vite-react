@@ -6,7 +6,7 @@ import { JsonLd, breadcrumb } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Watches in Sport",
   description:
-    "On the wrist, in the race. How fine watches actually show up in endurance sport — the sponsorships, the timekeeping, the contradictions.",
+    "How fine watches actually show up across sport — football, basketball, cycling, MMA, golf, running — the sponsorships, the purchases, the contradictions.",
 };
 
 const live: IndexItem[] = [
@@ -50,9 +50,9 @@ export default function WatchesInSport() {
       />
       <PageHeader
         index="02"
-        kicker="In the race"
+        kicker="On the wrist"
         title="Watches in Sport"
-        intro="The deep luxury-mechanical vein runs through cycling — Richard Mille in the peloton, a watchmaker backing a whole team, quartz timing the Tour. We cover how the watches actually show up, contradictions intact."
+        intro="Football, basketball, cycling, MMA, golf, running — fine watches turn up on the wrists of every sport, sometimes paid for, sometimes bought, sometimes worn in genuine competition. We cover how they actually show up, contradictions intact."
         image={{
           src: "/photography/pogacar-1.jpg",
           alt: "Tadej Pogačar in the world-champion jersey, a Richard Mille on his wrist",

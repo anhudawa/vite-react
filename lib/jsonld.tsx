@@ -39,7 +39,16 @@ export function authorPersonJsonLd() {
     url: `${site.url}/about`,
     image: `${site.url}${site.author.portrait}`,
     sameAs: site.author.sameAs,
-    knowsAbout: ["Horology", "Watchmaking", "Endurance cycling", "Triathlon"],
+    knowsAbout: [
+      "Horology",
+      "Watchmaking",
+      "Watches in sport",
+      "Football",
+      "Basketball",
+      "Cycling",
+      "Combat sports",
+      "Golf",
+    ],
   };
 }
 

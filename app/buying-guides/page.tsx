@@ -6,7 +6,7 @@ import { JsonLd, breadcrumb } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Buying Guides",
   description:
-    "Considered, not transactional. Guides for the athlete falling for mechanical watches — written about the mechanism, never the price tag.",
+    "Considered, not transactional. Guides for anyone falling for watches in sport — the mechanics, the money, and the statement, covered honestly.",
 };
 
 const live: IndexItem[] = [
@@ -52,7 +52,7 @@ export default function BuyingGuides() {
         index="03"
         kicker="Considered"
         title="Buying Guides"
-        intro="Not a shop. We admire the mechanism, never the money — so these guides are about how a watch is made and how it lives on a wrist that works, not about chasing a hype reference up an auction chart."
+        intro="Not a shop, and not a sermon. People buy watches for the movement, for the money, for the statement, or for all three — we don't pretend one reason is purer than another. These guides are about how a watch is made, what it costs, and how it actually lives on a wrist."
         image={{
           src: "/photography/tudor-giro-chrono.jpg",
           alt: "A Tudor Black Bay Chrono among the Giro d'Italia trophy spiral",

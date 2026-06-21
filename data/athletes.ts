@@ -142,7 +142,7 @@ const pogacar: AthleteRef = {
     },
   ],
   notes: [
-    "The RM 67-02 is the relevant reference for a reason: it is Richard Mille's extra-flat, lightweight automatic, the line the brand builds specifically for athletes to wear while competing. On Pogačar it is not a flex worn to dinner. It is on the wrist over the cobbles, which is precisely the use case the watch was engineered for and almost never actually subjected to.",
+    "The RM 67-02 is the relevant reference for a reason: it is Richard Mille's extra-flat, lightweight automatic, the line the brand builds specifically for athletes to wear while competing. On Pogačar it is not kept for best — it is on the wrist over the cobbles, which is precisely the use case the watch was engineered for and almost never actually subjected to.",
     "The relationship runs through UAE Team Emirates rather than a personal endorsement of the classical kind, which is the honest way to log it. The team's backing places the watch on the wrist; the rider's results are what make anyone look. That distinction — sponsorship versus personal collection — is exactly the kind of thing the rest of the internet flattens, and exactly the kind of thing this page exists to keep straight.",
     "What makes it worth a reference page is the contrast it sets up across the sport: the same race won, in some years, by a rider in a sub-£400 computer on a strap, and contested by another carrying a six-figure mechanical movement up the same climb. Both are keeping time. Only one was ever asked to.",
   ],
@@ -654,7 +654,7 @@ const beckham: AthleteRef = {
     "https://www.tudorwatch.com/en/partnerships/david-beckham",
   ],
   summary:
-    "Tudor's first brand ambassador, since 2017 — and the floor of the whole ledger: a few thousand pounds of Black Bay, not a six-figure flex.",
+    "Tudor's first brand ambassador, since 2017 — and the floor of the whole ledger: a few-thousand-pound Black Bay on a man who could buy any watch on this page.",
   image: {
     src: "/photography/beckham-tudor-bb58.jpg",
     alt: "David Beckham against a concrete wall, a Tudor Black Bay on his wrist",

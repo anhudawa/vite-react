@@ -8,7 +8,7 @@ import styles from "./index.module.css";
 export const metadata: Metadata = {
   title: "Essays",
   description:
-    "Long-form on athletes and time — the one relationship a watch and an endurance athlete share. No dealer spin, no borrowed expertise.",
+    "Long-form on athletes and time — the one relationship a watch and an athlete share, across every sport. No dealer spin, no borrowed expertise.",
 };
 
 export default function EssaysIndex() {
