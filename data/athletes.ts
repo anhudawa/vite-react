@@ -1103,6 +1103,107 @@ const canelo: AthleteRef = {
   ],
 };
 
+// Held personal-purchase case. We earlier removed an unverifiable McGregor
+// *Richard Mille* sighting (see the corrections record); this is a different,
+// brand-confirmed *Jacob & Co* purchase — strong on text and archives, held only
+// because the self-filmed visual lives on Instagram, which we can't verify.
+const mcgregor: AthleteRef = {
+  slug: "conor-mcgregor",
+  name: "Conor McGregor",
+  discipline: "Mixed martial arts",
+  nationality: "Irish",
+  sameAs: ["https://en.wikipedia.org/wiki/Conor_McGregor"],
+  summary:
+    "Brand-confirmed as a Jacob & Co. buyer, not an ambassador — he purchased it himself. Held on visual evidence and a primary source: the footage is his own, on Instagram, where we can't verify it.",
+  facts: [
+    {
+      id: "mcgregor-jacob-co",
+      status: "in-review",
+      athlete: "Conor McGregor",
+      watch: "Jacob & Co Astronomia",
+      relation: "Personal — private purchase",
+      evidence: "Jacob & Co. confirmed he 'purchased' it at the boutique; he filmed the visit",
+      confidence: "High",
+      confidenceNote: "held: verifiable visual + a primary source pending",
+      reference: undefined,
+      value: { gbpApprox: 730000, note: "Astronomia; a second piece (Rasputin) is contested across sources" },
+      sources: [
+        {
+          id: "timeandtide-mcgregor",
+          publisher: "Time and Tide",
+          kind: "media",
+          tier: "secondary",
+          url: "https://timeandtidewatches.com/conor-mcgregor-drops-2-2m-on-a-duo-of-knockout-jacob-co-watches/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260312104224/https://timeandtidewatches.com/conor-mcgregor-drops-2-2m-on-a-duo-of-knockout-jacob-co-watches/",
+            capturedAt: "2026-03-12",
+          },
+          publishedAt: "2021-01-15",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Jacob & Co.: “We recently welcomed Conor McGregor to our boutique, where he purchased his latest Jacob & Co. timepiece.”",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "maxim-mcgregor",
+          publisher: "Maxim",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.maxim.com/sports/conor-mcgregor-jacob-and-co-watch/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20240526232847/https://www.maxim.com/sports/conor-mcgregor-jacob-and-co-watch/",
+            capturedAt: "2024-05-26",
+          },
+          publishedAt: "2021-01-18",
+          accessedAt: "2026-06-16",
+          excerpt:
+            "“McGregor actually purchased two timepieces from the Manhattan-based luxury custom watchmaker.”",
+          supports: ["athlete", "watch", "relation", "evidence"],
+          verified: true,
+        },
+        {
+          id: "bosshunting-mcgregor",
+          publisher: "Boss Hunting",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.bosshunting.com.au/style/watches/conor-mcgregor-watch-collection/",
+          snapshot: {
+            archivedUrl:
+              "https://web.archive.org/web/20260212104159/https://www.bosshunting.com.au/style/watches/conor-mcgregor-watch-collection/",
+            capturedAt: "2026-02-12",
+          },
+          accessedAt: "2026-06-16",
+          excerpt:
+            "Catalogues McGregor's personally-bought Jacob & Co. pieces among his collection.",
+          supports: ["watch", "relation"],
+          verified: true,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "We do NOT carry the earlier Richard Mille claim — it was unverifiable and is logged as a correction; this is a separate, brand-confirmed Jacob & Co purchase",
+          "Sources disagree on whether one or both watches were bought (a brand rep said he hadn't bought the Rasputin 'just yet') and on price — we claim the Astronomia and name the dispute",
+        ],
+        method: "dual-control",
+        approvedBy: "A. Walsh",
+        approvedAt: "2026-06-16",
+        notes:
+          "Held on two gates: no verifiable visual (his footage is Instagram-gated) and no primary source (the brand's confirmation reaches us only through secondary media). The purchase itself is well-attested and archived.",
+      },
+    },
+  ],
+  notes: [
+    "Jacob & Co. publicly stated McGregor 'purchased' the watch at their boutique — a customer, not a paid ambassador. That brand confirmation, plus independent archived coverage, makes the purchase one of the better-attested personal buys in sport.",
+    "We still hold it. Our visual-evidence gate wants footage we can verify, and his is on Instagram, behind a login we can't get past; and the brand's confirmation reaches us only second-hand. Strong as it is, it isn't yet proven to our standard.",
+    "There is an arc here worth being honest about: we removed an earlier 'McGregor · Richard Mille' sighting because we couldn't source it, and logged the correction. This is the opposite — a claim we CAN largely source, parked one or two gates short. Both are the system working.",
+  ],
+};
+
 export const athletes: AthleteRef[] = [
   pogacar,
   tiger,
@@ -1112,6 +1213,7 @@ export const athletes: AthleteRef[] = [
   beckham,
   ronaldo,
   canelo,
+  mcgregor,
   federer,
   pidcock,
 ];
