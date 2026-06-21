@@ -134,8 +134,8 @@ export default function ColophonPage() {
           The Fact Block
         </h2>
         <p className={styles.lede}>
-          The credibility signature — a spec plate on a movement. It renders only when its
-          claim has been fully verified.
+          The credibility signature — a spec plate on a movement: the watch, the stance,
+          the cost, with the sources sitting quietly underneath.
         </p>
         <div className={styles.factDemo}>
           <FactBlock fact={fact} as="div" />

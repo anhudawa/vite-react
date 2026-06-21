@@ -61,8 +61,8 @@ export function Figure({
           )}
           {watch && <span className={styles.watch}>{watch}</span>}
           {unverified && (
-            <span className={styles.unverified} title="A sighting — not a verified reference">
-              unverified sighting
+            <span className={styles.unverified} title="A sighting we haven't confirmed yet">
+              unconfirmed
             </span>
           )}
         </figcaption>

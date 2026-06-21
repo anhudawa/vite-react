@@ -102,8 +102,8 @@ export default function WhoWearsWhat() {
           ))}
         </div>
         <p className={styles.note}>
-          Sightings we&rsquo;re working to source. Photography, not yet a verified
-          reference — the relationship has to be confirmed before it earns a page.
+          Photographs of a watch on a wrist, where we haven&rsquo;t yet pinned down the
+          full story. Interesting, but not presented as fact until we can stand it up.
         </p>
       </section>
 

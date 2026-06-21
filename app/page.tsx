@@ -200,7 +200,7 @@ export default function HomePage() {
             <dl className={styles.moneyStats}>
               <div>
                 <dt>{formatGBP(stats.totalGBP)}</dt>
-                <dd>across {stats.count} verified wrists</dd>
+                <dd>across {stats.count} wrists</dd>
               </div>
               <div>
                 <dt>

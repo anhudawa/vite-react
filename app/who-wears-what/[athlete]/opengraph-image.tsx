@@ -13,8 +13,8 @@ export default function Image({ params }: { params: { athlete: string } }) {
   const a = getPublishedAthlete(params.athlete);
   const fact = a ? renderableFacts(a)[0] : undefined;
   return ogCard({
-    kicker: "Who wears what · Reference",
+    kicker: "Who wears what",
     title: a && fact ? `${a.name} — ${fact.watch}` : "The Long Second",
-    footer: "Sourced reference",
+    footer: "Bought, or paid to wear it",
   });
 }
