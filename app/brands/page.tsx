@@ -24,9 +24,9 @@ export default function BrandsPage() {
       />
       <PageHeader
         index="—"
-        kicker="The browse graph"
+        kicker="Enter from the maker"
         title="By Brand"
-        intro="The same references, entered from the maker. Who wears each brand, whether they bought it or are paid to wear it, and what it all costs."
+        intro="The same references, read from the maker down. Who wears each brand, whether they bought it or are paid to, and what it all costs."
       />
       <section className={`container ${styles.list}`}>
         {brands.map((b) => (

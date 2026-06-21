@@ -25,7 +25,7 @@ export default function EssaysIndex() {
         index="04"
         kicker="The reading"
         title="Essays"
-        intro="Athletes have the most intense relationship with time of any group alive. A watch is the cultural object of time. These live in the overlap."
+        intro="No one alive has a more intense relationship with time than an athlete. A watch is the cultural object of time. These live in the overlap."
       />
       <div className={`container ${styles.list}`}>
         <ArticleCard essay={lead} variant="lead" />

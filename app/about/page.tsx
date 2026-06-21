@@ -27,8 +27,8 @@ export default function AboutPage() {
       <PageHeader
         index="—"
         kicker="The publication"
-        title="The other version"
-        intro="A named publication. The masthead leads; Anthony Walsh signs the work — watch coverage from someone who has actually buried himself in the red."
+        title="Who's Behind This"
+        intro="A named publication, not a feed. Anthony Walsh signs the work — watch coverage from a man who has buried himself in the red to learn it firsthand."
       />
 
       <div className={`container ${styles.body}`}>

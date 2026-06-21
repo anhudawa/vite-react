@@ -33,17 +33,19 @@ export default function HomePage() {
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>
               <span className={styles.eyebrowMark} aria-hidden="true" />
-              Every sport <span aria-hidden="true">·</span> fine watches
+              Every sport <span aria-hidden="true">·</span> the watches{" "}
+              <span aria-hidden="true">·</span> the money
             </p>
             <h1 id="hero-title" className={styles.heroTitle}>
-              Not every second
+              The watches athletes wear,
               <br />
-              is the same <em>length</em>.
+              and <em>who paid</em> for them.
             </h1>
             <p className={styles.heroDek}>
-              The clock says they are. The body knows better. {site.name} is watches,
-              and the athletes who live by them — told by someone who knows exactly
-              what a second can cost.
+              Across every sport, the world&rsquo;s best wear something on their wrist.
+              {" "}
+              {site.name} tells you what it is, what it costs, and whether they bought it
+              or were paid to — reported by {site.founder}.
             </p>
             <div className={styles.heroActions}>
               <Link href="/who-wears-what" className={styles.primary}>
@@ -89,9 +91,9 @@ export default function HomePage() {
               What&rsquo;s actually on the wrist.
             </h2>
             <p className={styles.featureBody}>
-              Not a press release, not a flat-lay. The watch as it is really worn — by
-              the people who measure their lives in seconds and never take it off. We
-              cover the relationship, source it, and show the evidence.
+              Not a press release, not a flat-lay. The watch as it is actually worn — by
+              men who measure their lives in seconds and never take it off. Who put it
+              there, what it cost, and whether they paid or were paid.
             </p>
             <Link href="/who-wears-what" className={styles.featureLink}>
               See who wears what →
@@ -115,8 +117,8 @@ export default function HomePage() {
       <section className={`container ${styles.block}`} aria-labelledby="reading">
         <SectionHeading index="01" kicker="The reading" title="Athletes and time">
           <p id="reading">
-            Essays on the one relationship a watch and an athlete share — across
-            every sport. No dealer spin, no borrowed expertise.
+            Essays on what an athlete and a watch are to each other, across every
+            sport. No dealer spin, no borrowed expertise.
           </p>
         </SectionHeading>
 
@@ -192,9 +194,9 @@ export default function HomePage() {
               title="Bought it, or paid to wear it"
             >
               <p id="reference">
-                The real question isn&rsquo;t which watch — it&rsquo;s whether he bought
-                it or he&rsquo;s paid to wear it, and what it cost. That&rsquo;s the line
-                nobody else bothers to draw.
+                The question isn&rsquo;t which watch. It&rsquo;s whether he bought it or
+                he&rsquo;s paid to wear it, and what that costs. The line nobody else
+                bothers to draw.
               </p>
             </SectionHeading>
             <dl className={styles.moneyStats}>

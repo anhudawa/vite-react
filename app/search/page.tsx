@@ -23,7 +23,7 @@ export default function SearchPage() {
         index="—"
         kicker="The archive"
         title="Search"
-        intro="Small and deliberately so. Every essay, every sourced reference, every section — find the one you mean."
+        intro="Small, and deliberately so. Every essay, every reference, every section — find the one you mean."
       />
       <section className="container">
         <SearchClient index={index} />

@@ -64,7 +64,7 @@ export default function WatchesInSport() {
         index="02"
         kicker="On the wrist"
         title="Watches in Sport"
-        intro="Football, basketball, cycling, MMA, golf, running — fine watches turn up on the wrists of every sport, sometimes paid for, sometimes bought, sometimes worn in genuine competition. We cover how they actually show up, contradictions intact."
+        intro="Football, basketball, cycling, MMA, golf, running — fine watches turn up on every wrist in the game. Bought, paid for, or worn in genuine competition; we cover how they actually show up, contradictions intact."
         image={{
           src: "/photography/pogacar-1.jpg",
           alt: "Tadej Pogačar in the world-champion jersey, a Richard Mille on his wrist",

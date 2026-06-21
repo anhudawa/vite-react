@@ -51,7 +51,7 @@ export default function WhoWearsWhat() {
         index="01"
         kicker="Bought it, or paid to wear it"
         title="Who Wears What"
-        intro="The real question isn't which watch — it's whether he bought it or he's paid to wear it, and what it cost. That's the line nobody else bothers to draw."
+        intro="The watch is never the real question. Whether he bought it or he's paid to wear it — and what it cost — is the line nobody else bothers to draw."
       />
 
       <section className={`container ${styles.lookup}`}>
