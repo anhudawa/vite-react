@@ -33,13 +33,13 @@ export default function HomePage() {
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>
               <span className={styles.eyebrowMark} aria-hidden="true" />
-              Every sport <span aria-hidden="true">·</span> every watch
+              Endurance sport <span aria-hidden="true">·</span> every watch
             </p>
             <h1 id="hero-title" className={styles.heroTitle}>
               The watches athletes wear.
             </h1>
             <p className={styles.heroDek}>
-              Across every sport, the world&rsquo;s best wear something on their wrist.
+              Across endurance sport, the world&rsquo;s best wear something on their wrist.
               {" "}
               {site.name} tells you what it is, what it costs, and whether they bought it
               or were paid to — reported by {site.founder}.
@@ -114,7 +114,7 @@ export default function HomePage() {
       <section className={`container ${styles.block}`} aria-labelledby="reading">
         <SectionHeading index="01" kicker="The reading" title="Athletes and time">
           <p id="reading">
-            Essays on what an athlete and a watch are to each other, across every
+            Essays on what an athlete and a watch are to each other, across endurance
             sport. No dealer spin, no borrowed expertise.
           </p>
         </SectionHeading>
@@ -209,7 +209,7 @@ export default function HomePage() {
               </div>
               <div>
                 <dt>~{formatGBP(dearest.value!.gbpApprox)}</dt>
-                <dd>the dearest — {dearest.athlete}, on court</dd>
+                <dd>the dearest — {dearest.athlete}, in the race</dd>
               </div>
             </dl>
             <Link href="/who-wears-what" className={styles.refLink}>

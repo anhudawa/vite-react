@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { Figure } from "@/components/Figure";
-import { Reveal } from "@/components/Reveal";
 import { AthleteLookup } from "@/components/AthleteLookup";
 import { acquisitionOf, valueLine } from "@/lib/economics";
 import {
@@ -13,17 +11,6 @@ import {
 } from "@/data/athletes";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./index.module.css";
-
-// Editorial sightings — photography, not yet verified references. Named athlete
-// and the watch confirmed in frame.
-const spotted = [
-  {
-    src: "/photography/topuria-rm.jpg",
-    alt: "Ilia Topuria in low-key light, a Richard Mille on his wrist",
-    subject: "Ilia Topuria",
-    watch: "Richard Mille",
-  },
-];
 
 export const metadata: Metadata = {
   title: "Who Wears What",
@@ -82,29 +69,6 @@ export default function WhoWearsWhat() {
             );
           })}
         </ul>
-      </section>
-
-      <section className={`container ${styles.section}`}>
-        <p className={styles.sectionLabel}>In the field</p>
-        <div className={styles.gallery}>
-          {spotted.map((s, i) => (
-            <Reveal key={s.src} delay={i * 90}>
-              <Figure
-                src={s.src}
-                alt={s.alt}
-                subject={s.subject}
-                watch={s.watch}
-                unverified
-                ratio="4 / 5"
-                sizes="(max-width: 700px) 100vw, 30vw"
-              />
-            </Reveal>
-          ))}
-        </div>
-        <p className={styles.note}>
-          Photographs of a watch on a wrist, where we haven&rsquo;t yet pinned down the
-          full story. Interesting, but not presented as fact until we can stand it up.
-        </p>
       </section>
 
       <section className={`container ${styles.section}`}>

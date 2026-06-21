@@ -6,7 +6,7 @@ export const alt = "The Long Second — the second that matters most";
 
 export default function Image() {
   return ogCard({
-    kicker: "Every sport · fine watches",
+    kicker: "Endurance sport · fine watches",
     title: "Not every second is the same length.",
   });
 }
