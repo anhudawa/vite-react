@@ -1,38 +1,37 @@
-import type { VerifiedFact } from "@/lib/verification";
-import { verifyFact, GATE_COUNT, nextReCheck } from "@/lib/verification";
+import type { GateId, VerifiedFact } from "@/lib/verification";
+import { verifyFact, nextReCheck } from "@/lib/verification";
 import styles from "./FactProvenance.module.css";
 
-function formatResidual(p: number): string {
-  if (p <= 0) return "0";
-  const exp = Math.floor(Math.log10(p));
-  const mant = (p / Math.pow(10, exp)).toFixed(1);
-  return `${mant}×10${superscript(exp)}`;
-}
-function superscript(n: number): string {
-  const map: Record<string, string> = {
-    "-": "⁻", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴",
-    "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹",
-  };
-  return String(n).split("").map((c) => map[c] ?? c).join("");
-}
+// Reader-facing translation of the internal verification checks. The machinery
+// stays internal; what a visitor sees is plain language about what we confirmed.
+const CHECK_COPY: Record<GateId, string> = {
+  "independent-sourcing": "Backed by multiple independent sources",
+  "field-corroboration": "Every key detail corroborated more than once",
+  "reference-integrity": "The watch and its reference check out",
+  "visual-evidence": "There's a photo or footage you can see",
+  "relationship-clarity": "How it reached the wrist is stated plainly",
+  "adversarial-review": "Checked against anything that would contradict it",
+  "confidence-threshold": "Rated only as sure as the evidence earns",
+  "editorial-signoff": "Signed off by a named editor",
+};
 
 /**
- * The credibility, shown. A native disclosure under a Fact Block that exposes
- * exactly how a claim cleared the gauntlet: every gate, the live sources, the
- * computed (not merely asserted) confidence, and the accountable editor.
+ * The credibility, shown — in plain language. A native disclosure under a Fact
+ * Block: what we confirmed, the sources you can open and check, the confidence
+ * the evidence earned, and the editor who signed it. The internal scoring stays
+ * internal; the reader sees the proof, not the machinery.
  */
 export function FactProvenance({ fact }: { fact: VerifiedFact }) {
   const report = verifyFact(fact);
-  const passed = report.gates.filter((g) => g.pass).length;
   const live = fact.sources.filter((s) => s.verified);
   const recheck = nextReCheck(fact);
 
   return (
     <details className={styles.wrap}>
       <summary className={styles.summary}>
-        <span className={styles.summaryLabel}>How this was verified</span>
+        <span className={styles.summaryLabel}>How we checked this</span>
         <span className={styles.summaryCount}>
-          {passed}/{GATE_COUNT} gates · {report.computedConfidence}
+          {report.computedConfidence} confidence
         </span>
       </summary>
 
@@ -43,8 +42,7 @@ export function FactProvenance({ fact }: { fact: VerifiedFact }) {
               <span className={styles.gateMark} aria-hidden="true">
                 {g.pass ? "✓" : "✗"}
               </span>
-              <span className={styles.gateName}>{g.label}</span>
-              <span className={styles.gateDetail}>{g.detail}</span>
+              <span className={styles.gateName}>{CHECK_COPY[g.id]}</span>
             </li>
           ))}
         </ol>
@@ -94,35 +92,28 @@ export function FactProvenance({ fact }: { fact: VerifiedFact }) {
 
         <dl className={styles.meta}>
           <div>
-            <dt>Computed confidence</dt>
+            <dt>Confidence</dt>
             <dd>{report.computedConfidence}</dd>
           </div>
           <div>
             <dt>Reviewed by</dt>
             <dd>
-              {fact.review.approvedBy} · {fact.review.approvedAt?.slice(0, 10)} ·{" "}
-              {fact.review.method}
+              {fact.review.approvedBy} · {fact.review.approvedAt?.slice(0, 10)}
             </dd>
           </div>
           <div>
-            <dt>Modeled residual error</dt>
-            <dd title="Product of independent per-gate residuals — illustrative, not a guarantee">
-              ~{formatResidual(report.residualErrorEstimate)}
-            </dd>
-          </div>
-          <div>
-            <dt>Next re-check</dt>
-            <dd title="When a critical field's live corroboration would next decay; primary-backed claims don't expire">
-              {recheck ? recheck.toISOString().slice(0, 10) : "no decay"}
+            <dt>We&rsquo;ll re-check by</dt>
+            <dd title="When the supporting reports start to age; a purchase or a primary record doesn't expire">
+              {recheck ? recheck.toISOString().slice(0, 10) : "no expiry"}
             </dd>
           </div>
         </dl>
 
         <p className={styles.footnote}>
-          Status is never trusted on its own — this fact is re-checked against the
-          gauntlet at build time and again on render. See the{" "}
+          We don&rsquo;t take our own word for it — every claim here is re-checked when
+          the page is built and again when it loads. See{" "}
           <a href="/verification" className={styles.methodLink}>
-            verification method
+            how we verify
           </a>
           .
         </p>

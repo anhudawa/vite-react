@@ -9,7 +9,6 @@ import {
   inReviewAthletes,
   renderableFacts,
 } from "@/data/athletes";
-import { GATE_COUNT } from "@/lib/verification";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./index.module.css";
 
@@ -98,7 +97,7 @@ export default function WhoWearsWhat() {
         </div>
         <p className={styles.note}>
           Sightings we&rsquo;re working to source. Photography, not yet a verified
-          reference — the relationship has to clear the gauntlet before it earns a page.
+          reference — the relationship has to be confirmed before it earns a page.
         </p>
       </section>
 
@@ -114,11 +113,11 @@ export default function WhoWearsWhat() {
           ))}
         </ul>
         <p className={styles.note}>
-          A name only earns a reference page once its claim clears all {GATE_COUNT}{" "}
-          verification gates. Until then it is held here — visible, but never shown as
-          fact. That restraint is the whole point. See the{" "}
+          A name only earns a reference page once its claim is fully verified. Until
+          then it&rsquo;s held here — visible, but never shown as fact. That restraint is
+          the whole point. See{" "}
           <Link href="/verification" className={styles.noteLink}>
-            verification method
+            how we verify
           </Link>
           .
         </p>

@@ -3,7 +3,6 @@ import { PageHeader } from "@/components/PageHeader";
 import { FactBlock } from "@/components/FactBlock";
 import { Mark, Wordmark } from "@/components/Mark";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
-import { GATES } from "@/lib/verification";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./colophon.module.css";
 
@@ -136,7 +135,7 @@ export default function ColophonPage() {
         </h2>
         <p className={styles.lede}>
           The credibility signature — a spec plate on a movement. It renders only when its
-          claim has cleared the verification gauntlet.
+          claim has been fully verified.
         </p>
         <div className={styles.factDemo}>
           <FactBlock fact={fact} as="div" />
@@ -177,9 +176,9 @@ export default function ColophonPage() {
           <li>Motion is mechanical and purposeful, and yields to reduced-motion.</li>
           <li>
             Make the Fact Block beautiful and consistent — and never let a claim render
-            until it has cleared the{" "}
+            until it has been{" "}
             <a href="/verification" className={styles.inlineLink}>
-              {GATES.length} verification gates
+              fully verified
             </a>
             .
           </li>
