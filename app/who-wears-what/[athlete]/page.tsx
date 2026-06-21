@@ -102,9 +102,9 @@ export default function AthletePage({
             </div>
           ))}
           <p className={styles.disclaimer}>
-            Confidence reflects the strength and number of independent sources, not our
-            enthusiasm. We log the relationship as it is — sponsorship, personal
-            purchase, or loan — and say so plainly.
+            We log each relationship as it is — sponsorship, personal purchase, or loan —
+            and say so plainly. The sources sit under every fact; open them and judge for
+            yourself.
           </p>
         </div>
 
