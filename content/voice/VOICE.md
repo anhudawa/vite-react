@@ -86,7 +86,9 @@ down", "stick around to the end".
 Detectable by the guardrail:
 
 - **Em-dash overuse** — flag if em-dash density exceeds ~1 per 60 words, or more
-  than 2 in a single sentence.
+  than 2 in a single sentence. (A single matched pair around an aside is fine; the
+  rule targets *leaning* on em-dashes, so the density check needs 3+ before it
+  fires.)
 - **Paragraph-length uniformity** — if every paragraph is the same length, the
   piece is being engineered for rhythm, not written.
 - **Repeated parallel "It isn't X. It's Y." constructions** — flag 2+ in one

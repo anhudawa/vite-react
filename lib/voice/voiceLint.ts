@@ -175,11 +175,14 @@ export function lintVoice(text: string): VoiceFinding[] {
     }
   }
 
-  // em-dash overuse — density across the piece, and >2 in one sentence
+  // em-dash overuse — density across the piece, and >2 in one sentence.
+  // A single matched pair around an aside is good writing, not overuse, so the
+  // density rule needs 3+ em-dashes before it fires; the per-sentence rule still
+  // catches 3+ stacked in one sentence.
   {
     const total = (text.match(EM_DASH) || []).length;
     const words = wordCount(text);
-    if (total >= 2 && words > 0 && total / words > EM_DASH_PER_WORDS) {
+    if (total >= 3 && words > 0 && total / words > EM_DASH_PER_WORDS) {
       const first = text.indexOf("—");
       push(
         "em-dash-density",

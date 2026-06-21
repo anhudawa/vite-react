@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run verify:facts && npm run verify:sources",
+    "prebuild": "npm run verify:facts && npm run verify:sources && npm run voice:check",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -13,6 +13,7 @@
     "verify:freshness": "tsx scripts/verify-freshness.mts",
     "qa:copy": "tsx scripts/qa-copy.mts",
     "voice:lint": "tsx scripts/voice-lint.mts",
+    "voice:check": "tsx scripts/voice-check.mts",
     "test": "tsx --test lib/*.test.ts lib/voice/*.test.ts lib/verification/*.test.ts",
     "reading-time": "node scripts/reading-time.mjs"
   },
