@@ -5,15 +5,15 @@ import { essays } from "@/content/essays/registry";
 import { publishedAthletes } from "@/data/athletes";
 import { deriveBrands } from "@/lib/brands";
 import { allTags } from "@/lib/tags";
+import { pillarList } from "@/lib/pillars";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
-  const staticRoutes = [
-    "/",
-    ...nav.map((n) => n.href),
-    ...secondaryNav.map((n) => n.href),
-    "/search",
-  ];
+  const staticRoutes = Array.from(
+    new Set(["/", "/topics", ...nav.map((n) => n.href), ...secondaryNav.map((n) => n.href), "/search"]),
+  );
+
+  const pillarRoutes = pillarList.map((p) => ({ url: `${base}/topics/${p.slug}` }));
 
   const essayRoutes = essays.map((e) => ({
     url: `${base}/essays/${e.slug}`,
@@ -30,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes.map((path) => ({ url: `${base}${path}` })),
+    ...pillarRoutes,
     ...essayRoutes,
     ...athleteRoutes,
     ...brandRoutes,

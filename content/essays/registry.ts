@@ -1,4 +1,4 @@
-import type { EssayEntry, EssayMeta } from "@/lib/content";
+import type { EssayEntry, EssayMeta, Pillar } from "@/lib/content";
 
 // NOTE: `readingTime` in each essay's meta is COMPUTED, never hand-typed — run
 // `npm run reading-time` (scripts/reading-time.mjs) to regenerate it from the
@@ -42,4 +42,9 @@ export function getEssay(slug: string): EssayEntry | undefined {
 
 export function essaysBySilo(silo: EssayMeta["silo"]): EssayEntry[] {
   return essays.filter((e) => e.silo === silo);
+}
+
+/** Pieces belonging to a pillar hub (v2). */
+export function essaysByPillar(pillar: Pillar): EssayEntry[] {
+  return essays.filter((e) => e.pillar === pillar);
 }
