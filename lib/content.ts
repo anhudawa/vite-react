@@ -15,6 +15,7 @@ export interface EssayMeta {
     watch?: string;
     ratio?: string;
     position?: string;
+    treatment?: "mono" | "natural";
   };
 }
 

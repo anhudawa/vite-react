@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import { FactBlock } from "@/components/FactBlock";
+import { Figure } from "@/components/Figure";
 import { Pull } from "@/components/prose/Pull";
 
 /**
@@ -11,6 +12,7 @@ import { Pull } from "@/components/prose/Pull";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     FactBlock,
+    Figure,
     Pull,
     ...components,
   };
