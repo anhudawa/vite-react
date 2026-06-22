@@ -24,8 +24,14 @@ import LanceArmstrong, { meta as lanceArmstrong } from "./lance-armstrong-watche
 import FourMinuteMile, { meta as fourMinuteMile } from "./the-four-minute-mile.mdx";
 import EndurancePro, { meta as endurancePro } from "./the-breitling-endurance-pro.mdx";
 import EightSeconds, { meta as eightSeconds } from "./the-1989-tour-eight-seconds.mdx";
+import NumberDoesntCount, { meta as numberDoesntCount } from "./the-number-that-doesnt-count.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "the-number-that-doesnt-count",
+    meta: numberDoesntCount as unknown as EssayMeta,
+    Content: NumberDoesntCount,
+  },
   {
     slug: "the-1989-tour-eight-seconds",
     meta: eightSeconds as unknown as EssayMeta,
