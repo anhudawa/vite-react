@@ -23,8 +23,14 @@ import Straps, { meta as straps } from "./straps-for-sport.mdx";
 import LanceArmstrong, { meta as lanceArmstrong } from "./lance-armstrong-watches.mdx";
 import FourMinuteMile, { meta as fourMinuteMile } from "./the-four-minute-mile.mdx";
 import EndurancePro, { meta as endurancePro } from "./the-breitling-endurance-pro.mdx";
+import EightSeconds, { meta as eightSeconds } from "./the-1989-tour-eight-seconds.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "the-1989-tour-eight-seconds",
+    meta: eightSeconds as unknown as EssayMeta,
+    Content: EightSeconds,
+  },
   {
     slug: "the-breitling-endurance-pro",
     meta: endurancePro as unknown as EssayMeta,
