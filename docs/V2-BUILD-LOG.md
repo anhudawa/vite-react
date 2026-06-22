@@ -9,7 +9,36 @@ Working through the v2 roadmap slices autonomously. Newest first.
 | 1 | Pillar spine + content model + route taxonomy | ✅ done |
 | 2 | AEO / AI-legibility layer | ✅ done |
 | 3 | Trust + entity scaffolding (author, editorial-standards, glossary) | ✅ done |
-| 4 | Launch content (mechanical/heritage, verified-fact only) | ⏳ in progress |
+| 4 | Launch content (mechanical/heritage, verified-fact only) | ✅ first wave done |
+
+## Slice 4 — first wave (4 pieces, fact-disciplined)
+- `the-instrument-of-effort` (P2 feature) — the manifesto. Conceptual, my own
+  voice, no external specs.
+- `mercedes-gleitze-and-the-oyster` (P3 feature) — built ONLY on the roadmap's
+  EVIDENCE BASE facts (Channel 7 Oct 1927, Vindication Swim 21 Oct 1927, Oyster,
+  Daily Mail ad, first sporting ambassador). Honest crossing-vs-vindication
+  correction in-prose. No invented specifics.
+- `everest-1953-the-watch-and-the-record` (P3 feature) — the honest-myth piece on
+  provided facts (Hillary/Tenzing 29 May 1953; Smiths credited at summit; Rolex
+  summit claim = marketing). Contested specifics flagged in-prose, not asserted.
+- `the-chronograph-for-athletes` (P2 **guide**) — exercises the new guide mode:
+  answer-first lede, FAQ section + **FAQPage schema**, conceptual (no model
+  specs/prices). 5 Q&A.
+- New `faq` field on the model + FAQ rendering/schema in ArticleView.
+- All four route correctly (/features, /guides), populate their /topics hubs,
+  and flow into feeds + knowledge graph + sitemap. Reading times recomputed.
+  Build + voice:check + qa:copy green.
+
+### Slice-4 notes / for the morning
+- **No lead images** on the four new pieces (we have no rights-clear imagery for
+  Gleitze/Everest, and I won't use a wrong photo). They render fine without one.
+  → supply imagery, or leave imageless.
+- These publish on the roadmap's provided facts (bottleneck #4). Gleitze uses
+  "an afternoon and a night" as evocative duration (not a stated time); Everest
+  flags contested specifics rather than asserting them. Confirm you're happy, or
+  I'll hold them behind a draft flag.
+- Reviews + best-for + watch-entity pages NOT built — they need verified spec
+  sheets (bottleneck #2). Next wave once you supply specs.
 
 ## Slice 3 — done
 - `/author/anthony-walsh` — Person entity (knowsAbout spanning endurance + watches,

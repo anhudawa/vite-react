@@ -21,6 +21,8 @@ export interface EssayMeta {
   /** Drive the after-article email capture CTA, per piece. */
   emailHook?: string;
   emailOffer?: string;
+  /** Guides: answer-first Q&A — rendered as a section and FAQPage schema. */
+  faq?: { q: string; a: string }[];
   image?: {
     src: string;
     alt: string;

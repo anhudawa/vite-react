@@ -177,6 +177,35 @@
   color: var(--text-dim);
 }
 
+/* --- FAQ (guides) -------------------------------------------------------- */
+.faq {
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
+}
+.faqHead {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  margin-bottom: var(--s-5);
+}
+.faqItem {
+  padding: var(--s-4) 0;
+  border-top: var(--hairline) solid var(--rule);
+}
+.faqQ {
+  font-family: var(--font-grotesque);
+  font-weight: 600;
+  font-size: var(--t-h4);
+  color: var(--text);
+  margin-bottom: var(--s-2);
+}
+.faqA {
+  margin: 0;
+  font-size: var(--t-body);
+  line-height: 1.66;
+  color: var(--text-dim);
+}
+
 /* --- Footer / next ------------------------------------------------------- */
 .lead {
   max-width: 62rem;

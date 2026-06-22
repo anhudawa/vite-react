@@ -8,8 +8,32 @@ import SameMachine, { meta as sameMachine } from "./the-same-machine.mdx";
 import WhatItCosts, { meta as whatItCosts } from "./what-it-costs-to-keep-time.mdx";
 import SweepSurge, { meta as sweepSurge } from "./the-sweep-and-the-surge.mdx";
 import FieldGuide, { meta as fieldGuide } from "./watches-in-sport-field-guide.mdx";
+import Instrument, { meta as instrument } from "./the-instrument-of-effort.mdx";
+import Gleitze, { meta as gleitze } from "./mercedes-gleitze-and-the-oyster.mdx";
+import Everest, { meta as everest } from "./everest-1953-the-watch-and-the-record.mdx";
+import Chrono, { meta as chrono } from "./the-chronograph-for-athletes.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "the-instrument-of-effort",
+    meta: instrument as unknown as EssayMeta,
+    Content: Instrument,
+  },
+  {
+    slug: "mercedes-gleitze-and-the-oyster",
+    meta: gleitze as unknown as EssayMeta,
+    Content: Gleitze,
+  },
+  {
+    slug: "everest-1953-the-watch-and-the-record",
+    meta: everest as unknown as EssayMeta,
+    Content: Everest,
+  },
+  {
+    slug: "the-chronograph-for-athletes",
+    meta: chrono as unknown as EssayMeta,
+    Content: Chrono,
+  },
   {
     slug: "watches-in-sport-field-guide",
     meta: fieldGuide as unknown as EssayMeta,

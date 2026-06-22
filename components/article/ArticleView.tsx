@@ -2,7 +2,7 @@ import Link from "next/link";
 import { essays } from "@/content/essays/registry";
 import { formatDate, essayHref, type EssayEntry } from "@/lib/content";
 import { site } from "@/lib/site";
-import { JsonLd, articleJsonLd, authorPersonJsonLd, breadcrumb } from "@/lib/jsonld";
+import { JsonLd, articleJsonLd, authorPersonJsonLd, breadcrumb, faqPageJsonLd } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { RelatedEssays } from "@/components/RelatedEssays";
 import { Byline } from "@/components/Byline";
@@ -40,6 +40,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
             { name: "Essays", path: "/essays" },
             { name: essay.title, path },
           ]),
+          ...(essay.faq && essay.faq.length > 0 ? [faqPageJsonLd(essay.faq)] : []),
         ]}
       />
 
@@ -89,6 +90,22 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
       <div className={styles.body}>
         <Content />
       </div>
+
+      {essay.faq && essay.faq.length > 0 && (
+        <section className={styles.faq} aria-labelledby="faq-h">
+          <h2 id="faq-h" className={styles.faqHead}>
+            Common questions
+          </h2>
+          <dl>
+            {essay.faq.map((f) => (
+              <div key={f.q} className={styles.faqItem}>
+                <dt className={styles.faqQ}>{f.q}</dt>
+                <dd className={styles.faqA}>{f.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
 
       <div className={styles.inlineCapture}>
         <EmailCapture
