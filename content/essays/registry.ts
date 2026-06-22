@@ -17,12 +17,30 @@ import WaterResistance, { meta as waterResistance } from "./water-resistance-for
 import OneWatch, { meta as oneWatch } from "./the-one-watch-question.mdx";
 import Lineage, { meta as lineage } from "./the-model-from-feat-lineage.mdx";
 import GpsVsMech, { meta as gpsVsMech } from "./gps-watch-vs-mechanical.mdx";
+import F91W, { meta as f91w } from "./casio-f-91w-and-the-time-trial.mdx";
+import FirstWatch, { meta as firstWatch } from "./first-nice-watch-as-an-athlete.mdx";
+import Straps, { meta as straps } from "./straps-for-sport.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
   {
     slug: "gps-watch-vs-mechanical",
     meta: gpsVsMech as unknown as EssayMeta,
     Content: GpsVsMech,
+  },
+  {
+    slug: "casio-f-91w-and-the-time-trial",
+    meta: f91w as unknown as EssayMeta,
+    Content: F91W,
+  },
+  {
+    slug: "first-nice-watch-as-an-athlete",
+    meta: firstWatch as unknown as EssayMeta,
+    Content: FirstWatch,
+  },
+  {
+    slug: "straps-for-sport",
+    meta: straps as unknown as EssayMeta,
+    Content: Straps,
   },
   {
     slug: "the-model-from-feat-lineage",
