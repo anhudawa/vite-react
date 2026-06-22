@@ -34,7 +34,7 @@ export type NavItem = { label: string; href: string; note?: string };
 export const nav: NavItem[] = [
   { label: "Who Wears What", href: "/who-wears-what", note: "The reference" },
   { label: "Watches in Sport", href: "/watches-in-sport", note: "On the wrist, in the race" },
-  { label: "Buying Guides", href: "/buying-guides", note: "Considered, not transactional" },
+  { label: "Buying Guides", href: "/buying-guides", note: "What's worth owning" },
   { label: "Essays", href: "/essays", note: "Athletes and time" },
 ];
 

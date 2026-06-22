@@ -28,7 +28,7 @@ export default function AboutPage() {
         index="—"
         kicker="The publication"
         title="Who's Behind This"
-        intro="A named publication, not a feed. Anthony Walsh signs the work — watch coverage from a man who has buried himself in the red to learn it firsthand."
+        intro="Anthony Walsh signs every piece here — watch writing from a man who learned what a second costs from inside the effort, not the display case."
       />
 
       <div className={`container ${styles.body}`}>

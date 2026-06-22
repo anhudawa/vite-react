@@ -89,9 +89,9 @@ export default function HomePage() {
               What&rsquo;s actually on the wrist.
             </h2>
             <p className={styles.featureBody}>
-              Not a press release, not a flat-lay. The watch as it is actually worn — by
-              people who measure their lives in seconds and never take it off. What it is,
-              what it cost, and why it earned its place on that wrist.
+              The watch as it is actually worn — by people who measure their lives in
+              seconds and never take it off. What it is, what it cost, and why it earned
+              its place. Reported from the wrist itself, never the press kit.
             </p>
             <Link href="/who-wears-what" className={styles.featureLink}>
               See who wears what →

@@ -8,7 +8,7 @@ import styles from "./index.module.css";
 export const metadata: Metadata = {
   title: "Essays",
   description:
-    "Long-form on athletes and time — the one relationship a watch and an athlete share, across endurance sport. No dealer spin, no borrowed expertise.",
+    "Long-form on athletes and time, across endurance sport — the watch as the one instrument that measures what the body spends. Written by a racer, sourced to the last reference.",
 };
 
 export default function EssaysIndex() {
@@ -25,7 +25,7 @@ export default function EssaysIndex() {
         index="04"
         kicker="The reading"
         title="Essays"
-        intro="No one alive has a more intense relationship with time than an athlete. A watch is the cultural object of time. These live in the overlap."
+        intro="An athlete lives closer to the second than anyone — it is the unit a career is spent in. A watch is the thing built to keep it. These essays sit where the two meet."
       />
       <div className={`container ${styles.list}`}>
         <ArticleCard essay={lead} variant="lead" />

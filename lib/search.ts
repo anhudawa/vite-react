@@ -18,7 +18,7 @@ const SECTION_BLURBS: Record<string, string> = {
   "/who-wears-what":
     "Which athletes wear which watches — and what they cost.",
   "/watches-in-sport": "How timing, sponsorship and the watch live inside sport.",
-  "/buying-guides": "Not a shop. How a watch is made and how it lives on a wrist.",
+  "/buying-guides": "How a watch is made, what it's worth, and how it lives on a training wrist.",
   "/essays": "Long-form on athletes, watches, and the one thing they share — time.",
   "/about": "Who The Long Second is for, and why an athlete is the one telling it.",
 };

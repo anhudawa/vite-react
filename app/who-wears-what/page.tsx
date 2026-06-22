@@ -15,11 +15,11 @@ import styles from "./index.module.css";
 export const metadata: Metadata = {
   title: "Who Wears What",
   description:
-    "The sourced reference: which athletes wear which watches, the nature of the relationship, and exactly how sure we are.",
+    "The sourced reference: which athletes wear which watches, whether it was bought or paid for, and exactly how sure we are.",
 };
 
 export default function WhoWearsWhat() {
-  // Lead with the money: sort the ledger by indicative value, dearest first.
+  // Lead with the dearest: sort the ledger by indicative value, highest first.
   const published = publishedAthletes().sort(
     (a, b) =>
       (renderableFacts(b)[0].value?.gbpApprox ?? 0) -

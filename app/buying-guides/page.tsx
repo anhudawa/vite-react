@@ -14,7 +14,7 @@ const bySport: IndexItem[] = buyersGuides.map((g) => ({
 export const metadata: Metadata = {
   title: "Buying Guides",
   description:
-    "Considered, not transactional. Guides for anyone falling for watches in sport — the mechanics, the money, and the statement, covered honestly.",
+    "Guides for the athlete falling for watches: what survives the sweat and the open water, what holds its worth when a phone already tells the time, and what's worth owning a decade after the racing's done. Each one ends in a verdict.",
 };
 
 const live: IndexItem[] = [
