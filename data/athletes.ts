@@ -443,11 +443,102 @@ const cavendish: AthleteRef = {
   ],
 };
 
+// IN-REVIEW. Cleanly sourced — official Breitling ambassador (their own page) in
+// the Triathlon Squad, featured on the Endurance Pro 38. Quartz "seasoning", and
+// an authentic endurance-athlete watch. Held only for the visual ID of the exact
+// execution and the desk sign-off; promote once the licensed photography is on
+// file.
+const lucy: AthleteRef = {
+  slug: "lucy-charles-barclay",
+  name: "Lucy Charles-Barclay",
+  discipline: "Triathlon — long course / Ironman",
+  nationality: "British",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Lucy_Charles-Barclay",
+    "https://www.breitling.com/us-en/about/ambassadors/lucy-charles-barclay/",
+  ],
+  summary:
+    "2023 Ironman World Champion and a Breitling ambassador — the rare case where the watch was actually built for the wearer's sport. Cleanly sourced; held here only to confirm the exact execution and clear the desk's sign-off.",
+  image: {
+    src: "/photography/lucy-charles-barclay-1.jpg",
+    alt: "Lucy Charles-Barclay racing, a Breitling Endurance Pro on her wrist",
+    caption: "Breitling Endurance Pro 38",
+    credit: "Photographer TBC — licence before publish",
+    rights: "unlicensed-placeholder",
+  },
+  facts: [
+    {
+      id: "lucy-endurance-pro",
+      status: "in-review",
+      athlete: "Lucy Charles-Barclay",
+      watch: "Breitling Endurance Pro 38",
+      relation: "Ambassador — Breitling (Triathlon Squad)",
+      evidence: "Official Breitling ambassador and Triathlon Squad member; featured on the Endurance Pro 38, a SuperQuartz watch built for endurance athletes",
+      confidence: "High",
+      confidenceNote:
+        "Relationship and watch are authoritative (Breitling's own pages). Held in-review only to confirm the exact execution in our images and apply the desk sign-off.",
+      reference: "Endurance Pro 38",
+      sources: [
+        {
+          id: "breitling-ambassador-lucy",
+          publisher: "Breitling",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.breitling.com/us-en/about/ambassadors/lucy-charles-barclay/",
+          accessedAt: "2026-06-22",
+          excerpt: "Breitling's own ambassador page for Lucy Charles-Barclay, 2023 Ironman World Champion.",
+          supports: ["athlete", "relation"],
+          snapshot: "unarchivable",
+          verified: false,
+        },
+        {
+          id: "breitling-triathlon-squad",
+          publisher: "Breitling",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.breitling.com/gb-en/about/squads/triathlon/",
+          accessedAt: "2026-06-22",
+          excerpt: "Breitling's Triathlon Squad page listing Charles-Barclay; Breitling is IRONMAN's official watch partner.",
+          supports: ["athlete", "relation"],
+          snapshot: "unarchivable",
+          verified: false,
+        },
+        {
+          id: "revolution-endurance-pro-38",
+          publisher: "Revolution",
+          kind: "media",
+          tier: "secondary",
+          url: "https://revolutionwatch.com/breitling-endurance-pro-38/",
+          accessedAt: "2026-06-22",
+          excerpt: "On the Breitling Endurance Pro 38 — SuperQuartz, 100m, chronograph and pulsometer, aimed at endurance athletes.",
+          supports: ["watch", "evidence"],
+          verified: false,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Endurance Pro 38 vs the 44mm execution — confirm which she is wearing in our on-file images.",
+        ],
+        method: "single",
+        notes: "Awaiting desk dual-control sign-off and the licensed photography.",
+      },
+    },
+  ],
+  notes: [
+    "An honest one for the 'mechanical-first' line: the Endurance Pro is a SuperQuartz tool watch in a light Breitlight case, not a luxury mechanical grail — and that is exactly the point. It is the rare watch genuinely engineered for the sport its wearer races, worn by the athlete it was built for, through a real partnership rather than a red-carpet loan.",
+    "Three images on file (cropped race/portrait frames). They still need adding to /photography (lucy-charles-barclay-1.jpg, -2.jpg, -3.jpg) and licensing before publish.",
+    "Left for the desk: confirm the exact Endurance Pro execution against the images, add an archivable corroborating source, and apply dual-control sign-off — then promote from in-review to published.",
+  ],
+};
+
 export const athletes: AthleteRef[] = [
   pogacar,
   mvdp,
   pidcock,
   cavendish,
+  lucy,
 ];
 
 /** An athlete is publishable iff it has at least one publishable fact. */
