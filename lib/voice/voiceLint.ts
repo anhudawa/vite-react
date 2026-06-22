@@ -19,6 +19,8 @@ export type VoiceRule =
   | "banned-opener"
   | "contrarian-hook"
   | "negation-opener"
+  | "gendered-generic"
+  | "both-sidesing"
   | "em-dash-density"
   | "em-dash-sentence"
   | "antithesis-repetition"
@@ -71,6 +73,27 @@ const CONTRARIAN_HOOKS: { term: string; re: RegExp }[] = [
     re: /\beveryone\b[^.?!\n]{0,80}[.?!]\s+(?:they[’'`]?re|that[’'`]?s|you[’'`]?re)\s+wrong\b/gi,
   },
   { term: "the truth nobody admits", re: /\bthe truth (?:nobody|no one)\s+(?:admits|tells|wants)\b/gi },
+];
+
+// Gendered generic — speaking for a whole gender's buying habits ("Men buy
+// watches for the money"). The plural-noun-plus-verb shape is the tell; singular
+// "a man who…" about a specific person is fine and not matched.
+const GENDERED_GENERIC: { term: string; re: RegExp }[] = [
+  {
+    term: "men/women buy/wear/want …",
+    re: /\b(?:men|women)\s+(?:buy|wear|want|love|prefer|need|like|crave|chase)\b/gi,
+  },
+];
+
+// Both-sidesing — the equivalence dodge that refuses a verdict ("no reason here
+// is purer than another"). High-signal shape: "no X … is [adj]er/more [adj] than
+// another / the next". A factual comparison ("one movement keeps better time
+// than another") opens on a noun, not "no", so it isn't matched.
+const BOTH_SIDESING: { term: string; re: RegExp }[] = [
+  {
+    term: "no X is …er than another",
+    re: /\bno\s+\w+\b[^.?!\n]{0,40}?\bis\s+(?:\w+er|more\s+\w+)\s+than\s+(?:another|the\s+next|the\s+other|any\s+other)\b/gi,
+  },
 ];
 
 // "It isn't X. It's Y." — both clauses lead with "it"; tolerate is/was forms.
@@ -152,6 +175,12 @@ export function lintVoice(text: string): VoiceFinding[] {
   );
   scan(CONTRARIAN_HOOKS, "contrarian-hook", "error", (term, _n, atOpening) =>
     `Contrarian “hook” construction (${term})${atOpening ? " opening the piece" : ""}. This voice flows from substance, not a contrarian setup.`,
+  );
+  scan(GENDERED_GENERIC, "gendered-generic", "error", (term) =>
+    `Gendered generic (“${term}”). Write to the reader or the athlete, never on behalf of a whole gender.`,
+  );
+  scan(BOTH_SIDESING, "both-sidesing", "error", (term) =>
+    `Both-sidesing (“${term}”). Take the position the reader came for — flat equivalence is a dodge, not a verdict.`,
   );
 
   // "It isn't X. It's Y." — only a problem when repeated (2+)

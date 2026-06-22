@@ -101,6 +101,28 @@ test("a single 'X, not Y' contrast is not a doubled-negation tell", () => {
   assert.equal(single.filter((x) => x.rule === "negation-opener").length, 0);
 });
 
+test("gendered generic 'Men buy watches for the money' is caught", () => {
+  const f = lintVoice("Men buy watches for the movement, the money, or the statement.");
+  assert.ok(hasErrors(f));
+  assert.ok(f.some((x) => x.rule === "gendered-generic"));
+});
+
+test("a singular 'a man who…' about a specific person is allowed", () => {
+  const f = lintVoice("This is the watch of a man who lived outdoors and against a clock.");
+  assert.equal(f.filter((x) => x.rule === "gendered-generic").length, 0);
+});
+
+test("both-sidesing 'no reason here is purer than another' is caught", () => {
+  const f = lintVoice("Buy for the movement or the look; no reason here is purer than another.");
+  assert.ok(hasErrors(f));
+  assert.ok(f.some((x) => x.rule === "both-sidesing"));
+});
+
+test("a factual comparison 'better time than another' is not both-sidesing", () => {
+  const f = lintVoice("The hairspring is most of why one movement keeps better time than another.");
+  assert.equal(f.filter((x) => x.rule === "both-sidesing").length, 0);
+});
+
 test("findings never rewrite — input is left untouched", () => {
   const input = "We delve into it.";
   const copy = String(input);

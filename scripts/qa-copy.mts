@@ -29,6 +29,21 @@ const RESET = "\x1b[0m";
 const NEGATION_OPENER = /\bnot\s+(?:a|an|the)\b[^.?!\n]{0,80}?,\s*(?:not|nor)\b/i;
 const RESOLVER = /\b(?:but|instead|rather|yet)\b/i;
 
+// More structural slop the word-lists miss. Gendered generic — speaking for a
+// whole gender's habits ("Men buy watches…"); the plural-noun-plus-verb shape is
+// the tell, singular "a man who…" is fine. Both-sidesing — the equivalence dodge
+// ("no reason here is purer than another") that refuses the verdict.
+const STRUCTURAL: { re: RegExp; note: string }[] = [
+  {
+    re: /\b(?:men|women)\s+(?:buy|wear|want|love|prefer|need|like|crave|chase)\b/i,
+    note: "gendered generic — write to the reader, not a whole gender",
+  },
+  {
+    re: /\bno\s+\w+\b[^.?!\n]{0,40}?\bis\s+(?:\w+er|more\s+\w+)\s+than\s+(?:another|the\s+next|the\s+other|any\s+other)\b/i,
+    note: "both-sidesing — take the position, don't flatten it to equivalence",
+  },
+];
+
 // Phrases that read as "we verify" self-promotion in the public voice.
 const BANNED: { re: RegExp; note: string }[] = [
   { re: /it ?isn[’'`]?t a claim/i, note: "verification-as-pitch" },
@@ -100,6 +115,18 @@ for (const file of files) {
       console.log(
         `${YELLOW}${file}:${i + 1}${RESET}  ${RED}“${neg[0]}…”${RESET} ${DIM}(dismissive doubled negation — open on what it IS)${RESET}`
       );
+      return;
+    }
+    // Structural slop: gendered generics and both-sidesing.
+    for (const { re, note } of STRUCTURAL) {
+      const m = line.match(re);
+      if (m) {
+        hits += 1;
+        console.log(
+          `${YELLOW}${file}:${i + 1}${RESET}  ${RED}“${m[0]}”${RESET} ${DIM}(${note})${RESET}`
+        );
+        break;
+      }
     }
   });
 }
