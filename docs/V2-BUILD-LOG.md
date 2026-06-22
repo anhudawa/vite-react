@@ -44,6 +44,14 @@ Working through the v2 roadmap slices autonomously. Newest first.
   and flow into feeds + knowledge graph + sitemap. Reading times recomputed.
   Build + voice:check + qa:copy green.
 
+### Slice 4 — second wave (P1 mechanical, fact-safe conceptual)
+- `automatic-vs-manual-wind` (P1 guide, FAQ) — conceptual, no model specs.
+- `water-resistance-for-swimmers` (P1 guide, FAQ) — ratings stated only as hedged
+  conventions (per the glossary), no invented standard/ISO clause/models.
+- `the-one-watch-question` (P1 feature) — conceptual.
+- P1 hub now populated. Content footprint: 11 pieces — mechanical 3, instrument 4,
+  heritage 3, owning 1, dispatch 0.
+
 ### Slice-4 notes / for the morning
 - **No lead images** on the four new pieces (we have no rights-clear imagery for
   Gleitze/Everest, and I won't use a wrong photo). They render fine without one.

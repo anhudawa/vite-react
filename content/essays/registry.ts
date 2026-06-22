@@ -12,8 +12,26 @@ import Instrument, { meta as instrument } from "./the-instrument-of-effort.mdx";
 import Gleitze, { meta as gleitze } from "./mercedes-gleitze-and-the-oyster.mdx";
 import Everest, { meta as everest } from "./everest-1953-the-watch-and-the-record.mdx";
 import Chrono, { meta as chrono } from "./the-chronograph-for-athletes.mdx";
+import AutoManual, { meta as autoManual } from "./automatic-vs-manual-wind.mdx";
+import WaterResistance, { meta as waterResistance } from "./water-resistance-for-swimmers.mdx";
+import OneWatch, { meta as oneWatch } from "./the-one-watch-question.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "automatic-vs-manual-wind",
+    meta: autoManual as unknown as EssayMeta,
+    Content: AutoManual,
+  },
+  {
+    slug: "water-resistance-for-swimmers",
+    meta: waterResistance as unknown as EssayMeta,
+    Content: WaterResistance,
+  },
+  {
+    slug: "the-one-watch-question",
+    meta: oneWatch as unknown as EssayMeta,
+    Content: OneWatch,
+  },
   {
     slug: "the-instrument-of-effort",
     meta: instrument as unknown as EssayMeta,
