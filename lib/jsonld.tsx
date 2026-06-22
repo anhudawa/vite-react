@@ -68,20 +68,22 @@ export function articleJsonLd(opts: {
   title: string;
   description: string;
   datePublished: string;
+  dateModified?: string;
   path: string;
+  type?: "Article" | "NewsArticle";
 }) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": opts.type ?? "Article",
     headline: opts.title,
     description: opts.description,
     datePublished: opts.datePublished,
-    dateModified: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
     mainEntityOfPage: `${site.url}${opts.path}`,
     author: {
       "@type": "Person",
       name: site.author.name,
-      url: `${site.url}/about`,
+      url: `${site.url}/author/anthony-walsh`,
       sameAs: site.author.sameAs,
     },
     publisher: {

@@ -35,9 +35,11 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
         data={[
           articleJsonLd({
             title: essay.title,
-            description: essay.dek,
+            description: essay.tldr ?? essay.dek,
             datePublished: essay.date,
+            dateModified: essay.dateModified ?? essay.date,
             path,
+            type: essay.mode === "dispatch" ? "NewsArticle" : "Article",
           }),
           authorPersonJsonLd(),
           breadcrumb([

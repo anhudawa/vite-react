@@ -14,10 +14,21 @@ export interface EssayMeta {
   pillar?: Pillar;
   /** Editorial mode (v2) — feature / guide / review / dispatch. */
   mode?: ArticleMode;
-  date: string; // ISO
+  date: string; // ISO (datePublished)
+  /** Last meaningful edit (ISO); falls back to `date`. */
+  dateModified?: string;
   readingTime: string;
   kicker?: string;
   tags?: string[];
+  /** AEO on-page contract (D.3): a 45–55-word answer-first summary. */
+  tldr?: string;
+  /** The head query this page owns. */
+  targetQuery?: string;
+  intent?: "informational" | "commercial" | "transactional" | "editorial";
+  /** 2–3 sibling slugs for bidirectional internal links (D.4). */
+  relatedSlugs?: string[];
+  /** Watches referenced, as "Brand Model" → knowledge-graph edges. */
+  watchesMentioned?: string[];
   /** Drive the after-article email capture CTA, per piece. */
   emailHook?: string;
   emailOffer?: string;

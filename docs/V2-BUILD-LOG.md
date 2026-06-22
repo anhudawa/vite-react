@@ -2,6 +2,21 @@
 
 Working through the v2 roadmap slices autonomously. Newest first.
 
+## Slice 5 — roadmap compliance pass (fact-safe gaps)
+- **F.3 content model** extended to spec: `tldr`, `targetQuery`, `intent`,
+  `relatedSlugs`, `watchesMentioned`, `dateModified`, `excerpt` (all optional).
+- **D.3 answer-first `tldr`** wired into Article schema `description` + the
+  articles feed (values backfilled progressively — agent pass next).
+- **Dispatch → `NewsArticle`** schema; `dateModified` flows to schema.
+- **Knowledge graph**: `mentions_watch` (from `watchesMentioned`) and
+  `related_to` (from `relatedSlugs`) edges added; feed carries both.
+- **F.6 stubs**: `/membership` (Phase-2 gated-content hook, noindex) and `/shop`
+  (commerce stub carrying the D.6 trust-firewall comment, noindex).
+- **Content**: GPS-vs-mechanical bridge (#15, the one permitted GPS piece) added
+  to P4. P4 (owning) now has 2 pieces.
+- Still blocked on your **verified specs**: reviews (#9/#11), `/best`, `/compare`,
+  `/watch/[brand]/[model]`. Routes/templates ready; content waits on specs.
+
 ## Content QA — editorial findings (your call in the morning)
 
 A final as-a-set read of all 13 essays. Per-piece voice is good and the heritage

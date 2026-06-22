@@ -16,8 +16,14 @@ import AutoManual, { meta as autoManual } from "./automatic-vs-manual-wind.mdx";
 import WaterResistance, { meta as waterResistance } from "./water-resistance-for-swimmers.mdx";
 import OneWatch, { meta as oneWatch } from "./the-one-watch-question.mdx";
 import Lineage, { meta as lineage } from "./the-model-from-feat-lineage.mdx";
+import GpsVsMech, { meta as gpsVsMech } from "./gps-watch-vs-mechanical.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "gps-watch-vs-mechanical",
+    meta: gpsVsMech as unknown as EssayMeta,
+    Content: GpsVsMech,
+  },
   {
     slug: "the-model-from-feat-lineage",
     meta: lineage as unknown as EssayMeta,

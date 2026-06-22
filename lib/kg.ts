@@ -24,8 +24,11 @@ export interface ArticleFeedItem {
   pillar: string | null;
   mode: string;
   dek: string;
+  tldr: string | null;
   datePublished: string;
+  dateModified: string;
   tags: string[];
+  watchesMentioned: string[];
 }
 
 export function articleFeed(): ArticleFeedItem[] {
@@ -36,8 +39,11 @@ export function articleFeed(): ArticleFeedItem[] {
     pillar: e.pillar ?? null,
     mode: e.mode ?? "feature",
     dek: e.dek,
+    tldr: e.tldr ?? null,
     datePublished: e.date,
+    dateModified: e.dateModified ?? e.date,
     tags: e.tags ?? [],
+    watchesMentioned: e.watchesMentioned ?? [],
   }));
 }
 
@@ -101,6 +107,14 @@ export function knowledgeGraph(): { entities: Entity[]; edges: Edge[] } {
     });
     edges.push({ from: `article:${e.slug}`, type: "authored_by", to: AUTHOR_ID });
     if (e.pillar) edges.push({ from: `article:${e.slug}`, type: "about_topic", to: `topic:${e.pillar}` });
+    for (const w of e.watchesMentioned ?? []) {
+      const wid = `watch:${slugify(w)}`;
+      if (!has(wid)) entities.push({ id: wid, type: "watch", name: w });
+      edges.push({ from: `article:${e.slug}`, type: "mentions_watch", to: wid });
+    }
+    for (const rel of e.relatedSlugs ?? []) {
+      edges.push({ from: `article:${e.slug}`, type: "related_to", to: `article:${rel}` });
+    }
   }
 
   for (const a of publishedAthletes()) {
