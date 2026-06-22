@@ -25,8 +25,14 @@ import FourMinuteMile, { meta as fourMinuteMile } from "./the-four-minute-mile.m
 import EndurancePro, { meta as endurancePro } from "./the-breitling-endurance-pro.mdx";
 import EightSeconds, { meta as eightSeconds } from "./the-1989-tour-eight-seconds.mdx";
 import NumberDoesntCount, { meta as numberDoesntCount } from "./the-number-that-doesnt-count.mdx";
+import LongestHour, { meta as longestHour } from "./the-longest-hour.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "the-longest-hour",
+    meta: longestHour as unknown as EssayMeta,
+    Content: LongestHour,
+  },
   {
     slug: "the-number-that-doesnt-count",
     meta: numberDoesntCount as unknown as EssayMeta,
