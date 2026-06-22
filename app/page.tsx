@@ -39,10 +39,11 @@ export default function HomePage() {
               The watches athletes wear.
             </h1>
             <p className={styles.heroDek}>
-              Across endurance sport, the world&rsquo;s best wear something on their wrist.
+              Across endurance sport, the best in the world wear something on their wrist.
               {" "}
-              {site.name} tells you what it is, what it costs, and whether they bought it
-              or were paid to — reported by {site.founder}.
+              {site.name} tells you what it is, why it matters, and what it cost &mdash; the
+              craft, the heritage, the watch as an instrument of effort. Reported by{" "}
+              {site.founder}.
             </p>
             <div className={styles.heroActions}>
               <Link href="/who-wears-what" className={styles.primary}>
@@ -89,8 +90,8 @@ export default function HomePage() {
             </h2>
             <p className={styles.featureBody}>
               Not a press release, not a flat-lay. The watch as it is actually worn — by
-              men who measure their lives in seconds and never take it off. Who put it
-              there, what it cost, and whether they paid or were paid.
+              people who measure their lives in seconds and never take it off. What it is,
+              what it cost, and why it earned its place on that wrist.
             </p>
             <Link href="/who-wears-what" className={styles.featureLink}>
               See who wears what →
@@ -187,13 +188,13 @@ export default function HomePage() {
           <div className={styles.refText}>
             <SectionHeading
               index="02"
-              kicker="The money"
-              title="Bought it, or paid to wear it"
+              kicker="The reference"
+              title="The watches athletes actually wear"
             >
               <p id="reference">
-                The question isn&rsquo;t which watch. It&rsquo;s whether he bought it or
-                he&rsquo;s paid to wear it, and what that costs. The line nobody else
-                bothers to draw.
+                Every wrist we cover: the watch, what it cost, and the detail nobody else
+                bothers to log &mdash; including, when it matters, whether it was bought or
+                it&rsquo;s a paid placement.
               </p>
             </SectionHeading>
             <dl className={styles.moneyStats}>

@@ -20,7 +20,7 @@ export function generateMetadata({
   if (!b) return {};
   return {
     title: `${b.brand} in sport`,
-    description: `Who wears ${b.brand}, whether they bought it or are paid to wear it, and what sits on those wrists.`,
+    description: `Who wears ${b.brand}, and what sits on those wrists.`,
   };
 }
 

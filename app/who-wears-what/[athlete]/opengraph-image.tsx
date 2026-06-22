@@ -15,6 +15,6 @@ export default function Image({ params }: { params: { athlete: string } }) {
   return ogCard({
     kicker: "Who wears what",
     title: a && fact ? `${a.name} — ${fact.watch}` : "The Long Second",
-    footer: "Bought, or paid to wear it",
+    footer: "Who wears what",
   });
 }

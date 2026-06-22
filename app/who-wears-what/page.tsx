@@ -36,9 +36,9 @@ export default function WhoWearsWhat() {
       />
       <PageHeader
         index="01"
-        kicker="Bought it, or paid to wear it"
+        kicker="The reference"
         title="Who Wears What"
-        intro="The watch is never the real question. Whether he bought it or he's paid to wear it — and what it cost — is the line nobody else bothers to draw."
+        intro="Which athletes wear which watches, and what they cost — sourced, and honest about how sure we are. And where it matters, the detail nobody else bothers to log: whether it was bought, or it's a paid placement."
       />
 
       <section className={`container ${styles.lookup}`}>

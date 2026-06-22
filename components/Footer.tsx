@@ -13,7 +13,7 @@ export function Footer() {
           variant="footer"
           source="footer"
           hook="Every new wrist, in your inbox."
-          offer="Who wears what, whether they bought it or are paid to, and what it costs. The occasional essay. No hype."
+          offer="Who wears what, the craft behind it, and what it costs. The occasional essay. No hype."
         />
       </div>
 

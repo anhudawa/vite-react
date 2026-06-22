@@ -25,7 +25,7 @@ export function GET() {
   lines.push("");
 
   lines.push("## AEO priority categories");
-  lines.push("### Reference — who wears what (bought vs paid)");
+  lines.push("### Reference — who wears what");
   lines.push(`- Who Wears What ${u("/who-wears-what")}`);
   for (const a of publishedAthletes()) {
     lines.push(`- ${a.name} — ${a.discipline} ${u(`/who-wears-what/${a.slug}`)}`);

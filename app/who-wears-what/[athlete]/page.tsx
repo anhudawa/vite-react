@@ -145,7 +145,7 @@ export default function AthletePage({
           variant="inline"
           source={`athlete:${a.slug}`}
           hook={directoryHook(a.discipline)}
-          offer={`Every new athlete we add: the watch, whether they bought it or are paid to wear it, and what it costs. Starting with the names like ${a.name.split(" ").slice(-1)[0]}.`}
+          offer={`Every new athlete we add: the watch they wear, the craft behind it, and what it costs. Starting with the names like ${a.name.split(" ").slice(-1)[0]}.`}
         />
       </div>
 

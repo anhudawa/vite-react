@@ -154,7 +154,7 @@ export function EmailPopup() {
             variant="popup"
             source="popup"
             hook="Don’t leave the wrist behind."
-            offer="The watches athletes actually wear — who bought it, who’s paid to, and what it costs — in your inbox. No hype, unsubscribe in one click."
+            offer="The watches endurance athletes actually wear — the craft, the heritage, and what it costs — in your inbox. No hype, unsubscribe in one click."
             cta="Join free"
             onSuccess={() => window.setTimeout(() => close("subscribed"), 1400)}
           />

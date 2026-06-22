@@ -16,7 +16,7 @@ export interface SearchDoc {
 
 const SECTION_BLURBS: Record<string, string> = {
   "/who-wears-what":
-    "Which athletes wear which watches — and whether they bought it or are paid to.",
+    "Which athletes wear which watches — and what they cost.",
   "/watches-in-sport": "How timing, sponsorship and the watch live inside sport.",
   "/buying-guides": "Not a shop. How a watch is made and how it lives on a wrist.",
   "/essays": "Long-form on athletes, watches, and the one thing they share — time.",

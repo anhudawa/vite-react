@@ -6,7 +6,7 @@ import { JsonLd, breadcrumb } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Watches in Sport",
   description:
-    "How fine watches actually show up in endurance sport — cycling, running, triathlon — worn in genuine competition, bought or paid for, contradictions intact.",
+    "How fine watches actually show up in endurance sport — cycling, running, triathlon — worn in genuine competition, contradictions intact.",
 };
 
 const live: IndexItem[] = [

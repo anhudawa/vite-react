@@ -7,7 +7,7 @@ export const site = {
   // The second that matters most — felt, never explained.
   tagline: "The second that matters most.",
   description:
-    "Watches, and the athletes who live by them. Told by someone who knows exactly what a second can cost — who wears what, whether they bought it or are paid to, and what it costs.",
+    "Watches and the endurance athletes who live by them. The mechanical pieces worn for the life around the sport — the craft, the heritage, who wears what — told by someone who knows exactly what a second can cost.",
   founder: "Anthony Walsh",
   // The named author who signs the work. The masthead leads; the byline authenticates.
   author: {

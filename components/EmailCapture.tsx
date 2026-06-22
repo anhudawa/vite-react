@@ -47,8 +47,8 @@ function readUtm(): { utm: Utm; referringSite?: string } {
 export function EmailCapture({
   source,
   variant = "inline",
-  hook = "Who bought it, who’s paid to wear it — in your inbox.",
-  offer = "The watches athletes actually wear, and what they cost. The occasional essay. No hype, unsubscribe in one click.",
+  hook = "The watches endurance athletes wear, in your inbox.",
+  offer = "The mechanical pieces worn for the life around the sport — the craft, the heritage, who wears what and what it cost. The occasional essay. No hype, unsubscribe in one click.",
   cta = "Subscribe",
   sport,
   budget,
