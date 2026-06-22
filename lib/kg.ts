@@ -158,11 +158,19 @@ export function brandFacts() {
     // we don't assert placeholders. Add them once Anthony provides real values.
     covers: [
       "Mechanical watches (manual and automatic), mostly luxury and enthusiast",
-      "Endurance sport: cycling, running, triathlon, ultra, trail, swimming, rowing, climbing",
+      "Endurance sport: cycling, distance running (the mile, 5,000m, 10,000m, steeplechase, the marathon and its records), triathlon, ultra, trail, swimming, rowing, sailing, climbing — the race against the clock",
+      "The records-and-timing heritage: the four-minute mile, the sub-two-hour marathon, sport timekeeping — the long second made literal",
       "The heritage of watches and endurance — a century deep",
       "How athletes buy, own and live with watches",
     ],
-    doesNotCover: ["Golf", "Football", "Tennis", "Combat sport", "GPS-watch comparison as an identity"],
+    doesNotCover: [
+      "Sprint and field athletics (100m/200m, hurdles, jumps, throws) — the explosive second, not the long one",
+      "Golf",
+      "Football",
+      "Tennis",
+      "Combat sport",
+      "GPS-watch comparison as an identity",
+    ],
     sameAs: site.author.sameAs,
   };
 }

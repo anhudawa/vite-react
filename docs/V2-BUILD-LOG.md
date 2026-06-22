@@ -63,6 +63,20 @@ field-guide depth).
 - Independent QA verdict before fixes: build/test/gates green, no dead links,
   AEO endpoints valid, heritage pieces invent no facts.
 
+## Niche decision — track & field (locked)
+- **IN, and core:** distance/endurance running — the mile, 1500m, 5,000m, 10,000m,
+  steeplechase, the marathon and the records canon. The purest "long second"
+  (sustained suffering against the clock); already lives under "running". Now
+  embraced explicitly in facts.json `covers`. Seeded with the four-minute-mile
+  feature; rich backlog (Bannister done; Kipchoge sub-2 / the Hour Record / the
+  marathon records canon to come).
+- **OUT:** explosive athletics — 100m/200m, hurdles, jumps, throws (the compressed
+  second, outside the brand's authentic endurance authority). Named in facts.json
+  `doesNotCover`. Noah Lyles / Fraser-Pryce / Duplantis NOT added.
+- **Bridge only (demote like GPS):** athletics *timing* heritage — Omega's Olympic
+  timekeeping, photo finish, hand-timed vs electronic, finals by thousandths. One
+  occasional dispatch, never a pillar. BACKLOG, not built.
+
 ## Status
 
 | Slice | Scope | State |
