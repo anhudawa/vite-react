@@ -309,10 +309,145 @@ const mvdp: AthleteRef = {
   ],
 };
 
+// IN-REVIEW. Strongly sourced (Richard Mille's own ambassador page + reputable
+// watch media), staged in the workshop pending the two things only the human
+// desk can close: a confirmed visual ID of each reference, and dual-control
+// editorial sign-off. Promote to "published" once those clear and the licensed
+// photography is on file (see notes).
+const cavendish: AthleteRef = {
+  slug: "mark-cavendish",
+  name: "Mark Cavendish",
+  discipline: "Road cycling — sprinter",
+  nationality: "British",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Mark_Cavendish",
+    "https://www.richardmille.com/friends-and-partners/mark-cavendish",
+  ],
+  summary:
+    "A Richard Mille ambassador with a long history of the watches on race day — the brand loans him pieces, and he owns others outright. Well-sourced, and held here only while we pin each reference visually and clear the desk's sign-off.",
+  image: {
+    src: "/photography/cavendish-rm-dimension-data.jpg",
+    alt: "Mark Cavendish in Dimension Data kit on the bars, a carbon Richard Mille on his wrist",
+    caption: "Richard Mille RM 011",
+    credit: "Photographer TBC — licence before publish",
+    rights: "unlicensed-placeholder",
+  },
+  facts: [
+    {
+      id: "cavendish-rm011",
+      status: "in-review",
+      athlete: "Mark Cavendish",
+      watch: "Richard Mille RM 011 (Felipe Massa)",
+      relation: "Ambassador — Richard Mille (race-day watches loaned)",
+      evidence: "Worn at the 2016 Tour de France in Dimension Data kit; subject of Richard Mille's own ambassador page",
+      confidence: "Medium",
+      confidenceNote:
+        "The relationship is authoritative (the brand's own page). The specific RM 011 reference is from watch media and our read of the photo, not yet visually dual-confirmed.",
+      reference: "RM 011",
+      value: { gbpApprox: 150000, note: "indicative only — Richard Mille pricing is opaque and varies by execution" },
+      sources: [
+        {
+          id: "rm-ambassador-page",
+          publisher: "Richard Mille",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.richardmille.com/friends-and-partners/mark-cavendish",
+          accessedAt: "2026-06-22",
+          excerpt: "Richard Mille lists Mark Cavendish among its friends and partners.",
+          supports: ["athlete", "relation"],
+          snapshot: "unarchivable",
+          verified: false,
+        },
+        {
+          id: "timeandtide-cav-rm",
+          publisher: "Time+Tide",
+          kind: "media",
+          tier: "secondary",
+          url: "https://timeandtidewatches.com/mark-cavendish-richard-mille/",
+          accessedAt: "2026-06-22",
+          excerpt: "Reporting that Richard Mille gave Cavendish an RM 011 Felipe Massa 10th Anniversary edition around the 2016 Tour de France.",
+          supports: ["watch", "evidence"],
+          verified: false,
+        },
+        {
+          id: "photo-dimension-data",
+          publisher: "On-file race photograph",
+          kind: "photo",
+          tier: "primary",
+          accessedAt: "2026-06-22",
+          excerpt: "Dated race photo: Dimension Data glove and kit, green bar tape, a carbon-cased skeleton Richard Mille on the wrist.",
+          supports: ["athlete", "watch"],
+          verified: false,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Exact RM 011 execution not yet visually dual-confirmed — carbon RM 011 variants look alike.",
+        ],
+        method: "single",
+        notes: "Awaiting desk dual-control sign-off and an archivable corroborating source.",
+      },
+    },
+    {
+      id: "cavendish-rm6702",
+      status: "in-review",
+      athlete: "Mark Cavendish",
+      watch: "Richard Mille RM 67-02",
+      relation: "Ambassador — Richard Mille (race-day watches loaned)",
+      evidence: "Reported on his wrist for the record-equalling 35th Tour de France stage win, 2021 (Deceuninck-Quick-Step)",
+      confidence: "Medium",
+      confidenceNote:
+        "The RM 67-02 attribution is from watch media. In our 2021 celebration photo the watch is clearly an orange-and-black RM, but whose wrist it is in the embrace needs the original full frame to confirm.",
+      reference: "RM 67-02",
+      value: { gbpApprox: 150000, note: "indicative only — Richard Mille pricing is opaque" },
+      sources: [
+        {
+          id: "watchfinder-cav-rm",
+          publisher: "Watchfinder",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.watchfinder.co.uk/articles/richard-mille-for-mark-cavendish",
+          accessedAt: "2026-06-22",
+          excerpt: "Reporting Cavendish's Richard Mille watches, including the RM 67-02 worn on race day.",
+          supports: ["watch", "evidence"],
+          verified: false,
+        },
+        {
+          id: "photo-green-jersey",
+          publisher: "On-file race photograph",
+          kind: "photo",
+          tier: "secondary",
+          accessedAt: "2026-06-22",
+          excerpt: "2021 Tour celebration, green points jersey: an orange-and-black tonneau Richard Mille visible on a wrist in the embrace.",
+          supports: ["watch"],
+          verified: false,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Whose wrist in the celebration embrace — needs the original full-frame photo to confirm it is Cavendish's.",
+        ],
+        method: "single",
+        notes: "Hold until the wrist attribution and reference are dual-confirmed.",
+      },
+    },
+  ],
+  notes: [
+    "Two sightings on file: a carbon Richard Mille (reported RM 011 Felipe Massa) at the 2016 Tour in Dimension Data colours, and an orange RM 67-02 around his record-equalling 35th stage win in 2021. The image files still need adding to /photography (cavendish-rm-dimension-data.jpg, cavendish-rm-green-jersey.jpg) and licensing before publish.",
+    "Cavendish is an official Richard Mille ambassador, loaned race-day pieces — so these are paid placements, not personal purchases. Separately he owns Richard Milles in his own right: two (reported at roughly £400,000 and £300,000) were taken in a knifepoint robbery at his home, which is its own grim proof of what he keeps on the wrist.",
+    "Left for the desk: confirm each reference visually, settle the wrist attribution in the 2021 photo, add an archivable corroborating source, and apply dual-control sign-off — then promote both facts from in-review to published.",
+  ],
+};
+
 export const athletes: AthleteRef[] = [
   pogacar,
   mvdp,
   pidcock,
+  cavendish,
 ];
 
 /** An athlete is publishable iff it has at least one publishable fact. */
