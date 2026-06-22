@@ -20,8 +20,14 @@ import GpsVsMech, { meta as gpsVsMech } from "./gps-watch-vs-mechanical.mdx";
 import F91W, { meta as f91w } from "./casio-f-91w-and-the-time-trial.mdx";
 import FirstWatch, { meta as firstWatch } from "./first-nice-watch-as-an-athlete.mdx";
 import Straps, { meta as straps } from "./straps-for-sport.mdx";
+import LanceArmstrong, { meta as lanceArmstrong } from "./lance-armstrong-watches.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "lance-armstrong-watches",
+    meta: lanceArmstrong as unknown as EssayMeta,
+    Content: LanceArmstrong,
+  },
   {
     slug: "gps-watch-vs-mechanical",
     meta: gpsVsMech as unknown as EssayMeta,
