@@ -40,8 +40,9 @@ export function GET() {
   lines.push("");
 
   lines.push("## Entities");
-  lines.push(`- Author / expert: ${site.author.name} (${site.author.role}) ${u("/about")}`);
+  lines.push(`- Author / expert: ${site.author.name} (${site.author.role}) ${u("/author/anthony-walsh")}`);
   lines.push(`- Brands in sport ${u("/brands")}`);
+  lines.push(`- Glossary (defined terms) ${u("/glossary")}`);
   lines.push(`- Editorial standards & corrections ${u("/editorial-standards")}`);
   lines.push("");
 

@@ -36,7 +36,7 @@ export function authorPersonJsonLd() {
     name: site.author.name,
     jobTitle: `${site.author.role}, ${site.name}`,
     description: site.author.bio,
-    url: `${site.url}/about`,
+    url: `${site.url}/author/anthony-walsh`,
     image: `${site.url}${site.author.portrait}`,
     sameAs: site.author.sameAs,
     knowsAbout: [

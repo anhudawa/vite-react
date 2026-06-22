@@ -8,8 +8,19 @@ Working through the v2 roadmap slices autonomously. Newest first.
 | --- | --- | --- |
 | 1 | Pillar spine + content model + route taxonomy | ✅ done |
 | 2 | AEO / AI-legibility layer | ✅ done |
-| 3 | Trust + entity scaffolding (author, editorial-standards, glossary) | ⏳ in progress |
-| 4 | Launch content (mechanical/heritage, verified-fact only) | ⬜ queued |
+| 3 | Trust + entity scaffolding (author, editorial-standards, glossary) | ✅ done |
+| 4 | Launch content (mechanical/heritage, verified-fact only) | ⏳ in progress |
+
+## Slice 3 — done
+- `/author/anthony-walsh` — Person entity (knowsAbout spanning endurance + watches,
+  jobTitle, sameAs, credentials, authored-writing list). Article author.url now
+  points here.
+- `/editorial-standards` — AboutPage: what we check, how we handle uncertainty,
+  the commercial firewall, and the corrections log (empty state for now). Plain
+  language, no verification-as-pitch (passes qa:copy).
+- `/glossary` + `/glossary/[term]` — DefinedTermSet / DefinedTerm, 18 terms
+  (agent-written, tsc-clean, accurate, voice-checked).
+- Footer nav + llms.txt updated with Glossary, Standards, author entity.
 
 ## Slice 2 — done
 - `robots.ts`: explicit allow for GPTBot/OAI-SearchBot/ClaudeBot/anthropic-ai/
