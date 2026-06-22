@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run verify:facts && npm run verify:sources && npm run voice:check",
+    "prebuild": "npm run verify:facts && npm run verify:sources && npm run voice:check && npm run qa:copy",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -83,6 +83,24 @@ test("the 'the [x] internet won't tell you' opener is caught", () => {
   assert.ok(f.some((x) => x.rule === "banned-opener"));
 });
 
+test("dismissive doubled negation 'Not a X, not a Y' is caught as an error", () => {
+  const f = lintVoice("Not a shop, not a sermon. These guides are about how a watch is made.");
+  assert.ok(hasErrors(f));
+  assert.ok(f.some((x) => x.rule === "negation-opener"));
+});
+
+test("a resolved negation 'Not X, not Y, but Z' is allowed", () => {
+  const resolved = lintVoice(
+    "Not the watch as jewellery, not the watch as a sponsor's logo, but the watch as the final judge.",
+  );
+  assert.equal(resolved.filter((x) => x.rule === "negation-opener").length, 0);
+});
+
+test("a single 'X, not Y' contrast is not a doubled-negation tell", () => {
+  const single = lintVoice("Worn to win Paris-Roubaix, not to dinner.");
+  assert.equal(single.filter((x) => x.rule === "negation-opener").length, 0);
+});
+
 test("findings never rewrite — input is left untouched", () => {
   const input = "We delve into it.";
   const copy = String(input);

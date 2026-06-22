@@ -6,6 +6,9 @@
  * positioning leaking into public copy. This sweep flags that language in
  * reader-facing pages and content so it can be rewritten as confident editorial.
  *
+ * It also catches one structural AI-slop tell that pure word-lists miss: the
+ * dismissive doubled negation "Not a X, not a Y" used as an opening frame.
+ *
  * The dedicated /verification page is the one place this vocabulary belongs, so
  * it's exempt. Code comments are ignored.
  */
@@ -17,6 +20,14 @@ const YELLOW = "\x1b[33m";
 const GREEN = "\x1b[32m";
 const DIM = "\x1b[2m";
 const RESET = "\x1b[0m";
+
+// Structural slop: the dismissive doubled negation "Not a X, not a Y" that
+// lists what a thing ISN'T instead of opening on what it IS. This is the exact
+// tell that produced the worst line we shipped ("Not a shop, not a sermon").
+// Legitimate when it resolves into a positive ("Not X, not Y, BUT Z"), so the
+// check below skips any match whose sentence carries a resolver.
+const NEGATION_OPENER = /\bnot\s+(?:a|an|the)\b[^.?!\n]{0,80}?,\s*(?:not|nor)\b/i;
+const RESOLVER = /\b(?:but|instead|rather|yet)\b/i;
 
 // Phrases that read as "we verify" self-promotion in the public voice.
 const BANNED: { re: RegExp; note: string }[] = [
@@ -69,6 +80,7 @@ for (const file of files) {
       trimmed.startsWith("{/*")
     )
       return;
+    let flagged = false;
     for (const { re, note } of BANNED) {
       if (re.test(line)) {
         hits += 1;
@@ -76,15 +88,25 @@ for (const file of files) {
         console.log(
           `${YELLOW}${file}:${i + 1}${RESET}  ${RED}“${m}”${RESET} ${DIM}(${note})${RESET}`
         );
+        flagged = true;
         break;
       }
+    }
+    if (flagged) return;
+    // Structural slop: unresolved doubled negation on the line.
+    const neg = line.match(NEGATION_OPENER);
+    if (neg && !RESOLVER.test(line)) {
+      hits += 1;
+      console.log(
+        `${YELLOW}${file}:${i + 1}${RESET}  ${RED}“${neg[0]}…”${RESET} ${DIM}(dismissive doubled negation — open on what it IS)${RESET}`
+      );
     }
   });
 }
 
 if (hits > 0) {
   console.log(
-    `\n${RED}FAIL${RESET}: ${hits} bit(s) of verification-as-pitch / internal jargon in public copy.\n` +
+    `\n${RED}FAIL${RESET}: ${hits} bit(s) of verification-as-pitch, internal jargon, or structural slop in public copy.\n` +
       `${DIM}Rewrite as confident editorial; keep the "how we verify" vocabulary on /verification.${RESET}\n`
   );
   process.exit(1);

@@ -18,6 +18,7 @@ export type VoiceRule =
   | "banned-word"
   | "banned-opener"
   | "contrarian-hook"
+  | "negation-opener"
   | "em-dash-density"
   | "em-dash-sentence"
   | "antithesis-repetition"
@@ -172,6 +173,33 @@ export function lintVoice(text: string): VoiceFinding[] {
           idx,
         );
       }
+    }
+  }
+
+  // negation-opener — the dismissive doubled negation "Not a X, not a Y" that
+  // lists what a thing ISN'T instead of saying what it IS ("Not a shop, not a
+  // sermon"). It's the structural tell that produced this site's worst AI-slop
+  // line. Legitimate when the negation resolves into a positive ("Not X, not Y,
+  // BUT Z"), so we look ahead to the end of the sentence for a resolver and only
+  // flag the unresolved dismissal.
+  {
+    const NEG = /\bnot\s+(?:a|an|the)\b[^.?!\n]{0,80}?,\s*(?:not|nor)\b/gi;
+    let m: RegExpExecArray | null;
+    while ((m = NEG.exec(text)) !== null) {
+      // The whole sentence around the hit (across soft line-wraps), to test for
+      // a positive resolver before the next sentence boundary.
+      const sentence = text.slice(m.index, m.index + 240).split(/[.?!](?:\s|$)/)[0];
+      if (!/\b(?:but|instead|rather|yet)\b/i.test(sentence)) {
+        const term = m[0].replace(/\s+/g, " ");
+        push(
+          "negation-opener",
+          "error",
+          term,
+          `Dismissive doubled negation (“${term}…”). Open on what the thing IS, not a list of what it isn’t — or resolve it (“…, but Z”).`,
+          m.index,
+        );
+      }
+      if (m.index === NEG.lastIndex) NEG.lastIndex++;
     }
   }
 
