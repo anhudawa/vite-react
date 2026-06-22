@@ -7,9 +7,23 @@ Working through the v2 roadmap slices autonomously. Newest first.
 | Slice | Scope | State |
 | --- | --- | --- |
 | 1 | Pillar spine + content model + route taxonomy | ✅ done |
-| 2 | AEO / AI-legibility layer | ⏳ in progress |
-| 3 | Trust + entity scaffolding (author, editorial-standards, glossary) | ⬜ queued |
+| 2 | AEO / AI-legibility layer | ✅ done |
+| 3 | Trust + entity scaffolding (author, editorial-standards, glossary) | ⏳ in progress |
 | 4 | Launch content (mechanical/heritage, verified-fact only) | ⬜ queued |
+
+## Slice 2 — done
+- `robots.ts`: explicit allow for GPTBot/OAI-SearchBot/ClaudeBot/anthropic-ai/
+  PerplexityBot/Google-Extended/CCBot/Applebot-Extended + sitemap + host.
+- `/llms.txt` (route handler): brand one-liner, pillar taxonomy, AEO priority
+  categories (reference/guides/features), entity links, feed pointers. Internal
+  links UTM-tagged `?utm_source=llms-txt&utm_medium=ai-crawler`.
+- `/facts.json`: brand facts (name, covers, doesNotCover, founder, sameAs) —
+  foundingYear/location/partnershipContact are placeholders (bottleneck #1).
+- `/knowledge-graph.json`: 14 entities (person/topic/article/brand/watch) + 12
+  typed edges (authored_by, about_topic, wears, wears_watch), built from content.
+- Feeds: `/feeds/{articles,topics,watches,reviews}.json`, pillar as a top field.
+- `lib/kg.ts` builds them all from the collections. All static, build-green,
+  endpoints verified.
 
 ## Slice 1 — done
 - Content model: `Pillar` + `ArticleMode` on `EssayMeta`; `lib/pillars.ts` (5 hubs).

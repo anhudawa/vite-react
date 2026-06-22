@@ -1,0 +1,7 @@
+import { articleFeed } from "@/lib/kg";
+
+export const dynamic = "force-static";
+
+export function GET() {
+  return Response.json({ articles: articleFeed() });
+}
