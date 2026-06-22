@@ -44,3 +44,23 @@ export function formatDate(iso: string): string {
     year: "numeric",
   });
 }
+
+/** The route section for an editorial mode (v2 taxonomy). */
+export function sectionOf(mode?: ArticleMode): { label: string; href: string } {
+  switch (mode) {
+    case "guide":
+      return { label: "Guides", href: "/guides" };
+    case "review":
+      return { label: "Reviews", href: "/reviews" };
+    case "dispatch":
+      return { label: "Dispatches", href: "/dispatch" };
+    case "feature":
+    default:
+      return { label: "Features", href: "/features" };
+  }
+}
+
+/** Canonical URL for a piece, by mode. Features are the default. */
+export function essayHref(e: { slug: string; mode?: ArticleMode }): string {
+  return `${sectionOf(e.mode).href}/${e.slug}`;
+}

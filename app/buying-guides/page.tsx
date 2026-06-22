@@ -21,13 +21,13 @@ const live: IndexItem[] = [
   {
     title: "What It Costs to Keep Time",
     dek: "The £300 Coros and the £300,000 Richard Mille keep the same time. Read this before you read any guide — it is the frame for all of them.",
-    href: "/essays/what-it-costs-to-keep-time",
+    href: "/features/what-it-costs-to-keep-time",
     meta: "Essay · On value",
   },
   {
     title: "The Sweep and the Surge",
     dek: "What a smoothly sweeping seconds hand is actually telling you, and why it is the detail worth paying for when so much else is noise.",
-    href: "/essays/the-sweep-and-the-surge",
+    href: "/features/the-sweep-and-the-surge",
     meta: "Essay · On craft",
   },
 ];

@@ -1,6 +1,7 @@
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
 import { nav, secondaryNav } from "@/lib/site";
+import { essayHref } from "@/lib/content";
 
 export type SearchKind = "Essay" | "Reference" | "Section";
 
@@ -30,7 +31,7 @@ export function buildSearchIndex(): SearchDoc[] {
   for (const e of essays) {
     docs.push({
       title: e.title,
-      href: `/essays/${e.slug}`,
+      href: essayHref(e),
       kind: "Essay",
       summary: e.dek,
       keywords: [e.title, e.dek, e.kicker, e.silo, ...(e.tags ?? [])]

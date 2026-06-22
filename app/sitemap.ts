@@ -6,6 +6,7 @@ import { publishedAthletes } from "@/data/athletes";
 import { deriveBrands } from "@/lib/brands";
 import { allTags } from "@/lib/tags";
 import { pillarList } from "@/lib/pillars";
+import { essayHref } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
@@ -16,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pillarRoutes = pillarList.map((p) => ({ url: `${base}/topics/${p.slug}` }));
 
   const essayRoutes = essays.map((e) => ({
-    url: `${base}/essays/${e.slug}`,
+    url: `${base}${essayHref(e)}`,
     lastModified: new Date(e.date),
   }));
 

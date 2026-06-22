@@ -5,6 +5,7 @@ import { IndexList, type IndexItem } from "@/components/IndexList";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import { pillarList, getPillar } from "@/lib/pillars";
 import { essaysByPillar } from "@/content/essays/registry";
+import { essayHref } from "@/lib/content";
 import { site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -29,7 +30,7 @@ export default function PillarHub({ params }: { params: { pillar: string } }) {
   const items: IndexItem[] = pieces.map((e) => ({
     title: e.title,
     dek: e.dek,
-    href: `/essays/${e.slug}`,
+    href: essayHref(e),
     meta: `${e.kicker ?? "Essay"} · ${e.readingTime}`,
   }));
   const index = String(pillarList.findIndex((x) => x.slug === p.slug) + 1).padStart(2, "0");

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { EssayEntry } from "@/lib/content";
-import { formatDate } from "@/lib/content";
+import { formatDate, essayHref } from "@/lib/content";
 import styles from "./ArticleCard.module.css";
 
 export function ArticleCard({
@@ -14,7 +14,7 @@ export function ArticleCard({
 }) {
   return (
     <article className={styles.card} data-variant={variant}>
-      <Link href={`/essays/${essay.slug}`} className={styles.link}>
+      <Link href={essayHref(essay)} className={styles.link}>
         <div className={styles.meta}>
           {typeof index === "number" && (
             <span className={styles.num}>{String(index).padStart(2, "0")}</span>

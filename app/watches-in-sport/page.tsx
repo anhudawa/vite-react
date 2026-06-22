@@ -13,25 +13,25 @@ const live: IndexItem[] = [
   {
     title: "Watches in Sport: A Field Guide",
     dek: "Cycling, running, triathlon — where fine watches show up in endurance sport, and the one question that tells you what each really means.",
-    href: "/essays/watches-in-sport-field-guide",
+    href: "/features/watches-in-sport-field-guide",
     meta: "Essay · The overview",
   },
   {
     title: "The Same Machine, Described Twice",
     dek: "Why a movement and an endurance athlete are the same device, described in two vocabularies — and the only honest lens on the subject.",
-    href: "/essays/the-same-machine",
+    href: "/features/the-same-machine",
     meta: "Essay · The thesis",
   },
   {
     title: "The Sweep and the Surge",
     dek: "The seconds hand and the rider in the final kilometre do their hardest work by looking like they are doing nothing. Smoothness is regulation under load.",
-    href: "/essays/the-sweep-and-the-surge",
+    href: "/features/the-sweep-and-the-surge",
     meta: "Essay · On craft",
   },
   {
     title: "What It Costs to Keep Time",
     dek: "A £300 GPS watch keeps better time than a £300,000 one — so the price of the expensive watch buys something other than the time. Here is what.",
-    href: "/essays/what-it-costs-to-keep-time",
+    href: "/features/what-it-costs-to-keep-time",
     meta: "Essay · On value",
   },
   {
