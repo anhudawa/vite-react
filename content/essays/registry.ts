@@ -22,8 +22,14 @@ import FirstWatch, { meta as firstWatch } from "./first-nice-watch-as-an-athlete
 import Straps, { meta as straps } from "./straps-for-sport.mdx";
 import LanceArmstrong, { meta as lanceArmstrong } from "./lance-armstrong-watches.mdx";
 import FourMinuteMile, { meta as fourMinuteMile } from "./the-four-minute-mile.mdx";
+import EndurancePro, { meta as endurancePro } from "./the-breitling-endurance-pro.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "the-breitling-endurance-pro",
+    meta: endurancePro as unknown as EssayMeta,
+    Content: EndurancePro,
+  },
   {
     slug: "the-four-minute-mile",
     meta: fourMinuteMile as unknown as EssayMeta,

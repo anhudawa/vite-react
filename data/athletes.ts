@@ -460,8 +460,8 @@ const lucy: AthleteRef = {
   summary:
     "2023 Ironman World Champion and a Breitling ambassador — the rare case where the watch was actually built for the wearer's sport. Cleanly sourced; held here only to confirm the exact execution and clear the desk's sign-off.",
   image: {
-    src: "/photography/lucy-charles-barclay-1.jpg",
-    alt: "Lucy Charles-Barclay racing, a Breitling Endurance Pro on her wrist",
+    src: "/photography/lucy-charles-barclay-1.png",
+    alt: "Lucy Charles-Barclay, a Breitling Endurance Pro on her wrist",
     caption: "Breitling Endurance Pro 38",
     credit: "Photographer TBC — licence before publish",
     rights: "unlicensed-placeholder",
@@ -528,7 +528,7 @@ const lucy: AthleteRef = {
   ],
   notes: [
     "An honest one for the 'mechanical-first' line: the Endurance Pro is a SuperQuartz tool watch in a light Breitlight case, not a luxury mechanical grail — and that is exactly the point. It is the rare watch genuinely engineered for the sport its wearer races, worn by the athlete it was built for, through a real partnership rather than a red-carpet loan.",
-    "Three images on file (cropped race/portrait frames). They still need adding to /photography (lucy-charles-barclay-1.jpg, -2.jpg, -3.jpg) and licensing before publish.",
+    "Three images now on file (lucy-charles-barclay-1/2/3.png — a portrait, a training frame, and a poolside shot showing the Endurance Pro). They still need a credit and licence before publish.",
     "Left for the desk: confirm the exact Endurance Pro execution against the images, add an archivable corroborating source, and apply dual-control sign-off — then promote from in-review to published.",
   ],
 };

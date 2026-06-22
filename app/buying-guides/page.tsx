@@ -60,7 +60,7 @@ export default function BuyingGuides() {
         index="03"
         kicker="Considered"
         title="Buying Guides"
-        intro="Not a shop, not a sermon. Men buy watches for the movement, the money, the statement, or all three, and no reason here is purer than another. These guides are about how a watch is made, what it costs, and how it lives on a wrist."
+        intro="A watch for a training life answers to harder questions than a jeweller asks: what survives the sweat and the open water, what holds its worth when a cheap computer already does the timing, and what you'll still reach for a decade after the racing's done. Every guide here ends in a verdict."
         image={{
           src: "/photography/tudor-giro-chrono.jpg",
           alt: "A Tudor Black Bay Chrono among the Giro d'Italia trophy spiral",
