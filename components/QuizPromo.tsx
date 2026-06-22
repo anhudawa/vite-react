@@ -13,11 +13,11 @@ export function QuizPromo() {
         <div className={styles.copy}>
           <p className={styles.kicker}>Find your watch</p>
           <h2 id="quiz-promo-h" className={styles.title}>
-            Not sure where to start? Seven questions.
+            Seven questions, then a real answer.
           </h2>
           <p className={styles.note}>
-            Tell us how you train and what you&rsquo;ll spend. We&rsquo;ll name the real
-            watches worth your money — mechanical or GPS, at your budget.
+            Tell us how you train and what you&rsquo;ll spend. We name the watches worth
+            your money &mdash; mechanical or GPS, at your budget.
           </p>
         </div>
         <Link href="/find-your-watch" className={styles.cta}>

@@ -38,7 +38,7 @@ export default function WhoWearsWhat() {
         index="01"
         kicker="The reference"
         title="Who Wears What"
-        intro="Which athletes wear which watches, and what they cost — sourced, and honest about how sure we are. And where it matters, the detail nobody else bothers to log: whether it was bought, or it's a paid placement."
+        intro="Which athletes wear which watches, and what those watches cost — sourced, and honest about how sure we are. Where it matters, we note whether it was bought or paid to wear."
       />
 
       <section className={`container ${styles.lookup}`}>

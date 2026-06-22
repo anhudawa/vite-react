@@ -56,7 +56,7 @@ export default async function SportGuidePage({
         <EmailCapture
           variant="gate"
           source={`guide:${guide.slug}`}
-          hook="Get the athlete’s watch buying guide."
+          hook="The watch verdicts, for people who measure their lives in seconds."
           offer={`The full ${guide.sport.toLowerCase()} shortlist, the next sports as we publish them, and the bought-vs-paid breakdowns — in your inbox.`}
           cta="Send it to me"
         />

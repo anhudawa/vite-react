@@ -163,9 +163,9 @@ const PROFILES: Record<string, Profile> = {
   "mech-no-ceiling": {
     id: "grail",
     name: "The Grail Hunter",
-    tagline: "No ceiling. Buy the icon.",
+    tagline: "No ceiling. Buy the reference everything else is measured against.",
     blurb:
-      "At this level you're buying history and the smoothest engineering in watchmaking. Pieces you can swim in, dress up, and hand down — the references everything else is measured against.",
+      "At this level you're buying history and the smoothest engineering in watchmaking. Pieces you can swim in, dress up, and hand down — the ones the rest of the catalogue spends its life chasing.",
   },
 };
 
@@ -192,7 +192,7 @@ const MECH: Record<string, Recommendation[]> = {
     { name: "Presage Cocktail", brand: "Seiko", priceEUR: "~€420", movement: "mechanical", reason: "If you want it dressier — a sunburst dial that reads like triple the price.", styleFit: ["dress", "vintage"], affiliateUrl: "" },
   ],
   "500-1500": [
-    { name: "PRX Powermatic 80", brand: "Tissot", priceEUR: "~€700", movement: "mechanical", reason: "The integrated-bracelet icon: a Genta-era silhouette and an 80-hour movement for Swatch-group money.", styleFit: ["sporty-modern", "dress"], affiliateUrl: "" },
+    { name: "PRX Powermatic 80", brand: "Tissot", priceEUR: "~€700", movement: "mechanical", reason: "A Genta-era integrated-bracelet silhouette and an 80-hour movement for Swatch-group money.", styleFit: ["sporty-modern", "dress"], affiliateUrl: "" },
     { name: "Khaki Field Mechanical", brand: "Hamilton", priceEUR: "~€575", movement: "mechanical", reason: "The platonic field watch: hand-wound, legible, light, real military lineage.", styleFit: ["tool", "vintage"], affiliateUrl: "" },
     { name: "Prospex Diver (SPB143)", brand: "Seiko", priceEUR: "~€1,100", movement: "mechanical", reason: "The enthusiast's darling: 200m, a refined movement, proportions Seiko finally nailed.", styleFit: ["tool", "sporty-modern"], affiliateUrl: "" },
     { name: "C60 Trident", brand: "Christopher Ward", priceEUR: "~€900", movement: "mechanical", reason: "Direct-to-consumer value: specs and finishing that shouldn't be possible at the price.", styleFit: ["tool", "sporty-modern"], affiliateUrl: "" },
@@ -208,7 +208,7 @@ const MECH: Record<string, Recommendation[]> = {
     { name: "Seamaster Diver 300M", brand: "Omega", priceEUR: "~€6,500", movement: "mechanical", reason: "The all-rounder grail: a Master Chronometer movement, real history, swim-to-black-tie versatility.", styleFit: ["sporty-modern", "tool"], affiliateUrl: "" },
     { name: "Aqua Terra 150M", brand: "Omega", priceEUR: "~€6,000", movement: "mechanical", reason: "The quieter Omega: a clean 150m all-rounder you can swim, train near, and wear to dinner without a second thought.", styleFit: ["dress", "sporty-modern"], affiliateUrl: "" },
     { name: "Explorer 36", brand: "Rolex", priceEUR: "~€7,500", movement: "mechanical", reason: "The mountaineer's Rolex and the most honest one — no date fuss, no diver's heft, just a tool watch with a serious record behind it.", styleFit: ["tool", "vintage"], affiliateUrl: "" },
-    { name: "Submariner", brand: "Rolex", priceEUR: "~€10,000", movement: "mechanical", reason: "The reference the whole category is measured against. If you want the icon, buy the icon.", styleFit: ["tool", "sporty-modern"], affiliateUrl: "" },
+    { name: "Submariner", brand: "Rolex", priceEUR: "~€10,000", movement: "mechanical", reason: "The reference the whole category is measured against. Every other diver is, in some way, an answer to it.", styleFit: ["tool", "sporty-modern"], affiliateUrl: "" },
     { name: "Evolution 9 Spring Drive", brand: "Grand Seiko", priceEUR: "~€6,500", movement: "mechanical", reason: "The smoothest seconds hand in watchmaking, and finishing that humbles watches twice the price.", styleFit: ["dress", "sporty-modern"], affiliateUrl: "" },
   ],
 };

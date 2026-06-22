@@ -110,7 +110,7 @@ export const buyersGuides: SportGuide[] = [
             brand: "Tissot",
             price: "~£650",
             kind: "Mechanical",
-            why: "The integrated-bracelet icon at Swatch-group money: a Genta-era silhouette, an 80-hour movement, and the versatility to go from a café stop to a dinner without changing a thing.",
+            why: "A Genta-era integrated bracelet at Swatch-group money: an 80-hour movement, and the range to go from a café stop to a dinner without changing a thing.",
           },
           {
             name: "Black Bay 58",

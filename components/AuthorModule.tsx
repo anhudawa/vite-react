@@ -26,7 +26,7 @@ export function AuthorModule({ heading = "The byline" }: { heading?: string }) {
 
         <div className={styles.body}>
           <p className={styles.role}>
-            {a.role} <span aria-hidden="true">·</span> Bylined authority
+            {a.role} <span aria-hidden="true">·</span> Writes every word
           </p>
           <h3 className={styles.name}>{a.name}</h3>
           <p className={styles.bio}>{a.bio}</p>
