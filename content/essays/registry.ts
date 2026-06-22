@@ -15,8 +15,14 @@ import Chrono, { meta as chrono } from "./the-chronograph-for-athletes.mdx";
 import AutoManual, { meta as autoManual } from "./automatic-vs-manual-wind.mdx";
 import WaterResistance, { meta as waterResistance } from "./water-resistance-for-swimmers.mdx";
 import OneWatch, { meta as oneWatch } from "./the-one-watch-question.mdx";
+import Lineage, { meta as lineage } from "./the-model-from-feat-lineage.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "the-model-from-feat-lineage",
+    meta: lineage as unknown as EssayMeta,
+    Content: Lineage,
+  },
   {
     slug: "automatic-vs-manual-wind",
     meta: autoManual as unknown as EssayMeta,
