@@ -2,6 +2,37 @@
 
 Working through the v2 roadmap slices autonomously. Newest first.
 
+## Content QA — editorial findings (your call in the morning)
+
+A final as-a-set read of all 13 essays. Per-piece voice is good and the heritage
+fact-discipline is exemplary (Gleitze/Everest/lineage invent nothing). The set's
+real issue is batch-level repetition — surface this is your editorial call, so I
+fixed only the one unambiguous item and am flagging the rest:
+
+1. **Signature-move overuse (TOP ITEM).** The watch↔endurance "finite reserve /
+   same machine / metering" resonance is the *spine* of FOUR features —
+   the-same-machine, the-sweep-and-the-surge, the-instrument-of-effort,
+   what-it-costs-to-keep-time — not the "once a quarter" VOICE.md allows. Read
+   back-to-back they hit the same revelation repeatedly. And **the-same-machine
+   closes on the watch-as-body metaphor** (a banned closer) — defensible only if
+   it's the *sole* canonical resonance piece. Recommendation: pick ONE as
+   canonical (the-same-machine is the natural choice) and re-end / de-emphasise
+   the resonance in the other three so they earn their keep on a different hook;
+   the publish dates already stagger (Apr/May/Jun), which helps. This is a voice
+   judgement about your own thesis essays, so I did NOT unilaterally rewrite them.
+2. **Recurring stock phrases** across the set: "the receipt" (×3), "metered out"
+   (×3), "record of a moment that cost years". Worth de-duping when you do #1.
+3. **Field guide** was the thinnest/most repetitive — I merged its two restating
+   closing sections into one (committed). Still the lightest piece; consider
+   folding further into the thesis it overlaps.
+4. Fact-pipeline note: the live named claims (Pogačar / van der Poel · Richard
+   Mille RM 67-02) ride in features, not the heritage three — they're already in
+   the verified-fact store (verify:facts passes), but worth a glance.
+
+Disposition: 5 publish-ready as-is (Gleitze, Everest, lineage, water-resistance,
+automatic-vs-manual); 5 light-edit; 2 need your call (same-machine closer,
+field-guide depth).
+
 ## QA pass (post slice 1–4) — fixes applied
 - **BLOCKER fixed:** `/essays/<slug>` redirects were SSG-rendered (Next 14 bakes
   no `Location` header → broken for crawlers/direct hits). Moved to
