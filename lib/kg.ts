@@ -139,10 +139,9 @@ export function brandFacts() {
     tagline: site.tagline,
     description: site.description,
     founder: site.founder,
-    // FOUNDER REVIEW: confirm these before launch.
-    foundingYear: 2026, // TODO confirm
-    location: "European Union", // TODO confirm country
-    partnershipContact: "partnerships@thelongsecond.com", // TODO confirm real address
+    // foundingYear / location / partnershipContact intentionally omitted until
+    // confirmed — these are machine-readable facts an LLM will quote verbatim, so
+    // we don't assert placeholders. Add them once Anthony provides real values.
     covers: [
       "Mechanical watches (manual and automatic), mostly luxury and enthusiast",
       "Endurance sport: cycling, running, triathlon, ultra, trail, swimming, rowing, climbing",

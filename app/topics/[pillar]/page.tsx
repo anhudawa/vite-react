@@ -51,6 +51,15 @@ export default function PillarHub({ params }: { params: { pillar: string } }) {
             description: p.dek,
             url: `${site.url}/topics/${p.slug}`,
             isPartOf: { "@type": "WebSite", name: site.name, url: site.url },
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: pieces.map((e, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `${site.url}${essayHref(e)}`,
+                name: e.title,
+              })),
+            },
           },
         ]}
       />

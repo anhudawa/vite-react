@@ -2,6 +2,21 @@
 
 Working through the v2 roadmap slices autonomously. Newest first.
 
+## QA pass (post slice 1–4) — fixes applied
+- **BLOCKER fixed:** `/essays/<slug>` redirects were SSG-rendered (Next 14 bakes
+  no `Location` header → broken for crawlers/direct hits). Moved to
+  `next.config.mjs` `redirects()` (reads each piece's mode from frontmatter) — now
+  a real 308 with `Location`. Removed the SSG redirect page; moved per-article OG
+  images to the mode routes (`components/article/ogImage.tsx`).
+- Article breadcrumb now points at the piece's **pillar hub** (`/topics/<pillar>`)
+  instead of `/essays`, in both the visible nav and the BreadcrumbList schema.
+- `facts.json`: removed unverified placeholders (foundingYear/location/contact) —
+  no machine-readable guesses for an LLM to quote. (Bottleneck #1 still open.)
+- CollectionPage hubs now enumerate members as an `ItemList`.
+- Sitemap adds `/author/anthony-walsh`; KG is 18 entities / 20 edges.
+- Independent QA verdict before fixes: build/test/gates green, no dead links,
+  AEO endpoints valid, heritage pieces invent no facts.
+
 ## Status
 
 | Slice | Scope | State |

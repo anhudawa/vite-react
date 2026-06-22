@@ -7,6 +7,7 @@ import { deriveBrands } from "@/lib/brands";
 import { allTags } from "@/lib/tags";
 import { pillarList } from "@/lib/pillars";
 import { essayHref } from "@/lib/content";
+import { glossary } from "@/data/glossary";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
@@ -29,12 +30,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const tagRoutes = allTags().map((t) => ({ url: `${base}/tag/${t.slug}` }));
 
+  const glossaryRoutes = glossary.map((t) => ({ url: `${base}/glossary/${t.slug}` }));
+
+  // /glossary + /editorial-standards already arrive via secondaryNav.
+  const entityRoutes = [{ url: `${base}/author/anthony-walsh` }];
+
   return [
     ...staticRoutes.map((path) => ({ url: `${base}${path}` })),
     ...pillarRoutes,
+    ...entityRoutes,
     ...essayRoutes,
     ...athleteRoutes,
     ...brandRoutes,
     ...tagRoutes,
+    ...glossaryRoutes,
   ];
 }

@@ -3,6 +3,7 @@ import { essays } from "@/content/essays/registry";
 import { formatDate, essayHref, type EssayEntry } from "@/lib/content";
 import { site } from "@/lib/site";
 import { JsonLd, articleJsonLd, authorPersonJsonLd, breadcrumb, faqPageJsonLd } from "@/lib/jsonld";
+import { getPillar } from "@/lib/pillars";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { RelatedEssays } from "@/components/RelatedEssays";
 import { Byline } from "@/components/Byline";
@@ -22,6 +23,10 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
   const next = essays[(idx + 1) % essays.length];
   const Content = essay.Content;
   const path = essayHref(essay);
+  const pillar = essay.pillar ? getPillar(essay.pillar) : undefined;
+  const hub = pillar
+    ? { name: pillar.short, path: `/topics/${pillar.slug}` }
+    : { name: "Essays", path: "/essays" };
 
   return (
     <article className={styles.article}>
@@ -37,7 +42,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
           authorPersonJsonLd(),
           breadcrumb([
             { name: "Home", path: "/" },
-            { name: "Essays", path: "/essays" },
+            { name: hub.name, path: hub.path },
             { name: essay.title, path },
           ]),
           ...(essay.faq && essay.faq.length > 0 ? [faqPageJsonLd(essay.faq)] : []),
@@ -48,7 +53,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
         <nav className={styles.crumbs} aria-label="Breadcrumb">
           <Link href="/">{site.name}</Link>
           <span className={styles.crumbSep}>/</span>
-          <Link href="/essays">Essays</Link>
+          <Link href={hub.path}>{hub.name}</Link>
         </nav>
         <p className={styles.kicker}>{essay.kicker ?? "Essay"}</p>
         <h1 className={styles.title}>{essay.title}</h1>
