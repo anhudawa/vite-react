@@ -27,8 +27,14 @@ import EightSeconds, { meta as eightSeconds } from "./the-1989-tour-eight-second
 import NumberDoesntCount, { meta as numberDoesntCount } from "./the-number-that-doesnt-count.mdx";
 import LongestHour, { meta as longestHour } from "./the-longest-hour.mdx";
 import LastKilometre, { meta as lastKilometre } from "./the-last-kilometre.mdx";
+import SixteenYears, { meta as sixteenYears } from "./sixteen-years.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "sixteen-years",
+    meta: sixteenYears as unknown as EssayMeta,
+    Content: SixteenYears,
+  },
   {
     slug: "the-last-kilometre",
     meta: lastKilometre as unknown as EssayMeta,
