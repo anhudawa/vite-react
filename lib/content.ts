@@ -34,6 +34,9 @@ export interface EssayMeta {
   emailOffer?: string;
   /** Guides: answer-first Q&A — rendered as a section and FAQPage schema. */
   faq?: { q: string; a: string }[];
+  /** Claims with their published corroboration — rendered as a foot section
+   *  and emitted as Article `citation` URLs. */
+  sources?: { claim: string; url: string }[];
   image?: {
     src: string;
     alt: string;

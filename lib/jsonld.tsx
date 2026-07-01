@@ -71,6 +71,8 @@ export function articleJsonLd(opts: {
   dateModified?: string;
   path: string;
   type?: "Article" | "NewsArticle";
+  /** URLs of the published works the piece cites → Article `citation`. */
+  citations?: string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -80,6 +82,14 @@ export function articleJsonLd(opts: {
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
     mainEntityOfPage: `${site.url}${opts.path}`,
+    /* The dek is the spoken-answer container ArticleView renders (the tldr
+       feeds `description` but never reaches the DOM). CSS Modules hash class
+       names, so this leans on the same [class*="…"] seam as the print CSS. */
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ['[class*="ArticleView_title"]', '[class*="ArticleView_dek"]'],
+    },
+    ...(opts.citations && opts.citations.length > 0 ? { citation: opts.citations } : {}),
     author: {
       "@type": "Person",
       name: site.author.name,
