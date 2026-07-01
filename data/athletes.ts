@@ -533,12 +533,157 @@ const lucy: AthleteRef = {
   ],
 };
 
+const frodeno: AthleteRef = {
+  slug: "jan-frodeno",
+  name: "Jan Frodeno",
+  discipline: "Triathlon — Olympic gold (2008) and three-time Ironman World Champion",
+  nationality: "German",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Jan_Frodeno",
+    "https://www.breitling.com/us-en/about/ambassadors/jan-frodeno/",
+  ],
+  summary:
+    "Founding member of the Breitling Triathlon Squad, and the athlete Breitling's own CEO credits with shaping the Endurance Pro. The rare case where the wearer helped design the watch.",
+  facts: [
+    {
+      id: "frodeno-endurance-pro",
+      status: "in-review",
+      athlete: "Jan Frodeno",
+      watch: "Breitling Endurance Pro 44",
+      relation: "Ambassador — Breitling (Triathlon Squad, founding member)",
+      evidence:
+        "Official Breitling ambassador; squad announced 2019. CEO Georges Kern publicly credited Frodeno's input on the Endurance Pro at its 2020 launch; his ambassador page features the model.",
+      confidence: "High",
+      confidenceNote:
+        "Relationship and watch are authoritative (Breitling's own pages plus a named CEO quote in press). Held in-review pending desk sign-off; note the pre-2020 squad watch was the Superocean Automatic 44 IRONMAN edition — don't backdate the Endurance Pro.",
+      reference: "Endurance Pro 44",
+      sources: [
+        {
+          id: "breitling-ambassador-frodeno",
+          publisher: "Breitling",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.breitling.com/us-en/about/ambassadors/jan-frodeno/",
+          accessedAt: "2026-07-01",
+          excerpt: "Breitling's ambassador page for Jan Frodeno, featuring the Endurance Pro 44.",
+          supports: ["athlete", "relation", "watch"],
+          snapshot: "unarchivable",
+          verified: false,
+        },
+        {
+          id: "sharp-endurance-pro-kern",
+          publisher: "Sharp Magazine",
+          kind: "media",
+          tier: "secondary",
+          url: "https://sharpmagazine.com/2020/08/26/breitling-endurance-pro/",
+          accessedAt: "2026-07-01",
+          excerpt:
+            "Endurance Pro launch coverage quoting CEO Georges Kern crediting Jan Frodeno's input on the watch.",
+          supports: ["relation", "evidence"],
+          verified: false,
+        },
+        {
+          id: "timeandtide-triathlon-squad",
+          publisher: "Time+Tide",
+          kind: "media",
+          tier: "secondary",
+          url: "https://timeandtidewatches.com/why-does-the-breitling-triathlon-squad-exist/",
+          accessedAt: "2026-07-01",
+          excerpt:
+            "On the 2019 formation of the Breitling Triathlon Squad: Frodeno, Daniela Ryf, Chris McCormack.",
+          supports: ["relation", "evidence"],
+          verified: false,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Superocean Automatic 44 IRONMAN Limited Edition — the 2019 squad-era watch; distinct from the Endurance Pro (launched Aug 2020).",
+        ],
+        method: "single",
+        notes: "Awaiting desk dual-control sign-off and rights-clear imagery.",
+      },
+    },
+  ],
+  notes: [
+    "The strongest athlete-watch story on the ledger: the brand's own CEO says the athlete shaped the product. That is a design credit, not just a placement.",
+    "Left for the desk: rights-clear image, archivable snapshot of the ambassador page, dual-control sign-off — then promote.",
+  ],
+};
+
+const ryf: AthleteRef = {
+  slug: "daniela-ryf",
+  name: "Daniela Ryf",
+  discipline: "Triathlon — five-time Ironman World Champion (retired 2024)",
+  nationality: "Swiss",
+  sameAs: ["https://en.wikipedia.org/wiki/Daniela_Ryf"],
+  summary:
+    "Breitling Triathlon Squad member from 2018 — the Superocean IRONMAN edition first, then the Endurance Pro. Documented while it ran; she retired in 2024 and no longer appears on Breitling's current ambassador pages, so the ledger dates the relationship honestly.",
+  facts: [
+    {
+      id: "ryf-endurance-pro",
+      status: "in-review",
+      athlete: "Daniela Ryf",
+      watch: "Breitling Endurance Pro (38mm executions favoured)",
+      relation: "Ambassador — Breitling (Triathlon Squad, 2018 to at least 2020)",
+      evidence:
+        "Named a Triathlon Squad member alongside Frodeno and McCormack; attended the Endurance Pro's 2020 launch and discussed the partnership in interviews; Breitling's own posts show her racing in the squad watches.",
+      confidence: "Medium",
+      confidenceNote:
+        "Relationship firmly sourced for 2018-2020 (brand + named editorial with quotes). Breitling's current ambassadors page no longer lists her and she retired from professional racing in 2024 — so this is a dated, historical relationship, and the entry must say so.",
+      reference: "Endurance Pro",
+      sources: [
+        {
+          id: "timeandtide-squad-ryf",
+          publisher: "Time+Tide",
+          kind: "media",
+          tier: "secondary",
+          url: "https://timeandtidewatches.com/why-does-the-breitling-triathlon-squad-exist/",
+          accessedAt: "2026-07-01",
+          excerpt: "Names Ryf as one of the three Breitling Triathlon Squad members.",
+          supports: ["athlete", "relation"],
+          verified: false,
+        },
+        {
+          id: "aeworld-ryf-interview",
+          publisher: "A&E Magazine",
+          kind: "media",
+          tier: "secondary",
+          url: "https://aeworld.com/watches-jewellery/watches/triathlete-and-ironman-world-champion-daniela-ryf-on-striving-to-be-her-best/",
+          accessedAt: "2026-07-01",
+          excerpt:
+            "Interview (Oct 2020): Ryf discusses the Breitling partnership and the Endurance Pro launch.",
+          supports: ["relation", "evidence"],
+          verified: false,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [
+          "Breitling's current global ambassadors page (checked 2026-07-01) no longer lists Ryf or a Triathlon Squad — treated as evidence the relationship has lapsed, not that it never ran.",
+        ],
+        confusedWithRuledOut: [
+          "Pre-2020 squad imagery shows the Superocean Automatic 44 IRONMAN edition, not the Endurance Pro — keep the eras separate.",
+        ],
+        method: "single",
+        notes: "Stage as a dated historical reference; needs desk sign-off on the past-tense framing.",
+      },
+    },
+  ],
+  notes: [
+    "The ledger's first explicitly historical entry: a real, well-sourced relationship that has since lapsed. Recording it with dates is more honest than dropping it.",
+  ],
+};
+
 export const athletes: AthleteRef[] = [
   pogacar,
   mvdp,
   pidcock,
   cavendish,
   lucy,
+  frodeno,
+  ryf,
 ];
 
 /** An athlete is publishable iff it has at least one publishable fact. */

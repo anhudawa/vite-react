@@ -17,3 +17,17 @@ Service-interval guidance now spans the verified range (3-5 years worn hard, up 
 
 ## the-waterproof-watch-and-the-open-water
 Re-verified 2026-07-01. Confirmed against two or more independent sources: patent 114948 (30 Oct 1925, La Chaux-de-Fonds); the no-clutch flaw and the 18 Oct 1926 Rolex registration with clutch fix (vintagewatchstraps + Wind Vintage), so the earlier heavy hedge was dropped; Borgel 1891 Geneva patent (body tightened from 'from the 1890s' to the patent date); Depollier NBS testing and Nov 1918 Signal Corps order of 10,000 cases (the 10,000 figure is now multi-source but the body keeps 'in quantity'); Tavannes Submarine (1916, screw back and bezel); Gleitze vindication swim 21 Oct 1927, watch on a ribbon, 10h24m immersion per her own statement; Daily Mail front-page ad 24 Nov 1927 (Rolex confirms front page and full page, secondary sources supply the date; body keeps 'the following month'); fluted bezel's original tool-grip function (Rolex's own page). Still soft: (1) the Wilsdorf 'like its namesake' quote is ubiquitous in secondary sources but no primary 1926 document was traced — lead-in now says 'a line still quoted' rather than attributing it to current company copy; (2) the exact year of the NBS test is not pinned in the sources checked, so the body ties 1918 to the Signal Corps order instead; (3) 'small gold Oyster' remains the hedged form since the 33mm case size is single-source; (4) whether Rolex acquired the patent rights in 1925 or July 1926 varies by source, so the body gives no acquisition date; (5) 'first waterproof watch' remains treated as marketing, stated as contested in the body; (6) journal.hautehorlogerie.org returned 503 during this pass — kept as a background source only, no claim rests solely on it; vintagewatchstraps and perezcope block automated fetchers (403) but their content was corroborated via search excerpts.
+
+# Ledger research — held findings (not staged)
+
+- **Kipchoge**: no luxury-watch relationship exists (verified). Sponsor GPS eras:
+  COROS Nov 2020 – Nov 2025 (PACE 2/3 incl. Kipchoge Edition, worn at 2023 Berlin);
+  Huawei global ambassador for Watch GT Runner 2 from Feb 2026. Held OUT of the
+  ledger (GPS is the demoted thread) — but "the fastest marathoner alive has no
+  luxury watch deal" is a dispatch waiting to be written.
+- **Ingebrigtsen**: COROS partner since Mar 2024; signature PACE 4 "Fearless"
+  edition May 2026. Same call: GPS sponsorship, held out of the ledger.
+- **Blummenfelt**: needs-more — Garmin wrist use plausible, one direct source,
+  no model, no sponsorship in his roster. Do not stage.
+- **Iden**: reject/needs-more — zero credible watch evidence; beware the
+  "Gustave & Cie" search-noise trap and Vector 3 (bike hardware, not a watch).
