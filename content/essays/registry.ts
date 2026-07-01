@@ -28,9 +28,45 @@ import NumberDoesntCount, { meta as numberDoesntCount } from "./the-number-that-
 import LongestHour, { meta as longestHour } from "./the-longest-hour.mdx";
 import LastKilometre, { meta as lastKilometre } from "./the-last-kilometre.mdx";
 import SixteenYears, { meta as sixteenYears } from "./sixteen-years.mdx";
+import OlympicClock, { meta as olympicClock } from "./omega-and-the-olympic-clock.mdx";
+import Chronometer, { meta as chronometer } from "./what-a-chronometer-actually-is.mdx";
+import Escapement, { meta as escapement } from "./the-escapement-the-part-that-lets-go.mdx";
+import Servicing, { meta as servicing } from "./when-to-service-a-mechanical-watch.mdx";
+import FirstAutomatic, { meta as firstAutomatic } from "./your-first-automatic-what-matters.mdx";
+import WaterproofCase, { meta as waterproofCase } from "./the-waterproof-watch-and-the-open-water.mdx";
 import SeventeenHours, { meta as seventeenHours } from "./seventeen-hours.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  {
+    slug: "omega-and-the-olympic-clock",
+    meta: olympicClock as unknown as EssayMeta,
+    Content: OlympicClock,
+  },
+  {
+    slug: "what-a-chronometer-actually-is",
+    meta: chronometer as unknown as EssayMeta,
+    Content: Chronometer,
+  },
+  {
+    slug: "the-escapement-the-part-that-lets-go",
+    meta: escapement as unknown as EssayMeta,
+    Content: Escapement,
+  },
+  {
+    slug: "when-to-service-a-mechanical-watch",
+    meta: servicing as unknown as EssayMeta,
+    Content: Servicing,
+  },
+  {
+    slug: "your-first-automatic-what-matters",
+    meta: firstAutomatic as unknown as EssayMeta,
+    Content: FirstAutomatic,
+  },
+  {
+    slug: "the-waterproof-watch-and-the-open-water",
+    meta: waterproofCase as unknown as EssayMeta,
+    Content: WaterproofCase,
+  },
   {
     slug: "seventeen-hours",
     meta: seventeenHours as unknown as EssayMeta,
