@@ -1,0 +1,130 @@
+.section {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-6);
+}
+
+/* One continuous hairline runs the length of the century. */
+.timeline {
+  --rail: 7rem;
+  list-style: none;
+  position: relative;
+  max-width: 52rem;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--rail);
+  width: var(--hairline);
+  background: var(--rule);
+}
+
+.entry {
+  position: relative;
+}
+/* a small tick where each date meets the rule */
+.entry::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--s-7) + 0.7em);
+  left: calc(var(--rail) - 4px);
+  width: 9px;
+  height: var(--hairline);
+  background: var(--rule-strong);
+  transition: background-color var(--dur-1) var(--ease-mech);
+}
+.entry:hover::before {
+  background: var(--accent);
+}
+
+.link {
+  display: grid;
+  grid-template-columns: var(--rail) 1fr;
+  column-gap: var(--s-6);
+  padding-block: var(--s-7);
+}
+
+/* --- The date rail: mono metadata, right-aligned against the rule --------- */
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s-1);
+  padding-right: var(--s-5);
+  text-align: right;
+}
+.year {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.date,
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* --- The event: serif title, one calm line --------------------------------- */
+.body {
+  display: block;
+}
+.title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--t-h4);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.link:hover .title {
+  color: var(--accent-text);
+}
+.line {
+  display: block;
+  margin-top: var(--s-2);
+  color: var(--text-dim);
+  font-size: var(--t-body-s);
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+@media (max-width: 640px) {
+  .timeline {
+    --rail: 0rem;
+  }
+  .timeline::before {
+    left: 0;
+  }
+  .entry::before {
+    left: -4px;
+    top: calc(var(--s-6) + 0.7em);
+  }
+  .link {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-2);
+    padding-block: var(--s-6);
+    padding-left: var(--s-5);
+  }
+  .rail {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--s-4);
+    padding-right: 0;
+    text-align: left;
+  }
+}
