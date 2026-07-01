@@ -11,6 +11,7 @@ import { AuthorModule } from "@/components/AuthorModule";
 import { Figure } from "@/components/Figure";
 import { EmailCapture } from "@/components/EmailCapture";
 import { tagSlug } from "@/lib/tags";
+import { SourcesBlock } from "@/components/article/SourcesBlock";
 import styles from "./ArticleView.module.css";
 
 /**
@@ -41,6 +42,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
             dateModified: essay.dateModified ?? essay.date,
             path,
             type: essay.mode === "dispatch" ? "NewsArticle" : "Article",
+            citations: essay.sources?.map((s) => s.url),
           }),
           authorPersonJsonLd(),
           breadcrumb([
@@ -147,6 +149,8 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
           </ul>
         </aside>
       )}
+
+      {essay.sources && essay.sources.length > 0 && <SourcesBlock sources={essay.sources} />}
 
       <footer className={styles.foot}>
         <p className={styles.footEssence}>{site.essence}</p>
