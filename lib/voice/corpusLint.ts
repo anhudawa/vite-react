@@ -48,7 +48,7 @@ export const PHRASES: CorpusPhrase[] = [
   {
     term: "record of a moment that cost years",
     re: /\brecord of a moment that cost years\b/gi,
-    maxUses: 2, // grandfathered at 2 on 2026-07-01 — ratchet down as essays are revised (target 1)
+    maxUses: 1, // ratcheted to target 2026-07-01 — the manifesto keeps the line; others paraphrase
     note: "a closer, not a refrain — one essay gets it",
   },
   {
@@ -72,7 +72,7 @@ export const PHRASES: CorpusPhrase[] = [
   {
     term: "finite reserve",
     re: /\bfinite reserves?\b/gi,
-    maxUses: 4, // grandfathered at 4 on 2026-07-01 — ratchet down as essays are revised (target 2)
+    maxUses: 1, // ratcheted 2026-07-01 — the-same-machine is the canonical resonance piece; sole use
     note: "power-reserve-as-body metaphor",
   },
 ];
