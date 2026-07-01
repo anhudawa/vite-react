@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 import { JsonLd, articleJsonLd, authorPersonJsonLd, breadcrumb, faqPageJsonLd } from "@/lib/jsonld";
 import { getPillar } from "@/lib/pillars";
 import { ReadingProgress } from "@/components/ReadingProgress";
-import { RelatedEssays } from "@/components/RelatedEssays";
+import { relatedFor } from "@/lib/related";
 import { Byline } from "@/components/Byline";
 import { AuthorModule } from "@/components/AuthorModule";
 import { Figure } from "@/components/Figure";
@@ -21,6 +21,7 @@ import styles from "./ArticleView.module.css";
 export function ArticleView({ essay }: { essay: EssayEntry }) {
   const idx = essays.findIndex((e) => e.slug === essay.slug);
   const next = essays[(idx + 1) % essays.length];
+  const related = relatedFor(essay, essays);
   const Content = essay.Content;
   const path = essayHref(essay);
   const pillar = essay.pillar ? getPillar(essay.pillar) : undefined;
@@ -127,9 +128,25 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
         <AuthorModule />
       </div>
 
-      <div className={styles.related}>
-        <RelatedEssays slug={essay.slug} />
-      </div>
+      {related.length > 0 && (
+        <aside className={styles.related} aria-labelledby="related-h">
+          <p id="related-h" className={styles.relatedLabel}>
+            Related reading
+          </p>
+          <ul className={styles.relatedList}>
+            {related.map((e) => (
+              <li key={e.slug} className={styles.relatedItem}>
+                <Link href={essayHref(e)} className={styles.relatedTitle}>
+                  {e.title}
+                </Link>
+                <time className={styles.relatedDate} dateTime={e.date}>
+                  {formatDate(e.date)}
+                </time>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
 
       <footer className={styles.foot}>
         <p className={styles.footEssence}>{site.essence}</p>
