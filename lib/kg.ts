@@ -80,6 +80,70 @@ export function watchFeed() {
 type Entity = { id: string; type: string; name: string; url?: string; [k: string]: unknown };
 type Edge = { from: string; type: string; to: string };
 
+interface EnduranceEvent {
+  id: string;
+  name: string;
+  /** Canonical Wikipedia/official URLs — anchors the entity for retrieval. */
+  sameAs: string[];
+  /** Lower-case aliases matched against essay meta and athlete facts to derive edges. */
+  aliases: string[];
+  /** Essays that reference the event in body prose only, where meta matching can't see it. */
+  extraArticleSlugs?: string[];
+}
+
+/**
+ * The endurance events the corpus actually references (in content/ or data/) —
+ * nothing speculative. Edges are derived from the text we already assert:
+ * essay tags/title/dek/tldr for `about_event`, athlete disciplines and verified
+ * fact evidence for `competes_in`.
+ */
+const enduranceEvents: EnduranceEvent[] = [
+  {
+    id: "event:tour-de-france",
+    name: "Tour de France",
+    sameAs: ["https://en.wikipedia.org/wiki/Tour_de_France", "https://www.letour.fr"],
+    aliases: ["tour de france"],
+    // "seven Tour de France titles" — referenced in the essay body, not the meta.
+    extraArticleSlugs: ["lance-armstrong-watches"],
+  },
+  {
+    id: "event:ironman-triathlon",
+    name: "Ironman Triathlon",
+    sameAs: ["https://en.wikipedia.org/wiki/Ironman_Triathlon", "https://www.ironman.com"],
+    aliases: ["ironman"],
+  },
+  {
+    id: "event:uci-hour-record",
+    name: "UCI Hour Record",
+    sameAs: ["https://en.wikipedia.org/wiki/Hour_record"],
+    aliases: ["hour record"],
+  },
+  {
+    id: "event:london-marathon",
+    name: "London Marathon",
+    sameAs: ["https://en.wikipedia.org/wiki/London_Marathon", "https://www.tcslondonmarathon.com"],
+    aliases: ["london marathon"],
+  },
+  {
+    id: "event:chicago-marathon",
+    name: "Chicago Marathon",
+    sameAs: ["https://en.wikipedia.org/wiki/Chicago_Marathon", "https://www.chicagomarathon.com"],
+    aliases: ["chicago marathon"],
+    // Kosgei's 2019 record run "in Chicago" — referenced in the essay body, not the meta.
+    extraArticleSlugs: ["sixteen-years"],
+  },
+  {
+    id: "event:paris-roubaix",
+    name: "Paris–Roubaix",
+    sameAs: ["https://en.wikipedia.org/wiki/Paris%E2%80%93Roubaix"],
+    aliases: ["paris-roubaix"],
+  },
+];
+
+/** Lower-case, en-dash-folded haystack for alias matching ("Paris–Roubaix" → "paris-roubaix"). */
+const eventHaystack = (parts: (string | undefined)[]) =>
+  parts.filter(Boolean).join(" | ").toLowerCase().replace(/–/g, "-");
+
 export function knowledgeGraph(): { entities: Entity[]; edges: Edge[] } {
   const entities: Entity[] = [];
   const edges: Edge[] = [];
@@ -95,6 +159,10 @@ export function knowledgeGraph(): { entities: Entity[]; edges: Edge[] } {
 
   for (const p of pillarList) {
     entities.push({ id: `topic:${p.slug}`, type: "topic", name: p.name, url: `${site.url}/topics/${p.slug}` });
+  }
+
+  for (const ev of enduranceEvents) {
+    entities.push({ id: ev.id, type: "event", name: ev.name, sameAs: ev.sameAs });
   }
 
   for (const e of essays) {
@@ -114,6 +182,12 @@ export function knowledgeGraph(): { entities: Entity[]; edges: Edge[] } {
     }
     for (const rel of e.relatedSlugs ?? []) {
       edges.push({ from: `article:${e.slug}`, type: "related_to", to: `article:${rel}` });
+    }
+    const essayText = eventHaystack([e.title, e.dek, e.tldr, ...(e.tags ?? [])]);
+    for (const ev of enduranceEvents) {
+      if (ev.aliases.some((a) => essayText.includes(a)) || ev.extraArticleSlugs?.includes(e.slug)) {
+        edges.push({ from: `article:${e.slug}`, type: "about_event", to: ev.id });
+      }
     }
   }
 
@@ -139,6 +213,12 @@ export function knowledgeGraph(): { entities: Entity[]; edges: Edge[] } {
       const wid = `watch:${slugify(f.watch)}`;
       if (!has(wid)) entities.push({ id: wid, type: "watch", name: f.watch });
       edges.push({ from: pid, type: "wears_watch", to: wid });
+    }
+    const athleteText = eventHaystack([a.discipline, a.summary, ...renderableFacts(a).map((f) => f.evidence)]);
+    for (const ev of enduranceEvents) {
+      if (ev.aliases.some((al) => athleteText.includes(al))) {
+        edges.push({ from: pid, type: "competes_in", to: ev.id });
+      }
     }
   }
 
