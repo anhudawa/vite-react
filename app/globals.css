@@ -447,3 +447,224 @@ table {
 .rise {
   animation: rise var(--dur-3) var(--ease-mech) both;
 }
+
+/* =============================================================================
+   PRINT — the considered-publication edition.
+   Essays should leave the screen with the same care they were set with: bone
+   ink on white paper, serif hierarchy intact, mono metadata quiet, every piece
+   of interactive chrome removed. All colour flows through the same custom
+   properties the screen uses — we re-tune the tokens, not the components.
+
+   Selector note: chrome components use CSS Modules, whose classes compile to
+   "FileName_local__hash" under Next.js defaults — hence the [class*="…"]
+   attribute selectors below. If module hashing config ever changes, these are
+   the seams to revisit.
+   ============================================================================= */
+
+@media print {
+  /* --- Page geometry -------------------------------------------------------
+     ~2cm margins; the page margin, not --gutter, owns horizontal whitespace. */
+  @page {
+    margin: 2cm;
+  }
+
+  /* --- Token overrides — force the Bone/light reading register -------------
+     Beats both theme blocks regardless of the data-theme the reader left on. */
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --bg: #ffffff;
+    --bg-raised: #ffffff;
+    --bg-sunken: #ffffff;
+    --text: var(--movement-black); /* near-black ink, never #000 */
+    --text-dim: #3f4347;
+    --text-faint: #55595e;
+    --label-muted: #3f4347;
+    --rule: rgba(22, 24, 27, 0.35); /* hairlines must survive grayscale */
+    --rule-strong: rgba(22, 24, 27, 0.6);
+    /* Lume has no place on paper: accents (quote bars, ticks, underlines)
+       print as ink so they survive grayscale. */
+    --accent: var(--movement-black);
+    --accent-text: var(--movement-black);
+    --accent-ink: #ffffff;
+    --grain-opacity: 0;
+    --selection: transparent;
+    --shadow-soft: none;
+    --shadow-lift: none;
+    color-scheme: light;
+
+    /* Type scale in points — the screen clamps lean on vw, meaningless on
+       paper. Body ~11pt; mono metadata a step smaller; serif keeps hierarchy. */
+    --t-mono-xs: 7.5pt;
+    --t-caption: 8.5pt;
+    --t-body-s: 10pt;
+    --t-body: 11pt;
+    --t-lead: 13.5pt;
+    --t-h4: 14pt;
+    --t-h3: 17pt;
+    --t-h2: 22pt;
+    --t-h1: 26pt;
+    --t-display: 30pt;
+
+    /* the @page margin is the gutter now */
+    --gutter: 0rem;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: var(--text) !important;
+    font-size: var(--t-body);
+    line-height: 1.55;
+    min-height: auto;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* --- Texture and sheen do not print --------------------------------------
+     film grain, sapphire sweep, vignettes, metal gradients → off or flattened */
+  body::after,
+  .grain-fine::after,
+  .sapphire::after,
+  .vignette::before {
+    display: none !important;
+  }
+  .surface-deep {
+    background: none;
+    box-shadow: none;
+  }
+  .rule-metal {
+    background: var(--rule-strong);
+  }
+
+  /* --- Chrome: hidden -------------------------------------------------------
+     site header (nav, search, theme toggle, menu), site footer (incl. its
+     email capture), skip link, reading-progress hairline, email capture /
+     popup / quiz promos, related-essays + next-piece navigation, and
+     interactive-only widgets that cannot function on paper. */
+  body > header,
+  body > footer,
+  .skip-link,
+  [class*="ReadingProgress_"],
+  [class*="ThemeToggle_"],
+  [class*="EmailCapture_"],
+  [class*="EmailPopup_"],
+  [class*="QuizPromo_"],
+  [class*="AthleteLookup_"],
+  [class*="CinematicVideo_"],
+  [class*="ArticleView_inlineCapture"],
+  [class*="ArticleView_related"],
+  [class*="RelatedEssays_"],
+  [class*="ArticleView_next"] {
+    display: none !important;
+  }
+
+  /* Scroll-triggered reveals must not print blank below the fold. */
+  [class*="Reveal_reveal"] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* --- Typography -----------------------------------------------------------
+     serif headlines keep their register; never strand them at a page foot. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+    color: var(--text);
+  }
+  p,
+  li,
+  dd,
+  dt,
+  blockquote,
+  figcaption {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* the article column: trim screen-scale breathing room */
+  [class*="ArticleView_article"] {
+    padding-block: 0;
+  }
+
+  /* --- Links ----------------------------------------------------------------
+     prose links lose the lume background-underline (unreliable in print) for
+     a true hairline underline; EXTERNAL links disclose their URL in small
+     mono; internal links print plain. */
+  .prose a,
+  .prose-link,
+  [class*="ArticleView_body"] a {
+    background: none;
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 0.6pt;
+    text-underline-offset: 2pt;
+  }
+  article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-faint);
+    word-break: break-all;
+  }
+
+  /* --- Figures, pull quotes, FAQ — atomic on the page ----------------------- */
+  article figure,
+  article blockquote,
+  article img,
+  [class*="Pull_pull"],
+  [class*="ArticleView_faqItem"],
+  [class*="ArticleView_bylineRow"],
+  [class*="AuthorModule_inner"] {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* pull quotes stay in the measure — no left break-out on paper */
+  [class*="Pull_pull"] {
+    margin-left: 0;
+  }
+
+  /* images: thin ink rule, no sheen, no digital-frame shadow */
+  article [data-treatment] {
+    border: 0.5pt solid var(--rule-strong);
+    box-shadow: none;
+  }
+  [class*="Figure_sheen"] {
+    display: none !important;
+  }
+  [class*="ArticleView_body"] img:not([class*="Figure_img"]) {
+    border: 0.5pt solid var(--rule-strong);
+  }
+
+  /* --- The printed byline / colophon ----------------------------------------
+     The existing byline row (author · role · reading time · date) becomes the
+     printed credit line: bounded above and below by hairlines, kept with the
+     masthead. The article foot's essence line signs the piece off. */
+  [class*="ArticleView_bylineRow"] {
+    border-top-color: var(--rule-strong);
+    border-bottom: var(--hairline) solid var(--rule);
+    padding-bottom: 0.75rem;
+  }
+  [class*="ArticleView_foot"] {
+    border-top-color: var(--rule-strong);
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
