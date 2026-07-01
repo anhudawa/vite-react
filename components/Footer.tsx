@@ -57,6 +57,11 @@ export function Footer() {
                   RSS
                 </a>
               </li>
+              <li>
+                <Link href="/feeds" className={styles.fLink}>
+                  Feeds
+                </Link>
+              </li>
             </ul>
           </div>
         </nav>

@@ -23,7 +23,7 @@ const feeds: { path: string; format: string; note: string }[] = [
   {
     path: "/feeds/reviews.json",
     format: "JSON",
-    note: "The review pieces alone, in the same shape.",
+    note: "The review pieces alone, in the same shape. The shelf is built; the first reviews arrive with verified specs.",
   },
   {
     path: "/feeds/topics.json",

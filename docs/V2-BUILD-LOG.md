@@ -1,5 +1,40 @@
 # v2 build log — overnight run
 
+## Sprint — 30-item swarm run (2026-07-01)
+
+All six waves complete. 25 -> 42 essays, 195 -> 392 pages, all gates green.
+
+- **Content fleets:** 17 essays shipped through research -> adversarial verify ->
+  batch critic -> line editor -> hand integration (fleet 1's first run died at the
+  structured-output gate, ~345k tokens lost; relaunched on a file-drop protocol,
+  now the house pattern). One draft cut as a corpus near-duplicate
+  (the-two-watch-life, rebuild-around-the-handover logged as backlog).
+  Glossary 18 -> 34 terms.
+- **Code waves A-C:** /timeline, /collections (4 trails), /coverage (noindex),
+  /feeds + /rss.xml, From-the-Record band, computed related-reading + link:graph,
+  search 39 -> 92 docs with keyboard nav, per-pillar OG motifs (now on all four
+  mode routes), print stylesheet, Sources block + speakable/citation schema,
+  KG event entities, corpus stock-phrase linter (in prebuild, ceilings ratcheted).
+- **Editorial:** thesis de-dup executed — the-same-machine keeps the finite-reserve
+  resonance (sole canonical), what-it-costs re-cut in its own cost register,
+  Lance paraphrases the manifesto line. Diffs presented for founder veto.
+- **Ledger:** Frodeno + Ryf staged in-review (Ryf as the first dated historical
+  entry). Kipchoge/Ingebrigtsen GPS deals verified but HELD OUT (GPS = demoted
+  thread); Blummenfelt/Iden correctly needs-more/reject. Sign-off queue: 5.
+- **AEO:** targetQuery + intent on all 42 essays.
+- **Adversarial QA sweep findings, all fixed:** /collections + /feeds were
+  unreachable (nav/sitemap/footer wired); one citation-attribution mismatch in
+  the-overbuilt-watch (claims cut to what sources carry); 3 new-batch orphans
+  given inbound links; dispatch/reviews OG routes added; 11 templated emailOffers
+  varied; empty reviews feed labelled honestly.
+- **Deliberate:** pillar "dispatch" vs mode "feature" on the-autobus /
+  no-one-at-the-line is intended (pillar = territory, mode = format).
+- **Backlog from QA:** 31/42 essays have zero inline body links (relatedSlugs
+  carries all cross-linking) — a contextual-linking editorial pass; one source
+  needs a Wayback capture; speakable/print rely on the CSS-Modules class-name
+  seam (a data-attribute would be sturdier).
+
+
 Working through the v2 roadmap slices autonomously. Newest first.
 
 ## Slice 5 — roadmap compliance pass (fact-safe gaps)

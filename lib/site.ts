@@ -41,6 +41,7 @@ export const nav: NavItem[] = [
 export const secondaryNav: NavItem[] = [
   { label: "Topics", href: "/topics" },
   { label: "Timeline", href: "/timeline" },
+  { label: "Collections", href: "/collections" },
   { label: "Glossary", href: "/glossary" },
   { label: "By Brand", href: "/brands" },
   { label: "About", href: "/about" },
