@@ -212,10 +212,52 @@
   margin: clamp(2rem, 5vw, 3.5rem) auto clamp(2.5rem, 6vw, 4rem);
   padding-inline: var(--gutter);
 }
+/* --- Related reading ------------------------------------------------------ */
 .related {
-  max-width: 54rem;
-  margin-inline: auto;
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
   padding-inline: var(--gutter);
+}
+.relatedLabel {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-top: var(--s-6);
+  border-top: var(--hairline) solid var(--rule);
+  margin-bottom: var(--s-4);
+}
+.relatedList {
+  list-style: none;
+}
+.relatedItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-3);
+}
+.relatedItem + .relatedItem {
+  border-top: var(--hairline) solid var(--rule);
+}
+.relatedTitle {
+  font-family: var(--font-serif);
+  font-size: var(--t-h4);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.relatedTitle:hover {
+  color: var(--accent-text);
+}
+.relatedDate {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
 }
 .foot {
   max-width: var(--measure);

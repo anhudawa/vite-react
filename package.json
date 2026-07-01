@@ -13,6 +13,7 @@
     "verify:freshness": "tsx scripts/verify-freshness.mts",
     "qa:copy": "tsx scripts/qa-copy.mts",
     "link:audit": "tsx scripts/link-audit.mts",
+    "link:graph": "tsx scripts/link-graph.mts",
     "voice:lint": "tsx scripts/voice-lint.mts",
     "voice:check": "tsx scripts/voice-check.mts",
     "voice:corpus": "tsx scripts/voice-corpus.mts",
