@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FactBlock } from "@/components/FactBlock";
+import { FromTheRecord } from "@/components/FromTheRecord";
 import { QuizPromo } from "@/components/QuizPromo";
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
@@ -111,12 +112,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===================== FROM THE RECORD ===================== */}
+      <FromTheRecord />
+
       {/* ===================== FEATURED ESSAYS ===================== */}
       <section className={`container ${styles.block}`} aria-labelledby="reading">
         <SectionHeading index="01" kicker="The reading" title="Athletes and time">
           <p id="reading">
             Essays on what an athlete and a watch are to each other, across endurance
-            sport. No dealer spin, no borrowed expertise.
+            sport. Written by a racer, sourced to the last reference.
           </p>
         </SectionHeading>
 
