@@ -6,7 +6,7 @@ import { JsonLd, breadcrumb } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Search",
-  description: "Search The Long Second: the essays, the sourced references, and every section, in one place.",
+  description: "Search The Long Second: the essays, the sourced references, the glossary, and every section, in one place.",
 };
 
 export default function SearchPage() {
@@ -23,7 +23,7 @@ export default function SearchPage() {
         index="—"
         kicker="The archive"
         title="Search"
-        intro="Small, and deliberately so. Every essay, every reference, every section — find the one you mean."
+        intro="Small, and deliberately so. Every essay, every reference, every term, every question — find the one you mean."
       />
       <section className="container">
         <SearchClient index={index} />

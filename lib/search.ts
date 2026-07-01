@@ -1,9 +1,10 @@
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
+import { glossary } from "@/data/glossary";
 import { nav, secondaryNav } from "@/lib/site";
 import { essayHref } from "@/lib/content";
 
-export type SearchKind = "Essay" | "Reference" | "Section";
+export type SearchKind = "Essay" | "Reference" | "Section" | "Term" | "Question";
 
 export interface SearchDoc {
   title: string;
@@ -24,7 +25,8 @@ const SECTION_BLURBS: Record<string, string> = {
 };
 
 /** The whole searchable corpus, assembled at build time. Small by design — titles,
- *  deks, tags and key fields, not full bodies — so it ships as a tiny payload. */
+ *  deks, tags, glossary terms and FAQ questions, not full bodies — so it ships as
+ *  a tiny payload. */
 export function buildSearchIndex(): SearchDoc[] {
   const docs: SearchDoc[] = [];
 
@@ -38,6 +40,27 @@ export function buildSearchIndex(): SearchDoc[] {
         .filter(Boolean)
         .join(" ")
         .toLowerCase(),
+    });
+
+    // Each guide question is its own doc, deep-linked to the piece's Q&A section.
+    for (const f of e.faq ?? []) {
+      docs.push({
+        title: f.q,
+        href: `${essayHref(e)}#faq-h`,
+        kind: "Question",
+        summary: `Answered in “${e.title}”.`,
+        keywords: `${f.q} ${e.title}`.toLowerCase(),
+      });
+    }
+  }
+
+  for (const t of glossary) {
+    docs.push({
+      title: t.term,
+      href: `/glossary/${t.slug}`,
+      kind: "Term",
+      summary: t.short,
+      keywords: `${t.term} ${t.short}`.toLowerCase(),
     });
   }
 

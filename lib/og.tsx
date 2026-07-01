@@ -1,6 +1,8 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 import { ImageResponse } from "next/og";
+import type { Pillar } from "./content";
+import { PILLARS } from "./pillars";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
@@ -54,14 +56,146 @@ function GlyphMark({ size = 96 }: { size?: number }) {
   );
 }
 
+// --- Per-pillar motifs -------------------------------------------------------
+// One quiet mark per hub, seated in the footer beside the pillar name. All of
+// them sit in STEEL hairlines on the movement-black ground; only the sweep
+// hand's tip borrows a sliver of lume. They differentiate — they don't shout.
+
+const MOTIF_SIZE = 44;
+
+/** Mechanical — a hairline escape-wheel arc: an open toothed wheel segment. */
+function EscapeWheelArc() {
+  const c = 20;
+  const r = 14;
+  const pt = (deg: number, radius: number) => ({
+    x: +(c + radius * Math.cos((deg * Math.PI) / 180)).toFixed(2),
+    y: +(c + radius * Math.sin((deg * Math.PI) / 180)).toFixed(2),
+  });
+  // Arc sweeps clockwise from 130° through the top to 50°, leaving the gap at
+  // the bottom — the wheel escaping the frame.
+  const a = pt(130, r);
+  const b = pt(50, r);
+  const teeth = [];
+  for (let deg = 150; deg <= 390; deg += 24) {
+    const inner = pt(deg, r);
+    const outer = pt(deg, r + 3.5);
+    teeth.push(
+      <line key={deg} x1={inner.x} y1={inner.y} x2={outer.x} y2={outer.y} strokeWidth={1.2} />
+    );
+  }
+  return (
+    <svg
+      width={MOTIF_SIZE}
+      height={MOTIF_SIZE}
+      viewBox="0 0 40 40"
+      fill="none"
+      stroke={STEEL}
+      strokeLinecap="round"
+    >
+      <path d={`M ${a.x} ${a.y} A ${r} ${r} 0 1 1 ${b.x} ${b.y}`} strokeWidth={1} />
+      {teeth}
+      <circle cx={c} cy={c} r={2} strokeWidth={1} />
+    </svg>
+  );
+}
+
+/** Instrument — a sweep-hand tick caught mid-lap, lume only at the very tip. */
+function SweepHandTick() {
+  return (
+    <svg width={MOTIF_SIZE} height={MOTIF_SIZE} viewBox="0 0 40 40" fill="none" strokeLinecap="round">
+      {/* minimal chapter: ticks at 12 / 3 / 6 / 9 */}
+      <line x1={20} y1={3} x2={20} y2={7} stroke={STEEL} strokeWidth={1.2} />
+      <line x1={37} y1={20} x2={33} y2={20} stroke={STEEL} strokeWidth={1.2} />
+      <line x1={20} y1={37} x2={20} y2={33} stroke={STEEL} strokeWidth={1.2} />
+      <line x1={3} y1={20} x2={7} y2={20} stroke={STEEL} strokeWidth={1.2} />
+      {/* the hand, sweeping past one o'clock; counterweight behind the pivot */}
+      <line x1={15.5} y1={27.79} x2={26.75} y2={8.31} stroke={STEEL} strokeWidth={1.5} />
+      <line x1={26.75} y1={8.31} x2={28.25} y2={5.71} stroke={LUME} strokeWidth={2.2} />
+      <circle cx={20} cy={20} r={2} fill={STEEL} />
+    </svg>
+  );
+}
+
+/** Heritage — a date-stamp window, the day framed in a mono block. */
+function DateStamp({ date }: { date?: string }) {
+  const parsed = date ? new Date(date) : undefined;
+  const day =
+    parsed && !Number.isNaN(parsed.getTime())
+      ? String(parsed.getUTCDate()).padStart(2, "0")
+      : "31";
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: `1.5px solid ${STEEL}`,
+        padding: "3px 10px",
+        fontSize: 20,
+        letterSpacing: 3,
+        color: BONE,
+      }}
+    >
+      {day}
+    </div>
+  );
+}
+
+/** Owning — a strap threaded through its keeper loop. */
+function StrapLoop() {
+  return (
+    <svg width={MOTIF_SIZE} height={MOTIF_SIZE} viewBox="0 0 40 40" fill="none" stroke={STEEL} strokeLinecap="round">
+      {/* strap edges running through */}
+      <line x1={14} y1={3} x2={14} y2={37} strokeWidth={1.2} />
+      <line x1={26} y1={3} x2={26} y2={37} strokeWidth={1.2} />
+      {/* the keeper */}
+      <rect x={9} y={14.5} width={22} height={11} rx={3.5} strokeWidth={1.5} />
+    </svg>
+  );
+}
+
+/** Dispatch — a postmark: double ring, cancellation lines through the middle. */
+function DispatchStamp() {
+  return (
+    <svg width={MOTIF_SIZE} height={MOTIF_SIZE} viewBox="0 0 40 40" fill="none" stroke={STEEL} strokeLinecap="round">
+      <circle cx={20} cy={20} r={15} strokeWidth={1.2} />
+      <circle cx={20} cy={20} r={11} strokeWidth={1} strokeDasharray="2 3" />
+      <line x1={15} y1={17} x2={25} y2={17} strokeWidth={1.2} />
+      <line x1={13} y1={20.5} x2={27} y2={20.5} strokeWidth={1.2} />
+      <line x1={15} y1={24} x2={25} y2={24} strokeWidth={1.2} />
+    </svg>
+  );
+}
+
+function PillarMotif({ pillar, date }: { pillar: Pillar; date?: string }) {
+  switch (pillar) {
+    case "mechanical":
+      return <EscapeWheelArc />;
+    case "instrument":
+      return <SweepHandTick />;
+    case "heritage":
+      return <DateStamp date={date} />;
+    case "owning":
+      return <StrapLoop />;
+    case "dispatch":
+      return <DispatchStamp />;
+  }
+}
+
 export function ogCard({
   kicker,
   title,
   footer = "The Long Second",
+  pillar,
+  date,
 }: {
   kicker: string;
   title: string;
   footer?: string;
+  /** Pillar hub — adds the hub's quiet motif and mono small-caps name. */
+  pillar?: Pillar;
+  /** ISO date; feeds the heritage date-stamp window. */
+  date?: string;
 }) {
   return new ImageResponse(
     (
@@ -143,6 +277,7 @@ export function ogCard({
           style={{
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
             fontSize: 22,
             letterSpacing: 4,
             textTransform: "uppercase",
@@ -150,7 +285,14 @@ export function ogCard({
           }}
         >
           <span>{footer}</span>
-          <span>Measured release.</span>
+          {pillar ? (
+            <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+              <PillarMotif pillar={pillar} date={date} />
+              <span>{PILLARS[pillar].short}</span>
+            </div>
+          ) : (
+            <span>Measured release.</span>
+          )}
         </div>
       </div>
     ),

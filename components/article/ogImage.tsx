@@ -18,5 +18,7 @@ export function ogImage(slug: string, footer: string) {
     kicker: essay?.kicker ?? footer,
     title: essay?.title ?? "The Long Second",
     footer,
+    pillar: essay?.pillar,
+    date: essay?.date,
   });
 }
