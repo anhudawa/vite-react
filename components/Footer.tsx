@@ -52,6 +52,11 @@ export function Footer() {
                   Index
                 </Link>
               </li>
+              <li>
+                <a href="/rss.xml" className={styles.fLink}>
+                  RSS
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
