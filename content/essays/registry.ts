@@ -34,9 +34,31 @@ import Escapement, { meta as escapement } from "./the-escapement-the-part-that-l
 import Servicing, { meta as servicing } from "./when-to-service-a-mechanical-watch.mdx";
 import FirstAutomatic, { meta as firstAutomatic } from "./your-first-automatic-what-matters.mdx";
 import WaterproofCase, { meta as waterproofCase } from "./the-waterproof-watch-and-the-open-water.mdx";
+import OverbuiltWatch, { meta as overbuiltWatch } from "./the-overbuilt-watch.mdx";
+import ElevenTests, { meta as elevenTests } from "./the-eleven-tests.mdx";
+import ClockFoundShip, { meta as clockFoundShip } from "./the-clock-that-found-the-ship.mdx";
+import Autobus, { meta as autobus } from "./the-autobus.mdx";
+import GunTwelveHours, { meta as gunTwelveHours } from "./the-gun-at-twelve-hours.mdx";
+import FourLaps, { meta as fourLaps } from "./four-laps-no-hiding.mdx";
+import NoOneAtTheLine, { meta as noOneAtTheLine } from "./no-one-at-the-line.mdx";
+import Lume, { meta as lume } from "./lume-and-the-dark.mdx";
+import AutomaticsBike, { meta as automaticsBike } from "./automatics-on-the-bike.mdx";
+import ReadReference, { meta as readReference } from "./how-to-read-a-reference.mdx";
+import SizingLeanWrist, { meta as sizingLeanWrist } from "./sizing-a-watch-for-a-lean-wrist.mdx";
 import SeventeenHours, { meta as seventeenHours } from "./seventeen-hours.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  { slug: "the-overbuilt-watch", meta: overbuiltWatch as unknown as EssayMeta, Content: OverbuiltWatch },
+  { slug: "the-eleven-tests", meta: elevenTests as unknown as EssayMeta, Content: ElevenTests },
+  { slug: "the-clock-that-found-the-ship", meta: clockFoundShip as unknown as EssayMeta, Content: ClockFoundShip },
+  { slug: "the-autobus", meta: autobus as unknown as EssayMeta, Content: Autobus },
+  { slug: "the-gun-at-twelve-hours", meta: gunTwelveHours as unknown as EssayMeta, Content: GunTwelveHours },
+  { slug: "four-laps-no-hiding", meta: fourLaps as unknown as EssayMeta, Content: FourLaps },
+  { slug: "no-one-at-the-line", meta: noOneAtTheLine as unknown as EssayMeta, Content: NoOneAtTheLine },
+  { slug: "lume-and-the-dark", meta: lume as unknown as EssayMeta, Content: Lume },
+  { slug: "automatics-on-the-bike", meta: automaticsBike as unknown as EssayMeta, Content: AutomaticsBike },
+  { slug: "how-to-read-a-reference", meta: readReference as unknown as EssayMeta, Content: ReadReference },
+  { slug: "sizing-a-watch-for-a-lean-wrist", meta: sizingLeanWrist as unknown as EssayMeta, Content: SizingLeanWrist },
   {
     slug: "omega-and-the-olympic-clock",
     meta: olympicClock as unknown as EssayMeta,
