@@ -95,6 +95,13 @@
   .cta {
     display: none;
   }
+
+  /* At narrow widths the auto/1fr/auto grid can exceed the viewport: let the
+     middle column collapse fully and tighten the gap so 375px never scrolls. */
+  .bar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--s-3);
+  }
 }
 
 .searchLink {

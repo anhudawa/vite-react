@@ -1,0 +1,79 @@
+# Launch readiness — The Long Second
+
+Audited 2026-07-03 against the production build (393 pages) served locally.
+Browser work ran in real Chromium: Lighthouse 13 (mobile emulation), axe-core
+across six representative pages in both themes, plus functional checks.
+
+## Audit results
+
+| Page | Perf | A11y | Best practices | SEO |
+|---|---|---|---|---|
+| `/` (home) | 70 | 100 | 96 | 100 |
+| `/features/sixteen-years` | 95 | 100 | 100 | 100 |
+
+- **axe-core: zero violations** — 6 pages × dark + light themes (12 runs).
+- **Keyboard**: visible lume focus ring on all tab stops; skip-link first and
+  functional (now with `tabindex="-1"` on `<main>` so focus moves explicitly).
+- **Reduced motion**: hero renders fully as a still. Pass.
+- **Mobile 375px**: 20px horizontal overflow found in the header grid — FIXED
+  (`minmax(0,1fr)` middle column + tighter gap under 820px) and re-verified in
+  Chromium: scrollWidth 375/375 on home and article. Pass.
+- **Print stylesheet**: present, 25 rules, sources print expanded.
+- **JSON-LD**: all six scripts parse; FAQPage (5 Qs) and Sources render on the
+  guide page.
+- **Routes**: full sweep 200s; real 404; `/essays/*` 308s carry Location; all
+  AEO endpoints (`/llms.txt`, `/facts.json`, `/knowledge-graph.json`,
+  `/rss.xml`, feeds, sitemap, robots) serve.
+
+## Fixed during this audit
+
+- Header overflow at 375px (the one launch blocker found).
+- Skip-link focus polish.
+- Security headers on every route: nosniff, `X-Frame-Options: DENY`,
+  strict referrer, minimal Permissions-Policy.
+- `app/apple-icon.png` (180×180, brand mark on Movement Black) — iOS ignores
+  SVG favicons.
+- Deleted six orphaned off-niche screenshots (~12MB): photography payload
+  14M → 6.9M.
+
+## Known, accepted for launch (post-launch backlog)
+
+1. **Home perf 70** (TBT 640ms on emulated mobile; article pages are 95).
+   Pointers from the report: home `page-*.js` chunk ≈1.26s script eval,
+   shared chunk `2117-*` ≈1.09s, ~84KiB unused JS, four render-blocking CSS
+   files (~0.6–0.7s). Fix direction: dynamic-import below-fold client
+   components on the homepage; audit what pulls the big shared chunk.
+2. 31/42 essays have zero inline body links (cross-linking rides on the
+   related-reading module) — editorial pass.
+3. One cited source lacks a Wayback capture (`verify:sources` advisory).
+4. `speakable`/print CSS depend on the CSS-Modules class-name seam — a
+   data-attribute would be sturdier.
+
+## Go-live checklist (founder actions)
+
+1. **Vercel**: create the project off this repo/branch; framework preset
+   Next.js; no special build config needed (`npm run build` runs the full
+   verification gauntlet as prebuild — a fact/voice/copy violation fails the
+   deploy, which is by design).
+2. **Environment variables** (Production):
+   - `NEXT_PUBLIC_SITE_URL=https://thelongsecond.com` (canonical/OG/sitemap
+     base — falls back to this value anyway, but set it explicitly and match
+     the real domain).
+   - `BEEHIIV_API_KEY` + `BEEHIIV_PUBLICATION_ID` — without them the subscribe
+     API returns a graceful "not configured" error in production.
+3. **Domain + DNS**: point thelongsecond.com at Vercel; confirm apex + www and
+   the redirect between them.
+4. **Post-deploy verification** (15 min):
+   - Share-card check: run the homepage and one essay through the
+     opengraph.xyz /社 validators; confirm the pillar motifs render.
+   - `https://thelongsecond.com/sitemap.xml` loads; submit in Google Search
+     Console + Bing Webmaster; verify `robots.txt` allows the AI crawlers.
+   - Subscribe flow end-to-end with a real email (welcome email arrives).
+   - 308: hit an old `/essays/<slug>` URL, confirm the redirect.
+5. **Decide analytics** (nothing is installed — deliberate): Vercel Analytics
+   is the zero-config option; Plausible/Fathom if you want cookieless
+   independence. Whatever is chosen must not require a consent banner the
+   design never budgeted for.
+6. **Licensing**: the athlete photography (Pogačar, MvdP, Cavendish, Lucy,
+   Armstrong, Tudor/Giro) still carries `unlicensed-placeholder` rights notes —
+   clear before real traffic, or swap for licensed frames.
