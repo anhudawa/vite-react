@@ -132,7 +132,7 @@ export function EmailPopup() {
   if (!mounted || !open) return null;
 
   return createPortal(
-    <div className={styles.overlay} onClick={() => close("dismissed")}>
+    <div className={styles.overlay} onClick={() => close("dismissed")} data-email-popup>
       <div
         ref={dialogRef}
         className={styles.dialog}

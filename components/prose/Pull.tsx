@@ -9,7 +9,7 @@ export function Pull({
   cite?: string;
 }) {
   return (
-    <figure className={styles.pull}>
+    <figure className={styles.pull} data-pull-quote>
       <blockquote>{children}</blockquote>
       {cite && <figcaption>{cite}</figcaption>}
     </figure>

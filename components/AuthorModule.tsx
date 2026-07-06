@@ -12,7 +12,7 @@ export function AuthorModule({ heading = "The byline" }: { heading?: string }) {
   return (
     <aside className={styles.wrap} aria-label="About the author">
       <p className={styles.kicker}>{heading}</p>
-      <div className={styles.inner}>
+      <div className={styles.inner} data-author-module-inner>
         <div className={styles.portraitFrame}>
           <Image
             src={a.portrait}

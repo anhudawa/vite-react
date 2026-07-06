@@ -47,6 +47,7 @@ export function CinematicVideo({
     <video
       ref={ref}
       className={`${styles.video} ${className}`}
+      data-cinematic-video
       poster={poster}
       muted
       loop

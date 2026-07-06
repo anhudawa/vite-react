@@ -7,7 +7,7 @@ export function RelatedEssays({ slug }: { slug: string }) {
   if (related.length === 0) return null;
 
   return (
-    <aside className={styles.wrap} aria-labelledby="related-h">
+    <aside className={styles.wrap} aria-labelledby="related-h" data-related-essays>
       <p id="related-h" className={styles.label}>
         Keep reading
       </p>

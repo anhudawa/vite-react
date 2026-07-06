@@ -107,7 +107,7 @@ export function EmailCapture({
   }
 
   return (
-    <div className={styles.root} data-variant={variant}>
+    <div className={styles.root} data-variant={variant} data-email-capture>
       <div className={styles.copy}>
         <p className={styles.kicker}>The dispatch</p>
         <p className={styles.hook}>{hook}</p>

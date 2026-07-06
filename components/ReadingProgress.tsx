@@ -38,7 +38,7 @@ export function ReadingProgress() {
   }, []);
 
   return (
-    <div className={styles.track} aria-hidden="true">
+    <div className={styles.track} aria-hidden="true" data-reading-progress>
       <div ref={barRef} className={styles.bar} />
     </div>
   );

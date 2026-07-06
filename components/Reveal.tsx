@@ -44,6 +44,7 @@ export function Reveal({
     <div
       ref={ref}
       className={`${styles.reveal} ${className}`}
+      data-reveal
       data-shown={shown || undefined}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >

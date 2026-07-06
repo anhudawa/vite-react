@@ -30,6 +30,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       className={styles.toggle}
+      data-theme-toggle
       aria-label={`Switch to ${isLight ? "dark" : "light"} reading mode`}
       title={`Switch to ${isLight ? "dark" : "light"} reading mode`}
     >

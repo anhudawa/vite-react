@@ -8,7 +8,7 @@ import styles from "./QuizPromo.module.css";
  */
 export function QuizPromo() {
   return (
-    <section className={styles.wrap} aria-labelledby="quiz-promo-h">
+    <section className={styles.wrap} aria-labelledby="quiz-promo-h" data-quiz-promo>
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>
           <p className={styles.kicker}>Find your watch</p>

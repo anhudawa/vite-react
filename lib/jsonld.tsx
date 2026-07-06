@@ -83,11 +83,12 @@ export function articleJsonLd(opts: {
     dateModified: opts.dateModified ?? opts.datePublished,
     mainEntityOfPage: `${site.url}${opts.path}`,
     /* The dek is the spoken-answer container ArticleView renders (the tldr
-       feeds `description` but never reaches the DOM). CSS Modules hash class
-       names, so this leans on the same [class*="…"] seam as the print CSS. */
+       feeds `description` but never reaches the DOM). ArticleView stamps these
+       data attributes on the h1/dek — the stable contract, immune to CSS
+       Modules class-name hashing. */
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: ['[class*="ArticleView_title"]', '[class*="ArticleView_dek"]'],
+      cssSelector: ["[data-article-title]", "[data-article-dek]"],
     },
     ...(opts.citations && opts.citations.length > 0 ? { citation: opts.citations } : {}),
     author: {

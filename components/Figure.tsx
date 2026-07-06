@@ -47,9 +47,10 @@ export function Figure({
           sizes={sizes}
           priority={priority}
           className={styles.img}
+          data-figure-img
           style={objectPosition ? { objectPosition } : undefined}
         />
-        <span className={styles.sheen} aria-hidden="true" />
+        <span className={styles.sheen} aria-hidden="true" data-figure-sheen />
       </div>
       {(subject || watch) && (
         <figcaption className={styles.cap}>

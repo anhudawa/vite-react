@@ -53,7 +53,7 @@ export function AthleteLookup({ athletes }: { athletes: AthleteSearchEntry[] }) 
   }
 
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} data-athlete-lookup>
       <label htmlFor="watch-id" className={styles.label}>
         Type an athlete — see what they wear
       </label>

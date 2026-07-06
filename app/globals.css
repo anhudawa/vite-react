@@ -455,10 +455,9 @@ table {
    of interactive chrome removed. All colour flows through the same custom
    properties the screen uses — we re-tune the tokens, not the components.
 
-   Selector note: chrome components use CSS Modules, whose classes compile to
-   "FileName_local__hash" under Next.js defaults — hence the [class*="…"]
-   attribute selectors below. If module hashing config ever changes, these are
-   the seams to revisit.
+   Selector note: components stamp data-* attributes (data-article-*, data-
+   email-capture, …) on the elements this block targets — those attributes are
+   the stable contract; CSS Modules class names are hashed and are not.
    ============================================================================= */
 
 @media print {
@@ -548,22 +547,22 @@ table {
   body > header,
   body > footer,
   .skip-link,
-  [class*="ReadingProgress_"],
-  [class*="ThemeToggle_"],
-  [class*="EmailCapture_"],
-  [class*="EmailPopup_"],
-  [class*="QuizPromo_"],
-  [class*="AthleteLookup_"],
-  [class*="CinematicVideo_"],
-  [class*="ArticleView_inlineCapture"],
-  [class*="ArticleView_related"],
-  [class*="RelatedEssays_"],
-  [class*="ArticleView_next"] {
+  [data-reading-progress],
+  [data-theme-toggle],
+  [data-email-capture],
+  [data-email-popup],
+  [data-quiz-promo],
+  [data-athlete-lookup],
+  [data-cinematic-video],
+  [data-article-inline-capture],
+  [data-article-related],
+  [data-related-essays],
+  [data-article-next] {
     display: none !important;
   }
 
   /* Scroll-triggered reveals must not print blank below the fold. */
-  [class*="Reveal_reveal"] {
+  [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -595,7 +594,7 @@ table {
   }
 
   /* the article column: trim screen-scale breathing room */
-  [class*="ArticleView_article"] {
+  [data-article-root] {
     padding-block: 0;
   }
 
@@ -605,7 +604,7 @@ table {
      mono; internal links print plain. */
   .prose a,
   .prose-link,
-  [class*="ArticleView_body"] a {
+  [data-article-body] a {
     background: none;
     color: var(--text);
     text-decoration: underline;
@@ -628,16 +627,16 @@ table {
   article figure,
   article blockquote,
   article img,
-  [class*="Pull_pull"],
-  [class*="ArticleView_faqItem"],
-  [class*="ArticleView_bylineRow"],
-  [class*="AuthorModule_inner"] {
+  [data-pull-quote],
+  [data-article-faq-item],
+  [data-article-byline],
+  [data-author-module-inner] {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
   /* pull quotes stay in the measure — no left break-out on paper */
-  [class*="Pull_pull"] {
+  [data-pull-quote] {
     margin-left: 0;
   }
 
@@ -646,10 +645,10 @@ table {
     border: 0.5pt solid var(--rule-strong);
     box-shadow: none;
   }
-  [class*="Figure_sheen"] {
+  [data-figure-sheen] {
     display: none !important;
   }
-  [class*="ArticleView_body"] img:not([class*="Figure_img"]) {
+  [data-article-body] img:not([data-figure-img]) {
     border: 0.5pt solid var(--rule-strong);
   }
 
@@ -657,12 +656,12 @@ table {
      The existing byline row (author · role · reading time · date) becomes the
      printed credit line: bounded above and below by hairlines, kept with the
      masthead. The article foot's essence line signs the piece off. */
-  [class*="ArticleView_bylineRow"] {
+  [data-article-byline] {
     border-top-color: var(--rule-strong);
     border-bottom: var(--hairline) solid var(--rule);
     padding-bottom: 0.75rem;
   }
-  [class*="ArticleView_foot"] {
+  [data-article-foot] {
     border-top-color: var(--rule-strong);
     break-inside: avoid;
     page-break-inside: avoid;

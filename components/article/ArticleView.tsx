@@ -31,7 +31,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
     : { name: "Essays", path: "/essays" };
 
   return (
-    <article className={styles.article}>
+    <article className={styles.article} data-article-root>
       <ReadingProgress />
       <JsonLd
         data={[
@@ -61,9 +61,13 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
           <Link href={hub.path}>{hub.name}</Link>
         </nav>
         <p className={styles.kicker}>{essay.kicker ?? "Essay"}</p>
-        <h1 className={styles.title}>{essay.title}</h1>
-        <p className={styles.dek}>{essay.dek}</p>
-        <div className={styles.bylineRow}>
+        <h1 className={styles.title} data-article-title>
+          {essay.title}
+        </h1>
+        <p className={styles.dek} data-article-dek>
+          {essay.dek}
+        </p>
+        <div className={styles.bylineRow} data-article-byline>
           <Byline readingTime={essay.readingTime} />
           <time className={styles.pubdate} dateTime={essay.date}>
             {formatDate(essay.date)}
@@ -97,7 +101,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
         </div>
       )}
 
-      <div className={styles.body}>
+      <div className={styles.body} data-article-body>
         <Content />
       </div>
 
@@ -108,7 +112,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
           </h2>
           <dl>
             {essay.faq.map((f) => (
-              <div key={f.q} className={styles.faqItem}>
+              <div key={f.q} className={styles.faqItem} data-article-faq-item>
                 <dt className={styles.faqQ}>{f.q}</dt>
                 <dd className={styles.faqA}>{f.a}</dd>
               </div>
@@ -117,7 +121,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
         </section>
       )}
 
-      <div className={styles.inlineCapture}>
+      <div className={styles.inlineCapture} data-article-inline-capture>
         <EmailCapture
           variant="inline"
           source={`essay:${essay.slug}`}
@@ -131,7 +135,7 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
       </div>
 
       {related.length > 0 && (
-        <aside className={styles.related} aria-labelledby="related-h">
+        <aside className={styles.related} aria-labelledby="related-h" data-article-related>
           <p id="related-h" className={styles.relatedLabel}>
             Related reading
           </p>
@@ -152,9 +156,9 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
 
       {essay.sources && essay.sources.length > 0 && <SourcesBlock sources={essay.sources} />}
 
-      <footer className={styles.foot}>
+      <footer className={styles.foot} data-article-foot>
         <p className={styles.footEssence}>{site.essence}</p>
-        <div className={styles.next}>
+        <div className={styles.next} data-article-next>
           <span className={styles.nextLabel}>Next</span>
           <Link href={essayHref(next)}>{next.title} →</Link>
         </div>

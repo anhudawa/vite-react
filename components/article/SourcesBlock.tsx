@@ -39,7 +39,7 @@ export function SourcesBlock({ sources }: { sources: { claim: string; url: strin
   );
 
   return (
-    <section className={styles.sources} aria-labelledby="sources-h">
+    <section className={styles.sources} aria-labelledby="sources-h" data-article-sources>
       <p id="sources-h" className={styles.label}>
         Sources
       </p>
