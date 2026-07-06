@@ -33,9 +33,13 @@ export default function BrandsPage() {
           <Link key={b.slug} href={`/brands/${b.slug}`} className={styles.brand}>
             <span className={styles.brandName}>{b.brand}</span>
             <span className={styles.brandMeta}>
-              {b.wearers.length} {b.wearers.length === 1 ? "wrist" : "wrists"}
+              {b.wearers.length > 0
+                ? `${b.wearers.length} ${b.wearers.length === 1 ? "wrist" : "wrists"}`
+                : `${b.essays?.length ?? 0} ${(b.essays?.length ?? 0) === 1 ? "piece" : "pieces"}`}
             </span>
-            <span className={styles.brandTotal}>{formatGBP(b.totalGBP)}</span>
+            <span className={styles.brandTotal}>
+              {b.wearers.length > 0 ? formatGBP(b.totalGBP) : "In the library"}
+            </span>
             <span className={styles.brandArrow} aria-hidden="true">
               →
             </span>
