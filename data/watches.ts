@@ -77,6 +77,41 @@ export const watches: WatchEntity[] = [
     ],
   },
   {
+    slug: "breitling/top-time-b01-eddy-merckx",
+    brand: "Breitling",
+    model: "Top Time B01 Eddy Merckx",
+    oneLiner:
+      "A Tour de France-yellow chronograph on Breitling's own B01 calibre, limited to 525 pieces — one for every race Merckx won. The production run is the record book.",
+    specs: [
+      { label: "Movement", value: "Breitling B01 manufacture — column wheel, vertical clutch, COSC-certified" },
+      { label: "Power reserve", value: "About 70 hours" },
+      { label: "Frequency", value: "28,800 vph (4 Hz)" },
+      { label: "Case", value: "41 mm stainless steel, 13.3 mm thick" },
+      { label: "Water resistance", value: "100 m" },
+      { label: "Dial", value: "Yellow — the maillot jaune — with Merckx's signature above 6 o'clock" },
+      { label: "Edition", value: "525 pieces, matching Merckx's career victories" },
+      { label: "Reference", value: "AB01762C1I1X1 (leather) / AB01762C1I1A1 (bracelet)" },
+    ],
+    essaySlugs: ["one-of-525"],
+    athleteSlugs: [],
+    sources: [
+      {
+        claim: "Reference, dimensions, B01 calibre, 100 m rating, yellow dial with signature, 525-piece edition matching total victories",
+        url: "https://www.breitling.com/us-en/watches/top-time/top-time-b01/AB01762C1I1X1/",
+      },
+      {
+        claim: "Part of the Top Time cycling editions alongside the Fausto Coppi and Gino Bartali models (750 pieces each)",
+        url: "https://www.breitling.com/us-en/campaigns/top-time-cycling-editions/",
+      },
+      {
+        claim: "B01 is COSC-certified with a column wheel and vertical clutch; the yellow references the maillot jaune Merckx wore for a record 96 days",
+        url: "https://www.fratellowatches.com/tour-de-france-yellow-breitling-top-time-b01-eddy-merckx/",
+      },
+    ],
+    priceNote:
+      "Around $8,050 on leather, $8,450 on the bracelet — indicative launch pricing, context rather than an offer.",
+  },
+  {
     slug: "bravur/grand-tour-sprinter",
     brand: "Bravur",
     model: "Grand Tour Sprinter",

@@ -46,9 +46,11 @@ import AutomaticsBike, { meta as automaticsBike } from "./automatics-on-the-bike
 import ReadReference, { meta as readReference } from "./how-to-read-a-reference.mdx";
 import SizingLeanWrist, { meta as sizingLeanWrist } from "./sizing-a-watch-for-a-lean-wrist.mdx";
 import UnclaimedWrist, { meta as unclaimedWrist } from "./the-unclaimed-wrist.mdx";
+import OneOf525, { meta as oneOf525 } from "./one-of-525.mdx";
 import SeventeenHours, { meta as seventeenHours } from "./seventeen-hours.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  { slug: "one-of-525", meta: oneOf525 as unknown as EssayMeta, Content: OneOf525 },
   { slug: "the-unclaimed-wrist", meta: unclaimedWrist as unknown as EssayMeta, Content: UnclaimedWrist },
   { slug: "the-overbuilt-watch", meta: overbuiltWatch as unknown as EssayMeta, Content: OverbuiltWatch },
   { slug: "the-eleven-tests", meta: elevenTests as unknown as EssayMeta, Content: ElevenTests },
