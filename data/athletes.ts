@@ -460,7 +460,7 @@ const lucy: AthleteRef = {
   summary:
     "2023 Ironman World Champion and a Breitling ambassador — the rare case where the watch was actually built for the wearer's sport. Cleanly sourced; held here only to confirm the exact execution and clear the desk's sign-off.",
   image: {
-    src: "/photography/lucy-charles-barclay-1.png",
+    src: "/photography/lucy-charles-barclay-1.webp",
     alt: "Lucy Charles-Barclay, a Breitling Endurance Pro on her wrist",
     caption: "Breitling Endurance Pro 38",
     credit: "Photographer TBC — licence before publish",

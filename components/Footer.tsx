@@ -2,6 +2,7 @@ import Link from "next/link";
 import { nav, secondaryNav, site } from "@/lib/site";
 import { Mark } from "./Mark";
 import { EmailCapture } from "./EmailCapture";
+import { LazyMount } from "./LazyMount";
 import styles from "./Footer.module.css";
 
 export function Footer() {
@@ -9,12 +10,14 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.capture}>
-        <EmailCapture
-          variant="footer"
-          source="footer"
-          hook="Every new wrist, in your inbox."
-          offer="Who wears what, the craft behind it, and what it costs. The occasional essay. No hype."
-        />
+        <LazyMount minHeight={240}>
+          <EmailCapture
+            variant="footer"
+            source="footer"
+            hook="Every new wrist, in your inbox."
+            offer="Who wears what, the craft behind it, and what it costs. The occasional essay. No hype."
+          />
+        </LazyMount>
       </div>
 
       <div className={styles.inner}>
