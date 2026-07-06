@@ -676,6 +676,159 @@ const ryf: AthleteRef = {
   ],
 };
 
+const laidlow: AthleteRef = {
+  slug: "sam-laidlow",
+  name: "Sam Laidlow",
+  discipline: "Triathlon — Ironman World Champion 2023",
+  nationality: "French",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Sam_Laidlow",
+    "https://www.breitling.com/gb-en/about/ambassadors/sam-laidlow/",
+  ],
+  summary:
+    "Breitling ambassador and Triathlon Squad member since July 2024, fronting the Endurance Pro — the fourth squad wrist on this ledger, and the youngest.",
+  facts: [
+    {
+      id: "laidlow-endurance-pro",
+      status: "in-review",
+      athlete: "Sam Laidlow",
+      watch: "Breitling Endurance Pro 44",
+      relation: "Ambassador — Breitling (Triathlon Squad)",
+      evidence:
+        "Official Breitling ambassador page; his own sponsor list names Breitling and no GPS watch brand; independent watch media covered his July 2024 squad announcement.",
+      confidence: "High",
+      confidenceNote:
+        "Relationship authoritative (brand + athlete + two independent outlets). Model-level care: the Endurance Pro runs many colourways, two sizes and IRONMAN limited editions — don't assert a specific reference from a single photo.",
+      reference: "Endurance Pro 44",
+      sources: [
+        {
+          id: "breitling-ambassador-laidlow",
+          publisher: "Breitling",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.breitling.com/gb-en/about/ambassadors/sam-laidlow/",
+          accessedAt: "2026-07-03",
+          excerpt: "Breitling's ambassador page for Sam Laidlow — 'Breitling Ambassador & Triathlon Prodigy'.",
+          supports: ["athlete", "relation", "watch"],
+          snapshot: "unarchivable",
+          verified: false,
+        },
+        {
+          id: "laidlow-own-sponsors",
+          publisher: "samlaidlow.com",
+          kind: "official",
+          tier: "primary",
+          url: "https://samlaidlow.com/en/pages/sponsors",
+          accessedAt: "2026-07-03",
+          excerpt: "Laidlow's own sponsor list names Breitling; no GPS watch brand appears.",
+          supports: ["relation"],
+          verified: false,
+        },
+        {
+          id: "watchilove-squad-2024",
+          publisher: "Watch I Love",
+          kind: "media",
+          tier: "secondary",
+          url: "https://watchilove.com/2024/07/breitling-endurance-pro-in-44-and-38-mm/",
+          accessedAt: "2026-07-03",
+          excerpt: "July 2024: Laidlow welcomed to the Breitling Triathlon Squad with the Endurance Pro.",
+          supports: ["relation", "evidence"],
+          verified: false,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "IRONMAN limited editions (titanium 2025 WC, Breitlight 70.3) share the Endurance Pro name — reference-level claims need the specific photo.",
+        ],
+        method: "single",
+        notes: "Awaiting desk dual-control sign-off and rights-clear imagery.",
+      },
+    },
+  ],
+  notes: [
+    "Completes the Triathlon Squad set on the ledger: Charles-Barclay, Frodeno, Ryf (historical), Laidlow. The squad is now documented across its whole arc — founding members to current.",
+  ],
+};
+
+const dauwalter: AthleteRef = {
+  slug: "courtney-dauwalter",
+  name: "Courtney Dauwalter",
+  discipline: "Ultrarunning — UTMB / Hardrock / Western States champion",
+  nationality: "American",
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Courtney_Dauwalter",
+    "https://www.tudorwatch.com/en/tudor-mag/news/tudor-hits-the-trail",
+  ],
+  summary:
+    "Tudor named Dauwalter an official ambassador on 9 June 2026 — the brand's entry into trail running, and this ledger's first ultrarunner and first Tudor. No specific reference is publicly tied to her wrist yet.",
+  facts: [
+    {
+      id: "dauwalter-tudor",
+      status: "in-review",
+      athlete: "Courtney Dauwalter",
+      watch: "Tudor (model unconfirmed)",
+      relation: "Ambassador — Tudor (announced 9 June 2026)",
+      evidence:
+        "Tudor's own announcement ('Tudor Hits the Trail') naming her among four trail athletes, corroborated by the brand's press release and independent running media.",
+      confidence: "Medium",
+      confidenceNote:
+        "The relationship is High (brand page + wire release + independent coverage, all dated 9-15 June 2026). The WATCH is the open question — Tudor names no model, so the entry stays at Medium until a reference is documented on her wrist.",
+      reference: undefined,
+      sources: [
+        {
+          id: "tudor-hits-the-trail",
+          publisher: "Tudor",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.tudorwatch.com/en/tudor-mag/news/tudor-hits-the-trail",
+          accessedAt: "2026-07-03",
+          excerpt: "Tudor's 9 June 2026 announcement naming Dauwalter, Remi Bonnet, Miao Yao and Baptiste Chassagne as trail ambassadors.",
+          supports: ["athlete", "relation"],
+          snapshot: "unarchivable",
+          verified: false,
+        },
+        {
+          id: "prnewswire-tudor-trail",
+          publisher: "PR Newswire",
+          kind: "media",
+          tier: "secondary",
+          url: "https://www.prnewswire.com/news-releases/tudor-hits-the-trail-with-the-worlds-top-trail-runners",
+          accessedAt: "2026-07-03",
+          excerpt: "Wire release confirming Dauwalter is 'part of the TUDOR family' as an ambassador.",
+          supports: ["relation"],
+          verified: false,
+        },
+        {
+          id: "canadianrunning-dauwalter-tudor",
+          publisher: "Canadian Running",
+          kind: "media",
+          tier: "secondary",
+          url: "https://runningmagazine.ca/trail-running/courtney-dauwalter-among-trail-runners-",
+          accessedAt: "2026-07-03",
+          excerpt: "Independent coverage (15 June 2026) of Dauwalter joining Tudor's athlete roster.",
+          supports: ["relation"],
+          verified: false,
+        },
+      ],
+      review: {
+        disconfirmingSearch: true,
+        contradictionsFound: [],
+        confusedWithRuledOut: [
+          "Race photos will almost always show her Suunto Race S Titanium signature GPS watch — never caption the Suunto as a Tudor or vice versa.",
+        ],
+        method: "single",
+        notes:
+          "Her long-running Suunto sponsorship (2017-, signature Race S Titanium edition 2024) is real and well-documented but belongs to the GPS thread, not this ledger. Desk sign-off + a documented reference on the wrist promote this entry.",
+      },
+    },
+  ],
+  notes: [
+    "A door opening: Tudor — already in cycling through Tudor Pro Cycling, already on this site via the Giro chrono photography — has entered trail running. The first luxury-mechanical maker to claim an ultrarunner's wrist, and it chose the sport's defining athlete.",
+  ],
+};
+
 export const athletes: AthleteRef[] = [
   pogacar,
   mvdp,
@@ -684,6 +837,8 @@ export const athletes: AthleteRef[] = [
   lucy,
   frodeno,
   ryf,
+  laidlow,
+  dauwalter,
 ];
 
 /** An athlete is publishable iff it has at least one publishable fact. */
