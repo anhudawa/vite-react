@@ -41,6 +41,9 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: [
+          // Two years, subdomains included; no preload until the domain has run
+          // HTTPS-only long enough to commit to the browser preload list.
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },

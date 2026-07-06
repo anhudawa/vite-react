@@ -5,9 +5,9 @@ export const contentType = ogType;
 export const alt = ogAlt;
 
 export function generateStaticParams() {
-  return ogParams("feature");
+  return ogParams("review");
 }
 
 export default function Image({ params }: { params: { slug: string } }) {
-  return ogImage(params.slug, "Feature");
+  return ogImage(params.slug, "Review");
 }
