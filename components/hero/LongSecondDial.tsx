@@ -251,9 +251,9 @@ export function LongSecondDial() {
       <circle ref={idxGlow} cx={C} cy={P(IDX_OUT - 30, 0)[1]} r={40} fill="url(#lumeRad)" opacity={0.3} />
       <rect
         x={C - 5}
-        y={ly}
+        y={P(IDX_OUT, 0)[1]}
         width={10}
-        height={P(IDX_OUT, 0)[1] - ly}
+        height={ly - P(IDX_OUT, 0)[1]}
         rx={2}
         fill="#d8f26a"
       />
