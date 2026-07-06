@@ -77,3 +77,24 @@ across six representative pages in both themes, plus functional checks.
 6. **Licensing**: the athlete photography (Pogačar, MvdP, Cavendish, Lucy,
    Armstrong, Tudor/Giro) still carries `unlicensed-placeholder` rights notes —
    clear before real traffic, or swap for licensed frames.
+
+## Addendum — second pass (same day)
+
+The "known, accepted" backlog above has since been cleared:
+
+1. **Home perf 70 -> 90** (TBT 640ms -> 50ms, CLS 0): the footer email capture
+   was hydrating on all 393 pages; it now lazy-mounts on scroll approach
+   (components/LazyMount.tsx). Article template holds 93-95.
+2. **Hero dial bug**: the long-second lume index at twelve had a negative SVG
+   height and had never rendered. Fixed; verified in both themes.
+3. **Images**: the three Lucy PNGs (5.5MB) are now sized WebP (305KB);
+   photography payload 6.9M -> 2M.
+4. **Inline links**: editorial pass ran across all 42 essays (wrap-only,
+   verified anchors).
+5. **Launch kit**: HSTS header added; web manifest added; dispatch/reviews OG
+   routes fixed (were mislabelled "Feature"); all five card variants
+   render-verified.
+
+Still open for the founder: everything under "Go-live checklist" above, plus
+the Wayback capture for the Cyclingnews source (archive.org rate-limits this
+environment's egress IP — it is a 30-second browser task).
