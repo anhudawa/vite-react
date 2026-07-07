@@ -50,8 +50,12 @@ import OneOf525, { meta as oneOf525 } from "./one-of-525.mdx";
 import SeventeenHours, { meta as seventeenHours } from "./seventeen-hours.mdx";
 import Handover, { meta as handover } from "./the-handover.mdx";
 import WristsOf2026Tour, { meta as wristsOf2026Tour } from "./the-wrists-of-the-2026-tour.mdx";
+import SixtyFourDays, { meta as sixtyFourDays } from "./sixty-four-days.mdx";
+import Tour2026WeekOne, { meta as tour2026WeekOne } from "./tour-2026-week-one-on-the-clock.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  { slug: "tour-2026-week-one-on-the-clock", meta: tour2026WeekOne as unknown as EssayMeta, Content: Tour2026WeekOne },
+  { slug: "sixty-four-days", meta: sixtyFourDays as unknown as EssayMeta, Content: SixtyFourDays },
   { slug: "the-wrists-of-the-2026-tour", meta: wristsOf2026Tour as unknown as EssayMeta, Content: WristsOf2026Tour },
   { slug: "the-handover", meta: handover as unknown as EssayMeta, Content: Handover },
   { slug: "one-of-525", meta: oneOf525 as unknown as EssayMeta, Content: OneOf525 },
