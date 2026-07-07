@@ -641,6 +641,18 @@ table {
     margin-left: 0;
   }
 
+  /* The founder portrait is a bone-on-transparent stencil drawn for a dark
+     ground — on white paper it vanishes inside its frame (and the screen
+     frame's dark ground would waste ink). Invert it to print as ink. */
+  [data-author-portrait] {
+    background: #ffffff !important;
+    border: 0.5pt solid var(--rule-strong);
+  }
+  [data-author-portrait] img {
+    filter: grayscale(1) invert(1) contrast(1.05);
+    mix-blend-mode: normal;
+  }
+
   /* images: thin ink rule, no sheen, no digital-frame shadow */
   article [data-treatment] {
     border: 0.5pt solid var(--rule-strong);

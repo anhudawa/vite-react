@@ -17,7 +17,11 @@ const PLEX_MONO = readFileSync(join(fontDir, "PlexMono-500.woff"));
 
 const OG_FONTS = [
   { name: "Newsreader", data: SERIF, weight: 400 as const, style: "normal" as const },
-  { name: "Newsreader", data: SERIF_EXT, weight: 400 as const, style: "normal" as const },
+  // Registered under its own family name: Satori keys fonts by name+weight+style,
+  // so a second "Newsreader" entry is shadowed by the first and its glyphs never
+  // load — "č" in Pogačar fell through to the bundled default sans. A distinct
+  // name keeps the subset in the per-glyph fallback chain.
+  { name: "Newsreader Latin Ext", data: SERIF_EXT, weight: 400 as const, style: "normal" as const },
   { name: "Plex Mono", data: PLEX_MONO, weight: 500 as const, style: "normal" as const },
 ];
 

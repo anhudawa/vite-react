@@ -13,7 +13,7 @@ export function AuthorModule({ heading = "The byline" }: { heading?: string }) {
     <aside className={styles.wrap} aria-label="About the author">
       <p className={styles.kicker}>{heading}</p>
       <div className={styles.inner} data-author-module-inner>
-        <div className={styles.portraitFrame}>
+        <div className={styles.portraitFrame} data-author-portrait>
           <Image
             src={a.portrait}
             alt={`${a.name}, founder of ${site.name}`}
