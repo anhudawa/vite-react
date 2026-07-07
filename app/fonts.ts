@@ -33,6 +33,8 @@ export const serif = Newsreader({
 
 // Not variable — load the weights we use. Mono only sets small labels/specs, so
 // keep it off the critical path; the headline serif gets the bandwidth first.
+// Measured (Lighthouse mobile, 2026-07): preloading these three files trades
+// ~-0.3 s FCP for ~+0.8 s Speed Index and no LCP change — a net loss. Leave off.
 export const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",

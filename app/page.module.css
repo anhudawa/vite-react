@@ -464,6 +464,87 @@
   color: var(--accent-text);
 }
 
+/* ===================== START HERE (slim band) ===================== */
+/* A hairline band in the From-the-record register: mono kicker, one serif
+   line, two quiet links. QuizPromo below carries its own border-top, so the
+   band rules only its top edge. */
+.startBand {
+  border-top: var(--hairline) solid var(--rule);
+}
+.startInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4) clamp(1.5rem, 4vw, 3.5rem);
+  padding-block: clamp(1.75rem, 4vw, 2.75rem);
+}
+.startText {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-5);
+}
+.startKicker {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0;
+}
+.startKicker::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  flex: none;
+}
+.startLine {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin: 0;
+  text-wrap: balance;
+}
+.startActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-6);
+}
+.startCta {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.08em;
+  color: var(--accent-text);
+  transition: opacity var(--dur-1) var(--ease-mech);
+}
+.startCta:hover {
+  opacity: 0.7;
+}
+.startAlt {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  background-image: linear-gradient(var(--text-dim), var(--text-dim));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.startAlt:hover {
+  color: var(--accent-text);
+  background-image: linear-gradient(var(--accent), var(--accent));
+}
+
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 900px) {
   .heroInner {

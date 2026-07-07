@@ -250,6 +250,28 @@ export default function HomePage() {
         </ul>
       </section>
 
+      {/* ===================== START HERE ===================== */}
+      <section className={styles.startBand} aria-labelledby="start-here-h">
+        <div className={`container ${styles.startInner}`}>
+          <div className={styles.startText}>
+            <h2 id="start-here-h" className={styles.startKicker}>
+              New here?
+            </h2>
+            <p className={styles.startLine}>
+              Six pieces, in order, that make the whole site make sense.
+            </p>
+          </div>
+          <div className={styles.startActions}>
+            <Link href="/collections/start-here" className={styles.startCta}>
+              Start here →
+            </Link>
+            <Link href="/find-your-watch" className={styles.startAlt}>
+              Or answer seven questions
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ===================== FIND YOUR WATCH ===================== */}
       <QuizPromo />
     </>
