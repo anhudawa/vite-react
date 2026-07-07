@@ -3,13 +3,18 @@ import { PageHeader } from "@/components/PageHeader";
 import { FactBlock } from "@/components/FactBlock";
 import { Mark, Wordmark } from "@/components/Mark";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
+import { essays } from "@/content/essays/registry";
+import { pillarList } from "@/lib/pillars";
+import { collections } from "@/data/collections";
+import { glossary } from "@/data/glossary";
+import { timeline } from "@/data/timeline";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import styles from "./colophon.module.css";
 
 export const metadata: Metadata = {
   title: "Colophon",
   description:
-    "The Long Second's design system, shown live: colour, the three type voices, the Fact Block, the mark, and the rules that hold them together.",
+    "The Long Second's design system, shown live: colour, the three type voices, the Fact Block, the mark, the shelves the system carries, the checks that run before every build, and the rules that hold them together.",
 };
 
 const COLOURS = [
@@ -163,6 +168,97 @@ export default function ColophonPage() {
         </div>
       </section>
 
+      {/* THE SURFACES */}
+      <section className={`container ${styles.section}`} aria-labelledby="c-surfaces">
+        <h2 id="c-surfaces" className={styles.h}>
+          What the system carries
+        </h2>
+        <p className={styles.lede}>
+          An identity is only as good as the shelves it holds up. These figures are read
+          from the live content at build time, the same way the colours are read from
+          tokens.
+        </p>
+        <dl className={styles.surfaces}>
+          <div className={styles.surface}>
+            <dt>Essays</dt>
+            <dd className="tnum">{essays.length}</dd>
+            <p className={styles.surfaceNote}>
+              Across {pillarList.length} pillars —{" "}
+              {pillarList.map((p) => p.short.toLowerCase()).join(" · ")}.
+            </p>
+          </div>
+          <div className={styles.surface}>
+            <dt>Collections</dt>
+            <dd className="tnum">{collections.length}</dd>
+            <p className={styles.surfaceNote}>
+              Curated reading trails; each essay placed to answer the one before it.
+            </p>
+          </div>
+          <div className={styles.surface}>
+            <dt>Timeline dates</dt>
+            <dd className="tnum">{timeline.length}</dd>
+            <p className={styles.surfaceNote}>
+              A century on one line; every date links to the essay that tells it in full.
+            </p>
+          </div>
+          <div className={styles.surface}>
+            <dt>Glossary terms</dt>
+            <dd className="tnum">{glossary.length}</dd>
+            <p className={styles.surfaceNote}>
+              Where sport timing meets horology, one plain definition at a time.
+            </p>
+          </div>
+        </dl>
+      </section>
+
+      {/* THE CHECKS */}
+      <section className={`container ${styles.section}`} aria-labelledby="c-checks">
+        <h2 id="c-checks" className={styles.h}>
+          Checked before it ships
+        </h2>
+        <p className={styles.lede}>
+          The same restraint that governs the pixels governs the words. Five checks run
+          ahead of every build, and a failure in any one of them stops the build.
+        </p>
+        <ul className={styles.checks}>
+          <li className={styles.check}>
+            <span className={styles.checkName}>Facts</span>
+            <p className={styles.checkBody}>
+              A published claim has to hold the evidence it was approved on. The build
+              refuses one that no longer does.
+            </p>
+          </li>
+          <li className={styles.check}>
+            <span className={styles.checkName}>Sources</span>
+            <p className={styles.checkBody}>
+              A published reference needs at least two archived, independent citations,
+              so the record outlives any single link.
+            </p>
+          </li>
+          <li className={styles.check}>
+            <span className={styles.checkName}>Voice</span>
+            <p className={styles.checkBody}>
+              The prose is swept against the house voice — banned words, borrowed
+              openers, structural tells — before a piece can ship.
+            </p>
+          </li>
+          <li className={styles.check}>
+            <span className={styles.checkName}>Copy</span>
+            <p className={styles.checkBody}>
+              Public pages have to read as editorial. Internal process language stays
+              internal.
+            </p>
+          </li>
+          <li className={styles.check}>
+            <span className={styles.checkName}>Corpus</span>
+            <p className={styles.checkBody}>
+              Signature phrases are counted across every piece and held under a ceiling,
+              so a good line stays a signature instead of becoming a tic.
+            </p>
+          </li>
+        </ul>
+      </section>
+
       {/* RULES */}
       <section className={`container ${styles.section}`} aria-labelledby="c-rules">
         <h2 id="c-rules" className={styles.h}>
@@ -174,6 +270,10 @@ export default function ColophonPage() {
           <li>Keep the Lume rare. One precise hit; never as body text.</li>
           <li>Never more than three type voices, never colour beyond the system.</li>
           <li>Motion is mechanical and purposeful, and yields to reduced-motion.</li>
+          <li>
+            Consider paper. Every page carries a print style — texture and sheen stay on
+            screen, and sources print as ink.
+          </li>
           <li>
             Make the Fact Block beautiful and consistent — and never let a claim render
             without the sources sitting quietly underneath it.

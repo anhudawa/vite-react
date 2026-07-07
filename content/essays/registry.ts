@@ -48,8 +48,10 @@ import SizingLeanWrist, { meta as sizingLeanWrist } from "./sizing-a-watch-for-a
 import UnclaimedWrist, { meta as unclaimedWrist } from "./the-unclaimed-wrist.mdx";
 import OneOf525, { meta as oneOf525 } from "./one-of-525.mdx";
 import SeventeenHours, { meta as seventeenHours } from "./seventeen-hours.mdx";
+import Handover, { meta as handover } from "./the-handover.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  { slug: "the-handover", meta: handover as unknown as EssayMeta, Content: Handover },
   { slug: "one-of-525", meta: oneOf525 as unknown as EssayMeta, Content: OneOf525 },
   { slug: "the-unclaimed-wrist", meta: unclaimedWrist as unknown as EssayMeta, Content: UnclaimedWrist },
   { slug: "the-overbuilt-watch", meta: overbuiltWatch as unknown as EssayMeta, Content: OverbuiltWatch },
