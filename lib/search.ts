@@ -1,5 +1,6 @@
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
+import { collections } from "@/data/collections";
 import { glossary } from "@/data/glossary";
 import { nav, secondaryNav } from "@/lib/site";
 import { essayHref } from "@/lib/content";
@@ -22,6 +23,9 @@ const SECTION_BLURBS: Record<string, string> = {
   "/buying-guides": "How a watch is made, what it's worth, and how it lives on a training wrist.",
   "/essays": "Long-form on athletes, watches, and the one thing they share — time.",
   "/about": "Who The Long Second is for, and why an athlete is the one telling it.",
+  "/timeline": "The dates where watches and endurance sport met, in one line.",
+  "/collections": "Curated reading orders through the archive.",
+  "/feeds": "The machine-readable editions.",
 };
 
 /** The whole searchable corpus, assembled at build time. Small by design — titles,
@@ -97,6 +101,27 @@ export function buildSearchIndex(): SearchDoc[] {
       keywords: `${item.label} ${summary}`.toLowerCase(),
     });
   }
+
+  // Each collection is its own doc — the trail is a destination in itself.
+  for (const c of collections) {
+    docs.push({
+      title: c.title,
+      href: `/collections/${c.slug}`,
+      kind: "Section",
+      summary: c.dek,
+      keywords: `${c.title} ${c.dek}`.toLowerCase(),
+    });
+  }
+
+  // /feeds sits outside the nav, so it gets its own entry.
+  const feedsSummary = SECTION_BLURBS["/feeds"];
+  docs.push({
+    title: "Feeds",
+    href: "/feeds",
+    kind: "Section",
+    summary: feedsSummary,
+    keywords: `feeds ${feedsSummary}`.toLowerCase(),
+  });
 
   return docs;
 }
