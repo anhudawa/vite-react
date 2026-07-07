@@ -1,9 +1,14 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
-import { ArticleCard } from "@/components/ArticleCard";
+import {
+  EssaysExplorer,
+  EssaysExplorerFallback,
+  type EssayListItem,
+} from "@/components/EssaysExplorer";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import { essays } from "@/content/essays/registry";
-import styles from "./index.module.css";
+import { essayHref } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Essays",
@@ -12,7 +17,19 @@ export const metadata: Metadata = {
 };
 
 export default function EssaysIndex() {
-  const [lead, ...rest] = essays;
+  // Serializable slice only — the Content components stay on the server.
+  const items: EssayListItem[] = essays.map((e) => ({
+    slug: e.slug,
+    title: e.title,
+    dek: e.dek,
+    href: essayHref(e),
+    pillar: e.pillar ?? null,
+    mode: e.mode ?? "feature",
+    date: e.date,
+    readingTime: e.readingTime,
+    kicker: e.kicker ?? "Essay",
+  }));
+
   return (
     <>
       <JsonLd
@@ -27,14 +44,12 @@ export default function EssaysIndex() {
         title="Essays"
         intro="An athlete lives closer to the second than anyone — it is the unit a career is spent in. A watch is the thing built to keep it. These essays sit where the two meet."
       />
-      <div className={`container ${styles.list}`}>
-        <ArticleCard essay={lead} variant="lead" />
-        <div className={styles.rows}>
-          {rest.map((essay, i) => (
-            <ArticleCard key={essay.slug} essay={essay} index={i + 2} />
-          ))}
-        </div>
-      </div>
+      {/* useSearchParams in the explorer needs a Suspense boundary to keep the
+          page statically exportable; the fallback is the same list unfiltered,
+          so the prerendered HTML still carries every essay link. */}
+      <Suspense fallback={<EssaysExplorerFallback items={items} />}>
+        <EssaysExplorer items={items} />
+      </Suspense>
     </>
   );
 }
