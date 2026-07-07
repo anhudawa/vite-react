@@ -76,6 +76,9 @@ Athlete-in-the-moment frames; Getty/AP/Offside. License in one negotiation.
 
 ## Athlete ledger imagery (rights, not shots)
 
+**Canonical rights record: `data/rights.ts`** — one machine-readable entry per
+file under `public/photography|brand|video`, enforced by `npm run rights:check`.
+
 Everything on file is `unlicensed-placeholder` and must be licensed or
 replaced before real traffic: Pogačar (×2), van der Poel, Cavendish (×2),
 Lucy Charles-Barclay (×3, now WebP), Armstrong, Tudor/Giro, Merckx Top Time
