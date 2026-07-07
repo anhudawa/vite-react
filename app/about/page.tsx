@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { AuthorModule } from "@/components/AuthorModule";
 import { JsonLd, authorPersonJsonLd, breadcrumb } from "@/lib/jsonld";
 import { site } from "@/lib/site";
+import { brand } from "@/data/brand";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
@@ -63,6 +64,18 @@ export default function AboutPage() {
             wear it. The sources sit under each fact. Open them.
           </p>
           <p className={styles.sign}>— {site.author.name}</p>
+
+          {/* Founded/base facts render only once filled in data/brand.ts — no "TBC" ever ships. */}
+          {(brand.foundedYear || brand.baseLocation) && (
+            <p className={styles.sign}>
+              {[
+                brand.foundedYear && `Founded ${brand.foundedYear}`,
+                brand.baseLocation && `Based in ${brand.baseLocation}`,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+            </p>
+          )}
 
           <div className={styles.cta}>
             <Link href="/who-wears-what">See the reference →</Link>

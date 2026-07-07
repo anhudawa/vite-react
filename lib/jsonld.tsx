@@ -1,4 +1,25 @@
 import { site } from "./site";
+import { brand, brandSameAs } from "@/data/brand";
+
+/** Author + brand sameAs, deduped — only URLs that actually exist. */
+const allSameAs = () => [...new Set([...site.author.sameAs, ...brandSameAs()])];
+
+/** The Long Second as an Organization. TODO fields from data/brand.ts are
+ *  spread-guarded: while null they are not emitted at all. */
+export function organizationJsonLd() {
+  const orgSameAs = brandSameAs();
+  return {
+    "@type": "Organization" as const,
+    name: site.name,
+    url: site.url,
+    ...(brand.foundedYear ? { foundingDate: brand.foundedYear } : {}),
+    ...(brand.baseLocation
+      ? { location: { "@type": "Place", name: brand.baseLocation } }
+      : {}),
+    ...(brand.contactEmail ? { email: brand.contactEmail } : {}),
+    ...(orgSameAs.length > 0 ? { sameAs: orgSameAs } : {}),
+  };
+}
 
 export function JsonLd({ data }: { data: object | object[] }) {
   const payload = Array.isArray(data) ? data : [data];
@@ -38,7 +59,13 @@ export function authorPersonJsonLd() {
     description: site.author.bio,
     url: `${site.url}/author/anthony-walsh`,
     image: `${site.url}${site.author.portrait}`,
-    sameAs: site.author.sameAs,
+    sameAs: allSameAs(),
+    // TODO fields from data/brand.ts — emitted only once real values exist.
+    ...(brand.baseLocation
+      ? { homeLocation: { "@type": "Place", name: brand.baseLocation } }
+      : {}),
+    ...(brand.contactEmail ? { email: brand.contactEmail } : {}),
+    worksFor: organizationJsonLd(),
     knowsAbout: [
       "Horology",
       "Watchmaking",
@@ -97,11 +124,7 @@ export function articleJsonLd(opts: {
       url: `${site.url}/author/anthony-walsh`,
       sameAs: site.author.sameAs,
     },
-    publisher: {
-      "@type": "Organization",
-      name: site.name,
-      url: site.url,
-    },
+    publisher: organizationJsonLd(),
     inLanguage: "en",
   };
 }

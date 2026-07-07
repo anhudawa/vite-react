@@ -7,6 +7,7 @@ import { JsonLd, authorPersonJsonLd, breadcrumb } from "@/lib/jsonld";
 import { essays } from "@/content/essays/registry";
 import { essayHref } from "@/lib/content";
 import { site } from "@/lib/site";
+import { brand, brandSameAs } from "@/data/brand";
 
 const AUTHOR_SLUG = "anthony-walsh";
 
@@ -26,6 +27,8 @@ export function generateMetadata({ params }: { params: { name: string } }): Meta
 export default function AuthorPage({ params }: { params: { name: string } }) {
   if (params.name !== AUTHOR_SLUG) notFound();
   const a = site.author;
+  // Author links plus any brand profiles filled in data/brand.ts (null = omitted).
+  const elsewhere = [...new Set([...a.sameAs, ...brandSameAs()])];
   const writing: IndexItem[] = essays.map((e) => ({
     title: e.title,
     dek: e.dek,
@@ -57,7 +60,7 @@ export default function AuthorPage({ params }: { params: { name: string } }) {
           Elsewhere
         </p>
         <ul style={{ listStyle: "none", display: "flex", flexWrap: "wrap", gap: "var(--s-4)", padding: 0, margin: 0 }}>
-          {a.sameAs.map((href) => (
+          {elsewhere.map((href) => (
             <li key={href}>
               <a href={href} rel="me noreferrer" target="_blank" style={{ color: "var(--text)", textDecoration: "underline", textUnderlineOffset: "2px", fontFamily: "var(--font-mono)", fontSize: "var(--t-body-s)" }}>
                 {href.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
@@ -65,6 +68,12 @@ export default function AuthorPage({ params }: { params: { name: string } }) {
             </li>
           ))}
         </ul>
+        {/* Renders only once baseLocation is filled in data/brand.ts — no "TBC" ever ships. */}
+        {brand.baseLocation && (
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "var(--t-body-s)", color: "var(--text-dim)", margin: "var(--s-4) 0 0" }}>
+            Based in {brand.baseLocation}
+          </p>
+        )}
       </div>
 
       <IndexList items={writing} label="Writing" />

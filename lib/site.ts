@@ -1,32 +1,18 @@
+import { brand } from "@/data/brand";
+
+// Canonical brand facts live in data/brand.ts — the ONE file the founder
+// fills. `site` derives from it so its public API stays exactly as before.
 export const site = {
-  name: "The Long Second",
-  // Override per environment with NEXT_PUBLIC_SITE_URL so canonical/OG/sitemap
-  // URLs match the deployed domain; falls back to the production default.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thelongsecond.com",
-  essence: "Measured release.",
-  // The second that matters most — felt, never explained.
-  tagline: "The second that matters most.",
-  description:
-    "Watches and the endurance athletes who live by them. The mechanical pieces worn for the life around the sport — the craft, the heritage, who wears what — told by someone who knows exactly what a second can cost.",
-  founder: "Anthony Walsh",
-  // The named author who signs the work. The masthead leads; the byline authenticates.
-  author: {
-    name: "Anthony Walsh",
-    role: "Founder",
-    bio: "A masters racer who buried years into the bike, then fell as hard for the watch as he ever did for the race. He writes the thing he couldn't find: watch coverage from someone who knows what a second costs.",
-    portrait: "/brand/founder-bone.png",
-    sameAs: [
-      "https://roadmancycling.com",
-      "https://www.instagram.com/roadmancycling",
-    ],
-    credentials: [
-      { label: "Discipline", value: "Road · endurance" },
-      { label: "Racing", value: "Masters category · 20+ years" },
-      { label: "Field", value: "Horology — independent study" },
-      { label: "Standard", value: "Every reference, cited" },
-    ],
-  },
+  name: brand.name,
+  url: brand.url,
+  essence: brand.essence,
+  tagline: brand.tagline,
+  description: brand.description,
+  founder: brand.founder,
+  author: brand.author,
 } as const;
+
+export { brand, brandSameAs } from "@/data/brand";
 
 export type NavItem = { label: string; href: string; note?: string };
 
