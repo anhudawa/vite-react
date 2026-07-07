@@ -9,6 +9,7 @@ import { pillarList } from "@/lib/pillars";
 import { essayHref } from "@/lib/content";
 import { glossary } from "@/data/glossary";
 import { collections } from "@/data/collections";
+import { watches } from "@/data/watches";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
@@ -36,6 +37,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // /collections itself arrives via secondaryNav; the trails need explicit entries.
   const collectionRoutes = collections.map((c) => ({ url: `${base}/collections/${c.slug}` }));
 
+  const watchRoutes = watches.map((w) => ({ url: `${base}/watch/${w.slug}` }));
+
   // /glossary + /editorial-standards already arrive via secondaryNav.
   const entityRoutes = [{ url: `${base}/author/anthony-walsh` }];
 
@@ -49,5 +52,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tagRoutes,
     ...glossaryRoutes,
     ...collectionRoutes,
+    ...watchRoutes,
   ];
 }

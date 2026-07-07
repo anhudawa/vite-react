@@ -232,6 +232,14 @@ const corpusPeople: CorpusPerson[] = [
     competesIn: ["event:uci-hour-record"],
   },
   {
+    id: "person:charlie-dalin",
+    name: "Charlie Dalin",
+    sameAs: ["https://en.wikipedia.org/wiki/Charlie_Dalin"],
+    aliases: ["charlie dalin", "dalin"],
+    // Vendée Globe record holder — sixty-four-days dek and body.
+    competesIn: ["event:vendee-globe"],
+  },
+  {
     id: "person:bradley-wiggins",
     name: "Bradley Wiggins",
     sameAs: ["https://en.wikipedia.org/wiki/Bradley_Wiggins"],

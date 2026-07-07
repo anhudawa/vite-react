@@ -1,6 +1,7 @@
 import { essays } from "@/content/essays/registry";
 import { publishedAthletes, renderableFacts } from "@/data/athletes";
 import { collections } from "@/data/collections";
+import { watches } from "@/data/watches";
 import { glossary } from "@/data/glossary";
 import { nav, secondaryNav } from "@/lib/site";
 import { essayHref } from "@/lib/content";
@@ -128,6 +129,17 @@ export function buildSearchIndex(): SearchDoc[] {
       kind: "Section",
       summary,
       keywords: `${item.label} ${summary}`.toLowerCase(),
+    });
+  }
+
+  // Watch entity pages — the reference for the object itself.
+  for (const w of watches) {
+    docs.push({
+      title: `${w.brand} ${w.model}`,
+      href: `/watch/${w.slug}`,
+      kind: "Reference",
+      summary: w.oneLiner,
+      keywords: `${w.brand} ${w.model} ${w.oneLiner}`.toLowerCase(),
     });
   }
 
