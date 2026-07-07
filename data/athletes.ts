@@ -404,6 +404,19 @@ const cavendish: AthleteRef = {
       value: { gbpApprox: 150000, note: "indicative only — Richard Mille pricing is opaque" },
       sources: [
         {
+          id: "rm-official-cavendish",
+          publisher: "Richard Mille",
+          kind: "official",
+          tier: "primary",
+          url: "https://www.richardmille.com/friends-and-partners/mark-cavendish",
+          accessedAt: "2026-07-03",
+          excerpt:
+            "Richard Mille's own Friends & Partners page for Mark Cavendish, featuring the RM 67-02 as his associated piece.",
+          supports: ["athlete", "relation", "watch"],
+          snapshot: "unarchivable",
+          verified: false,
+        },
+        {
           id: "watchfinder-cav-rm",
           publisher: "Watchfinder",
           kind: "media",
@@ -730,6 +743,7 @@ const laidlow: AthleteRef = {
           kind: "media",
           tier: "secondary",
           url: "https://watchilove.com/2024/07/breitling-endurance-pro-in-44-and-38-mm/",
+          publishedAt: "2024-07-05",
           accessedAt: "2026-07-03",
           excerpt: "July 2024: Laidlow welcomed to the Breitling Triathlon Squad with the Endurance Pro.",
           supports: ["relation", "evidence"],

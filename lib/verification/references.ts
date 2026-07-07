@@ -13,7 +13,9 @@ export interface BrandRule {
 }
 
 export const BRANDS: BrandRule[] = [
-  { brand: "Richard Mille", aliases: ["RM"], pattern: /^RM\s?\d{2}-\d{2}$/i },
+  // Two real RM forms: hyphenated (RM 67-02) and the early three-digit line
+  // (RM 011 Felipe Massa) — both verified against the maker's own catalogue.
+  { brand: "Richard Mille", aliases: ["RM"], pattern: /^RM\s?(\d{2}-\d{2}|\d{3})$/i },
   { brand: "Rolex", pattern: /^(m)?\d{5,6}[A-Z]{0,3}(-\d{4})?$/i },
   { brand: "Tudor", pattern: /^(m)?\d{4,5}[A-Z]?(-\d{4})?$/i },
   { brand: "Omega", pattern: /^\d{3}\.\d{2}\.\d{2}\.\d{2}\.\d{2}\.\d{3}$/ },
@@ -40,10 +42,13 @@ export interface ReferenceCheck {
  */
 export function checkReference(watch: string, reference?: string): ReferenceCheck {
   const w = watch.toLowerCase();
+  // Whole-word matching only: a bare substring test lets short aliases hide
+  // inside ordinary words ("RM" inside "unconfirmed", "AP" inside "strap")
+  // and mis-attributes the brand.
+  const wordHit = (needle: string) =>
+    new RegExp(`\\b${needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(w);
   const rule = BRANDS.find(
-    (b) =>
-      w.includes(b.brand.toLowerCase()) ||
-      b.aliases?.some((a) => w.includes(a.toLowerCase()))
+    (b) => wordHit(b.brand.toLowerCase()) || b.aliases?.some((a) => wordHit(a.toLowerCase()))
   );
 
   // A brand-level relationship claim ("X is a Rolex ambassador") is legitimate

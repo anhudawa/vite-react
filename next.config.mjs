@@ -37,6 +37,13 @@ const nextConfig = {
     return legacyEssayRedirects();
   },
   async headers() {
+    // Static assets under /photography, /video and /brand are content-addressed
+    // by convention: git history shows every file in those directories was
+    // added under a fresh filename and none has ever been modified in place
+    // (a change ships as a new name, e.g. lucy-charles-barclay-1.webp joining
+    // rather than replacing). That makes a year-long immutable cache safe.
+    // _next/static is deliberately left alone — Next.js sets its own headers.
+    const longCache = { key: "Cache-Control", value: "public, max-age=31536000, immutable" };
     return [
       {
         source: "/:path*",
@@ -50,6 +57,9 @@ const nextConfig = {
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
         ],
       },
+      { source: "/photography/:path*", headers: [longCache] },
+      { source: "/video/:path*", headers: [longCache] },
+      { source: "/brand/:path*", headers: [longCache] },
     ];
   },
 };

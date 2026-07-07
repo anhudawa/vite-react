@@ -82,6 +82,23 @@ export const collections: Collection[] = [
       "lume-and-the-dark",
     ],
   },
+  {
+    slug: "the-cycling-thread",
+    title: "The Cycling Thread",
+    dek: "Eight pieces for July — the Tour, the clock, and the riders who live by both.",
+    intro:
+      "The Tour is on, and for three weeks the sport runs on elapsed time. This trail starts at the wrists in this year's peloton and works inward: the eight seconds that decided 1989, the gruppetto's survival arithmetic, the fixed hour, the pursuit's four naked laps, a numbered edition, the last kilometre, and a ride with no line at all.",
+    slugs: [
+      "the-wrists-of-the-2026-tour",
+      "the-1989-tour-eight-seconds",
+      "the-autobus",
+      "the-longest-hour",
+      "four-laps-no-hiding",
+      "one-of-525",
+      "the-last-kilometre",
+      "no-one-at-the-line",
+    ],
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
