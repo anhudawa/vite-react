@@ -1,36 +1,92 @@
-# Image gaps — athlete + watch
+# Imagery — inventory and shot list
 
-The standard (`docs/EDITORIAL.md`) is that every article carries an image pairing
-**the athlete and the watch**. Where we have a usable asset, it's mapped. The list
-below is what's still missing — almost all of it blocked by the same wall: photos of
-a specific athlete *wearing* a specific watch are copyrighted agency images we can't
-legally pull in. These need to be supplied or licensed, then dropped into
-`public/photography/` and wired into the article's `image` meta.
+Refreshed 2026-07-03 against the merged 45-essay corpus (the previous version
+of this file predated the endurance-only purge and referenced retired
+articles). Standard per `docs/EDITORIAL.md`: every article carries an image
+pairing the athlete and the watch — or, where no athlete belongs, the object
+itself, photographed with intent.
 
-## Articles on a watch-only shot (need an athlete-on-wrist photo)
+**State: 7 of 45 essays have a lead image. 38 need one.** The list below is
+grouped by how the image can actually be obtained, so it can be cleared in
+batches rather than one impossible agency-licensing slog.
 
-| Article | Current image | Needs |
-|---|---|---|
-| `essays/watches-and-the-world-cup` | `messi-rolex-daydate.jpg` (watch only) | Messi wearing the green "Jubilee Gold" Day-Date (ref. 228235JG) |
-| `essays/what-messi-actually-wore` | `messi-rolex-daydate-dial.jpg` (dial macro) | Messi wearing any of his watches |
+## Batch 1 — shootable at home (14 shots, one afternoon, zero rights cost)
 
-## Buyers guides without a header image
+Own watches, a bench, a bike, daylight and one dark room. Consistent
+treatment: Movement-Black or Bone ground, hairline shadow, no props beyond
+the subject.
 
-| Guide | Needs |
+| Essay | Shot |
 |---|---|
-| `buying-guides/running` | A runner wearing a watch (no running asset in the library) |
+| straps-for-sport | Three straps laid parallel (rubber/nylon/leather), sweat-marked honesty |
+| how-to-read-a-reference | Caseback macro, reference number legible |
+| lume-and-the-dark | Charged lume dial in true dark, long exposure |
+| sizing-a-watch-for-a-lean-wrist | Lean wrist + card strip lug-to-lug measure |
+| the-handover | GPS and mechanical side by side on a race-morning table, number pinned |
+| your-first-automatic-what-matters | A modest automatic, crown-side, on a plain ground |
+| when-to-service-a-mechanical-watch | Movement out of case (or watchmaker's bench if accessible) |
+| automatic-vs-manual-wind | Crown mid-wind, thumb and forefinger |
+| automatics-on-the-bike | Mechanical on wrist, hands on the drops, cobble texture if possible |
+| gps-watch-vs-mechanical | Two wrists, two instruments, one frame |
+| the-one-watch-question | One watch on an otherwise empty valet tray |
+| first-nice-watch-as-an-athlete | The box open, the moment of it |
+| casio-f-91w-and-the-time-trial | An F-91W (retail ~£15 — buy one) on a TT cockpit |
+| the-escapement-the-part-that-lets-go | Escapement macro through a loupe (or licensed movement macro, Batch 4) |
 
-## Mapped and good (athlete + watch, from existing assets)
+## Batch 2 — public domain / free archive (5 shots, zero cost, verify each licence)
 
-- `essays/the-same-machine` → Pogačar · RM 67-02
-- `essays/the-sweep-and-the-surge` → van der Poel · RM 67-02
-- `essays/what-it-costs-to-keep-time` → Pogačar · RM 67-02
-- `essays/watches-in-sport-field-guide` → Tiger Woods · Rolex
-- `buying-guides/cycling` → Pogačar · RM 67-02
-- `buying-guides/gym` → topuria · RM
+| Essay | Source to check |
+|---|---|
+| the-eleven-tests | NASA imagery is public domain — Gemini/Apollo Speedmaster frames exist on nasa.gov / archive.org |
+| everest-1953-the-watch-and-the-record | 1953 expedition photos: some RGS/press frames are licensable; check pre-1955 public-domain candidates |
+| mercedes-gleitze-and-the-oyster | 1927 press photography and the Daily Mail Oyster advert — UK copyright on 1927 published photos has expired |
+| the-clock-that-found-the-ship | Harrison's H4 — Royal Museums Greenwich publishes collection imagery, some CC-licensed |
+| omega-and-the-olympic-clock | Early Olympic timing photography via IOC/archive; 1932 LA frames may be public domain |
 
-## How to close a gap
+## Batch 3 — brand press kits (6 shots, free on request, ask via press contact)
 
-1. Drop the licensed photo into `public/photography/` (note the source + rights in `RIGHTS.md`).
-2. Update the article's `image` meta: `src`, `alt`, `subject`, `watch`.
-3. Caption must name the watch (subject + reference).
+| Essay | Ask |
+|---|---|
+| the-last-kilometre | Bravur press kit (small brand; the piece is warm — they will likely say yes) |
+| the-overbuilt-watch | Rolex press imagery: Deepsea / Deepsea Challenge |
+| the-waterproof-watch-and-the-open-water | Rolex archive: 1926 Oyster case / cutaway |
+| what-a-chronometer-actually-is | COSC or brand movement-testing imagery |
+| the-chronograph-for-athletes | Any brand chronograph press frame, pushers prominent |
+| the-instrument-of-effort | Manifesto piece — could also run imageless by design, or reuse the strongest athlete frame |
+
+## Batch 4 — agency licensing required (13 shots, the real budget line)
+
+Athlete-in-the-moment frames; Getty/AP/Offside. License in one negotiation.
+
+| Essay | Frame |
+|---|---|
+| the-1989-tour-eight-seconds | LeMond or Fignon, Champs-Élysées 1989 — the clock visible if it exists |
+| the-four-minute-mile | Bannister at the tape, Iffley Road 1954 |
+| sixteen-years | Radcliffe, London 2003 |
+| the-number-that-doesnt-count | Kipchoge, Vienna 2019, the clock reading 1:59:40 |
+| the-unclaimed-wrist | Kipchoge wrist frame (COROS visible), Berlin 2023 |
+| seventeen-hours | Kona finish line at midnight, or 1978 archive |
+| the-gun-at-twelve-hours | The Comrades final-gun moment — the race supplies media imagery |
+| the-longest-hour | Ganna, Grenchen 2022 |
+| four-laps-no-hiding | Pursuit rider on the boards, schedule board visible |
+| no-one-at-the-line | An Everesting attempt or lone rider on a climb at dawn |
+| the-autobus | The gruppetto on a mountain stage |
+| omega-and-the-olympic-clock | (alternative to Batch 2 if archive fails) |
+| sixteen-years / heritage overflow | — |
+
+## Athlete ledger imagery (rights, not shots)
+
+Everything on file is `unlicensed-placeholder` and must be licensed or
+replaced before real traffic: Pogačar (×2), van der Poel, Cavendish (×2),
+Lucy Charles-Barclay (×3, now WebP), Armstrong, Tudor/Giro, Merckx Top Time
+set. Frodeno and Ryf (in-review) have **no imagery at all** — needed before
+promotion to published.
+
+## Process notes
+
+- Wire each image via the essay's `image` meta (src/alt/subject/watch/ratio/
+  position); alt text names athlete and watch.
+- Batches 1–2 clear 19 of 38 gaps for the cost of an afternoon and some
+  archive diligence. Batch 3 is emails. Batch 4 is the only spend.
+- Record credit + licence in the meta `credit`/`rights` fields as with the
+  athlete data — no silent rights gaps.

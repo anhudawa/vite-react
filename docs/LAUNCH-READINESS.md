@@ -98,3 +98,43 @@ The "known, accepted" backlog above has since been cleared:
 Still open for the founder: everything under "Go-live checklist" above, plus
 the Wayback capture for the Cyclingnews source (archive.org rate-limits this
 environment's egress IP — it is a 30-second browser task).
+
+## Addendum — third pass (post-merge, 2026-07-03)
+
+Two sessions worked this branch in parallel today; their work is merged,
+reconciled and gauntleted (45 essays, 367 static pages, all gates green).
+Added since the second pass:
+
+1. **Verification suite is now repo infrastructure**: `npm run test:e2e`
+   (17 smoke tests: routes, 308+Location, RSS well-formedness, feeds,
+   404 copy, collections ordering, the who-wears-what publishing gate)
+   and 14 axe a11y sweeps (7 pages × both themes, zero WCAG A/AA
+   violations, harness sanity-checked against an injected violation);
+   `npm run validate:jsonld` asserts every ld+json block on 6 page types.
+2. **Visual pass verified and fixed**: founder portrait invisible on the
+   light theme (fixed) and printing as an empty box (now prints as an ink
+   stencil); OG cards dropped the "č" in Pogačar to a fallback sans
+   (Satori font-key shadowing — fixed and render-verified); reduced-motion
+   hero confirmed as a proper still; print PDFs verified with sources
+   expanded and chrome absent.
+3. **Union repair**: link-audit's registry parser missed compact one-line
+   entries, silently shrinking its route space (fixed — 116 internal
+   links resolve, zero orphan essays across 45); three merged-in essays
+   given editorial inbound links.
+4. **Trail navigation**: essays in a collection now carry a "Part of:"
+   strip with prev/next through the curated order.
+5. **docs/IMAGE-GAPS.md rebuilt** against the real corpus: 7/45 essays
+   have lead images; the 38 gaps are batched by acquisition route —
+   14 shootable at home, 5 public-domain/archive, 6 brand press kits,
+   13 agency licensing.
+
+## Go-live: what remains is the founder's
+
+- Domain + Vercel project (set NEXT_PUBLIC_SITE_URL per environment).
+- Analytics decision (none wired; privacy page currently promises none).
+- Brand facts for /about, /author, facts.json (founding year, base,
+  contact, real sameAs links).
+- Sign-off queue (5 in-review athlete facts) + image licensing above.
+- Verified spec sheets to open the reviews shelf.
+- One Wayback capture (Cyclingnews source) — archive.org rate-limits this
+  environment's egress; ~30 seconds in a browser.
