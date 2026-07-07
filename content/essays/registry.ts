@@ -49,8 +49,10 @@ import UnclaimedWrist, { meta as unclaimedWrist } from "./the-unclaimed-wrist.md
 import OneOf525, { meta as oneOf525 } from "./one-of-525.mdx";
 import SeventeenHours, { meta as seventeenHours } from "./seventeen-hours.mdx";
 import Handover, { meta as handover } from "./the-handover.mdx";
+import WristsOf2026Tour, { meta as wristsOf2026Tour } from "./the-wrists-of-the-2026-tour.mdx";
 
 const raw: { slug: string; meta: EssayMeta; Content: EssayEntry["Content"] }[] = [
+  { slug: "the-wrists-of-the-2026-tour", meta: wristsOf2026Tour as unknown as EssayMeta, Content: WristsOf2026Tour },
   { slug: "the-handover", meta: handover as unknown as EssayMeta, Content: Handover },
   { slug: "one-of-525", meta: oneOf525 as unknown as EssayMeta, Content: OneOf525 },
   { slug: "the-unclaimed-wrist", meta: unclaimedWrist as unknown as EssayMeta, Content: UnclaimedWrist },
