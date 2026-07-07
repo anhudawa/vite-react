@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { collections } from "../data/collections";
 
 /**
  * Functional smoke suite for The Long Second.
@@ -79,7 +80,7 @@ test.describe("legacy essay redirect", () => {
 });
 
 test.describe("collections", () => {
-  test("/collections lists the 4 trails", async ({ page }) => {
+  test("/collections lists every trail in the data", async ({ page }) => {
     await page.goto("/collections");
     await expect(page.locator("h1")).toContainText("Collections");
     const trailLinks = page.locator('main a[href^="/collections/"]');
@@ -87,14 +88,11 @@ test.describe("collections", () => {
       els.map((el) => el.getAttribute("href"))
     );
     const unique = [...new Set(hrefs)];
-    expect(unique).toHaveLength(4);
+    // Count and membership come from the data itself, so a new collection
+    // can never make this assertion stale.
+    expect(unique).toHaveLength(collections.length);
     expect(unique).toEqual(
-      expect.arrayContaining([
-        "/collections/the-records-canon",
-        "/collections/start-here",
-        "/collections/the-triathlon-thread",
-        "/collections/the-workshop",
-      ])
+      expect.arrayContaining(collections.map((c) => `/collections/${c.slug}`))
     );
   });
 
