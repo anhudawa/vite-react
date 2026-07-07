@@ -90,3 +90,21 @@ promotion to published.
   archive diligence. Batch 3 is emails. Batch 4 is the only spend.
 - Record credit + licence in the meta `credit`/`rights` fields as with the
   athlete data — no silent rights gaps.
+
+## Public-domain acquisitions (2026-07-03)
+
+Batch 2 cleared in part. Each file below was verified on its source page
+before download; licence basis recorded here and in the essay's `image.credit`.
+
+| Essay | File | Source | Licence basis |
+|---|---|---|---|
+| the-eleven-tests | `public/photography/gemini-4-ed-white-eva.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ed_White_with_Space_Gun_maneuvering_unit.jpg), original at [images.nasa.gov (S65-30427)](https://images.nasa.gov/details/s65-30427) | NASA photo S65-30427, taken by James McDivitt, 3 June 1965. `{{PD-USGov-NASA}}` — US federal government work, public domain by law. |
+| mercedes-gleitze-and-the-oyster | `public/photography/mercedes-gleitze-1928.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Miss_Gleitze_(CNews)_-_btv1b53201206j.jpg), original held by the Bibliothèque nationale de France (Rol 130007) | Agence Rol / Central News press photograph, 1928. `{{PD-France}}` + `{{PD-1996}}` on the file page — anonymous French press-agency photo, copyright expired; BnF publishes the plate as public domain. Plate borders and edge annotations cropped. |
+| the-clock-that-found-the-ship | `public/photography/john-harrison-1767.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:John_Harrison_(Gem%C3%A4lde).jpg) | Thomas King, oil on canvas, 1767, Science Museum, London. `{{PD-Art|PD-old-100}}` — artist died c. 1796; faithful reproduction of a public-domain painting. Shows Harrison holding the Jefferys watch, H3 behind him. |
+| omega-and-the-olympic-clock | — skipped | — | No genuinely PD 1932 LA / early photo-finish file could be verified on Commons; commercial archives only. Remains on Batch 2/4. |
+| seventeen-hours | — skipped | — | No PD 1978 Kona imagery exists (as expected). Remains on Batch 4. |
+
+Note on the Commons H4 photographs: every direct photo of H4/H1 on Commons is
+`CC BY-SA` (own-work museum shots), which this site does not use without an
+attribution-handling decision — the 1767 King portrait was the strongest
+genuinely-PD option.
