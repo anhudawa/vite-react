@@ -1,22 +1,22 @@
 name: CI
 
-# The fact-verification gauntlet runs here on every change. A PR cannot go green
-# — and therefore cannot merge under branch protection — if any published fact
-# fails a gate, a verification test fails, or the build/typecheck breaks.
-
 on:
   push:
-    branches: ["main", "claude/**"]
   pull_request:
-    branches: ["main"]
+  schedule:
+    # Weekly freshness sweep: Mondays 06:00 UTC
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
 
+# Cancel superseded runs of the same trigger on the same ref
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  verify:
-    name: Verify facts, test, build
+  build-and-test:
+    # Code CI only; the cron/dispatch triggers belong to weekly-freshness
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,17 +29,64 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify every published fact clears the gauntlet
-        run: npm run verify:facts
-
-      - name: Audit source permanence (report)
-        run: npm run verify:sources
-
-      - name: Forecast re-verification due dates (report)
-        run: npm run verify:freshness
-
-      - name: Run verification test suite
+      - name: Unit tests
         run: npm test
 
-      - name: Build (typecheck + static generation)
+      - name: Internal link audit
+        run: npm run link:audit
+
+      # prebuild runs the full gate chain: verify:facts, verify:sources,
+      # voice:check, qa:copy, voice:corpus — then next build (typecheck + SSG)
+      - name: Build
         run: npm run build
+
+      - name: Install Playwright browser
+        run: npx playwright install chromium --with-deps
+
+      # Site is fully static; serve the build just produced for the e2e suite
+      - name: Start production server
+        run: npx next start -p 3001 &
+
+      # Poll until the server answers (max ~60s) instead of adding wait-on
+      - name: Wait for server
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3001 > /dev/null && exit 0
+            sleep 2
+          done
+          echo "Server did not start in time" && exit 1
+
+      - name: E2E tests
+        run: npm run test:e2e
+
+      - name: Validate JSON-LD
+        run: npm run validate:jsonld
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
+
+  weekly-freshness:
+    # A dead or stale source fails this run visibly (no continue-on-error)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify re-verification due dates
+        run: npm run verify:freshness
+
+      - name: Verify sources still resolve
+        run: npm run verify:sources
