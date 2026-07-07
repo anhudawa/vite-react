@@ -70,9 +70,16 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
         </p>
         <div className={styles.bylineRow} data-article-byline>
           <Byline readingTime={essay.readingTime} />
-          <time className={styles.pubdate} dateTime={essay.date}>
-            {formatDate(essay.date)}
-          </time>
+          <div className={styles.dates}>
+            <time className={styles.pubdate} dateTime={essay.date}>
+              {formatDate(essay.date)}
+            </time>
+            {essay.dateModified && essay.dateModified !== essay.date && (
+              <time className={styles.updated} dateTime={essay.dateModified}>
+                Updated {formatDate(essay.dateModified)}
+              </time>
+            )}
+          </div>
         </div>
         {essay.tags && essay.tags.length > 0 && (
           <ul className={styles.tags} aria-label="Tags">

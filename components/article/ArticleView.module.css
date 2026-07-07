@@ -60,7 +60,22 @@
   padding-top: var(--s-5);
   border-top: var(--hairline) solid var(--rule);
 }
+.dates {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+}
 .pubdate {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+/* The quiet "Updated <date>" beside the published date — rendered only when
+   dateModified differs from date. */
+.updated {
   font-family: var(--font-mono);
   font-size: var(--t-mono-xs);
   letter-spacing: 0.12em;
