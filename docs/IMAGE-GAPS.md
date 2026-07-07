@@ -130,3 +130,15 @@ Second-sweep skips: the 1932 5000 m finish frame (Lehtinen/Hill — topically
 perfect for the timing essay) is only 250 px and carries a Finland-only PD
 template with no stated US basis; the Bannister–Landy "Miracle Mile" plates on
 Commons are `CC BY-SA` own-work scans. Both rejected under the sweep rules.
+
+## Public-domain acquisitions — third sweep (2026-07-07)
+
+Completed inline after the sweep agent failed twice on server errors;
+licences verified on the Commons file pages before download, per method.
+
+| Essay | File | Source | Licence basis |
+|---|---|---|---|
+| the-longest-hour | `public/photography/oscar-egg-hour-record-1913.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Oscar_Egg_pour_la_deuxi%C3%A8me_fois_recordman_du_monde_de_l%27heure,_le_21_ao%C3%BBt_1913_sur_cycle_Peugeot.jpg) | La Vie au grand air, 31 Aug 1913 — Public Domain Mark 1.0 + PD-old-70-expired. Egg on the Peugeot in his second hour-record year. |
+| sixty-four-days | `public/photography/joshua-slocum-1899.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Joshua_Slocum_cph.3b46344.jpg) | Hollinger & Co., Century Magazine Sept 1899, via Library of Congress — PD, published before 1931. The first solo circumnavigator, a century before the Vendée. |
+| the-gun-at-twelve-hours | — skipped | — | Commons holds no pre-1930 Comrades photography (earliest file is 1997); the founding-era imagery lives with the race organisers. Remains a Batch 3 ask. |
+| the-1989-tour-eight-seconds | — skipped (as briefed) | — | 1989 imagery is agency-held; period-texture substitution inappropriate for a year-specific essay. |

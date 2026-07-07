@@ -257,6 +257,23 @@ export const rightsLedger: RightsRecord[] = [
       "Poster still extracted from the same UAE Team Emirates footage as pogacar-climb.mp4; same clearance owed.",
     usedBy: ["site-chrome"],
   },
+  {
+    file: "photography/oscar-egg-hour-record-1913.webp",
+    status: "public-domain",
+    basis:
+      "Published in La Vie au grand air, 31 August 1913 (p. 725). Commons marks it Public Domain Mark 1.0 + PD-old-70-expired.",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Oscar_Egg_pour_la_deuxi\u00e8me_fois_recordman_du_monde_de_l'heure,_le_21_ao\u00fbt_1913_sur_cycle_Peugeot.jpg",
+    usedBy: ["the-longest-hour"],
+  },
+  {
+    file: "photography/joshua-slocum-1899.webp",
+    status: "public-domain",
+    basis:
+      "Hollinger & Co. photograph published in Century Magazine, September 1899; Library of Congress (cph.3b46344). Commons marks it PD: published before 1 January 1931.",
+    source: "https://commons.wikimedia.org/wiki/File:Joshua_Slocum_cph.3b46344.jpg",
+    usedBy: ["sixty-four-days"],
+  },
 ];
 
 /** Look up the record for a file path under public/ (e.g. "photography/x.jpg"). */
