@@ -23,6 +23,12 @@
   border-radius: var(--radius);
   overflow: hidden;
 }
+/* The founder portrait is a bone-on-transparent stencil drawn for a dark
+   ground; on the bone theme it vanishes into a light frame. Keep the frame
+   in the dial register regardless of theme. */
+:global([data-theme="light"]) .portraitFrame {
+  background: var(--movement-black);
+}
 .portrait {
   width: 100%;
   height: auto;
