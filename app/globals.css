@@ -557,6 +557,7 @@ table {
   [data-article-inline-capture],
   [data-article-related],
   [data-related-essays],
+  [data-article-trail],
   [data-article-next] {
     display: none !important;
   }

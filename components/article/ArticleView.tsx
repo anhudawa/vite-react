@@ -12,6 +12,7 @@ import { Figure } from "@/components/Figure";
 import { EmailCapture } from "@/components/EmailCapture";
 import { tagSlug } from "@/lib/tags";
 import { SourcesBlock } from "@/components/article/SourcesBlock";
+import { TrailStrip } from "@/components/article/TrailStrip";
 import styles from "./ArticleView.module.css";
 
 /**
@@ -85,6 +86,8 @@ export function ArticleView({ essay }: { essay: EssayEntry }) {
           </ul>
         )}
       </header>
+
+      <TrailStrip slug={essay.slug} />
 
       {essay.image && (
         <div className={styles.lead}>
