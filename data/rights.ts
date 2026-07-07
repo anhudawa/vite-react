@@ -77,6 +77,56 @@ export const rightsLedger: RightsRecord[] = [
     usedBy: ["mercedes-gleitze-and-the-oyster"],
   },
 
+  /* ───────────── public-domain acquisitions, second sweep (2026-07-07) ─────────────
+     Same method as the first sweep: licence template verified on the Wikimedia
+     Commons file page before download; basis recorded here, in the essay's
+     image.credit and in docs/IMAGE-GAPS.md. */
+  {
+    file: "photography/everest-1921-west-rongbuk.webp",
+    status: "public-domain",
+    basis:
+      "1921 British Mount Everest reconnaissance expedition photograph, published in Howard-Bury, Mount Everest: The Reconnaissance, 1921 (Longmans, Green, New York, 1922) — Commons marks it PD-US (published before 1 January 1930) + CC-PD-Mark. Book-plate margins and printed caption cropped.",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Everest_and_Changtse,_1921.jpg",
+    usedBy: ["everest-1953-the-watch-and-the-record"],
+  },
+  {
+    file: "photography/olympics-1932-womens-100m-medallists.webp",
+    status: "public-domain",
+    basis:
+      "Canadian Press / Canadian Olympic Association photograph, 1932, Library and Archives Canada — Commons marks it {{PD-Canada}} (photograph created before 1 January 1949) + PD-US (published 1931–1963, copyright not renewed).",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Women%27s_100m_medallists_at_1932_Los_Angeles_Olympics.jpg",
+    usedBy: ["omega-and-the-olympic-clock"],
+  },
+  {
+    file: "photography/bannister-la-daily-news-1954.webp",
+    status: "public-domain",
+    basis:
+      "Los Angeles Daily News photograph dated 6 May 1954 on Commons — Commons marks it {{PD-US-no notice}}: published in the US 1931–1977 without a copyright notice. Newsprint halftone; the printed page is the source of the scan.",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Roger_Bannister_1954.jpg",
+    usedBy: ["the-four-minute-mile"],
+  },
+  {
+    file: "photography/vel-dhiv-six-days-start-1922.webp",
+    status: "public-domain",
+    basis:
+      "Agence Rol press photograph, 3 April 1922 (BnF, Gallica btv1b53077017b) — {{PD-France}}, anonymous press-agency photo, copyright expired; same basis as the Gleitze frame. Plate borders and edge annotations cropped.",
+    source:
+      "https://commons.wikimedia.org/wiki/File:3-4-22,_V%C3%A9l_d%27Hiv,_d%C3%A9part_des_6_jours_-_btv1b53077017b.jpg",
+    usedBy: ["four-laps-no-hiding"],
+  },
+  {
+    file: "photography/tour-de-france-1925-col-daubisque.webp",
+    status: "public-domain",
+    basis:
+      "Agence Rol press photograph, 1 July 1925 (BnF, Gallica btv1b53150910v) — {{PD-France}} + {{PD-1996}}, anonymous press-agency photo, copyright expired. Plate borders and edge annotations cropped.",
+    source:
+      "https://commons.wikimedia.org/wiki/File:1-7-25,_Tour_de_France_(cycliste_au)_col_d%27Aubisque,_un_peloton_-_btv1b53150910v.jpg",
+    usedBy: ["the-autobus"],
+  },
+
   /* ───────────── unlicensed placeholders — the pre-launch debt ─────────────
      Uploaded race photography and screenshots ("Add files via upload"
      commits), renamed and converted on file. No licence held for any of

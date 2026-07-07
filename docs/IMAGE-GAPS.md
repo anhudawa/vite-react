@@ -6,7 +6,8 @@ articles). Standard per `docs/EDITORIAL.md`: every article carries an image
 pairing the athlete and the watch — or, where no athlete belongs, the object
 itself, photographed with intent.
 
-**State: 7 of 45 essays have a lead image. 38 need one.** The list below is
+**State: 12 of 45 essays have a lead image. 33 need one** (updated 2026-07-07
+after the second public-domain sweep). The list below is
 grouped by how the image can actually be obtained, so it can be cleared in
 batches rather than one impossible agency-licensing slog.
 
@@ -111,3 +112,22 @@ Note on the Commons H4 photographs: every direct photo of H4/H1 on Commons is
 `CC BY-SA` (own-work museum shots), which this site does not use without an
 attribution-handling decision — the 1767 King portrait was the strongest
 genuinely-PD option.
+
+## Public-domain acquisitions — second sweep (2026-07-07)
+
+Same method and rights rules as the first sweep: licence template verified on
+each Wikimedia Commons file page before download; basis recorded here, in
+`data/rights.ts` and in the essay's `image.credit`.
+
+| Essay | File | Source | Licence basis |
+|---|---|---|---|
+| everest-1953-the-watch-and-the-record | `public/photography/everest-1921-west-rongbuk.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Everest_and_Changtse,_1921.jpg), scanned from Howard-Bury, *Mount Everest: The Reconnaissance, 1921* (Longmans, Green, New York, 1922) via archive.org | PD-US (published before 1 January 1930) + CC-PD-Mark on the file page. The alt text is honest that this is the mountain in 1921, not the 1953 expedition — all 1953 expedition photography remains RGS/press-copyrighted. Book-plate margins and printed caption cropped. |
+| omega-and-the-olympic-clock | `public/photography/olympics-1932-womens-100m-medallists.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Women%27s_100m_medallists_at_1932_Los_Angeles_Olympics.jpg), original at Library and Archives Canada | Canadian Press / COA photograph, 1932. `{{PD-Canada}}` (photo created before 1949) + PD-US (published 1931–1963, copyright not renewed) on the file page. The LA84 official-report frames were left alone — their `PD-USGov` tag is misapplied (the organising committee was not a federal agency). |
+| the-four-minute-mile | `public/photography/bannister-la-daily-news-1954.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Roger_Bannister_1954.jpg), scanned from the Los Angeles Daily News of 7 May 1954 (CDNC) | `{{PD-US-no notice}}` — published in the US 1931–1977 without a copyright notice. A newsprint halftone, and honest about it; UK press originals of Iffley Road remain copyrighted. |
+| four-laps-no-hiding | `public/photography/vel-dhiv-six-days-start-1922.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:3-4-22,_V%C3%A9l_d%27Hiv,_d%C3%A9part_des_6_jours_-_btv1b53077017b.jpg), BnF Gallica btv1b53077017b | Agence Rol press photograph, 3 April 1922. `{{PD-France}}` — anonymous press-agency photo, copyright expired; same basis as the Gleitze frame. Plate borders and edge annotations cropped. |
+| the-autobus | `public/photography/tour-de-france-1925-col-daubisque.webp` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:1-7-25,_Tour_de_France_(cycliste_au)_col_d%27Aubisque,_un_peloton_-_btv1b53150910v.jpg), BnF Gallica btv1b53150910v | Agence Rol press photograph, 1 July 1925. `{{PD-France}}` + `{{PD-1996}}` — anonymous press-agency photo, copyright expired. Plate borders and edge annotations cropped. |
+
+Second-sweep skips: the 1932 5000 m finish frame (Lehtinen/Hill — topically
+perfect for the timing essay) is only 250 px and carries a Finland-only PD
+template with no stated US basis; the Bannister–Landy "Miracle Mile" plates on
+Commons are `CC BY-SA` own-work scans. Both rejected under the sweep rules.
