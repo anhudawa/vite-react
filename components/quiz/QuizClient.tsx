@@ -206,6 +206,21 @@ export function QuizClient() {
             </div>
           )}
 
+          {profile.reading.length > 0 && (
+            <nav className={styles.reading} aria-label="Recommended reading">
+              <p className={styles.kicker}>Read next</p>
+              <ul className={styles.readingList}>
+                {profile.reading.map((r) => (
+                  <li key={r.href}>
+                    <Link href={r.href} className={styles.readingLink}>
+                      {r.label} →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+
           <div className={styles.resultFoot}>
             <button type="button" className={styles.textBtn} onClick={back}>
               ← Change an answer

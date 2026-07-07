@@ -35,11 +35,19 @@ export type Recommendation = {
   affiliateUrl: string; // FOUNDER: fill before launch
 };
 
+// On-site reading wired to each outcome. Hrefs are mode routes: pieces with
+// `mode: "guide"` live under /guides/<slug>, `mode: "feature"` under
+// /features/<slug> (see lib/content.ts `essayHref`). Keep labels matching the
+// piece's published title.
+export type ReadingLink = { href: string; label: string };
+
 export type Profile = {
   id: string;
   name: string;
   tagline: string;
   blurb: string;
+  /** 2–3 best-fit essays/guides for this outcome, rendered on the result. */
+  reading: ReadingLink[];
 };
 
 export type QuizResult = {
@@ -131,6 +139,11 @@ const PROFILES: Record<string, Profile> = {
     tagline: "Wear the GPS for the session. Own something that outlasts it.",
     blurb:
       "If you genuinely train by the numbers, a GPS watch is the honest tool for the session — strap it on, get the data, take it off. But it's outdated in three years, and nobody hands one down. The watch worth choosing is the mechanical you wear for the life around the sport. Here's that one.",
+    reading: [
+      { href: "/guides/gps-watch-vs-mechanical", label: "GPS Watch vs Mechanical: What to Actually Wear" },
+      { href: "/guides/your-first-automatic-what-matters", label: "Your First Automatic: What Matters" },
+      { href: "/guides/sizing-a-watch-for-a-lean-wrist", label: "Sizing a Watch for a Lean Wrist" },
+    ],
   },
   both: {
     id: "two-watch",
@@ -138,6 +151,11 @@ const PROFILES: Record<string, Profile> = {
     tagline: "One to train in, one to live in.",
     blurb:
       "The honest answer for most serious athletes. A GPS watch does the work on the session; a mechanical marks the rest of your life. The instrument is easy to choose and easy to replace. The keeper is the decision that lasts, so most of this is about that.",
+    reading: [
+      { href: "/guides/gps-watch-vs-mechanical", label: "GPS Watch vs Mechanical: What to Actually Wear" },
+      { href: "/guides/automatics-on-the-bike", label: "Automatics on the Bike" },
+      { href: "/features/the-one-watch-question", label: "The One-Watch Question" },
+    ],
   },
   "mech-under-500": {
     id: "first-mechanical",
@@ -145,6 +163,11 @@ const PROFILES: Record<string, Profile> = {
     tagline: "The honest way into watches that outlive their batteries.",
     blurb:
       "You don't need to spend big to own something real. At this budget the right automatic is tough, wearable, and the start of a habit — the watch that turns a tracker-only wrist into a collector's.",
+    reading: [
+      { href: "/guides/your-first-automatic-what-matters", label: "Your First Automatic: What Matters" },
+      { href: "/guides/first-nice-watch-as-an-athlete", label: "How to Buy Your First Nice Watch as an Athlete" },
+      { href: "/guides/sizing-a-watch-for-a-lean-wrist", label: "Sizing a Watch for a Lean Wrist" },
+    ],
   },
   "mech-500-1500": {
     id: "sport-mechanical",
@@ -152,6 +175,11 @@ const PROFILES: Record<string, Profile> = {
     tagline: "One watch, worn hard, for years.",
     blurb:
       "The sweet spot. Real movements, proper water resistance, and finishing that punches above the price — watches you can train near, travel with, and not baby.",
+    reading: [
+      { href: "/guides/straps-for-sport", label: "Straps for Sport: NATO, Rubber, Velcro" },
+      { href: "/guides/water-resistance-for-swimmers", label: "Water Resistance, Explained for Swimmers" },
+      { href: "/guides/lume-and-the-dark", label: "Lume and the Dark" },
+    ],
   },
   "mech-1500-5000": {
     id: "one-watch",
@@ -159,6 +187,11 @@ const PROFILES: Record<string, Profile> = {
     tagline: "Swim, dress, hand it down — one watch that does all of it.",
     blurb:
       "Enough budget for the watch most people should stop at: in-house movements, serious build, and the versatility to be the only watch you own without ever feeling like a compromise.",
+    reading: [
+      { href: "/features/the-one-watch-question", label: "The One-Watch Question" },
+      { href: "/guides/how-to-read-a-reference", label: "How to Read a Reference" },
+      { href: "/guides/when-to-service-a-mechanical-watch", label: "When to Service a Mechanical Watch" },
+    ],
   },
   "mech-no-ceiling": {
     id: "grail",
@@ -166,6 +199,11 @@ const PROFILES: Record<string, Profile> = {
     tagline: "No ceiling. Buy the reference everything else is measured against.",
     blurb:
       "At this level you're buying history and the smoothest engineering in watchmaking. Pieces you can swim in, dress up, and hand down — the ones the rest of the catalogue spends its life chasing.",
+    reading: [
+      { href: "/guides/what-a-chronometer-actually-is", label: "What a Chronometer Actually Is" },
+      { href: "/guides/how-to-read-a-reference", label: "How to Read a Reference" },
+      { href: "/features/the-handover", label: "The Handover" },
+    ],
   },
 };
 
