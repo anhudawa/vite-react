@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { grotesque, serif, mono } from "./fonts";
 import { ThemeScript } from "@/components/ThemeScript";
 import { Header } from "@/components/Header";
@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   authors: [{ name: site.founder }],
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [{ url: "/rss.xml", title: site.name }],
+    },
+  },
   openGraph: {
     type: "website",
     siteName: site.name,
@@ -30,7 +36,19 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    // The mark ships as SVG only (app/icon.svg). Apple's touch icon accepts it,
+    // though rasterised PNGs (180×180 apple-touch-icon, 192/512 favicons) would
+    // be a future nicety once real binaries land in public/.
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
+};
+
+export const viewport: Viewport = {
+  // --movement-black and --bone from globals.css, matched per colour scheme.
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#16181b" },
+    { media: "(prefers-color-scheme: light)", color: "#f2eee6" },
+  ],
 };
 
 const orgJsonLd = {
