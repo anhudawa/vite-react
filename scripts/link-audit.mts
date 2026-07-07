@@ -82,7 +82,9 @@ function extractMeta(src: string): { obj: Meta; start: number; end: number } | n
 }
 
 const registrySrc = readFileSync(join(ROOT, "content", "essays", "registry.ts"), "utf8");
-const registrySlugs = [...registrySrc.matchAll(/^\s*slug:\s*["']([^"']+)["']/gm)].map((m) => m[1]);
+// Tolerates both registry entry styles: multi-line ("slug:" starts the line)
+// and compact one-liners ("{ slug:" mid-line).
+const registrySlugs = [...registrySrc.matchAll(/(?:^|\{)\s*slug:\s*["']([^"']+)["']/gm)].map((m) => m[1]);
 
 type Essay = {
   slug: string;
