@@ -219,3 +219,14 @@ field-guide depth).
    the quiz. Widen the type to include `quartz` if you want it in the quiz.
 6. **Affiliate URLs** across quiz + guides are blank pending your fill (existing
    FOUNDER REVIEW flag).
+
+## Cadence stretch (2026-07-07, autonomous)
+
+48 essays. Shipped: Sixty-Four Days (Vendee Globe — months-scale time;
+Dalin's death three weeks prior discovered mid-research, handled in the
+memorial register, FLAGGED for founder read pre-deploy); Twelve, Six,
+Zero (Tour week one in elapsed time, every result dual-sourced); second
+PD imagery sweep 5/5 (Bannister 1954 no-notice, 1932 LA, Everest 1921,
+Vel d'Hiv 1922, Col d'Aubisque 1925) — coverage 12/48, rights ledger
+24/24. Held for founder: Endurance Pro review (unregistered),
+historical-facts proposal, press emails, Dalin piece read.

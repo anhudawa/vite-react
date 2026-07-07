@@ -6,8 +6,7 @@ articles). Standard per `docs/EDITORIAL.md`: every article carries an image
 pairing the athlete and the watch — or, where no athlete belongs, the object
 itself, photographed with intent.
 
-**State: 12 of 45 essays have a lead image. 33 need one** (updated 2026-07-07
-after the second public-domain sweep). The list below is
+**State: 12 of 48 essays have a lead image. 36 need one** (updated 2026-07-07; corpus grew to 48 with the Vendee and Tour week-one pieces). The list below is
 grouped by how the image can actually be obtained, so it can be cleared in
 batches rather than one impossible agency-licensing slog.
 
@@ -34,7 +33,7 @@ the subject.
 | casio-f-91w-and-the-time-trial | An F-91W (retail ~£15 — buy one) on a TT cockpit |
 | the-escapement-the-part-that-lets-go | Escapement macro through a loupe (or licensed movement macro, Batch 4) |
 
-## Batch 2 — public domain / free archive (5 shots, zero cost, verify each licence)
+## Batch 2 — public domain / free archive (CLEARED 2026-07-07 — see acquisition tables below; only the 1953-specific Everest expedition frame remains a Batch 3/4 item)
 
 | Essay | Source to check |
 |---|---|
