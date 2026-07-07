@@ -18,6 +18,9 @@ const PAGES = [
   { name: "timeline", path: "/timeline" },
   { name: "who wears what", path: "/who-wears-what" },
   { name: "glossary", path: "/glossary" },
+  { name: "accessibility statement", path: "/accessibility" },
+  { name: "essays (filtered)", path: "/essays?pillar=heritage" },
+  { name: "collection trail", path: "/collections/the-records-canon" },
 ] as const;
 
 const THEMES = ["dark", "light"] as const;

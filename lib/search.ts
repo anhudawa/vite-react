@@ -16,6 +16,32 @@ export interface SearchDoc {
   keywords: string;
 }
 
+/** Search-only synonyms, applied on the DOC side: extra terms appended into a
+ *  doc's keyword haystack at build time, keyed by essay or glossary slug. The
+ *  matcher is token-AND over a substring haystack, so this makes multi-word
+ *  aliases ("iso 3159", "helium valve") work with zero query-time logic — each
+ *  query token simply finds its word in the enriched haystack. Only list what
+ *  the doc's title/dek/tags don't already contain. */
+const ALIASES: Record<string, string> = {
+  // Essays (by registry slug)
+  "what-a-chronometer-actually-is": "certification iso 3159", // "cosc", "chronometer" already in tags
+  "the-overbuilt-watch": "hev helium escape valve",
+  "water-resistance-for-swimmers": "wr atm bar",
+  "the-chronograph-for-athletes": "rattrapante split-seconds",
+  "sizing-a-watch-for-a-lean-wrist": "l2l", // "lug-to-lug" already in tags
+  "the-number-that-doesnt-count": "sub-2 one fifty nine",
+  "seventeen-hours": "kona",
+  // Glossary terms (by slug)
+  chronometer: "certification", // "cosc" already in the short
+  "helium-escape-valve": "hev",
+  "water-resistance-rating": "wr",
+  chronograph: "rattrapante split-seconds",
+  "lug-to-lug": "l2l",
+  // Deliberately absent: "tissot" (already a tag on the 1989 Tour and Hour
+  // Record essays), "moonwatch" (tag on the-eleven-tests), "gruppetto"
+  // (tag + kicker on the-autobus) — those queries already land.
+};
+
 const SECTION_BLURBS: Record<string, string> = {
   "/who-wears-what":
     "Which athletes wear which watches — and what they cost.",
@@ -40,7 +66,7 @@ export function buildSearchIndex(): SearchDoc[] {
       href: essayHref(e),
       kind: "Essay",
       summary: e.dek,
-      keywords: [e.title, e.dek, e.kicker, e.silo, ...(e.tags ?? [])]
+      keywords: [e.title, e.dek, e.kicker, e.silo, ...(e.tags ?? []), ALIASES[e.slug]]
         .filter(Boolean)
         .join(" ")
         .toLowerCase(),
@@ -64,7 +90,10 @@ export function buildSearchIndex(): SearchDoc[] {
       href: `/glossary/${t.slug}`,
       kind: "Term",
       summary: t.short,
-      keywords: `${t.term} ${t.short}`.toLowerCase(),
+      keywords: [t.term, t.short, ALIASES[t.slug]]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase(),
     });
   }
 
