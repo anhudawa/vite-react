@@ -18,6 +18,8 @@
     "voice:check": "tsx scripts/voice-check.mts",
     "voice:corpus": "tsx scripts/voice-corpus.mts",
     "test": "tsx --test lib/*.test.ts lib/voice/*.test.ts lib/verification/*.test.ts",
+    "test:e2e": "playwright test",
+    "validate:jsonld": "tsx scripts/validate-jsonld.mts",
     "reading-time": "node scripts/reading-time.mjs"
   },
   "dependencies": {
@@ -29,9 +31,12 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
+  "overrides": {
+    "playwright-core": "1.56.1"
+  },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
-    "@playwright/test": "^1.61.1",
+    "@playwright/test": "^1.56.1",
     "@types/mdx": "^2.0.13",
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.3",

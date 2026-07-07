@@ -31,6 +31,10 @@ next-env.d.ts
 # local screenshots / scratch
 .shots/
 
+# playwright
+test-results/
+playwright-report/
+
 # editor
 .vscode/*
 !.vscode/extensions.json
