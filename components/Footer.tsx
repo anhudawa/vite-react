@@ -51,6 +51,11 @@ export function Footer() {
                 </li>
               ))}
               <li>
+                <Link href="/accessibility" className={styles.fLink}>
+                  Accessibility
+                </Link>
+              </li>
+              <li>
                 <Link href="/essays" className={styles.fLink}>
                   Index
                 </Link>

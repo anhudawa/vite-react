@@ -4,6 +4,11 @@ export interface GlossaryTerm {
   short: string; // ONE sentence (~15-25 words) — the DefinedTerm definition
   body: string; // 2-4 sentences, fuller, in voice; athlete angle only where it genuinely fits
   related?: string[]; // 1-3 slugs of other terms in this list
+  /**
+   * Slug of the essay (content/essays/registry.ts) that goes deeper on this
+   * term — rendered on the term page as a quiet "Read the piece" line.
+   */
+  essay?: string;
 }
 
 export const glossary: GlossaryTerm[] = [
@@ -14,6 +19,7 @@ export const glossary: GlossaryTerm[] = [
       "A mechanical movement that winds its mainspring from the wearer's motion, using a weighted rotor that pivots as the wrist moves.",
     body: "An automatic movement carries a semicircular weight, the rotor, that swings on a central pivot as your wrist moves and feeds that motion into the mainspring through a winding train. Worn daily, it stays running on its own; set aside for a day or two, it stops and needs a wind or a shake to wake up. The energy you put in walking around is the same energy the escapement doles back out, beat by beat.",
     related: ["mainspring", "power-reserve", "manual-wind"],
+    essay: "your-first-automatic-what-matters",
   },
   {
     term: "Balance wheel",
@@ -46,6 +52,7 @@ export const glossary: GlossaryTerm[] = [
       "A watch with a built-in stopwatch that can start, stop, and reset an independent timing function without disturbing the running time.",
     body: "A chronograph adds a stopwatch to the watch, usually worked by pushers flanking the crown, with elapsed time read off subdials or a central hand. It answers the oldest endurance instinct there is, timing yourself against yourself: the lap, the interval, the climb you swore you'd ride faster this year. Underneath, the start, stop, and reset are a small mechanical event each time, which is part of why a good one feels so satisfying to run.",
     related: ["rattrapante", "tachymeter", "caliber"],
+    essay: "the-chronograph-for-athletes",
   },
   {
     term: "Chronometer (COSC)",
@@ -54,6 +61,7 @@ export const glossary: GlossaryTerm[] = [
       "A watch whose movement has passed an official precision test; COSC is the Swiss body that certifies movements to a defined accuracy standard.",
     body: "Chronometer is not marketing; it is a certified grade of accuracy awarded after a movement is tested over several days in different positions and temperatures. In Switzerland that testing is done by the COSC, the Contrôle Officiel Suisse des Chronomètres, which holds a mechanical movement to a defined daily-rate tolerance. A watch earns the word on the dial only by passing; it is precision proved rather than claimed.",
     related: ["caliber", "isochronism", "balance-wheel"],
+    essay: "what-a-chronometer-actually-is",
   },
   {
     term: "Escapement",
@@ -62,6 +70,7 @@ export const glossary: GlossaryTerm[] = [
       "The mechanism that releases the mainspring's energy in small, regular increments and keeps the oscillator swinging, producing the tick.",
     body: "The escapement sits between the stored power and the balance, letting the gear train advance one measured step at a time instead of unwinding all at once. Each release gives the balance a tiny push to keep it going and makes the sound we hear as ticking. It is the governor of the whole system: power on one side, pacing on the other, the same job a rider's discipline does over the length of a long effort.",
     related: ["balance-wheel", "mainspring", "isochronism"],
+    essay: "the-escapement-the-part-that-lets-go",
   },
   {
     term: "GMT",
@@ -150,6 +159,7 @@ export const glossary: GlossaryTerm[] = [
       "A figure, given in metres, bar, or ATM, indicating the pressure a watch is built and tested to withstand rather than a literal diving depth.",
     body: "A water resistance rating marks the pressure a watch is designed to resist, expressed in metres, bar, or ATM. It is a measure of tested static pressure, not an invitation to swim to that depth, since real-world movement and water flow add load the static figure doesn't account for. Read the rating conservatively, keep the crown pushed in, and have the gaskets checked over time; seals age.",
     related: ["bezel", "lume"],
+    essay: "water-resistance-for-swimmers",
   },
   {
     term: "Chip timing",
@@ -174,6 +184,7 @@ export const glossary: GlossaryTerm[] = [
       "A finish decided by a slit camera that images the finish line itself, continuously, at thousands of lines per second.",
     body: "A finish too close for the eye, settled by a camera that photographs only the plane of the finish line, thousands of times per second, building an image in which the horizontal axis is time rather than space. Officials read the picture to order athletes by the moment their torso (or, in cycling, the leading edge of the front tyre) crossed the line. The technology dates to the mid-twentieth century and remains the final court of appeal in sprint finishes.",
     related: ["chip-timing", "transponder"],
+    essay: "omega-and-the-olympic-clock",
   },
   {
     term: "FKT (Fastest Known Time)",
@@ -182,6 +193,7 @@ export const glossary: GlossaryTerm[] = [
       "The fastest recorded time for a defined route outside formal competition, verified by GPS evidence rather than officials.",
     body: "The fastest verified time anyone has covered a defined route — a trail, a peak, a traverse — outside the structure of an organised race. FKTs are self-timed and self-reported, then verified through GPS tracks and documentation, which makes the athlete's own instruments part of the record. Attempts come in flavours: supported, self-supported, and unsupported, each with its own rules about outside help.",
     related: ["negative-split", "dnf-dns-dsq"],
+    essay: "no-one-at-the-line",
   },
   {
     term: "Time cut / autobus",
@@ -190,6 +202,7 @@ export const glossary: GlossaryTerm[] = [
       "The deadline by which riders must finish a stage to stay in a race, and the group of non-climbers who ride together to beat it.",
     body: "In stage racing, the time cut is the limit — usually a percentage of the winner's time, scaled to the stage's difficulty — inside which every rider must finish or be eliminated. On mountain days the sprinters and the suffering form the autobus (or gruppetto), a large group that rides at a calculated collective pace to arrive just inside the limit. It is pacing as survival: an entire peloton's back half doing arithmetic against the clock.",
     related: ["dnf-dns-dsq", "negative-split"],
+    essay: "the-autobus",
   },
   {
     term: "Negative split",
@@ -230,6 +243,7 @@ export const glossary: GlossaryTerm[] = [
       "A chronometer is a watch certified for accuracy; a chronograph is a watch with a stopwatch function — often confused, rarely the same thing.",
     body: "Two words the trade is careful not to swap. A chronometer is a watch whose movement has passed an independent precision test — most often COSC certification, which requires an average daily rate between −4 and +6 seconds. A chronograph is a watch with a built-in stopwatch, started and stopped by pushers, for timing an interval. One is a credential, the other a function; a single watch can be both, and many are neither.",
     related: ["chronometer", "chronograph", "frequency"],
+    essay: "what-a-chronometer-actually-is",
   },
   {
     term: "Complication",
@@ -254,6 +268,7 @@ export const glossary: GlossaryTerm[] = [
       "The distance between the tips of a watch's lugs — the measurement that decides how a watch actually fits.",
     body: "The distance from the tip of a watch's upper lugs to the tip of the lower ones, measured across the case. More than diameter, it determines whether a watch sits within the flat of your wrist or hangs over the edges — the number to check before buying, the way a rider checks stack and reach before believing a frame size. Two watches with the same diameter can wear very differently if their lug-to-lug figures diverge.",
     related: ["bezel", "crown"],
+    essay: "sizing-a-watch-for-a-lean-wrist",
   },
   {
     term: "Super-LumiNova",
@@ -262,6 +277,7 @@ export const glossary: GlossaryTerm[] = [
       "The standard photoluminescent paint on modern dials and hands: charged by light, glowing in the dark, containing no radioactive material.",
     body: "The photoluminescent pigment applied to most modern hands, indices, and bezel markers. Based on strontium aluminate, it absorbs light and re-emits it as a glow that fades over hours and recharges indefinitely, with no radioactive content — the safe successor to the radium and tritium paints of earlier eras. Its brightness in the first dark hour of a night ride or a pre-dawn start is one of the small practical tests a tool watch either passes or fails.",
     related: ["lume", "bezel"],
+    essay: "lume-and-the-dark",
   },
   {
     term: "Helium escape valve",
@@ -270,6 +286,7 @@ export const glossary: GlossaryTerm[] = [
       "A one-way valve that lets helium leave a dive watch's case during decompression from saturation diving.",
     body: "A one-way valve fitted to some professional dive watches that lets helium vent from the case during decompression. In saturation diving, breathing-gas helium atoms are small enough to seep past a watch's seals over days in a pressurised habitat; without a release, the trapped gas can pop the crystal off as outside pressure drops. It solves a problem almost no owner will ever have — which is precisely the kind of over-engineering dive watch culture prizes.",
     related: ["water-resistance-rating", "crown"],
+    essay: "the-overbuilt-watch",
   },
   {
     term: "Lap",

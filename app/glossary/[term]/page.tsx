@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { JsonLd, breadcrumb } from "@/lib/jsonld";
 import { glossary, getTerm } from "@/data/glossary";
+import { getEssay } from "@/content/essays/registry";
+import { essayHref } from "@/lib/content";
 import { site } from "@/lib/site";
 import styles from "./term.module.css";
 
@@ -25,6 +27,7 @@ export default function GlossaryTermPage({ params }: { params: { term: string } 
   const t = getTerm(params.term);
   if (!t) notFound();
   const related = (t.related ?? []).map((slug) => getTerm(slug)).filter(Boolean);
+  const essay = t.essay ? getEssay(t.essay) : undefined;
 
   return (
     <>
@@ -49,6 +52,15 @@ export default function GlossaryTermPage({ params }: { params: { term: string } 
 
       <div className={`container ${styles.prose}`}>
         <p className={styles.body}>{t.body}</p>
+
+        {essay && (
+          <p className={styles.essayLine}>
+            <span className={styles.essayLabel}>Read the piece —</span>{" "}
+            <Link href={essayHref(essay)} className={styles.essayLink}>
+              {essay.title}
+            </Link>
+          </p>
+        )}
 
         {related.length > 0 && (
           <>
