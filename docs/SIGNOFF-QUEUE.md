@@ -49,12 +49,12 @@ Dauwalter — cannot publish regardless, by design. Per-fact detail below.
 | Fact | Claim | Verdict tonight |
 |---|---|---|
 | `cavendish-rm011` | Cavendish — RM 011 — Ambassador | Hold. Needs a reference decision + fresh corroboration + archives + sign-off |
-| `cavendish-rm6702` | Cavendish — RM 67-02 — Ambassador | Hold. No source supports `relation`; wrist attribution open |
+| `cavendish-rm6702` | Cavendish — RM 67-02 — Ambassador | Hold. Primary RM partner page attached 2026-07-03; needs an independent second on `relation`; wrist attribution open |
 | `lucy-endurance-pro` | Charles-Barclay — Endurance Pro 38 — Ambassador | Near. Needs the photo logged as a source + one non-Breitling source + archives + sign-off |
 | `frodeno-endurance-pro` | Frodeno — Endurance Pro 44 — Ambassador | Hold. 2020 media has aged out of corroboration; needs fresh sources + a photo |
 | `ryf-endurance-pro` | Ryf — Endurance Pro — Ambassador (historical) | Cannot publish. Logged contradiction + no policy lane for lapsed sponsorships |
 | `pidcock-draft` | Pidcock — (undetermined) | Cannot publish. Single tertiary forum mention; held on purpose |
-| `laidlow-endurance-pro` | Laidlow — Endurance Pro 44 — Ambassador | Nearest of all. One dated photo + two Wayback captures + dates + sign-off |
+| `laidlow-endurance-pro` | Laidlow — Endurance Pro 44 — Ambassador | Nearest of all. One dated photo + two Wayback captures + sign-off (`publishedAt` added) |
 | `dauwalter-tudor` | Dauwalter — Tudor (model unconfirmed) — Ambassador | Cannot publish until a reference is documented on her wrist |
 
 ---
@@ -139,6 +139,7 @@ original full frame to confirm.
 
 | id | Publisher | Tier / kind | URL | Supports | State |
 |---|---|---|---|---|---|
+| `rm-official-cavendish` | Richard Mille | primary / official | https://www.richardmille.com/friends-and-partners/mark-cavendish | athlete, relation, watch | unverified; `unarchivable`; attached 2026-07-03 |
 | `watchfinder-cav-rm` | Watchfinder | secondary / media | https://www.watchfinder.co.uk/articles/richard-mille-for-mark-cavendish | watch, evidence | unverified; **no `publishedAt`**; no snapshot |
 | `photo-green-jersey` | On-file race photograph | **secondary** / photo | — (physical) | watch | unverified; undated; wrist attribution unresolved |
 
@@ -150,8 +151,8 @@ embrace — needs the original full-frame photo to confirm it is Cavendish's
 valid, relationship typed, adversarial review clean):
 
 - Your sign-off — but sign-off is the smallest gap here.
-- **`relation` has zero supporting sources.** Attach the RM ambassador page
-  (already cited on the RM 011 card) plus one independent outlet.
+- **`relation` has its primary source** — the RM partner page was attached
+  2026-07-03. It still needs one independent outlet to reach the 2× floor.
 - The full-frame original of the 2021 photo, confirming the wrist; then
   `verified: true`, a `publishedAt` (2021-07), and re-tier it `primary` so it
   never ages out. Extend `supports` to `athlete` + `evidence` if the frame
@@ -406,7 +407,7 @@ recent. Stated confidence: **High**.
 |---|---|---|---|---|---|
 | `breitling-ambassador-laidlow` | Breitling | primary / official | https://www.breitling.com/gb-en/about/ambassadors/sam-laidlow/ | athlete, relation, watch | unverified; `unarchivable` |
 | `laidlow-own-sponsors` | samlaidlow.com | primary / official | https://samlaidlow.com/en/pages/sponsors | relation | unverified; archivable, no snapshot |
-| `watchilove-squad-2024` | Watch I Love | secondary / media | https://watchilove.com/2024/07/breitling-endurance-pro-in-44-and-38-mm/ | relation, evidence | unverified; July 2024 — **inside the window once `publishedAt` is set**; no snapshot |
+| `watchilove-squad-2024` | Watch I Love | secondary / media | https://watchilove.com/2024/07/breitling-endurance-pro-in-44-and-38-mm/ | relation, evidence | unverified; `publishedAt: "2024-07-05"` set — inside the window; no snapshot |
 
 **Look-alikes flagged**: IRONMAN limited editions (titanium 2025 WC,
 Breitlight 70.3) share the Endurance Pro name — reference-level claims need
@@ -415,7 +416,7 @@ the specific photo. Recorded.
 **Still required to publish**:
 
 - Your sign-off.
-- `verified: true` ×3; `publishedAt: "2024-07-.."` on the Watch I Love piece.
+- `verified: true` ×3 (the Watch I Love `publishedAt` is already on file).
 - **One verified, dated photo source** supporting `watch` + `evidence` — this
   single addition satisfies the High-rating visual requirement AND closes
   both fields to 2×.
@@ -432,9 +433,9 @@ the specific photo. Recorded.
 **Exact edit on approval** (fact `laidlow-endurance-pro`): `status:
 "published"`; `review.method: "dual-control"`, `approvedBy: "A. Walsh"`,
 `approvedAt: "2026-07-07"`; `verified: true` on all three sources;
-`publishedAt` on Watch I Love; `snapshot: { archivedUrl, capturedAt }` on
-samlaidlow.com and watchilove.com; plus the new photo source entry (same
-shape as the Lucy card's).
+`snapshot: { archivedUrl, capturedAt }` on samlaidlow.com and
+watchilove.com; plus the new photo source entry (same shape as the Lucy
+card's).
 
 ---
 

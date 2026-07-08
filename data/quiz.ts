@@ -140,7 +140,7 @@ const PROFILES: Record<string, Profile> = {
     blurb:
       "If you genuinely train by the numbers, a GPS watch is the honest tool for the session — strap it on, get the data, take it off. But it's outdated in three years, and nobody hands one down. The watch worth choosing is the mechanical you wear for the life around the sport. Here's that one.",
     reading: [
-      { href: "/guides/gps-watch-vs-mechanical", label: "GPS Watch vs Mechanical: What to Actually Wear" },
+      { href: "/guides/gps-watch-vs-mechanical", label: "GPS Watch vs Mechanical: What to Wear" },
       { href: "/guides/your-first-automatic-what-matters", label: "Your First Automatic: What Matters" },
       { href: "/guides/sizing-a-watch-for-a-lean-wrist", label: "Sizing a Watch for a Lean Wrist" },
     ],
@@ -152,7 +152,7 @@ const PROFILES: Record<string, Profile> = {
     blurb:
       "The honest answer for most serious athletes. A GPS watch does the work on the session; a mechanical marks the rest of your life. The instrument is easy to choose and easy to replace. The keeper is the decision that lasts, so most of this is about that.",
     reading: [
-      { href: "/guides/gps-watch-vs-mechanical", label: "GPS Watch vs Mechanical: What to Actually Wear" },
+      { href: "/guides/gps-watch-vs-mechanical", label: "GPS Watch vs Mechanical: What to Wear" },
       { href: "/guides/automatics-on-the-bike", label: "Automatics on the Bike" },
       { href: "/features/the-one-watch-question", label: "The One-Watch Question" },
     ],

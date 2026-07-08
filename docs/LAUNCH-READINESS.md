@@ -134,7 +134,7 @@ Added since the second pass:
 - Analytics decision (none wired; privacy page currently promises none).
 - Brand facts for /about, /author, facts.json (founding year, base,
   contact, real sameAs links).
-- Sign-off queue (5 in-review athlete facts) + image licensing above.
+- Sign-off queue (8 in-review athlete facts) + image licensing above.
 - Verified spec sheets to open the reviews shelf.
 - One Wayback capture (Cyclingnews source) — archive.org rate-limits this
   environment's egress; ~30 seconds in a browser.

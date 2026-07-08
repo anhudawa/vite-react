@@ -6,7 +6,7 @@ articles). Standard per `docs/EDITORIAL.md`: every article carries an image
 pairing the athlete and the watch — or, where no athlete belongs, the object
 itself, photographed with intent.
 
-**State: 12 of 48 essays have a lead image. 36 need one** (updated 2026-07-07; corpus grew to 48 with the Vendee and Tour week-one pieces). The list below is
+**State: 17 of 48 essays have a lead image. 31 need one** (updated 2026-07-08; recounted against `image: {` meta in the registered corpus). The list below is
 grouped by how the image can actually be obtained, so it can be cleared in
 batches rather than one impossible agency-licensing slog.
 

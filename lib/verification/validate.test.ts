@@ -135,7 +135,7 @@ test("no reference and no recognised maker fails reference-integrity", () => {
 });
 
 test("ownership facts exempt old media from the staleness clock", () => {
-  const oldMedia = {
+  const oldMedia: Source = {
     id: "old",
     publisher: "Old Mag",
     kind: "media" as const,
@@ -144,7 +144,7 @@ test("ownership facts exempt old media from the staleness clock", () => {
     publishedAt: "2014-01-01", // well beyond staleMediaYears
     accessedAt: "2026-06-16",
     excerpt: "He bought it himself years ago.",
-    supports: ["athlete", "watch", "relation", "evidence"] as const,
+    supports: ["athlete", "watch", "relation", "evidence"],
     verified: true,
   };
   const old2 = { ...oldMedia, id: "old2", publisher: "Other Old Mag" };

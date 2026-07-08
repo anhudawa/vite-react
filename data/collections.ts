@@ -85,9 +85,9 @@ export const collections: Collection[] = [
   {
     slug: "the-cycling-thread",
     title: "The Cycling Thread",
-    dek: "Eight pieces for July — the Tour, the clock, and the riders who live by both.",
+    dek: "Nine pieces for July — the Tour, the clock, and the riders who live by both.",
     intro:
-      "The Tour is on, and for three weeks the sport runs on elapsed time. This trail starts at the wrists in this year's peloton and works inward: the eight seconds that decided 1989, the gruppetto's survival arithmetic, the fixed hour, the pursuit's four naked laps, a numbered edition, the last kilometre, and a ride with no line at all.",
+      "The Tour is on, and for three weeks the sport runs on elapsed time. This trail starts at the wrists in this year's peloton and its opening week read on the clock, then works inward: the eight seconds that decided 1989, the gruppetto's survival arithmetic, Merckx's hour in Mexico City, the pursuit's four naked laps, a numbered edition, the last kilometre, and a ride nobody was there to time.",
     slugs: [
       "the-wrists-of-the-2026-tour",
       "tour-2026-week-one-on-the-clock",
