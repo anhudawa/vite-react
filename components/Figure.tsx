@@ -1,0 +1,73 @@
+import Image from "next/image";
+import styles from "./Figure.module.css";
+
+/**
+ * Art-directed image. Photography is brought into the brand's monochrome world —
+ * a warm desaturation, fine grain, a sapphire edge of light — with a Fact-Block
+ * register caption (subject + the watch, in mono). "natural" leaves the colour.
+ */
+export function Figure({
+  src,
+  alt,
+  subject,
+  watch,
+  ratio = "5 / 6",
+  treatment = "mono",
+  priority = false,
+  objectPosition,
+  sizes = "(max-width: 900px) 100vw, 40vw",
+  className = "",
+  unverified = false,
+}: {
+  src: string;
+  alt: string;
+  subject?: string;
+  watch?: string;
+  ratio?: string;
+  treatment?: "mono" | "natural";
+  priority?: boolean;
+  objectPosition?: string;
+  sizes?: string;
+  className?: string;
+  /** Marks a photo whose watch claim has NOT cleared the gauntlet — an honest
+   *  sighting, visibly distinct from a verified reference. */
+  unverified?: boolean;
+}) {
+  return (
+    <figure className={`${styles.figure} ${className}`}>
+      <div
+        className={`${styles.frame} grain-fine`}
+        data-treatment={treatment}
+        style={{ aspectRatio: ratio }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className={styles.img}
+          data-figure-img
+          style={objectPosition ? { objectPosition } : undefined}
+        />
+        <span className={styles.sheen} aria-hidden="true" data-figure-sheen />
+      </div>
+      {(subject || watch) && (
+        <figcaption className={styles.cap}>
+          {subject && (
+            <span className={styles.subject}>
+              <span className={styles.tick} aria-hidden="true" />
+              {subject}
+            </span>
+          )}
+          {watch && <span className={styles.watch}>{watch}</span>}
+          {unverified && (
+            <span className={styles.unverified} title="A sighting we haven't confirmed yet">
+              unconfirmed
+            </span>
+          )}
+        </figcaption>
+      )}
+    </figure>
+  );
+}

@@ -1,0 +1,68 @@
+/* The error state — same register as the 404, one seized movement instead of
+   a drained one. */
+.wrap {
+  display: grid;
+  place-items: center;
+  min-height: 70vh;
+  padding-block: var(--s-9);
+}
+.inner {
+  text-align: left;
+  max-width: 46ch;
+}
+.mark {
+  color: var(--text);
+  margin-bottom: var(--s-6);
+  opacity: 0.85;
+}
+.code {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: var(--s-4);
+}
+.title {
+  font-size: var(--t-h2);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--s-5);
+  max-width: 14ch;
+}
+.dek {
+  color: var(--text-dim);
+  font-size: var(--t-lead);
+  line-height: 1.45;
+  margin-bottom: var(--s-7);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-5);
+}
+.retry {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+}
+.home {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.home:hover {
+  color: var(--accent-text);
+}

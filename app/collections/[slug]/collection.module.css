@@ -1,0 +1,141 @@
+.section {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-6);
+}
+
+/* One continuous hairline carries the order down the page. */
+.trail {
+  --rail: 3.5rem;
+  list-style: none;
+  position: relative;
+  max-width: 52rem;
+}
+.trail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--rail);
+  width: var(--hairline);
+  background: var(--rule);
+}
+
+.entry {
+  position: relative;
+}
+/* a small tick where each number meets the rule */
+.entry::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--s-7) + 0.7em);
+  left: calc(var(--rail) - 4px);
+  width: 9px;
+  height: var(--hairline);
+  background: var(--rule-strong);
+  transition: background-color var(--dur-1) var(--ease-mech);
+}
+.entry:hover::before {
+  background: var(--accent);
+}
+
+.link {
+  display: grid;
+  grid-template-columns: var(--rail) 1fr;
+  column-gap: var(--s-6);
+  padding-block: var(--s-7);
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  line-height: 1.6;
+  padding-right: var(--s-5);
+  text-align: right;
+}
+
+.body {
+  display: block;
+}
+
+.title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--t-h4);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.link:hover .title {
+  color: var(--accent-text);
+}
+
+.dek {
+  display: block;
+  margin-top: var(--s-2);
+  color: var(--text-dim);
+  font-size: var(--t-body-s);
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+.meta {
+  display: block;
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.back {
+  margin-top: var(--s-7);
+  border-top: var(--hairline) solid var(--rule);
+  padding-top: var(--s-5);
+  max-width: 52rem;
+}
+.backLink {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.backLink:hover {
+  color: var(--accent-text);
+}
+
+@media (max-width: 640px) {
+  .trail {
+    --rail: 0rem;
+  }
+  .trail::before {
+    left: 0;
+  }
+  .entry::before {
+    left: -4px;
+    top: calc(var(--s-6) + 0.7em);
+  }
+  .link {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-2);
+    padding-block: var(--s-6);
+    padding-left: var(--s-5);
+  }
+  .index {
+    padding-right: 0;
+    text-align: left;
+  }
+}

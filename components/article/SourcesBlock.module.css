@@ -1,0 +1,117 @@
+/* --- Sources — the article's foot-of-page corroboration -------------------
+   Mono label over a hairline, then a compact numbered list: publisher domain
+   as the link, the claim it supports in small dim text. Deliberately NOT
+   named ArticleView_related* — the print stylesheet hides that chrome, and
+   sources are exactly what should survive onto paper. */
+
+.sources {
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-top: var(--s-6);
+  border-top: var(--hairline) solid var(--rule);
+  margin-bottom: var(--s-4);
+}
+
+.list {
+  list-style: none;
+  counter-reset: src;
+  margin: 0;
+}
+
+.item {
+  counter-increment: src;
+  position: relative;
+  padding-block: var(--s-2);
+  padding-left: var(--s-6);
+}
+.item + .item {
+  border-top: var(--hairline) solid var(--rule);
+}
+.item::before {
+  content: counter(src, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: calc(var(--s-2) + 0.2em);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.domain {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.04em;
+  color: var(--text);
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.domain:hover {
+  color: var(--accent-text);
+}
+
+.claim {
+  display: block;
+  margin-top: var(--s-1);
+  font-size: var(--t-body-s);
+  line-height: 1.5;
+  color: var(--text-dim);
+  max-width: 62ch;
+}
+
+/* --- Collapsed register (> 6 items) --------------------------------------- */
+.summary {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.summary::-webkit-details-marker {
+  display: none;
+}
+.summary::after {
+  content: "+";
+  margin-left: var(--s-2);
+  color: var(--text-faint);
+}
+.details[open] > .summary::after {
+  content: "\2212"; /* minus sign */
+}
+.summary:hover {
+  color: var(--accent-text);
+}
+.details[open] > .summary {
+  margin-bottom: var(--s-3);
+}
+
+/* --- Print — the whole list, disclosure chrome removed --------------------
+   The section itself prints (no ArticleView_related* class in sight). A
+   closed <details> cannot be forced open from CSS, so on paper the
+   disclosure is dropped entirely and the print-only expanded copy shows. */
+.printExpanded {
+  display: none;
+}
+@media print {
+  .details {
+    display: none;
+  }
+  .printExpanded {
+    display: block;
+  }
+  .item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

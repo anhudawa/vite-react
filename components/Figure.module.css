@@ -1,0 +1,74 @@
+.figure {
+  margin: 0;
+}
+.frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: var(--hairline) solid var(--rule-strong);
+  background: var(--bg-sunken);
+  box-shadow: var(--shadow-soft);
+}
+.img {
+  object-fit: cover;
+}
+/* photography pulled into the monochrome brand world, with warmth retained */
+.frame[data-treatment="mono"] .img {
+  filter: grayscale(0.62) contrast(1.06) brightness(0.96) sepia(0.06);
+  transition: filter 0.6s var(--ease-mech), transform 1.2s var(--ease-mech);
+}
+.figure:hover .frame[data-treatment="mono"] .img {
+  filter: grayscale(0.32) contrast(1.05) brightness(0.99) sepia(0.03);
+  transform: scale(1.02);
+}
+
+/* a sapphire edge of light, and a seated vignette */
+.sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 38%),
+    radial-gradient(130% 110% at 50% 118%, rgba(0, 0, 0, 0.42), transparent 55%);
+}
+
+.cap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.3rem var(--s-4);
+  padding-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.04em;
+}
+.unverified {
+  flex-basis: 100%;
+  color: var(--text-faint);
+  font-size: 0.92em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.unverified::before {
+  content: "— ";
+}
+.subject {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: var(--text);
+}
+.tick {
+  width: 16px;
+  height: 1px;
+  background: var(--accent);
+  flex: none;
+}
+.watch {
+  color: var(--text-dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: right;
+}

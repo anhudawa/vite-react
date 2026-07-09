@@ -1,0 +1,225 @@
+.wrap {
+  padding-block: var(--s-6, 2.5rem) var(--s-9, 5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-8, 4rem);
+}
+
+.intro {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.7rem);
+  line-height: 1.45;
+  max-width: 32ch;
+  color: var(--bone);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--label-muted);
+  margin: 0 0 var(--s-4, 1.5rem);
+  padding-bottom: var(--s-2, 0.6rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---- criteria ---- */
+.criteriaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-5, 2rem);
+}
+
+.criterion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2, 0.6rem);
+}
+
+.criterionNum {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--lume);
+  letter-spacing: 0.1em;
+}
+
+.criterionHead {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  margin: 0;
+  color: var(--bone);
+}
+
+.criterionBody {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--graphite, #b9b7b1);
+}
+
+/* ---- tiers ---- */
+.tier {
+  margin-bottom: var(--s-7, 3rem);
+}
+
+.tierHead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3, 1rem);
+  flex-wrap: wrap;
+}
+
+.tierLabel {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+  margin: 0;
+  color: var(--bone);
+}
+
+.tierRange {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--lume);
+  text-transform: uppercase;
+}
+
+.tierBlurb {
+  margin: var(--s-1, 0.4rem) 0 var(--s-4, 1.5rem);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--graphite, #b9b7b1);
+  max-width: 52ch;
+}
+
+.picks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s-3, 1rem);
+}
+
+.pick {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2, 0.6rem);
+  padding: var(--s-4, 1.5rem);
+  background: var(--bg-raised, #15161a);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius, 4px);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur-1, 0.18s) var(--ease-mech, ease),
+    transform var(--dur-1, 0.18s) var(--ease-mech, ease);
+}
+
+a.pick[data-live]:hover,
+.pick[data-live]:hover {
+  border-color: var(--lume);
+  transform: translateY(-2px);
+}
+
+.pickHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-2, 0.6rem);
+}
+
+.pickBrand {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--label-muted);
+}
+
+.pickKind {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lume);
+  border: 1px solid var(--rule);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+}
+
+.pickName {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--bone);
+}
+
+.pickWhy {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--graphite, #b9b7b1);
+  flex: 1;
+}
+
+.pickFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-2, 0.6rem);
+  margin-top: var(--s-2, 0.6rem);
+  padding-top: var(--s-2, 0.6rem);
+  border-top: 1px solid var(--rule);
+}
+
+.pickPrice {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--bone);
+  letter-spacing: 0.02em;
+}
+
+.pickLink {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--lume);
+}
+
+/* ---- counsel ---- */
+.counsel {
+  border-left: 2px solid var(--lume);
+  padding: var(--s-3, 1rem) 0 var(--s-3, 1rem) var(--s-4, 1.5rem);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--lume) 6%, transparent),
+    transparent 60%
+  );
+}
+
+.counselLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lume);
+  margin: 0 0 var(--s-2, 0.6rem);
+}
+
+.counselBody {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--bone);
+  margin: 0;
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+.disclaimer {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--label-muted);
+  max-width: 60ch;
+  margin: 0;
+}

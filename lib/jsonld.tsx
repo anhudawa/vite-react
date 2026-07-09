@@ -1,0 +1,192 @@
+import { site } from "./site";
+import { brand, brandSameAs } from "@/data/brand";
+
+/** Author + brand sameAs, deduped — only URLs that actually exist. */
+const allSameAs = () => [...new Set([...site.author.sameAs, ...brandSameAs()])];
+
+/** The Long Second as an Organization. TODO fields from data/brand.ts are
+ *  spread-guarded: while null they are not emitted at all. */
+export function organizationJsonLd() {
+  const orgSameAs = brandSameAs();
+  return {
+    "@type": "Organization" as const,
+    name: site.name,
+    url: site.url,
+    ...(brand.foundedYear ? { foundingDate: brand.foundedYear } : {}),
+    ...(brand.baseLocation
+      ? { location: { "@type": "Place", name: brand.baseLocation } }
+      : {}),
+    ...(brand.contactEmail ? { email: brand.contactEmail } : {}),
+    ...(orgSameAs.length > 0 ? { sameAs: orgSameAs } : {}),
+  };
+}
+
+export function JsonLd({ data }: { data: object | object[] }) {
+  const payload = Array.isArray(data) ? data : [data];
+  return (
+    <>
+      {payload.map((d, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }}
+        />
+      ))}
+    </>
+  );
+}
+
+export function breadcrumb(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: `${site.url}${it.path}`,
+    })),
+  };
+}
+
+/** Anthony Walsh as the bylined author — the E-E-A-T signal the dealer sites lack. */
+export function authorPersonJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: site.author.name,
+    jobTitle: `${site.author.role}, ${site.name}`,
+    description: site.author.bio,
+    url: `${site.url}/author/anthony-walsh`,
+    image: `${site.url}${site.author.portrait}`,
+    sameAs: allSameAs(),
+    // TODO fields from data/brand.ts — emitted only once real values exist.
+    ...(brand.baseLocation
+      ? { homeLocation: { "@type": "Place", name: brand.baseLocation } }
+      : {}),
+    ...(brand.contactEmail ? { email: brand.contactEmail } : {}),
+    worksFor: organizationJsonLd(),
+    knowsAbout: [
+      "Horology",
+      "Watchmaking",
+      "Watches in sport",
+      "Endurance sport",
+      "Cycling",
+      "Running",
+      "Triathlon",
+    ],
+  };
+}
+
+/** FAQPage schema for guides — high AI-citation value. */
+export function faqPageJsonLd(faq: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+export function articleJsonLd(opts: {
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified?: string;
+  path: string;
+  type?: "Article" | "NewsArticle";
+  /** URLs of the published works the piece cites → Article `citation`. */
+  citations?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": opts.type ?? "Article",
+    headline: opts.title,
+    description: opts.description,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    mainEntityOfPage: `${site.url}${opts.path}`,
+    /* The dek is the spoken-answer container ArticleView renders (the tldr
+       feeds `description` but never reaches the DOM). ArticleView stamps these
+       data attributes on the h1/dek — the stable contract, immune to CSS
+       Modules class-name hashing. */
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-article-title]", "[data-article-dek]"],
+    },
+    ...(opts.citations && opts.citations.length > 0 ? { citation: opts.citations } : {}),
+    author: {
+      "@type": "Person",
+      name: site.author.name,
+      url: `${site.url}/author/anthony-walsh`,
+      sameAs: site.author.sameAs,
+    },
+    publisher: organizationJsonLd(),
+    inLanguage: "en",
+  };
+}
+
+export function personJsonLd(opts: {
+  name: string;
+  nationality?: string;
+  sameAs?: string[];
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: opts.name,
+    nationality: opts.nationality,
+    sameAs: opts.sameAs,
+    url: `${site.url}${opts.path}`,
+  };
+}
+
+/** The watch itself, as a Product with its maker. No price/offers: an indicative
+ *  value is editorial context, not a real offer, so we never emit it as one. */
+export function productWatchJsonLd(opts: {
+  watch: string;
+  brand?: string;
+  reference?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: opts.watch,
+    category: "Wristwatch",
+    ...(opts.brand ? { brand: { "@type": "Brand", name: opts.brand } } : {}),
+    ...(opts.reference ? { mpn: opts.reference } : {}),
+  };
+}
+
+export function brandJsonLd(opts: { name: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    name: opts.name,
+    url: `${site.url}${opts.path}`,
+  };
+}
+
+export function itemListJsonLd(opts: {
+  name: string;
+  path: string;
+  items: { name: string; path: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: opts.name,
+    url: `${site.url}${opts.path}`,
+    numberOfItems: opts.items.length,
+    itemListElement: opts.items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      url: `${site.url}${it.path}`,
+    })),
+  };
+}

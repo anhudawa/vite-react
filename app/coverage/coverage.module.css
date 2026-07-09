@@ -1,0 +1,171 @@
+.section {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  border-top: var(--hairline) solid var(--rule);
+}
+.h {
+  font-size: var(--t-h2);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--s-4);
+}
+.lede {
+  max-width: 56ch;
+  color: var(--text-dim);
+  font-size: var(--t-caption);
+  line-height: 1.5;
+  margin-bottom: var(--s-6);
+}
+
+/* --- Pillars × modes ------------------------------------------------------- */
+.matrix {
+  width: 100%;
+  max-width: 44rem;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  font-variant-numeric: tabular-nums;
+}
+.matrix thead th {
+  font-size: var(--t-mono-xs);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.rowHead {
+  text-align: left;
+  font-weight: 400;
+  color: var(--text-dim);
+  padding: var(--s-3) var(--s-4) var(--s-3) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+  white-space: nowrap;
+}
+.cell,
+.cellTotal {
+  text-align: right;
+  padding: var(--s-3) 0 var(--s-3) var(--s-4);
+  border-bottom: var(--hairline) solid var(--rule);
+  color: var(--text);
+}
+.cellTotal {
+  border-left: var(--hairline) solid var(--rule-strong);
+  padding-left: var(--s-5);
+  color: var(--text-dim);
+}
+.matrix tfoot .rowHead,
+.matrix tfoot .cellTotal {
+  border-bottom: none;
+  border-top: var(--hairline) solid var(--rule-strong);
+  color: var(--text-dim);
+}
+.note {
+  margin-top: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  color: var(--text-faint);
+}
+
+/* The one permitted colour: the gap flag. */
+.gapFlag {
+  color: var(--accent-text);
+}
+
+/* --- Sport coverage --------------------------------------------------------- */
+.sports {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0;
+  max-width: 44rem;
+  border-top: var(--hairline) solid var(--rule);
+  border-left: var(--hairline) solid var(--rule);
+}
+.sport {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  border-right: var(--hairline) solid var(--rule);
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.sportLabel {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.sportCount,
+.sport .gapFlag {
+  font-family: var(--font-mono);
+  font-size: var(--t-h3);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.sportCount {
+  color: var(--text);
+}
+
+/* --- Freshness ---------------------------------------------------------------- */
+.months {
+  max-width: 44rem;
+  border-top: var(--hairline) solid var(--rule);
+}
+.monthRow {
+  display: grid;
+  grid-template-columns: 10rem 3ch 1fr;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-3) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  font-variant-numeric: tabular-nums;
+}
+.monthLabel {
+  color: var(--text-dim);
+}
+.monthCount {
+  text-align: right;
+  color: var(--text);
+}
+.monthBar {
+  position: relative;
+  height: var(--s-2);
+  border-left: var(--hairline) solid var(--rule-strong);
+}
+.monthBarFill {
+  position: absolute;
+  inset: 50% auto auto 0;
+  height: var(--hairline);
+  transform: translateY(-50%);
+  background: var(--text-dim);
+}
+
+/* --- Gaps ------------------------------------------------------------------ */
+.gaps {
+  list-style: none;
+  max-width: 44rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+}
+.gap {
+  padding: var(--s-3) 0 var(--s-3) var(--s-6);
+  border-bottom: var(--hairline) solid var(--rule);
+  position: relative;
+  color: var(--text-dim);
+}
+.gap::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 14px;
+  height: var(--hairline);
+  background: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .monthRow {
+    grid-template-columns: 7.5rem 3ch 1fr;
+  }
+}

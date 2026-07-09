@@ -1,0 +1,279 @@
+import Link from "next/link";
+import { LongSecondDial } from "@/components/hero/LongSecondDial";
+import { Figure } from "@/components/Figure";
+import { CinematicVideo } from "@/components/CinematicVideo";
+import { Reveal } from "@/components/Reveal";
+import { ArticleCard } from "@/components/ArticleCard";
+import { SectionHeading } from "@/components/SectionHeading";
+import { FactBlock } from "@/components/FactBlock";
+import { FromTheRecord } from "@/components/FromTheRecord";
+import { QuizPromo } from "@/components/QuizPromo";
+import { essays } from "@/content/essays/registry";
+import { publishedAthletes, renderableFacts } from "@/data/athletes";
+import { corpusStats, formatGBP } from "@/lib/economics";
+import { nav, site } from "@/lib/site";
+import styles from "./page.module.css";
+
+export default function HomePage() {
+  const [lead, ...rest] = essays;
+  const published = publishedAthletes();
+  const facts = published.map((a) => renderableFacts(a)[0]);
+  const stats = corpusStats(facts);
+  const dearest = facts.reduce((m, f) =>
+    (f.value?.gbpApprox ?? 0) > (m.value?.gbpApprox ?? 0) ? f : m
+  );
+  const pogacar = published[0];
+  const pogacarFact = renderableFacts(pogacar)[0];
+
+  return (
+    <>
+      {/* ===================== HERO ===================== */}
+      <section className={`${styles.hero} vignette`} aria-labelledby="hero-title">
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <div className={styles.heroInner}>
+          <div className={styles.heroText}>
+            <p className={styles.eyebrow}>
+              <span className={styles.eyebrowMark} aria-hidden="true" />
+              Endurance sport <span aria-hidden="true">·</span> every watch
+            </p>
+            <h1 id="hero-title" className={styles.heroTitle}>
+              The watches athletes wear.
+            </h1>
+            <p className={styles.heroDek}>
+              Across endurance sport, the best in the world wear something on their wrist.
+              {" "}
+              {site.name} tells you what it is, why it matters, and what it cost &mdash; the
+              craft, the heritage, the watch as an instrument of effort. Reported by{" "}
+              {site.founder}.
+            </p>
+            <div className={styles.heroActions}>
+              <Link href="/who-wears-what" className={styles.primary}>
+                Who wears what
+              </Link>
+              <Link href="/essays" className={styles.secondary}>
+                Read the essays
+              </Link>
+            </div>
+          </div>
+
+          <div className={`${styles.heroFigure} sapphire`}>
+            <LongSecondDial />
+          </div>
+        </div>
+
+        {/* spec strip — a running, engineered footer to the hero */}
+        <div className={styles.spec}>
+          <span>{site.essence}</span>
+          <span>THE LONG SECOND</span>
+          <span>SWEEP → DILATE → RESOLVE</span>
+          <span className={styles.specPron}>By Anthony Walsh</span>
+        </div>
+      </section>
+
+      {/* ===================== THE INTERSECTION ===================== */}
+      <section className={`container ${styles.feature}`} aria-labelledby="feature-h">
+        <div className={styles.featureGrid}>
+          <Reveal className={styles.featureImgA}>
+            <Figure
+              src="/photography/van-der-poel.jpg"
+              alt="Mathieu van der Poel roars in victory, a Richard Mille on his wrist"
+              subject="Mathieu van der Poel"
+              watch="Richard Mille"
+              ratio="5 / 6"
+              sizes="(max-width: 900px) 100vw, 42vw"
+            />
+          </Reveal>
+
+          <div className={styles.featureText}>
+            <p className={styles.featureKicker}>The intersection</p>
+            <h2 id="feature-h" className={styles.featureTitle}>
+              What&rsquo;s actually on the wrist.
+            </h2>
+            <p className={styles.featureBody}>
+              The watch as it is actually worn — by people who measure their lives in
+              seconds and never take it off. What it is, what it cost, and why it earned
+              its place. Reported from the wrist itself, never the press kit.
+            </p>
+            <Link href="/who-wears-what" className={styles.featureLink}>
+              See who wears what →
+            </Link>
+          </div>
+
+          <Reveal className={styles.featureImgB} delay={120}>
+            <Figure
+              src="/photography/tudor-giro-chrono.jpg"
+              alt="A Tudor Black Bay Chrono with a pink strap among the Giro d'Italia trophy spiral"
+              subject="Tudor BB Chrono"
+              watch="Giro d’Italia"
+              ratio="4 / 5"
+              sizes="(max-width: 900px) 100vw, 30vw"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===================== FROM THE RECORD ===================== */}
+      <FromTheRecord />
+
+      {/* ===================== FEATURED ESSAYS ===================== */}
+      <section className={`container ${styles.block}`} aria-labelledby="reading">
+        <SectionHeading index="01" kicker="The reading" title="Athletes and time">
+          <p id="reading">
+            Essays on what an athlete and a watch are to each other, across endurance
+            sport. Written by a racer, sourced to the last reference.
+          </p>
+        </SectionHeading>
+
+        <div className={styles.essayGrid}>
+          <div className={styles.lead}>
+            <ArticleCard essay={lead} variant="lead" />
+          </div>
+          <div className={styles.essayList}>
+            {rest.map((essay, i) => (
+              <ArticleCard key={essay.slug} essay={essay} index={i + 2} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== THE EFFORT ===================== */}
+      <section className={`container ${styles.effort}`} aria-labelledby="effort-h">
+        <div className={styles.effortGrid}>
+          <div className={styles.effortText}>
+            <p className={styles.effortKicker}>The effort</p>
+            <blockquote id="effort-h" className={styles.effortQuote}>
+              A finite reserve, spent against the clock. The rider and the watch are the
+              same machine — both meter out everything they hold, and both are judged by
+              the last second.
+            </blockquote>
+            <p className={styles.effortCredit}>
+              Mathieu van der Poel <span aria-hidden="true">·</span> Richard Mille RM
+              67-02
+            </p>
+          </div>
+          <Reveal className={styles.effortImg} delay={100}>
+            <Figure
+              src="/photography/van-der-poel.jpg"
+              alt="Mathieu van der Poel roars in victory, a Richard Mille on his clenched wrist"
+              subject="Mathieu van der Poel"
+              watch="Richard Mille RM 67-02"
+              ratio="4 / 5"
+              sizes="(max-width: 900px) 100vw, 46vw"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===================== CINEMATIC (Pogačar climb) ===================== */}
+      <section className={styles.cine} aria-labelledby="cine-h">
+        <div className={styles.cineMedia}>
+          <CinematicVideo
+            src="/video/pogacar-climb.mp4"
+            poster="/video/pogacar-climb-poster.jpg"
+            label="Tadej Pogačar climbing a mountain road in the world champion's jersey"
+            className={styles.cineVideo}
+          />
+          <div className={styles.cineScrim} aria-hidden="true" />
+        </div>
+        <div className={`container ${styles.cineInner}`}>
+          <p className={styles.cineKicker}>In the race</p>
+          <h2 id="cine-h" className={styles.cineTitle}>
+            Six figures on the wrist, over the worst roads in sport.
+          </h2>
+          <p className={styles.cineCredit}>
+            Tadej Pogačar <span aria-hidden="true">·</span> Richard Mille RM 67-02
+          </p>
+        </div>
+      </section>
+
+      {/* ===================== THE FACT BLOCK / REFERENCE ===================== */}
+      <section className={`container ${styles.block}`} aria-labelledby="reference">
+        <div className={styles.refGrid}>
+          <div className={styles.refText}>
+            <SectionHeading
+              index="02"
+              kicker="The reference"
+              title="The watches athletes actually wear"
+            >
+              <p id="reference">
+                Every wrist we cover: the watch, what it cost, and the detail nobody else
+                bothers to log &mdash; including, when it matters, whether it was bought or
+                it&rsquo;s a paid placement.
+              </p>
+            </SectionHeading>
+            <dl className={styles.moneyStats}>
+              <div>
+                <dt>{formatGBP(stats.totalGBP)}</dt>
+                <dd>across {stats.count} wrists</dd>
+              </div>
+              <div>
+                <dt>
+                  {stats.paid} paid · {stats.bought} bought
+                </dt>
+                <dd>placements vs purchases</dd>
+              </div>
+              <div>
+                <dt>~{formatGBP(dearest.value!.gbpApprox)}</dt>
+                <dd>the dearest — {dearest.athlete}, in the race</dd>
+              </div>
+            </dl>
+            <Link href="/who-wears-what" className={styles.refLink}>
+              See the whole ledger →
+            </Link>
+          </div>
+          <div className={styles.refPanel}>
+            <FactBlock fact={pogacarFact} />
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== SILOS ===================== */}
+      <section className={`container ${styles.block}`} aria-labelledby="sections">
+        <SectionHeading index="03" kicker="The field" title="Where to start">
+          <p id="sections">Four ways into the same subject.</p>
+        </SectionHeading>
+        <ul className={styles.silos}>
+          {nav.map((item, i) => (
+            <li key={item.href}>
+              <Link href={item.href} className={styles.silo}>
+                <span className={styles.siloNum}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className={styles.siloLabel}>{item.label}</span>
+                <span className={styles.siloNote}>{item.note}</span>
+                <span className={styles.siloArrow} aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* ===================== START HERE ===================== */}
+      <section className={styles.startBand} aria-labelledby="start-here-h">
+        <div className={`container ${styles.startInner}`}>
+          <div className={styles.startText}>
+            <h2 id="start-here-h" className={styles.startKicker}>
+              New here?
+            </h2>
+            <p className={styles.startLine}>
+              Six pieces, in order, that make the whole site make sense.
+            </p>
+          </div>
+          <div className={styles.startActions}>
+            <Link href="/collections/start-here" className={styles.startCta}>
+              Start here →
+            </Link>
+            <Link href="/find-your-watch" className={styles.startAlt}>
+              Or answer seven questions
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== FIND YOUR WATCH ===================== */}
+      <QuizPromo />
+    </>
+  );
+}

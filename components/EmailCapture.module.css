@@ -1,0 +1,209 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin: 0 0 var(--s-2);
+}
+
+.hook {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0 0 var(--s-2);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.offer {
+  font-size: var(--t-body-s);
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0;
+  max-width: 52ch;
+}
+
+/* ---------- form ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.input {
+  background: var(--bg);
+  border: var(--hairline) solid var(--rule-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: var(--t-body-s);
+  padding: var(--s-3) var(--s-4);
+  width: 100%;
+  transition: border-color var(--dur-1) var(--ease-mech);
+}
+.input::placeholder {
+  color: var(--text-faint);
+}
+.input:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid transparent;
+}
+
+.button {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 0;
+  border-radius: var(--radius);
+  padding: var(--s-3) var(--s-5);
+  cursor: pointer;
+  transition: filter var(--dur-1) var(--ease-mech);
+  white-space: nowrap;
+}
+.button:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ---------- consent ---------- */
+.consentRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-3);
+  align-items: start;
+}
+.checkbox {
+  margin-top: 0.2em;
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent);
+  flex: none;
+}
+.consentLabel {
+  font-size: var(--t-mono-xs);
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+.privacyLink {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.error {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.confirm {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-body-s);
+  color: var(--text);
+  margin: 0;
+}
+.tick {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  flex: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ====================== variants ====================== */
+
+/* The inline and gate variants sit on a raised (graphite) surface where
+   --text-dim drops below AA. Lift the offer and the legally-important consent
+   line to full --text on those surfaces. */
+.root[data-variant="inline"] .offer,
+.root[data-variant="gate"] .offer,
+.root[data-variant="inline"] .consentLabel,
+.root[data-variant="gate"] .consentLabel {
+  color: var(--text);
+}
+
+/* inline — a bordered block inside article flow */
+.root[data-variant="inline"] {
+  border: var(--hairline) solid var(--rule);
+  border-left: 2px solid var(--accent);
+  background: var(--bg-raised, var(--bg-sunken));
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+/* footer — sits in the global footer band, no chrome of its own */
+.root[data-variant="footer"] {
+  gap: var(--s-4);
+}
+.root[data-variant="footer"] .hook {
+  font-size: var(--t-h3);
+}
+
+/* popup — compact, the dialog supplies the chrome */
+.root[data-variant="popup"] {
+  gap: var(--s-3);
+}
+.root[data-variant="popup"] .hook {
+  max-width: none;
+}
+
+/* gate — prominent, reveal-the-rest moment */
+.root[data-variant="gate"] {
+  border: var(--hairline) solid var(--rule);
+  border-top: 2px solid var(--accent);
+  background: var(--bg-raised, var(--bg-sunken));
+  border-radius: var(--radius);
+  padding: clamp(1.75rem, 5vw, 2.75rem);
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .field {
+    grid-template-columns: 1fr;
+  }
+}

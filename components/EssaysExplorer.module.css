@@ -1,0 +1,82 @@
+.wrap {
+  padding-block: clamp(3rem, 7vw, 5rem);
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+/* --- Chip rows -------------------------------------------------------------- */
+.filters {
+  display: grid;
+  gap: var(--s-3);
+}
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-2);
+}
+.filterLabel {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  min-width: 4.25rem;
+}
+.chip {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: none;
+  border: var(--hairline) solid var(--rule);
+  border-radius: var(--radius);
+  padding: var(--s-1) var(--s-3);
+  cursor: pointer;
+  transition: color var(--dur-1) var(--ease-mech),
+    border-color var(--dur-1) var(--ease-mech);
+}
+.chip:hover {
+  color: var(--text);
+  border-color: var(--rule-strong);
+}
+.chip[aria-pressed="true"] {
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+.count {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-top: var(--s-1);
+}
+
+/* --- The list (lead card + rows) --------------------------------------------- */
+.list {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+.list > :first-child {
+  max-width: 30ch;
+}
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  color: var(--text-dim);
+  max-width: 46ch;
+  line-height: 1.6;
+  padding-block: var(--s-6);
+  border-top: var(--hairline) solid var(--rule);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+}

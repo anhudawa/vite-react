@@ -1,0 +1,92 @@
+.section {
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-5);
+}
+.list {
+  list-style: none;
+  border-top: var(--hairline) solid var(--rule);
+}
+.item {
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.link,
+.static {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto;
+  column-gap: var(--s-5);
+  padding: var(--s-5) 0;
+  transition: padding-left var(--dur-2) var(--ease-mech);
+}
+.item[data-live] .link:hover {
+  padding-left: var(--s-4);
+}
+.meta {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  margin-bottom: var(--s-3);
+}
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  letter-spacing: -0.015em;
+  max-width: 24ch;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.item[data-live] .link:hover .title {
+  color: var(--accent-text);
+}
+/* Forthcoming items read as quieter via a muted title (large text, so still AA)
+   rather than a blanket opacity that would drag the small meta text under AA. */
+.static .title {
+  color: var(--text-dim);
+}
+.dek {
+  grid-column: 1;
+  margin-top: var(--s-3);
+  max-width: 56ch;
+  color: var(--text-dim);
+  font-size: var(--t-body-s);
+  line-height: 1.6;
+}
+.arrow {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+}
+.item[data-live] .link:hover .arrow {
+  color: var(--accent-text);
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: var(--t-h4);
+  }
+}

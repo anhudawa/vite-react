@@ -1,0 +1,65 @@
+/* "Part of a trail" — one quiet mono row between the masthead and the piece.
+   It whispers: hairline above and below, faint ink, no uppercase shouting. */
+
+.trail {
+  max-width: var(--container);
+  margin: var(--s-5) auto 0;
+  padding-inline: var(--gutter);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-5);
+  flex-wrap: wrap;
+  padding-block: var(--s-3);
+  border-top: var(--hairline) solid var(--rule);
+  border-bottom: var(--hairline) solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+.label {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.collection {
+  color: var(--text-dim);
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.collection:hover {
+  color: var(--accent-text);
+}
+
+.steps {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-5);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.step {
+  color: var(--text-dim);
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.step:hover {
+  color: var(--accent-text);
+}
+
+/* Stack on small screens: label above, prev/next each on their own line. */
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .steps {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,51 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { PageHeader } from "@/components/PageHeader";
+import { deriveBrands } from "@/lib/brands";
+import { formatGBP } from "@/lib/economics";
+import { JsonLd, breadcrumb } from "@/lib/jsonld";
+import styles from "./brands.module.css";
+
+export const metadata: Metadata = {
+  title: "By Brand",
+  description:
+    "The references grouped by maker — who wears each brand, and what sits on those wrists.",
+};
+
+export default function BrandsPage() {
+  const brands = deriveBrands();
+  return (
+    <>
+      <JsonLd
+        data={breadcrumb([
+          { name: "Home", path: "/" },
+          { name: "By Brand", path: "/brands" },
+        ])}
+      />
+      <PageHeader
+        index="—"
+        kicker="Enter from the maker"
+        title="By Brand"
+        intro="The same references, read from the maker down. Who wears each brand, and what it all costs."
+      />
+      <section className={`container ${styles.list}`}>
+        {brands.map((b) => (
+          <Link key={b.slug} href={`/brands/${b.slug}`} className={styles.brand}>
+            <span className={styles.brandName}>{b.brand}</span>
+            <span className={styles.brandMeta}>
+              {b.wearers.length > 0
+                ? `${b.wearers.length} ${b.wearers.length === 1 ? "wrist" : "wrists"}`
+                : `${b.essays?.length ?? 0} ${(b.essays?.length ?? 0) === 1 ? "piece" : "pieces"}`}
+            </span>
+            <span className={styles.brandTotal}>
+              {b.wearers.length > 0 ? formatGBP(b.totalGBP) : "In the library"}
+            </span>
+            <span className={styles.brandArrow} aria-hidden="true">
+              →
+            </span>
+          </Link>
+        ))}
+      </section>
+    </>
+  );
+}

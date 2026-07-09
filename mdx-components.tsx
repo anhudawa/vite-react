@@ -1,0 +1,21 @@
+import type { MDXComponents } from "mdx/types";
+import { FactBlock } from "@/components/FactBlock";
+import { Figure } from "@/components/Figure";
+import { Pull } from "@/components/prose/Pull";
+import { EmailCapture } from "@/components/EmailCapture";
+
+/**
+ * Root MDX mapping (App Router). Essays render through these so the typographic
+ * craft — measure, hanging punctuation, mono captions, designed links — is
+ * consistent everywhere. Brand components (Fact Block, pull-quote) are exposed
+ * to MDX directly.
+ */
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    FactBlock,
+    Figure,
+    Pull,
+    EmailCapture,
+    ...components,
+  };
+}

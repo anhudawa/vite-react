@@ -1,0 +1,155 @@
+# Deploy runbook — Vercel go-live
+
+Prepared 2026-07-07. Plain steps, in order. Everything here is read from the
+real config: `next.config.mjs` (headers, redirects), `lib/site.ts` and
+`lib/beehiiv.ts` (env vars), `playwright.config.ts` (smoke suite),
+`package.json` (build chain).
+
+## 1. Create the project
+
+1. vercel.com → Add New → Project → Import the Git repository (this repo,
+   default branch).
+2. Framework preset: **Next.js** (auto-detected; App Router, Next 14.2).
+3. Build command: default (`npm run build`). Do not override — `prebuild`
+   runs the full check chain (`verify:facts`, `verify:sources`,
+   `voice:check`, `qa:copy`, `voice:corpus`) before `next build`. A fact,
+   voice, or copy violation fails the deploy. That is by design; fix the
+   content, never the pipeline.
+4. Node version: set the project to **20.x** (matches CI in
+   `.github/workflows/ci.yml`).
+
+## 2. Environment variables (per environment)
+
+From `lib/site.ts` and `lib/beehiiv.ts`:
+
+| Variable | Production | Preview | Notes |
+|---|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | `https://thelongsecond.com` | optional | Canonical/OG/sitemap base. Code falls back to this exact value, but set it explicitly so it always matches the served domain. If you want preview OG/canonical links to point at the preview host, set it there too; otherwise leave preview unset. |
+| `BEEHIIV_API_KEY` | required (secret) | omit | Subscribe API. Without it the endpoint returns a graceful "not configured" error — the site still builds and serves. |
+| `BEEHIIV_PUBLICATION_ID` | required | omit | Pairs with the key. See `docs/BEEHIIV.md`. |
+
+No other env vars exist in the codebase.
+
+## 3. Domain + DNS
+
+1. Vercel project → Settings → Domains → add `thelongsecond.com` and
+   `www.thelongsecond.com`.
+2. At the registrar, create the records Vercel displays (its current
+   standard: apex `A` → `76.76.21.21`; `www` `CNAME` →
+   `cname.vercel-dns.com` — use whatever values the dashboard shows).
+3. Set the apex as the primary domain; Vercel then 308-redirects `www` to it
+   automatically. Confirm both directions resolve after DNS propagates.
+4. Wait for the TLS certificate to issue (automatic; usually minutes).
+
+## 4. Confirm the security headers arrive
+
+`next.config.mjs` attaches five headers to every route (`/:path*`). Verify
+from outside:
+
+```
+curl -sI https://thelongsecond.com/ | grep -iE 'strict-transport|x-content-type|x-frame|referrer-policy|permissions-policy'
+```
+
+Expected, exactly:
+
+```
+Strict-Transport-Security: max-age=63072000; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+```
+
+Note: HSTS is two years + subdomains, deliberately **without** `preload` —
+add that only after the domain has run HTTPS-only long enough to commit to
+the browser preload list (comment in the config says the same).
+
+## 5. Post-deploy checks
+
+### 5a. Smoke suite against production
+
+`playwright.config.ts` pins `baseURL` to `http://localhost:3001` (the suite
+was built to run against a locally served build). To point it at production,
+make this one-line change in `playwright.config.ts`:
+
+```ts
+baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:3001",
+```
+
+then run:
+
+```
+PLAYWRIGHT_BASE_URL=https://thelongsecond.com npx playwright test
+```
+
+That is 17 smoke tests (routes, 308 + Location, RSS well-formedness, feeds,
+404 copy, collections ordering, the who-wears-what publishing gate) plus the
+axe accessibility sweeps. Until that config tweak is made, the equivalent
+manual checks below cover the essentials.
+
+### 5b. Manual curl checks (no code changes needed)
+
+```
+# Feeds and machine endpoints — expect 200
+curl -sI https://thelongsecond.com/rss.xml | head -1
+curl -sI https://thelongsecond.com/sitemap.xml | head -1
+curl -sI https://thelongsecond.com/robots.txt | head -1
+curl -sI https://thelongsecond.com/llms.txt | head -1
+curl -sI https://thelongsecond.com/facts.json | head -1
+
+# OG cards — expect 200 with an image content-type
+curl -sI https://thelongsecond.com/opengraph-image | grep -iE 'HTTP|content-type'
+curl -sI https://thelongsecond.com/features/sixteen-years/opengraph-image | grep -iE 'HTTP|content-type'
+
+# Legacy essay URL — expect HTTP 308 with a Location header
+curl -sI https://thelongsecond.com/essays/sixteen-years | grep -iE 'HTTP|location'
+# → 308, Location: /features/sixteen-years
+
+# Real 404
+curl -sI https://thelongsecond.com/no-such-page | head -1
+```
+
+(The `/essays/*` 308s are generated in `next.config.mjs` from each piece's
+frontmatter mode — features/guides/reviews/dispatch.)
+
+### 5c. Share cards and search
+
+1. Run the homepage and one essay through opengraph.xyz (and the X card
+   validator) — confirm the pillar motifs render and "Pogačar" keeps its č.
+2. Submit `https://thelongsecond.com/sitemap.xml` in Google Search Console
+   and Bing Webmaster Tools.
+3. Confirm `robots.txt` allows the AI crawlers (it is generated by
+   `app/robots.ts`).
+
+### 5d. Subscribe flow
+
+Subscribe with a real email address end-to-end; confirm the welcome email
+arrives (Beehiiv). If it fails, check the two Beehiiv env vars first.
+
+## 6. Rollback
+
+Vercel keeps every previous deployment immutable. If production is bad:
+
+1. Project → Deployments → pick the last good deployment → **Instant
+   Rollback** (promotes it to production in seconds; no rebuild, no DNS
+   change).
+2. Then `git revert` the offending commit so the next push doesn't
+   reintroduce it. The prebuild check chain runs again on that push.
+
+## The first hour after deploy
+
+- [ ] Five security headers present (curl in step 4)
+- [ ] Home, one feature, one guide render — both themes, mobile width
+- [ ] `/rss.xml`, `/sitemap.xml`, `/robots.txt`, `/llms.txt`, `/facts.json` all 200
+- [ ] `/essays/sixteen-years` returns 308 with the right Location
+- [ ] OG card renders for home + one essay (validator, step 5c)
+- [ ] Sitemap submitted to Google + Bing
+- [ ] Subscribe end-to-end; welcome email received
+- [ ] Junk URL returns the real 404 page
+- [ ] Wayback capture for the Cyclingnews source (the one advisory left by
+      `verify:sources`; archive.org rate-limits the build environment — it is
+      a 30-second browser task: web.archive.org → Save Page Now)
+- [ ] Watch the Vercel logs for the first real traffic; note anything 500ing
+- [ ] Analytics decision still open — nothing is installed, deliberately, and
+      the privacy page currently promises none. If you add any, update
+      `/privacy` in the same change.

@@ -1,0 +1,5 @@
+.capture {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-bottom: var(--s-10);
+}

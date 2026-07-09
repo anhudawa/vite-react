@@ -1,0 +1,28 @@
+.byline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.name {
+  font-family: var(--font-serif);
+  font-size: var(--t-h4);
+  letter-spacing: -0.01em;
+}
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.dot {
+  color: var(--rule-strong);
+}
+.issue {
+  color: var(--accent-text);
+  margin-left: var(--s-2);
+}

@@ -1,0 +1,305 @@
+.article {
+  padding-block: clamp(2.5rem, 6vw, 5rem) var(--s-9);
+}
+
+/* --- Masthead ------------------------------------------------------------- */
+.head {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.crumbs {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-6);
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+}
+.crumbs a:hover {
+  color: var(--accent-text);
+}
+.crumbSep {
+  color: var(--rule-strong);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: var(--s-4);
+}
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--t-h1);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  max-width: 18ch;
+  margin-bottom: var(--s-5);
+  font-variation-settings: "opsz" 144;
+}
+.dek {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--t-lead);
+  line-height: 1.4;
+  color: var(--text-dim);
+  max-width: 48ch;
+}
+.bylineRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: var(--hairline) solid var(--rule);
+}
+.dates {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+}
+.pubdate {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+/* The quiet "Updated <date>" beside the published date — rendered only when
+   dateModified differs from date. */
+.updated {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.authorSlot {
+  max-width: 54rem;
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
+}
+
+.inlineCapture {
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
+}
+
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.tag {
+  display: inline-block;
+  border: var(--hairline) solid var(--rule);
+  border-radius: 999px;
+  padding: var(--s-1) var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  transition: color var(--dur-1) var(--ease-mech),
+    border-color var(--dur-1) var(--ease-mech);
+}
+.tag:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* --- Body — the reading column ------------------------------------------- */
+.body {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  margin-top: var(--s-8);
+  font-size: var(--t-body);
+  line-height: 1.66;
+  color: var(--text);
+}
+.body :global(p) {
+  margin-bottom: var(--s-5);
+}
+
+/* drop the first line into a small-caps lead-in for editorial gravity */
+.body :global(p:first-of-type) {
+  font-size: var(--t-lead);
+  line-height: 1.45;
+  color: var(--text);
+}
+.body :global(p:first-of-type::first-letter) {
+  initial-letter: 3;
+  -webkit-initial-letter: 3;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  margin-right: 0.08em;
+  color: var(--text);
+}
+
+.body :global(h2) {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-top: var(--s-8);
+  margin-bottom: var(--s-4);
+  max-width: 24ch;
+}
+.body :global(h3) {
+  font-family: var(--font-grotesque);
+  font-weight: 600;
+  font-size: var(--t-h4);
+  margin-top: var(--s-7);
+  margin-bottom: var(--s-3);
+}
+
+.body :global(a) {
+  color: var(--text);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: background-size var(--dur-1) var(--ease-mech);
+}
+.body :global(a:hover) {
+  background-size: 100% 2px;
+}
+
+.body :global(em) {
+  font-style: italic;
+}
+.body :global(strong) {
+  font-weight: 600;
+}
+
+.body :global(blockquote) {
+  margin: var(--s-6) 0;
+  padding-left: var(--s-5);
+  border-left: 2px solid var(--accent);
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+/* --- FAQ (guides) -------------------------------------------------------- */
+.faq {
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
+}
+.faqHead {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  margin-bottom: var(--s-5);
+}
+.faqItem {
+  padding: var(--s-4) 0;
+  border-top: var(--hairline) solid var(--rule);
+}
+.faqQ {
+  font-family: var(--font-grotesque);
+  font-weight: 600;
+  font-size: var(--t-h4);
+  color: var(--text);
+  margin-bottom: var(--s-2);
+}
+.faqA {
+  margin: 0;
+  font-size: var(--t-body);
+  line-height: 1.66;
+  color: var(--text-dim);
+}
+
+/* --- Footer / next ------------------------------------------------------- */
+.lead {
+  max-width: 62rem;
+  margin: clamp(2rem, 5vw, 3.5rem) auto clamp(2.5rem, 6vw, 4rem);
+  padding-inline: var(--gutter);
+}
+/* --- Related reading ------------------------------------------------------ */
+.related {
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
+  padding-inline: var(--gutter);
+}
+.relatedLabel {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-top: var(--s-6);
+  border-top: var(--hairline) solid var(--rule);
+  margin-bottom: var(--s-4);
+}
+.relatedList {
+  list-style: none;
+}
+.relatedItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-3);
+}
+.relatedItem + .relatedItem {
+  border-top: var(--hairline) solid var(--rule);
+}
+.relatedTitle {
+  font-family: var(--font-serif);
+  font-size: var(--t-h4);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.relatedTitle:hover {
+  color: var(--accent-text);
+}
+.relatedDate {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.foot {
+  max-width: var(--measure);
+  margin: var(--s-9) auto 0;
+  padding: var(--s-6) var(--gutter) 0;
+  border-top: var(--hairline) solid var(--rule);
+}
+.footEssence {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--t-h4);
+  margin-bottom: var(--s-5);
+}
+.next {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+}
+.next a {
+  color: var(--accent-text);
+}
+.nextLabel {
+  color: var(--text-faint);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}

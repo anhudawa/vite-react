@@ -1,0 +1,682 @@
+/* =============================================================================
+   ESCAPEMENT — DESIGN TOKENS
+   Single source of truth. Extracted verbatim from the brand identity.
+   No default palette, no magic numbers downstream — everything reads from here.
+   ============================================================================= */
+
+:root {
+  /* --- Brand palette (raw, immutable) ------------------------------------- */
+  --movement-black: #16181b; /* the dial, the ink. cool near-black, never #000 */
+  --graphite: #2a2d31;       /* raised surfaces, cards, depth */
+  --steel: #8b9095;          /* secondary text, fine rules, brushed-metal register */
+  --bone: #f2eee6;           /* warm off-white. editorial space, long-form reading */
+  --lume: #c2d24a;           /* print accent — aged green-gold */
+  --lume-glow: #d8f26a;      /* digital glow accent. used RARELY */
+  --brass: #9e8455;          /* physical touches only — avoid on screen */
+
+  /* tonal steps derived from the palette, for hairlines and washes */
+  --black-90: #1b1e22;
+  --black-80: #202327;
+  --steel-rgb: 139, 144, 149;
+  --bone-rgb: 242, 238, 230;
+  --lume-rgb: 216, 242, 106;
+
+  /* --- Type families (bound to next/font variables) ----------------------- */
+  --font-grotesque: var(--font-grotesque), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-serif), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-mono), "SFMono-Regular", Menlo, monospace;
+
+  /* --- Type scale (modular, ~1.25) ---------------------------------------- */
+  --t-mono-xs: 0.6875rem;  /* 11px — labels, eyebrows */
+  --t-caption: 0.8125rem;  /* 13px */
+  --t-body-s: 0.9375rem;   /* 15px */
+  --t-body: 1.0625rem;     /* 17px — long-form base */
+  --t-lead: 1.3125rem;     /* 21px — standfirst */
+  --t-h4: 1.5rem;
+  --t-h3: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+  --t-h2: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+  --t-h1: clamp(2.75rem, 1.6rem + 5.5vw, 6rem);
+  --t-display: clamp(3.5rem, 1.2rem + 10vw, 9.5rem);
+
+  /* --- Spacing scale ------------------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+  --s-10: 11rem;
+
+  /* --- Structure ----------------------------------------------------------- */
+  --measure: 38rem;             /* optimal reading width */
+  --container: 78rem;
+  --container-wide: 90rem;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --hairline: 1px;
+  --radius: 2px;               /* restraint: almost nothing is rounded */
+
+  /* --- Motion (mechanical, precise — custom curves, no default ease) ------- */
+  --ease-mech: cubic-bezier(0.16, 1, 0.3, 1);   /* settle, like a lever locking */
+  --ease-escape: cubic-bezier(0.7, 0, 0.3, 1);  /* impulse — quick release */
+  --dur-1: 140ms;
+  --dur-2: 280ms;
+  --dur-3: 520ms;
+
+  --z-header: 100;
+  --z-overlay: 200;
+}
+
+/* =============================================================================
+   THEMES — Dark (Movement Black) and Light (Bone) are BOTH first-class.
+   ============================================================================= */
+
+/* Dark is the default mood of the brand. */
+:root,
+[data-theme="dark"] {
+  --bg: var(--movement-black);
+  --bg-raised: var(--graphite);
+  --bg-sunken: #121315;
+  --text: var(--bone);
+  --text-dim: var(--steel);
+  --text-faint: #82878c; /* WCAG AA (4.75:1) on Movement Black */
+  --rule: rgba(var(--bone-rgb), 0.12);
+  --rule-strong: rgba(var(--bone-rgb), 0.22);
+  --accent: var(--lume-glow); /* graphical fills, ticks, jewels */
+  --accent-text: var(--lume-glow); /* accent used as text — AA on dark */
+  --label-muted: #a0a5aa; /* muted labels on raised graphite — AA */
+  --accent-ink: var(--movement-black); /* text on an accent fill */
+  --grain-opacity: 0.05;
+  --selection: rgba(var(--lume-rgb), 0.22);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: var(--bone);
+  --bg-raised: #fbf9f4;
+  --bg-sunken: #e9e4d9;
+  --text: var(--movement-black);
+  --text-dim: #5f6469;
+  --text-faint: #61656a; /* WCAG AA on Bone, sunken and raised light surfaces */
+  --rule: rgba(22, 24, 27, 0.14);
+  --rule-strong: rgba(22, 24, 27, 0.26);
+  --accent: var(--lume); /* the aged, print-side lume reads with more class on Bone */
+  /* Lume is never legible as small text on Bone — a deep lume-olive for text use */
+  --accent-text: #586012;
+  --label-muted: #5f6469;
+  --accent-ink: var(--movement-black);
+  --grain-opacity: 0.035;
+  --selection: rgba(194, 210, 74, 0.3);
+  color-scheme: light;
+}
+
+/* =============================================================================
+   RESET + BASE
+   ============================================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  hanging-punctuation: first last; /* true editorial detail */
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-grotesque);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  font-feature-settings: "kern", "liga", "calt";
+  transition: background-color var(--dur-2) var(--ease-mech),
+    color var(--dur-2) var(--ease-mech);
+  position: relative;
+  min-height: 100dvh;
+}
+
+/* Subtle film grain over the whole canvas — tactile, never glossy. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--text);
+}
+
+img,
+picture,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Typographic primitives ----------------------------------------------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  font-feature-settings: "kern", "liga", "dlig";
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+/* tabular, lining numerals for any data context */
+.tnum,
+time,
+.fact,
+table {
+  font-feature-settings: "tnum", "lnum";
+}
+
+/* --- Mono eyebrow / label, the brand's recurring "spec-plate" voice -------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* --- Links in prose: custom, designed underline --------------------------- */
+.prose-link,
+.prose a {
+  color: var(--text);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  padding-bottom: 1px;
+  transition: background-size var(--dur-1) var(--ease-mech),
+    color var(--dur-1) var(--ease-mech);
+}
+.prose-link:hover,
+.prose a:hover {
+  background-size: 100% 2px;
+  color: var(--accent-text);
+}
+
+/* =============================================================================
+   FOCUS — designed, never default, never removed
+   ============================================================================= */
+
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--s-3);
+  left: var(--s-3);
+  z-index: var(--z-overlay);
+  transform: translateY(-200%);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  padding: var(--s-2) var(--s-4);
+  transition: transform var(--dur-1) var(--ease-mech);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* =============================================================================
+   LAYOUT PRIMITIVES
+   ============================================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container-wide {
+  max-width: var(--container-wide);
+}
+
+.rule {
+  border: 0;
+  border-top: var(--hairline) solid var(--rule);
+}
+
+/* a hairline that carries a single tick of lume at its origin */
+.rule-tick {
+  position: relative;
+  border-top: var(--hairline) solid var(--rule);
+}
+.rule-tick::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 28px;
+  height: var(--hairline);
+  background: var(--accent);
+}
+
+/* =============================================================================
+   MATERIALITY — depth, metal, sapphire, light. The tactile register that
+   separates a luxury object from a wireframe. Used sparingly, with intent.
+   ============================================================================= */
+
+:root {
+  /* brushed-steel sheen for metal accents and the chapter ring */
+  --metal: linear-gradient(
+    145deg,
+    #6b7075 0%,
+    #c9ced3 18%,
+    #8b9095 34%,
+    #eef1f4 52%,
+    #7c8186 70%,
+    #b6bbc0 86%,
+    #5f6469 100%
+  );
+  /* warm brass sheen, for the rare premium physical cue */
+  --brass-sheen: linear-gradient(145deg, #7a6233 0%, #d8bd86 50%, #6f5a30 100%);
+  /* soft luxury shadow — large, barely there, never harsh */
+  --shadow-soft: 0 1px 1px rgba(0, 0, 0, 0.2), 0 12px 28px rgba(0, 0, 0, 0.28),
+    0 40px 80px rgba(0, 0, 0, 0.32);
+  --shadow-lift: 0 2px 10px rgba(0, 0, 0, 0.24), 0 24px 60px rgba(0, 0, 0, 0.36);
+}
+
+/* a domed, dimensional dark surface — top-lit, hairline-rimmed */
+.surface-deep {
+  position: relative;
+  background:
+    radial-gradient(120% 100% at 50% -10%, rgba(var(--bone-rgb), 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg-raised), var(--bg-sunken));
+  border: var(--hairline) solid var(--rule);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(var(--bone-rgb), 0.05);
+}
+
+/* a sapphire-glass sheen — a slow diagonal sweep of light */
+.sapphire {
+  position: relative;
+  overflow: hidden;
+}
+.sapphire::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(var(--bone-rgb), 0.06) 46%,
+    rgba(var(--bone-rgb), 0.12) 50%,
+    rgba(var(--bone-rgb), 0.04) 54%,
+    transparent 70%
+  );
+  transform: translateX(-30%);
+  animation: sheen 9s var(--ease-mech) infinite;
+}
+@keyframes sheen {
+  0%, 100% { transform: translateX(-40%); opacity: 0; }
+  45% { opacity: 1; }
+  55% { opacity: 1; }
+  70%, 100% { transform: translateX(40%); opacity: 0; }
+}
+
+/* a radial vignette to seat content and add depth on dark sections */
+.vignette {
+  position: relative;
+}
+.vignette::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    130% 120% at 50% 35%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+[data-theme="light"] .vignette::before {
+  background: radial-gradient(
+    130% 120% at 50% 35%,
+    transparent 60%,
+    rgba(22, 24, 27, 0.06) 100%
+  );
+}
+
+/* hairline that carries a brushed-metal sheen */
+.rule-metal {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--bone-rgb), 0.28) 18%,
+    rgba(var(--bone-rgb), 0.28) 82%,
+    transparent
+  );
+}
+
+/* a refined, finer film grain for premium surfaces */
+.grain-fine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sapphire::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* =============================================================================
+   MOTION — reduced-motion respected globally
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* entrance utility used sparingly for editorial reveals */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise var(--dur-3) var(--ease-mech) both;
+}
+
+/* =============================================================================
+   PRINT — the considered-publication edition.
+   Essays should leave the screen with the same care they were set with: bone
+   ink on white paper, serif hierarchy intact, mono metadata quiet, every piece
+   of interactive chrome removed. All colour flows through the same custom
+   properties the screen uses — we re-tune the tokens, not the components.
+
+   Selector note: components stamp data-* attributes (data-article-*, data-
+   email-capture, …) on the elements this block targets — those attributes are
+   the stable contract; CSS Modules class names are hashed and are not.
+   ============================================================================= */
+
+@media print {
+  /* --- Page geometry -------------------------------------------------------
+     ~2cm margins; the page margin, not --gutter, owns horizontal whitespace. */
+  @page {
+    margin: 2cm;
+  }
+
+  /* --- Token overrides — force the Bone/light reading register -------------
+     Beats both theme blocks regardless of the data-theme the reader left on. */
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --bg: #ffffff;
+    --bg-raised: #ffffff;
+    --bg-sunken: #ffffff;
+    --text: var(--movement-black); /* near-black ink, never #000 */
+    --text-dim: #3f4347;
+    --text-faint: #55595e;
+    --label-muted: #3f4347;
+    --rule: rgba(22, 24, 27, 0.35); /* hairlines must survive grayscale */
+    --rule-strong: rgba(22, 24, 27, 0.6);
+    /* Lume has no place on paper: accents (quote bars, ticks, underlines)
+       print as ink so they survive grayscale. */
+    --accent: var(--movement-black);
+    --accent-text: var(--movement-black);
+    --accent-ink: #ffffff;
+    --grain-opacity: 0;
+    --selection: transparent;
+    --shadow-soft: none;
+    --shadow-lift: none;
+    color-scheme: light;
+
+    /* Type scale in points — the screen clamps lean on vw, meaningless on
+       paper. Body ~11pt; mono metadata a step smaller; serif keeps hierarchy. */
+    --t-mono-xs: 7.5pt;
+    --t-caption: 8.5pt;
+    --t-body-s: 10pt;
+    --t-body: 11pt;
+    --t-lead: 13.5pt;
+    --t-h4: 14pt;
+    --t-h3: 17pt;
+    --t-h2: 22pt;
+    --t-h1: 26pt;
+    --t-display: 30pt;
+
+    /* the @page margin is the gutter now */
+    --gutter: 0rem;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: var(--text) !important;
+    font-size: var(--t-body);
+    line-height: 1.55;
+    min-height: auto;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* --- Texture and sheen do not print --------------------------------------
+     film grain, sapphire sweep, vignettes, metal gradients → off or flattened */
+  body::after,
+  .grain-fine::after,
+  .sapphire::after,
+  .vignette::before {
+    display: none !important;
+  }
+  .surface-deep {
+    background: none;
+    box-shadow: none;
+  }
+  .rule-metal {
+    background: var(--rule-strong);
+  }
+
+  /* --- Chrome: hidden -------------------------------------------------------
+     site header (nav, search, theme toggle, menu), site footer (incl. its
+     email capture), skip link, reading-progress hairline, email capture /
+     popup / quiz promos, related-essays + next-piece navigation, and
+     interactive-only widgets that cannot function on paper. */
+  body > header,
+  body > footer,
+  .skip-link,
+  [data-reading-progress],
+  [data-theme-toggle],
+  [data-email-capture],
+  [data-email-popup],
+  [data-quiz-promo],
+  [data-athlete-lookup],
+  [data-cinematic-video],
+  [data-article-inline-capture],
+  [data-article-related],
+  [data-related-essays],
+  [data-article-trail],
+  [data-article-next] {
+    display: none !important;
+  }
+
+  /* Scroll-triggered reveals must not print blank below the fold. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* --- Typography -----------------------------------------------------------
+     serif headlines keep their register; never strand them at a page foot. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+    color: var(--text);
+  }
+  p,
+  li,
+  dd,
+  dt,
+  blockquote,
+  figcaption {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* the article column: trim screen-scale breathing room */
+  [data-article-root] {
+    padding-block: 0;
+  }
+
+  /* --- Links ----------------------------------------------------------------
+     prose links lose the lume background-underline (unreliable in print) for
+     a true hairline underline; EXTERNAL links disclose their URL in small
+     mono; internal links print plain. */
+  .prose a,
+  .prose-link,
+  [data-article-body] a {
+    background: none;
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 0.6pt;
+    text-underline-offset: 2pt;
+  }
+  article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-faint);
+    word-break: break-all;
+  }
+
+  /* --- Figures, pull quotes, FAQ — atomic on the page ----------------------- */
+  article figure,
+  article blockquote,
+  article img,
+  [data-pull-quote],
+  [data-article-faq-item],
+  [data-article-byline],
+  [data-author-module-inner] {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* pull quotes stay in the measure — no left break-out on paper */
+  [data-pull-quote] {
+    margin-left: 0;
+  }
+
+  /* The founder portrait is a bone-on-transparent stencil drawn for a dark
+     ground — on white paper it vanishes inside its frame (and the screen
+     frame's dark ground would waste ink). Invert it to print as ink. */
+  [data-author-portrait] {
+    background: #ffffff !important;
+    border: 0.5pt solid var(--rule-strong);
+  }
+  [data-author-portrait] img {
+    filter: grayscale(1) invert(1) contrast(1.05);
+    mix-blend-mode: normal;
+  }
+
+  /* images: thin ink rule, no sheen, no digital-frame shadow */
+  article [data-treatment] {
+    border: 0.5pt solid var(--rule-strong);
+    box-shadow: none;
+  }
+  [data-figure-sheen] {
+    display: none !important;
+  }
+  [data-article-body] img:not([data-figure-img]) {
+    border: 0.5pt solid var(--rule-strong);
+  }
+
+  /* --- The printed byline / colophon ----------------------------------------
+     The existing byline row (author · role · reading time · date) becomes the
+     printed credit line: bounded above and below by hairlines, kept with the
+     masthead. The article foot's essence line signs the piece off. */
+  [data-article-byline] {
+    border-top-color: var(--rule-strong);
+    border-bottom: var(--hairline) solid var(--rule);
+    padding-bottom: 0.75rem;
+  }
+  [data-article-foot] {
+    border-top-color: var(--rule-strong);
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

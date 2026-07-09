@@ -1,0 +1,94 @@
+.wrap {
+  border-top: var(--hairline) solid var(--rule);
+  padding-top: var(--s-6);
+}
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-5);
+}
+.inner {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: clamp(1.5rem, 5vw, 3rem);
+  align-items: start;
+}
+
+.portraitFrame {
+  background: var(--bg-raised);
+  border: var(--hairline) solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+/* The founder portrait is a bone-on-transparent stencil drawn for a dark
+   ground; on the bone theme it vanishes into a light frame. Keep the frame
+   in the dial register regardless of theme. */
+:global([data-theme="light"]) .portraitFrame {
+  background: var(--movement-black);
+}
+.portrait {
+  width: 100%;
+  height: auto;
+  /* keep the founder portrait in the brand register */
+  filter: grayscale(1) contrast(1.04);
+  mix-blend-mode: luminosity;
+}
+
+.role {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: var(--s-3);
+}
+.name {
+  font-size: var(--t-h2);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--s-4);
+}
+.bio {
+  max-width: 56ch;
+  color: var(--text-dim);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  margin-bottom: var(--s-6);
+}
+
+.creds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: var(--hairline) solid var(--rule);
+}
+.cred {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.cred dt {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.cred dd {
+  font-family: var(--font-mono);
+  font-size: var(--t-body-s);
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .inner {
+    grid-template-columns: 120px 1fr;
+  }
+  .creds {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,25 @@
+.wrap {
+  margin-top: var(--s-9);
+  padding-top: var(--s-6);
+  border-top: var(--hairline) solid var(--rule);
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-5);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 5vw, 4rem);
+}
+
+@media (max-width: 680px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+}

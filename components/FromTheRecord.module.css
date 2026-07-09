@@ -1,0 +1,113 @@
+/* From the record — a hairline-ruled band, three entries off the timeline. */
+
+.band {
+  border-block: var(--hairline) solid var(--rule);
+}
+.inner {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 var(--s-6);
+}
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  flex: none;
+}
+
+.row {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 0;
+}
+
+.cell {
+  padding-inline: clamp(1.25rem, 3vw, 2.5rem);
+}
+.cell:first-child {
+  padding-left: 0;
+}
+.cell:last-child {
+  padding-right: 0;
+}
+.cell + .cell {
+  border-left: var(--hairline) solid var(--rule);
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-3);
+  height: 100%;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--t-h3);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-wrap: balance;
+  transition: color var(--dur-1) var(--ease-mech);
+}
+.link:hover .title {
+  color: var(--accent-text);
+}
+
+.line {
+  color: var(--text-dim);
+  font-size: var(--t-body-s);
+  line-height: 1.55;
+  max-width: 36ch;
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .cell {
+    padding-inline: 0;
+    padding-block: var(--s-5);
+  }
+  .cell:first-child {
+    padding-top: 0;
+  }
+  .cell:last-child {
+    padding-bottom: 0;
+  }
+  .cell + .cell {
+    border-left: none;
+    border-top: var(--hairline) solid var(--rule);
+  }
+}

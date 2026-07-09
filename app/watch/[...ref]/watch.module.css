@@ -1,0 +1,183 @@
+/* THE WATCH ENTITY PAGE — a spec plate and its paper trail. Restrained:
+   mono plate, hairline rules, three short ledgers underneath. */
+
+.body {
+  padding-bottom: var(--s-8);
+}
+
+/* the spec plate — FactBlock-adjacent: engraved, mono, hairline-ruled */
+.plate {
+  --pad: clamp(1.2rem, 2.6vw, 1.75rem);
+  max-width: 44rem;
+  background:
+    radial-gradient(140% 120% at 50% -20%, rgba(var(--bone-rgb), 0.05), transparent 55%),
+    linear-gradient(180deg, var(--bg-raised), var(--bg-sunken));
+  border: var(--hairline) solid var(--rule-strong);
+  border-radius: var(--radius);
+  padding: var(--pad);
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum", "lnum";
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(var(--bone-rgb), 0.06);
+}
+.plate::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--metal);
+  opacity: 0.7;
+}
+.plateHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+  padding-bottom: var(--s-3);
+  margin-bottom: var(--s-4);
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.plateKicker {
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--label-muted);
+}
+.plateBrand {
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.1em;
+  color: var(--accent-text);
+  border: var(--hairline) solid var(--rule-strong);
+  border-radius: 999px;
+  padding: 0.2em 0.7em;
+  white-space: nowrap;
+}
+.rows {
+  display: grid;
+  gap: var(--s-3);
+}
+.row {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--s-4);
+  align-items: baseline;
+}
+.label {
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--label-muted);
+}
+.value {
+  font-size: var(--t-body-s);
+  color: var(--text);
+  line-height: 1.4;
+}
+.priceNote {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: var(--hairline) solid var(--rule);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: var(--label-muted);
+}
+
+/* the ledgers underneath — coverage, wrists, sources */
+.section {
+  padding-top: var(--s-7);
+}
+.list {
+  border-top: var(--hairline) solid var(--rule);
+}
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr) auto;
+  gap: var(--s-5);
+  align-items: baseline;
+  padding: var(--s-5) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.itemName {
+  font-family: var(--font-serif);
+  font-size: var(--t-h4);
+  letter-spacing: -0.01em;
+}
+.itemMeta {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  color: var(--text-dim);
+}
+.itemTag {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--label-muted);
+  white-space: nowrap;
+  text-align: right;
+}
+.itemArrow {
+  color: var(--text-dim);
+  text-align: right;
+  transition: transform var(--dur-2) var(--ease-mech), color var(--dur-1);
+}
+a.item:hover .itemArrow {
+  transform: translateX(6px);
+  color: var(--accent-text);
+}
+
+/* sources — the paper trail, set small and plain */
+.sources {
+  border-top: var(--hairline) solid var(--rule);
+  max-width: 44rem;
+}
+.source {
+  display: block;
+  padding: var(--s-4) 0;
+  border-bottom: var(--hairline) solid var(--rule);
+}
+.sourceClaim {
+  font-size: var(--t-body-s);
+  color: var(--text);
+  line-height: 1.5;
+}
+.sourceUrl {
+  display: block;
+  margin-top: 0.35em;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.04em;
+  color: var(--accent-text);
+  word-break: break-all;
+}
+
+.foot {
+  padding-top: var(--s-7);
+  display: flex;
+  gap: var(--s-6);
+  flex-wrap: wrap;
+}
+.back {
+  font-family: var(--font-mono);
+  font-size: var(--t-caption);
+  letter-spacing: 0.08em;
+  color: var(--accent-text);
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--s-1);
+  }
+  .item {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.2rem;
+  }
+  .itemMeta {
+    grid-column: 1;
+  }
+}
